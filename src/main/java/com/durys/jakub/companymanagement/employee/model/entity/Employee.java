@@ -1,9 +1,8 @@
 package com.durys.jakub.companymanagement.employee.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.durys.jakub.companymanagement.organisation_structure.model.entity.OrganisationStructure;
+
+import javax.persistence.*;
 
 @Table(name = "CM_EMPLOYEE")
 @Entity
@@ -18,6 +17,8 @@ public class Employee {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-
+    @ManyToOne
+    @JoinColumn(name = "structure_id")
+    private OrganisationStructure organisationStructure;
 
 }
