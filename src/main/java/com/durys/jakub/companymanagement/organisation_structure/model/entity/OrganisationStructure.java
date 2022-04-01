@@ -2,10 +2,7 @@ package com.durys.jakub.companymanagement.organisation_structure.model.entity;
 
 import com.durys.jakub.companymanagement.employee.model.entity.Employee;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 @Table(name = "CM_ORGANISATION_STRUCTURE")
@@ -17,6 +14,9 @@ public class OrganisationStructure {
 
     private String name;
     private Long level;
+
+    @Column(name = "PARENT_ID")
+    private Long parentId;
 
     @OneToMany(mappedBy = "organisationStructure")
     private Set<Employee> employees;

@@ -10,4 +10,5 @@
     <include file="/db/changelog/changes/1.0.0/create-employee-table-changelog.xml" />
     <include file="/db/changelog/changes/1.0.0/alter-employee-table-changelog-1.xml" />
     <include file="/db/changelog/changes/1.0.0/create-organisation-table-changelog.xml" />
+    <include file="/db/changelog/changes/1.0.0/alter-organisation-table-changelog-1.xml" />
 </databaseChangeLog>
