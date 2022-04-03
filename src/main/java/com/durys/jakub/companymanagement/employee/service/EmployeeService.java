@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.employee.service;
 
+import com.durys.jakub.companymanagement.employee.model.entity.Employee;
 import com.durys.jakub.companymanagement.employee.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,4 +11,8 @@ public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
 
+    public Employee findById(Long id) {
+        return employeeRepository.findById(id)
+                .orElseThrow(RuntimeException::new);
+    }
 }
