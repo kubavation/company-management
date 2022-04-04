@@ -13,6 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -21,21 +23,23 @@ class EmployeeServiceTest {
     @Mock
     private EmployeeRepository employeeRepository;
 
+    @InjectMocks
+    private EmployeeService employeeService;
 
     @Test
-    public void findEmployeeById_ShouldReturnEmployee() {
+    void findEmployeeById_ShouldReturnEmployee() {
         Employee employee = new Employee(1L, "John", "Doe");
         when(employeeRepository.findById(1L)).thenReturn(Optional.of(employee));
-        Assertions.assertTrue(employeeRepository.findById(1L).isPresent());
+        assertEquals(employeeService.findById(1L).getId() , 1L);
     }
 
 
     @Test
-    public void findEmployeeById_shouldThrowException() {
-        when(employeeRepository.findById(1L)).thenThrow(EntityNotFoundException.class);
+    void findEmployeeById_shouldThrowException() {
+        when(employeeRepository.findById(1L)).thenReturn(Optional.empty());
 
-        Assertions.assertThrows(EntityNotFoundException.class,
-                () -> employeeRepository.findById(1L));
+        assertThrows(EntityNotFoundException.class,
+                () -> employeeService.findById(1L));
     }
 
 }

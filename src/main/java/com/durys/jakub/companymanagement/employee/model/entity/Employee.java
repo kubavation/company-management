@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.employee.model.entity;
 import com.durys.jakub.companymanagement.organisation_structure.model.entity.OrganisationStructure;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Employee {
 
     @Id
