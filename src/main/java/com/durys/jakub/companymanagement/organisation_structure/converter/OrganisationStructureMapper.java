@@ -5,10 +5,14 @@ import com.durys.jakub.companymanagement.organisation_structure.model.entity.Org
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+import java.util.List;
+
+@Mapper(componentModel = "spring")
 public interface OrganisationStructureMapper {
 
     OrganisationStructureMapper INSTANCE = Mappers.getMapper( OrganisationStructureMapper.class );
 
     OrganisationDTO toDTO(OrganisationStructure organisationStructure);
+
+    List<OrganisationDTO> toDTO(List<OrganisationStructure> organisationStructures);
 }
