@@ -1,10 +1,7 @@
 package com.durys.jakub.companymanagement.organisation_structure.model.entity;
 
 import com.durys.jakub.companymanagement.employee.model.entity.Employee;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -14,7 +11,8 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 public class OrganisationStructure {
 
     @Id
@@ -23,8 +21,12 @@ public class OrganisationStructure {
     private String name;
     private Long level;
 
-    @Column(name = "PARENT_ID")
-    private Long parentId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PARENT_ID", referencedColumnName = "ID")
+    private OrganisationStructure parent;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent")
+    private Set<OrganisationStructure> children;
 
     @OneToMany(mappedBy = "organisationStructure")
     private Set<Employee> employees;

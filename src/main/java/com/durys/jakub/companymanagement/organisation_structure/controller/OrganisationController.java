@@ -17,6 +17,12 @@ public class OrganisationController {
     private final OrganisationService organisationService;
 
     private final OrganisationStructureMapper organisationMapper;
+
+    @GetMapping
+    public List<OrganisationDTO> getOrganisationStructure() {
+        return organisationMapper.toDTO(
+                organisationService.findAll());
+    }
     
     @GetMapping("/level/{level}")
     public List<OrganisationDTO> getOrganisationStructureByLevel(@PathVariable Long level) {

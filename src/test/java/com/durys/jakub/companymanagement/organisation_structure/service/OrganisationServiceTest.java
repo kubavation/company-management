@@ -45,16 +45,16 @@ class OrganisationServiceTest {
 
     @Test
     void findAllByParentId_shouldReturnListOfSize1() {
-        List<OrganisationStructure> structures = List.of(
-                OrganisationStructure.builder().id(1L).parentId(null).build(),
-                OrganisationStructure.builder().id(2L).parentId(1L).build(),
-                OrganisationStructure.builder().id(3L).parentId(2L).build()
-        );
-
-        when(organisationRepository.findAllByParentId(1L)).thenReturn(
-                List.of(
-                        OrganisationStructure.builder().id(2L).parentId(1L).build()
-                ));
+//        List<OrganisationStructure> structures = List.of(
+//                OrganisationStructure.builder().id(1L).parentId(null).build(),
+//                OrganisationStructure.builder().id(2L).parentId(1L).build(),
+//                OrganisationStructure.builder().id(3L).parentId(2L).build()
+//        );
+//
+//        when(organisationRepository.findAllByParentId(1L)).thenReturn(
+//                List.of(
+//                        OrganisationStructure.builder().id(2L).parentId(1L).build()
+//                ));
 
         List<OrganisationStructure> actual = organisationService.findAllByParentId(1L);
         assertEquals(actual.size(), 1);

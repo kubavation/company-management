@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -16,4 +18,5 @@ public class OrganisationDTO {
     private String name;
     private Long level;
     private Long parentId;
+    private List<OrganisationDTO> children = new ArrayList<>();
 }

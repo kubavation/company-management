@@ -21,4 +21,8 @@ public class OrganisationService {
         return organisationRepository.findAllByParentId(parentId);
     }
 
+    public List<OrganisationStructure> findAll() {
+       return organisationRepository.findAll();
+    }
+
 }
