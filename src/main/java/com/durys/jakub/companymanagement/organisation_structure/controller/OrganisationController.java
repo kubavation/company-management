@@ -30,8 +30,8 @@ public class OrganisationController {
                 organisationService.findAllByLevel(level));
     }
 
-    @GetMapping("/parent/{parentId}")
-    public List<OrganisationDTO> getOrganisationStructureByParentId(@PathVariable Long parentId) {
+    @GetMapping(value = {"/parent/{parentId}", "parent"})
+    public List<OrganisationDTO> getOrganisationStructureByParentId(@PathVariable(required = false) Long parentId) {
         return organisationMapper.toDTO(
                 organisationService.findAllByParentId(parentId));
     }

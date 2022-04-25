@@ -21,7 +21,7 @@ public class OrganisationStructure {
     private String name;
     private Long level;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PARENT_ID", referencedColumnName = "ID")
     private OrganisationStructure parent;
 
