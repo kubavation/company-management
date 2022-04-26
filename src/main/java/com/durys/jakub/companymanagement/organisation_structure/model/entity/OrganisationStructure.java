@@ -4,6 +4,7 @@ import com.durys.jakub.companymanagement.employee.model.entity.Employee;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Table(name = "CM_ORGANISATION_STRUCTURE")
@@ -20,6 +21,14 @@ public class OrganisationStructure {
 
     private String name;
     private Long level;
+    private String shortcut;
+    private String description;
+
+    @Column(name = "DATE_FROM")
+    private LocalDateTime dateFrom;
+
+    @Column(name = "DATE_TO")
+    private LocalDateTime dateTo;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PARENT_ID", referencedColumnName = "ID")

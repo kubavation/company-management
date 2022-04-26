@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,5 +19,10 @@ public class OrganisationDTO {
     private String name;
     private Long level;
     private Long parentId;
+    private String shortcut;
+    private String description;
+    private LocalDateTime dateFrom;
+    private LocalDateTime dateTo;
+
     private List<OrganisationDTO> children = new ArrayList<>();
 }
