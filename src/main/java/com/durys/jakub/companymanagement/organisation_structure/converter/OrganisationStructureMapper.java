@@ -10,7 +10,6 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface OrganisationStructureMapper {
-
     OrganisationStructureMapper INSTANCE = Mappers.getMapper( OrganisationStructureMapper.class );
 
     @Mapping(source = "parent.id", target = "parentId")
