@@ -4,9 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "CM_PERSONAL_REQUEST_TYPE")
@@ -20,4 +19,8 @@ public class PersonalRequestType {
 
     private String name;
     private String status;
+
+    @OneToMany(mappedBy = "requestType")
+    List<PersonalRequestFieldType> requestFieldTypes;
+
 }

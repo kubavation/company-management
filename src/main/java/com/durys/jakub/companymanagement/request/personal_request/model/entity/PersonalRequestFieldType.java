@@ -1,12 +1,12 @@
 package com.durys.jakub.companymanagement.request.personal_request.model.entity;
 
+import com.durys.jakub.companymanagement.request.personal_request.model.enums.FieldType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "CM_PERSONAL_REQUEST_FIELD_TYPE")
@@ -20,8 +20,13 @@ public class PersonalRequestFieldType {
 
     private String label;
 
-    private String type; //todo enum type
+    @Enumerated(EnumType.STRING)
+    private FieldType type;
+
     private String status;
     private Integer lp;
 
+    @ManyToOne
+    @JoinColumn(name = "REQUEST_TYPE_ID")
+    private PersonalRequestType requestType;
 }
