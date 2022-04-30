@@ -26,7 +26,13 @@ public class PersonalRequestFieldType {
     private String status;
     private Integer lp;
 
+    @Column(name = "LIST_QUERY")
+    private String listQuery;
+
     @ManyToOne
     @JoinColumn(name = "REQUEST_TYPE_ID")
     private PersonalRequestType requestType;
+
+    @OneToMany(mappedBy = "fieldType")
+    private List<PersonalRequestFieldTypeSettings> settings;
 }
