@@ -18,6 +18,7 @@ public class PersonalRequestType {
     private Long id;
 
     private String name;
+    private String desc;
     private String status;
 
     @OneToMany(mappedBy = "requestType")

@@ -16,4 +16,7 @@ public class PersonalRequestFieldTypeSettings {
     @Column(name = "REFRESH_FIELD_NAME")
     private String refreshFieldName;
 
+    @Column(name = "PARAM_NAME")
+    private String paramName;
+
 }

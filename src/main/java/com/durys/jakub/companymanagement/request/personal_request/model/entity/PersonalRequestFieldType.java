@@ -18,6 +18,7 @@ public class PersonalRequestFieldType {
     @Id
     private Long id;
 
+    private String name;
     private String label;
 
     @Enumerated(EnumType.STRING)

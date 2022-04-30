@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="jdurys" id="11">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="CM_PERSONAL_REQUEST_FIELD_TYPE"/>
+            </not>
+        </preConditions>
+        <createTable  tableName="CM_PERSONAL_REQUEST_FIELD_TYPE">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="label" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lp" type="NUMBER(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="list_query" type="VARCHAR(4000)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="request_type_id" type="NUMBER(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
