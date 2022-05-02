@@ -19,7 +19,7 @@ public class PersonalRequestType {
     private String desc;
     private String status;
 
-    @OneToMany(mappedBy = "requestType")
+    @OneToMany(mappedBy = "requestType", fetch = FetchType.EAGER)
     private List<PersonalRequestFieldType> requestFieldTypes;
 
 }
