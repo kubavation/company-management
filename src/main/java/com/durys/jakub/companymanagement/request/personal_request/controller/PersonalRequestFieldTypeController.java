@@ -4,6 +4,7 @@ import com.durys.jakub.companymanagement.request.personal_request.converter.Pers
 import com.durys.jakub.companymanagement.request.personal_request.model.dto.PersonalRequestFieldTypeDTO;
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequestFieldType;
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequestType;
+import com.durys.jakub.companymanagement.request.personal_request.model.enums.FieldType;
 import com.durys.jakub.companymanagement.request.personal_request.service.PersonalRequestFieldTypeService;
 import com.durys.jakub.companymanagement.request.personal_request.service.PersonalRequestTypeService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/personal-requests-fields")
@@ -25,6 +27,12 @@ public class PersonalRequestFieldTypeController {
     @GetMapping("/request-type/{typeId}")
     public List<PersonalRequestFieldTypeDTO> findAllByRequestTypeId(@PathVariable Long typeId) {
         return personalRequestFieldTypeMapper
-                .toDTO(personalRequestFieldTypeService.findAllByPersonalRequestTypeId(typeId));
+                .toDTO(personalRequestFieldTypeService.findAllByPersonalRequestTypeId(typeId))
+                .stream()
+                     .peek(requestField -> {
+                         if(requestField.getType().equals(FieldType.LIST)) {
+                             requestField.setList(personalRequestFieldTypeService.generateListValues(requestField.getId()));
+                         }
+                     }).collect(Collectors.toList());
     }
 }
