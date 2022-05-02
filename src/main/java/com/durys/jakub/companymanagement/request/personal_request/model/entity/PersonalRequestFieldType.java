@@ -34,6 +34,6 @@ public class PersonalRequestFieldType {
     @JoinColumn(name = "REQUEST_TYPE_ID")
     private PersonalRequestType requestType;
 
-    @OneToMany(mappedBy = "fieldType")
+    @OneToMany(mappedBy = "fieldType", fetch = FetchType.LAZY)
     private List<PersonalRequestFieldTypeSettings> settings;
 }
