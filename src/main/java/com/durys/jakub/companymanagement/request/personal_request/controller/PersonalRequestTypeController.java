@@ -1,5 +1,7 @@
 package com.durys.jakub.companymanagement.request.personal_request.controller;
 
+import com.durys.jakub.companymanagement.request.personal_request.converter.PersonalRequestTypeMapper;
+import com.durys.jakub.companymanagement.request.personal_request.model.dto.PersonalRequestTypeDTO;
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequestType;
 import com.durys.jakub.companymanagement.request.personal_request.service.PersonalRequestTypeService;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +17,10 @@ import java.util.List;
 public class PersonalRequestTypeController {
 
     private final PersonalRequestTypeService personalRequestTypeService;
+    private final PersonalRequestTypeMapper personalRequestTypeMapper;
 
     @GetMapping
-    public List<PersonalRequestType> findAll() {
-        return personalRequestTypeService.findAll();
+    public List<PersonalRequestTypeDTO> findAll() {
+        return personalRequestTypeMapper.toDTO(personalRequestTypeService.findAll());
     }
 }

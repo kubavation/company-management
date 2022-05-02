@@ -1,5 +1,7 @@
-package com.durys.jakub.companymanagement.request.personal_request;
+package com.durys.jakub.companymanagement.request.personal_request.controller;
 
+import com.durys.jakub.companymanagement.request.personal_request.converter.PersonalRequestFieldTypeMapper;
+import com.durys.jakub.companymanagement.request.personal_request.model.dto.PersonalRequestFieldTypeDTO;
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequestFieldType;
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequestType;
 import com.durys.jakub.companymanagement.request.personal_request.service.PersonalRequestFieldTypeService;
@@ -18,9 +20,11 @@ import java.util.List;
 public class PersonalRequestFieldTypeController {
 
     private final PersonalRequestFieldTypeService personalRequestFieldTypeService;
+    private final PersonalRequestFieldTypeMapper personalRequestFieldTypeMapper;
 
     @GetMapping("/request-type/{typeId}")
-    public List<PersonalRequestFieldType> findAllByRequestTypeId(@PathVariable Long typeId) {
-        return personalRequestFieldTypeService.findAllByPersonalRequestTypeId(typeId);
+    public List<PersonalRequestFieldTypeDTO> findAllByRequestTypeId(@PathVariable Long typeId) {
+        return personalRequestFieldTypeMapper
+                .toDTO(personalRequestFieldTypeService.findAllByPersonalRequestTypeId(typeId));
     }
 }

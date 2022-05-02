@@ -1,8 +1,6 @@
 package com.durys.jakub.companymanagement.request.personal_request.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,6 +20,6 @@ public class PersonalRequestType {
     private String status;
 
     @OneToMany(mappedBy = "requestType")
-    List<PersonalRequestFieldType> requestFieldTypes;
+    private List<PersonalRequestFieldType> requestFieldTypes;
 
 }

@@ -16,7 +16,12 @@ public class PersonalRequestTypeService {
     private final PersonalRequestTypeRepository personalRequestTypeRepository;
 
     public List<PersonalRequestType> findAll() {
-        return personalRequestTypeRepository.findAll();
+        try {
+            return personalRequestTypeRepository.findAll();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
 }

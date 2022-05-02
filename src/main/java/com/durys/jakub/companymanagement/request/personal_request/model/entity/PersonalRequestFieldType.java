@@ -1,9 +1,7 @@
 package com.durys.jakub.companymanagement.request.personal_request.model.entity;
 
 import com.durys.jakub.companymanagement.request.personal_request.model.enums.FieldType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -30,7 +28,7 @@ public class PersonalRequestFieldType {
     @Column(name = "LIST_QUERY")
     private String listQuery;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "REQUEST_TYPE_ID")
     private PersonalRequestType requestType;
 
