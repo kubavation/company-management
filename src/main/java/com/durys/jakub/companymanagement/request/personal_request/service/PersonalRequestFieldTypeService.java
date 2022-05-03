@@ -34,13 +34,10 @@ public class PersonalRequestFieldTypeService {
                 .orElseThrow(() -> new EntityNotFoundException(PersonalRequestFieldType.class, id));
     }
 
-
     public List<KeyValue> generateListValues(Long fieldTypeId) {
 
-        String listQuery = findById(fieldTypeId).getListQuery();
-
         try {
-            return jdbcTemplate.query(listQuery, new KeyValueMapper());
+            return jdbcTemplate.query(findById(fieldTypeId).getListQuery(), new KeyValueMapper());
         } catch (Exception e) {
             log.error(e.getMessage());
         }
