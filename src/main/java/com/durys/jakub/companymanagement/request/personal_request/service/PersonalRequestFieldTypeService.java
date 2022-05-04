@@ -30,7 +30,7 @@ public class PersonalRequestFieldTypeService {
 
     public PersonalRequestFieldType findById(Long id) {
         return personalRequestFieldTypeRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(PersonalRequestFieldType.class, id));
+                .orElseThrow(EntityNotFoundException.of(PersonalRequestFieldType.class, id));
     }
 
 
