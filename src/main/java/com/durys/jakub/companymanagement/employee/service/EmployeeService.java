@@ -14,6 +14,6 @@ public class EmployeeService {
 
     public Employee findById(Long id) {
         return employeeRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(Employee.class, id));
+                .orElseThrow(EntityNotFoundException.of(Employee.class, id));
     }
 }
