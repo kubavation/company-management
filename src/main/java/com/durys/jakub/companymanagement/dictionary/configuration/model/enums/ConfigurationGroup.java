@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.dictionary.model.enums;
+package com.durys.jakub.companymanagement.dictionary.configuration.model.enums;
 
 public enum ConfigurationGroup {
     DEFAULT("default");

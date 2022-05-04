@@ -1,7 +1,7 @@
-package com.durys.jakub.companymanagement.dictionary.model.entity;
+package com.durys.jakub.companymanagement.dictionary.configuration.model.entity;
 
-import com.durys.jakub.companymanagement.dictionary.model.enums.ConfigurationGroup;
-import com.durys.jakub.companymanagement.dictionary.model.enums.ConfigurationType;
+import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.ConfigurationGroup;
+import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.ConfigurationType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

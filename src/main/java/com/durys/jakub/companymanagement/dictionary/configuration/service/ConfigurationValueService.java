@@ -1,9 +1,9 @@
-package com.durys.jakub.companymanagement.dictionary.service;
+package com.durys.jakub.companymanagement.dictionary.configuration.service;
 
-import com.durys.jakub.companymanagement.dictionary.model.entity.ConfigurationValue;
-import com.durys.jakub.companymanagement.dictionary.model.enums.ConfigurationGroup;
-import com.durys.jakub.companymanagement.dictionary.model.enums.ConfigurationType;
-import com.durys.jakub.companymanagement.dictionary.repository.ConfigurationValueRepository;
+import com.durys.jakub.companymanagement.dictionary.configuration.model.entity.ConfigurationValue;
+import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.ConfigurationGroup;
+import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.ConfigurationType;
+import com.durys.jakub.companymanagement.dictionary.configuration.repository.ConfigurationValueRepository;
 import com.durys.jakub.companymanagement.shared.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
