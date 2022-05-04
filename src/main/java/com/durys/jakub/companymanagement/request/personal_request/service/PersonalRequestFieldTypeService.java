@@ -23,7 +23,6 @@ import java.util.List;
 public class PersonalRequestFieldTypeService {
 
     private final PersonalRequestFieldTypeRepository personalRequestFieldTypeRepository;
-    private final JdbcTemplate jdbcTemplate;
 
     public List<PersonalRequestFieldType> findAllByPersonalRequestTypeId(Long requestTypeId) {
         return personalRequestFieldTypeRepository.findAllByRequestTypeId(requestTypeId);
@@ -34,15 +33,5 @@ public class PersonalRequestFieldTypeService {
                 .orElseThrow(() -> new EntityNotFoundException(PersonalRequestFieldType.class, id));
     }
 
-    public List<KeyValue> generateListValues(Long fieldTypeId) {
-
-        try {
-            return jdbcTemplate.query(findById(fieldTypeId).getListQuery(), new KeyValueMapper());
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-
-        return new ArrayList<>();
-    }
 
 }

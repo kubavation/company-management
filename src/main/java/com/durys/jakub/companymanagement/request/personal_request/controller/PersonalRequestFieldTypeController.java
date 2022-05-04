@@ -27,12 +27,6 @@ public class PersonalRequestFieldTypeController {
     @GetMapping("/request-type/{typeId}")
     public List<PersonalRequestFieldTypeDTO> findAllByRequestTypeId(@PathVariable Long typeId) {
         return personalRequestFieldTypeMapper
-                .toDTO(personalRequestFieldTypeService.findAllByPersonalRequestTypeId(typeId))
-                .stream()
-                     .peek(requestField -> {
-                         if(requestField.getType().equals(FieldType.LIST)) {
-                             requestField.setList(personalRequestFieldTypeService.generateListValues(requestField.getId()));
-                         }
-                     }).collect(Collectors.toList());
+                .toDTO(personalRequestFieldTypeService.findAllByPersonalRequestTypeId(typeId));
     }
 }
