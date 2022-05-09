@@ -4,5 +4,6 @@ public enum FieldType {
     NUMBER,
     TEXT,
     LABEL,
+    DATE,
     LIST
 }
