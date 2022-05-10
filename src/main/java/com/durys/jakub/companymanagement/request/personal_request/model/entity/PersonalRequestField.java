@@ -24,4 +24,8 @@ public class PersonalRequestField {
     @ManyToOne
     @JoinColumn(name = "PERSONAL_REQUEST_ID")
     private PersonalRequest personalRequest;
+
+    @ManyToOne
+    @JoinColumn(name = "REQUEST_FIELD_TYPE_ID", referencedColumnName = "ID")
+    private PersonalRequestFieldType requestFieldType;
 }
