@@ -1,12 +1,11 @@
-package com.durys.jakub.companymanagement.request.personal_request.converter;
+package com.durys.jakub.companymanagement.request.personal_request.converter.general;
 
-import com.durys.jakub.companymanagement.request.personal_request.model.dto.PersonalRequestFieldDTO;
-import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequestField;
+import com.durys.jakub.companymanagement.request.personal_request.model.dto.general.PersonalRequestFieldDTO;
+import com.durys.jakub.companymanagement.request.personal_request.model.entity.general.PersonalRequestField;
 import com.durys.jakub.companymanagement.request.personal_request.service.utils.FieldTypeListUtil;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper(componentModel = "spring")

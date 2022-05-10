@@ -1,9 +1,8 @@
 package com.durys.jakub.companymanagement.request.personal_request.controller;
 
-import com.durys.jakub.companymanagement.request.personal_request.converter.PersonalRequestTypeMapper;
-import com.durys.jakub.companymanagement.request.personal_request.model.dto.PersonalRequestTypeDTO;
-import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequestType;
-import com.durys.jakub.companymanagement.request.personal_request.service.PersonalRequestTypeService;
+import com.durys.jakub.companymanagement.request.personal_request.converter.dict.PersonalRequestTypeMapper;
+import com.durys.jakub.companymanagement.request.personal_request.model.dto.dict.PersonalRequestTypeDTO;
+import com.durys.jakub.companymanagement.request.personal_request.service.dict.PersonalRequestTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

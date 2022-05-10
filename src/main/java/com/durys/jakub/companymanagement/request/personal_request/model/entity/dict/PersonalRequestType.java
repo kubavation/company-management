@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.request.personal_request.model.entity;
+package com.durys.jakub.companymanagement.request.personal_request.model.entity.dict;
 
 import lombok.*;
 

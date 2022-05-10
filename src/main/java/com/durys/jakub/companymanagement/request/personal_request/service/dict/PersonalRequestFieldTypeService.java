@@ -1,20 +1,12 @@
-package com.durys.jakub.companymanagement.request.personal_request.service;
+package com.durys.jakub.companymanagement.request.personal_request.service.dict;
 
-import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequestFieldType;
+import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestFieldType;
 import com.durys.jakub.companymanagement.request.personal_request.repository.PersonalRequestFieldTypeRepository;
-import com.durys.jakub.companymanagement.request.personal_request.repository.PersonalRequestTypeRepository;
 import com.durys.jakub.companymanagement.shared.exception.EntityNotFoundException;
-import com.durys.jakub.companymanagement.shared.model.KeyValue;
-import com.durys.jakub.companymanagement.shared.sqlmappers.KeyValueMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

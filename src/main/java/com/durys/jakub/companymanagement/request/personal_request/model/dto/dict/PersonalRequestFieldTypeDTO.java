@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.request.personal_request.model.dto;
+package com.durys.jakub.companymanagement.request.personal_request.model.dto.dict;
 
 import com.durys.jakub.companymanagement.request.personal_request.model.enums.FieldType;
 import com.durys.jakub.companymanagement.shared.model.KeyValue;

@@ -1,6 +1,7 @@
-package com.durys.jakub.companymanagement.request.personal_request.model.entity;
+package com.durys.jakub.companymanagement.request.personal_request.model.entity.general;
 
 import com.durys.jakub.companymanagement.employee.model.entity.Employee;
+import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

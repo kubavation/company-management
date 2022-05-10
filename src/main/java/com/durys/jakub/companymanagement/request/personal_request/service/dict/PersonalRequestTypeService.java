@@ -1,8 +1,6 @@
-package com.durys.jakub.companymanagement.request.personal_request.service;
+package com.durys.jakub.companymanagement.request.personal_request.service.dict;
 
-import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequestFieldType;
-import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequestType;
-import com.durys.jakub.companymanagement.request.personal_request.repository.PersonalRequestFieldTypeRepository;
+import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestType;
 import com.durys.jakub.companymanagement.request.personal_request.repository.PersonalRequestTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,6 @@
 package com.durys.jakub.companymanagement.request.personal_request.repository;
 
-import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequestFieldType;
-import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequestFieldTypeSettings;
+import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestFieldTypeSettings;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

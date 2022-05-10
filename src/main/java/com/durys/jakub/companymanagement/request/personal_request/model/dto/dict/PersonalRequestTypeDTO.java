@@ -1,11 +1,9 @@
-package com.durys.jakub.companymanagement.request.personal_request.model.dto;
+package com.durys.jakub.companymanagement.request.personal_request.model.dto.dict;
 
-import com.durys.jakub.companymanagement.request.personal_request.model.enums.FieldType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Id;
 import java.util.List;
 
 

@@ -1,10 +1,7 @@
-package com.durys.jakub.companymanagement.request.personal_request.converter;
+package com.durys.jakub.companymanagement.request.personal_request.converter.general;
 
-import com.durys.jakub.companymanagement.request.personal_request.model.dto.PersonalRequestDTO;
-import com.durys.jakub.companymanagement.request.personal_request.model.dto.PersonalRequestFieldDTO;
-import com.durys.jakub.companymanagement.request.personal_request.model.dto.PersonalRequestTypeDTO;
-import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequest;
-import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequestType;
+import com.durys.jakub.companymanagement.request.personal_request.model.dto.general.PersonalRequestDTO;
+import com.durys.jakub.companymanagement.request.personal_request.model.entity.general.PersonalRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

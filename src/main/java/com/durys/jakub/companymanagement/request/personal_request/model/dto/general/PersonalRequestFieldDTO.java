@@ -1,6 +1,5 @@
-package com.durys.jakub.companymanagement.request.personal_request.model.dto;
+package com.durys.jakub.companymanagement.request.personal_request.model.dto.general;
 
-import com.durys.jakub.companymanagement.request.personal_request.model.entity.PersonalRequest;
 import com.durys.jakub.companymanagement.request.personal_request.model.enums.FieldType;
 import com.durys.jakub.companymanagement.shared.model.KeyValue;
 import lombok.AllArgsConstructor;

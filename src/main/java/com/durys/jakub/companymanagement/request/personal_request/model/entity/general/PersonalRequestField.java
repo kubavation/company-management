@@ -1,12 +1,11 @@
-package com.durys.jakub.companymanagement.request.personal_request.model.entity;
+package com.durys.jakub.companymanagement.request.personal_request.model.entity.general;
 
-import com.durys.jakub.companymanagement.request.personal_request.model.enums.FieldType;
+import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestFieldType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "CM_PERSONAL_REQUEST_FIELD")
