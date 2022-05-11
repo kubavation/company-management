@@ -20,6 +20,11 @@ public interface PersonalRequestMapper {
         @Mapping(source = "requestType.id", target = "requestTypeId")
     })
     PersonalRequestDTO toDTO(PersonalRequest entity);
-
     List<PersonalRequestDTO> toDTO(List<PersonalRequest> entities);
+
+//    @Mappings({
+//        @Mapping(target = "fields", ignore = true),
+//        @Mapping(target = "employee", ignore = true)
+//    })
+    PersonalRequest toEntity(PersonalRequestDTO dto);
 }

@@ -8,11 +8,14 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public abstract class PersonalRequestFieldMapper {
 
     @Autowired
     protected FieldTypeListUtil fieldTypeListUtil;
+
 
     @Mappings({
         @Mapping(source = "requestFieldType.id", target = "fieldTypeId"),
@@ -22,4 +25,8 @@ public abstract class PersonalRequestFieldMapper {
         @Mapping(target = "requestFieldType.list", expression = "java(fieldTypeListUtil.generateListValues(entity.getListQuery()))"),
     })
     public abstract PersonalRequestFieldDTO toDTO(PersonalRequestField entity);
+
+    public abstract List<PersonalRequestFieldDTO> toDTO(List<PersonalRequestField> entities);
+
+    public abstract PersonalRequestField toEntity(PersonalRequestFieldDTO dto);
 }
