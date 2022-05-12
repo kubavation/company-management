@@ -1,9 +1,7 @@
 package com.durys.jakub.companymanagement.request.personal_request.model.entity.general;
 
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestFieldType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,10 +9,13 @@ import javax.persistence.*;
 @Table(name = "CM_PERSONAL_REQUEST_FIELD")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@Builder
 public class PersonalRequestField {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String value;

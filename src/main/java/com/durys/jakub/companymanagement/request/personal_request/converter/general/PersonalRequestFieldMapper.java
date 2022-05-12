@@ -28,5 +28,4 @@ public abstract class PersonalRequestFieldMapper {
 
     public abstract List<PersonalRequestFieldDTO> toDTO(List<PersonalRequestField> entities);
 
-    public abstract PersonalRequestField toEntity(PersonalRequestFieldDTO dto);
 }

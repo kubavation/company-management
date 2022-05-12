@@ -2,9 +2,7 @@ package com.durys.jakub.companymanagement.request.personal_request.model.entity.
 
 import com.durys.jakub.companymanagement.employee.model.entity.Employee;
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,10 +11,12 @@ import java.util.List;
 @Table(name = "CM_PERSONAL_REQUEST")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 public class PersonalRequest {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String status;
 
@@ -28,7 +28,7 @@ public class PersonalRequest {
     @JoinColumn(name = "REQUEST_TYPE_ID", referencedColumnName = "ID")
     private PersonalRequestType requestType;
 
-    @OneToMany(mappedBy = "personalRequest")
+    @OneToMany(mappedBy = "personalRequest", cascade = CascadeType.PERSIST)
     private List<PersonalRequestField> fields;
 
 }

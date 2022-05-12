@@ -23,4 +23,8 @@ public class PersonalRequestService {
         return personalRequestRepository.findAllByEmployeeId(employeeId);
     }
 
+    public PersonalRequest create(PersonalRequest personalRequest) {
+        return personalRequestRepository.save(personalRequest);
+    }
+
 }

@@ -14,5 +14,5 @@ import java.util.List;
 public class CreatePersonalRequest {
     private Long employeeId;
     private Long requestTypeId;
-    private List<PersonalRequestFieldDTO> fields;
+    private List<CreatePersonalRequestField> fields;
 }
