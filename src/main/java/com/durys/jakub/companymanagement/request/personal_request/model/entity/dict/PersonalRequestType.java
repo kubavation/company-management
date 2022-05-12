@@ -9,7 +9,8 @@ import java.util.List;
 @Table(name = "CM_PERSONAL_REQUEST_TYPE")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 public class PersonalRequestType {
 
     @Id
