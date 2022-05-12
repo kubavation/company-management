@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.request.personal_request.facade;
 import com.durys.jakub.companymanagement.employee.service.EmployeeService;
 import com.durys.jakub.companymanagement.request.personal_request.converter.general.PersonalRequestMapper;
 import com.durys.jakub.companymanagement.request.personal_request.model.dto.creational.CreatePersonalRequest;
+import com.durys.jakub.companymanagement.request.personal_request.model.dto.creational.CreatePersonalRequestField;
 import com.durys.jakub.companymanagement.request.personal_request.model.dto.general.PersonalRequestDTO;
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestFieldType;
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestType;
@@ -34,41 +35,42 @@ public class PersonalRequestFacade {
     @Transactional
     public PersonalRequest create(CreatePersonalRequest personalRequest) {
 
-        PersonalRequest entity = personalRequestMapper.toEntity(personalRequest);
-        entity.setStatus("A");
-
-        //finding employee
-        entity.setEmployee(employeeService.findById(personalRequest.getEmployeeId()));
-        //finding requestType
-        PersonalRequestType requestType = personalRequestTypeService
-                .findById(personalRequest.getRequestTypeId());
-
-        entity.setRequestType(requestType);
+        PersonalRequest entity = preparePersonalRequestEntity(personalRequest);
 
         List<PersonalRequestFieldType> fieldTypes = personalRequestFieldTypeService
-                .findAllByPersonalRequestTypeId(requestType.getId());
+                .findAllByPersonalRequestTypeId(entity.getRequestType().getId());
 
-        if(fieldTypes.size() != personalRequest.getFields().size()) {
+        validatePersonalRequestFieldSize(fieldTypes, personalRequest.getFields());
+
+        entity.setFields(preparePersonalRequestFields(entity, personalRequest.getFields()));
+
+        return personalRequestService.create(entity);
+    }
+
+    private void validatePersonalRequestFieldSize(List<PersonalRequestFieldType> fieldTypes,
+                                                  List<CreatePersonalRequestField> dtoFields) {
+        if (fieldTypes.size() != dtoFields.size()) {
             throw new RuntimeException();
         }
+    }
 
-        List<PersonalRequestField> fields = personalRequest.getFields()
-                .stream()
-                .map(field -> {
-                    PersonalRequestFieldType fieldType = personalRequestFieldTypeService
-                            .findById(field.getFieldTypeId());
-                    return PersonalRequestField.builder()
-                            .requestFieldType(fieldType)
-                            .status("A")
-                            .personalRequest(entity)
-                            .value(field.getValue()).build();
-                }).toList();
+    private PersonalRequest preparePersonalRequestEntity(CreatePersonalRequest dto) {
+        PersonalRequest entity = personalRequestMapper.toEntity(dto);
+        entity.setEmployee(employeeService.findById(dto.getEmployeeId()));
+        entity.setRequestType(personalRequestTypeService.findById(dto.getRequestTypeId()));
+        entity.setStatus("A");
+        return entity;
+    }
 
-
-        entity.setFields(fields);
-
-        PersonalRequest result = personalRequestService.create(entity);
-
-        return result;
+    private List<PersonalRequestField> preparePersonalRequestFields(PersonalRequest entity,
+                                                    List<CreatePersonalRequestField> fields) {
+        return fields.stream()
+                .map(field ->
+                        PersonalRequestField.builder()
+                                .requestFieldType(personalRequestFieldTypeService.findById(field.getFieldTypeId()))
+                                .status("A")
+                                .personalRequest(entity)
+                                .value(field.getValue()).build())
+                .toList();
     }
 }
