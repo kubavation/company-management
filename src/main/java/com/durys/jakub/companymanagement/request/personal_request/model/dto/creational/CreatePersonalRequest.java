@@ -2,10 +2,7 @@ package com.durys.jakub.companymanagement.request.personal_request.model.dto.cre
 
 
 import com.durys.jakub.companymanagement.request.personal_request.model.dto.general.PersonalRequestFieldDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
