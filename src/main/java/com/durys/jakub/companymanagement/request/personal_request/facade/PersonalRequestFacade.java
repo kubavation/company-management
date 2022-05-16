@@ -51,6 +51,8 @@ public class PersonalRequestFacade {
 
     private void validatePersonalRequestFieldSize(List<PersonalRequestFieldType> fieldTypes,
                                                   List<CreatePersonalRequestField> dtoFields) {
+        System.out.println(fieldTypes.size());
+        System.out.println(dtoFields.size());
         if (fieldTypes.size() != dtoFields.size()) {
             throw new RequestFieldIncompatibleSizeException();
         }

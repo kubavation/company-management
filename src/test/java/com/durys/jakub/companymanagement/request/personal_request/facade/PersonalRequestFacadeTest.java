@@ -85,4 +85,23 @@ class PersonalRequestFacadeTest {
         assertEquals(exception.getMessage(), RequestFieldIncompatibleSizeException.MSG);
     }
 
+    @Test
+    public void create_shouldThrowExceptionWhenFieldTypeNotFound() {
+        Mockito.when(personalRequestMapper.toEntity(request)).thenReturn(new PersonalRequest());
+        Mockito.when(personalRequestTypeService.findById(1L)).thenReturn(PersonalRequestType.builder().id(1L).build());
+        Mockito.when(employeeService.findById(1L)).thenReturn(new Employee());
+        Mockito.when(personalRequestFieldTypeService.findById(2L)).thenThrow(EntityNotFoundException.class);
+
+        Mockito.when(personalRequestFieldTypeService.findAllByPersonalRequestTypeId(1L))
+                .thenReturn(
+                        List.of(
+                            PersonalRequestFieldType.builder().build(),
+                            PersonalRequestFieldType.builder().build()
+                        )
+                );
+
+        assertThrows(EntityNotFoundException.class, () -> personalRequestFacade.create(request));
+
+    }
+
 }
