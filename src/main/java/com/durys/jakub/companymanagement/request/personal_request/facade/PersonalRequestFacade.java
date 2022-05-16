@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.request.personal_request.facade;
 
 import com.durys.jakub.companymanagement.employee.service.EmployeeService;
 import com.durys.jakub.companymanagement.request.personal_request.converter.general.PersonalRequestMapper;
+import com.durys.jakub.companymanagement.request.personal_request.exception.RequestFieldIncompatibleSizeException;
 import com.durys.jakub.companymanagement.request.personal_request.model.dto.creational.CreatePersonalRequest;
 import com.durys.jakub.companymanagement.request.personal_request.model.dto.creational.CreatePersonalRequestField;
 import com.durys.jakub.companymanagement.request.personal_request.model.dto.general.PersonalRequestDTO;
@@ -15,6 +16,7 @@ import com.durys.jakub.companymanagement.request.personal_request.service.genera
 import com.durys.jakub.companymanagement.request.personal_request.service.general.PersonalRequestService;
 import com.durys.jakub.companymanagement.shared.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Request;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -50,7 +52,7 @@ public class PersonalRequestFacade {
     private void validatePersonalRequestFieldSize(List<PersonalRequestFieldType> fieldTypes,
                                                   List<CreatePersonalRequestField> dtoFields) {
         if (fieldTypes.size() != dtoFields.size()) {
-            throw new RuntimeException();
+            throw new RequestFieldIncompatibleSizeException();
         }
     }
 
