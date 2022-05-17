@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.request.personal_request.model.entity.general;
 
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestFieldType;
+import com.durys.jakub.companymanagement.shared.enums.Status;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,7 +20,9 @@ public class PersonalRequestField {
     private Long id;
 
     private String value;
-    private String status;
+
+    @Enumerated(value = EnumType.STRING)
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "PERSONAL_REQUEST_ID")

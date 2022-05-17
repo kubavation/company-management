@@ -14,6 +14,7 @@ import com.durys.jakub.companymanagement.request.personal_request.service.dict.P
 import com.durys.jakub.companymanagement.request.personal_request.service.dict.PersonalRequestTypeService;
 import com.durys.jakub.companymanagement.request.personal_request.service.general.PersonalRequestFieldService;
 import com.durys.jakub.companymanagement.request.personal_request.service.general.PersonalRequestService;
+import com.durys.jakub.companymanagement.shared.enums.Status;
 import com.durys.jakub.companymanagement.shared.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Request;
@@ -70,7 +71,7 @@ public class PersonalRequestFacade {
                 .map(field ->
                         PersonalRequestField.builder()
                                 .requestFieldType(personalRequestFieldTypeService.findById(field.getFieldTypeId()))
-                                .status("A")
+                                .status(Status.ACTIVE)
                                 .personalRequest(entity)
                                 .value(field.getValue())
                                 .build())
