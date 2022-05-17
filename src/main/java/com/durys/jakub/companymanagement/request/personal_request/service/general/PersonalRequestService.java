@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +26,10 @@ public class PersonalRequestService {
 
     public PersonalRequest create(PersonalRequest personalRequest) {
         return personalRequestRepository.save(personalRequest);
+    }
+
+    public void delete(Long id) {
+        Optional.of(findById(id)).ifPresent(personalRequestRepository::delete);
     }
 
 }

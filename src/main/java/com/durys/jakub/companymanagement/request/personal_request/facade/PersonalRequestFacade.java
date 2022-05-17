@@ -61,7 +61,7 @@ public class PersonalRequestFacade {
         PersonalRequest entity = personalRequestMapper.toEntity(dto);
         entity.setEmployee(employeeService.findById(dto.getEmployeeId()));
         entity.setRequestType(personalRequestTypeService.findById(dto.getRequestTypeId()));
-        entity.setStatus("A");
+        entity.setStatus(Status.ACTIVE);
         return entity;
     }
 
@@ -76,5 +76,9 @@ public class PersonalRequestFacade {
                                 .value(field.getValue())
                                 .build())
                 .toList();
+    }
+
+    public void delete(Long requestId) {
+        personalRequestService.delete(requestId);
     }
 }

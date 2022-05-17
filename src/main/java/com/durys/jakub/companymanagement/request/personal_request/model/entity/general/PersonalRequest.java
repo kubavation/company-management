@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.request.personal_request.model.entity.
 
 import com.durys.jakub.companymanagement.employee.model.entity.Employee;
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestType;
+import com.durys.jakub.companymanagement.shared.enums.Status;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,7 +20,9 @@ public class PersonalRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String status;
+
+    @Enumerated(value = EnumType.STRING)
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "ID")
