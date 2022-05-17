@@ -9,8 +9,10 @@ import com.durys.jakub.companymanagement.request.personal_request.model.dto.crea
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestFieldType;
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestType;
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.general.PersonalRequest;
+import com.durys.jakub.companymanagement.request.personal_request.model.entity.general.PersonalRequestField;
 import com.durys.jakub.companymanagement.request.personal_request.service.dict.PersonalRequestFieldTypeService;
 import com.durys.jakub.companymanagement.request.personal_request.service.dict.PersonalRequestTypeService;
+import com.durys.jakub.companymanagement.request.personal_request.service.general.PersonalRequestService;
 import com.durys.jakub.companymanagement.shared.exception.EntityNotFoundException;
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,6 +40,8 @@ class PersonalRequestFacadeTest {
     private PersonalRequestFieldTypeService personalRequestFieldTypeService;
     @Mock
     private PersonalRequestMapper personalRequestMapper;
+    @Mock
+    private PersonalRequestService personalRequestService;
 
     private CreatePersonalRequest request;
 
@@ -102,6 +106,34 @@ class PersonalRequestFacadeTest {
 
         assertThrows(EntityNotFoundException.class, () -> personalRequestFacade.create(request));
 
+    }
+
+    @Test
+    public void create_shouldSaveSuccessfuly() {
+
+        Mockito.when(personalRequestMapper.toEntity(request)).thenReturn(new PersonalRequest());
+        Mockito.when(personalRequestTypeService.findById(1L)).thenReturn(PersonalRequestType.builder().id(1L).build());
+        Mockito.when(employeeService.findById(1L)).thenReturn(new Employee());
+        Mockito.when(personalRequestFieldTypeService.findById(Mockito.anyLong())).
+                thenReturn(new PersonalRequestFieldType());
+
+        List<PersonalRequestFieldType> fieldResult = List.of(
+                PersonalRequestFieldType.builder().build(),
+                PersonalRequestFieldType.builder().build());
+
+        Mockito.when(personalRequestFieldTypeService.findAllByPersonalRequestTypeId(1L)).thenReturn(fieldResult);
+
+        Mockito.when(personalRequestService.create(Mockito.any(PersonalRequest.class)))
+                .thenReturn(PersonalRequest.builder().id(1L)
+                        .fields(List.of(
+                            PersonalRequestField.builder().build(),
+                            PersonalRequestField.builder().build()
+                        ))
+                .build());
+
+        PersonalRequest result = personalRequestFacade.create(request);
+        assertEquals(result.getFields().size(), fieldResult.size());
+        assertEquals(result.getId(), 1L);
     }
 
 }
