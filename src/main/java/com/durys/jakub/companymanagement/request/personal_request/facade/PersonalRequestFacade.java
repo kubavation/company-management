@@ -72,7 +72,8 @@ public class PersonalRequestFacade {
                                 .requestFieldType(personalRequestFieldTypeService.findById(field.getFieldTypeId()))
                                 .status("A")
                                 .personalRequest(entity)
-                                .value(field.getValue()).build())
+                                .value(field.getValue())
+                                .build())
                 .toList();
     }
 }
