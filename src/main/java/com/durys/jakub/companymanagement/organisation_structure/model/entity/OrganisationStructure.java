@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.organisation_structure.model.entity;
 
 import com.durys.jakub.companymanagement.employee.model.entity.Employee;
+import com.durys.jakub.companymanagement.shared.enums.Status;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,6 +24,9 @@ public class OrganisationStructure {
     private Long level;
     private String shortcut;
     private String description;
+
+    @Enumerated(value = EnumType.STRING)
+    private Status status;
 
     @Column(name = "DATE_FROM")
     private LocalDateTime dateFrom;

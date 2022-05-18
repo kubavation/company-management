@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.request.personal_request.model.entity.dict;
 
+import com.durys.jakub.companymanagement.shared.enums.Status;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,7 +20,9 @@ public class PersonalRequestType {
 
     private String name;
     private String desc;
-    private String status;
+    
+    @Enumerated(value = EnumType.STRING)
+    private Status status;
 
     @OneToMany(mappedBy = "requestType", fetch = FetchType.EAGER)
     private List<PersonalRequestFieldType> requestFieldTypes;

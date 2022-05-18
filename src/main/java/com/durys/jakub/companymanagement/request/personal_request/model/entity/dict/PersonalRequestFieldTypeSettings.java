@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.request.personal_request.model.entity.dict;
 
+import com.durys.jakub.companymanagement.shared.enums.Status;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,9 @@ public class PersonalRequestFieldTypeSettings {
 
     @Id
     private Long id;
+
+    @Enumerated(value = EnumType.STRING)
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "FIELD_TYPE_ID")
