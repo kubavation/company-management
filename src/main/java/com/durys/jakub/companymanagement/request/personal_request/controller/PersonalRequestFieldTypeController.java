@@ -24,4 +24,5 @@ public class PersonalRequestFieldTypeController {
         return personalRequestFieldTypeMapper
                 .toDTO(personalRequestFieldTypeService.findAllByPersonalRequestTypeId(typeId));
     }
+
 }

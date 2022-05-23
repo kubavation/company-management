@@ -16,11 +16,12 @@ import java.util.List;
 public class PersonalRequestType {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
     private String desc;
-    
+
     @Enumerated(value = EnumType.STRING)
     private Status status;
 

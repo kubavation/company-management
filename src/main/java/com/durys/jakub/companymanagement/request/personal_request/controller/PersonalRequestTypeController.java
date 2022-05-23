@@ -1,12 +1,13 @@
 package com.durys.jakub.companymanagement.request.personal_request.controller;
 
 import com.durys.jakub.companymanagement.request.personal_request.converter.dict.PersonalRequestTypeMapper;
+import com.durys.jakub.companymanagement.request.personal_request.model.dto.creational.CreatePersonalRequestTypeRequest;
 import com.durys.jakub.companymanagement.request.personal_request.model.dto.dict.PersonalRequestTypeDTO;
 import com.durys.jakub.companymanagement.request.personal_request.service.dict.PersonalRequestTypeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +22,12 @@ public class PersonalRequestTypeController {
     @GetMapping
     public List<PersonalRequestTypeDTO> findAll() {
         return personalRequestTypeMapper.toDTO(personalRequestTypeService.findAll());
+    }
+
+    @PostMapping
+    public ResponseEntity<?> save(@RequestBody CreatePersonalRequestTypeRequest request) {
+        PersonalRequestTypeDTO result =
+                personalRequestTypeMapper.toDTO(personalRequestTypeService.save(request));
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 }
