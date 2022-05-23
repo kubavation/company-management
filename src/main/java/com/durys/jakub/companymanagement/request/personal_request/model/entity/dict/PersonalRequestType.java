@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.request.personal_request.model.entity.dict;
 
+import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
 import lombok.*;
 
@@ -20,9 +21,9 @@ public class PersonalRequestType {
     private Long id;
 
     private String name;
-    private String desc;
+    private String description;
 
-    @Enumerated(value = EnumType.STRING)
+    @Convert(converter = StatusConverter.class)
     private Status status;
 
     @OneToMany(mappedBy = "requestType", fetch = FetchType.EAGER)
