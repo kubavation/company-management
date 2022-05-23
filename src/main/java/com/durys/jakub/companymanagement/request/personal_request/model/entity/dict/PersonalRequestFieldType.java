@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.request.personal_request.model.entity.dict;
 
 import com.durys.jakub.companymanagement.request.personal_request.model.enums.FieldType;
+import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
 import lombok.*;
 
@@ -24,7 +25,7 @@ public class PersonalRequestFieldType {
     @Enumerated(EnumType.STRING)
     private FieldType type;
 
-    @Enumerated(value = EnumType.STRING)
+    @Convert(converter = StatusConverter.class)
     private Status status;
     private Integer lp;
 

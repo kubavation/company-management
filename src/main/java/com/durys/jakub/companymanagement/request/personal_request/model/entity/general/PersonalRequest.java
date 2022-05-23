@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.request.personal_request.model.entity.
 
 import com.durys.jakub.companymanagement.employee.model.entity.Employee;
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestType;
+import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
 import lombok.*;
 
@@ -21,7 +22,7 @@ public class PersonalRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(value = EnumType.STRING)
+    @Convert(converter = StatusConverter.class)
     private Status status;
 
     @ManyToOne
