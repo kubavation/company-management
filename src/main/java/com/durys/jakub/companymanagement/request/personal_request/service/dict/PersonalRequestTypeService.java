@@ -34,4 +34,9 @@ public class PersonalRequestTypeService {
                 .build();
         return personalRequestTypeRepository.save(entity);
     }
+
+    public void delete(Long typeId) {
+        PersonalRequestType entity = findById(typeId);
+        personalRequestTypeRepository.delete(entity);
+    }
 }

@@ -30,4 +30,12 @@ public class PersonalRequestTypeController {
                 personalRequestTypeMapper.toDTO(personalRequestTypeService.save(request));
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{typeId}")
+    public ResponseEntity<?> delete(@PathVariable Long typeId) {
+        personalRequestTypeService.delete(typeId);
+        return ResponseEntity.ok().build();
+    }
+
+
 }

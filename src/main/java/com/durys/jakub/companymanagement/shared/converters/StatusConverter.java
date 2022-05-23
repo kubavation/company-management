@@ -15,6 +15,6 @@ public class StatusConverter implements AttributeConverter<Status, String> {
 
     @Override
     public Status convertToEntityAttribute(String shortcut) {
-        return Status.of(shortcut);
+       return Status.of(shortcut);
     }
 }
