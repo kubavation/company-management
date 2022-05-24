@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="jdurys" id="17">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="CM_LOG"/>
+            </not>
+        </preConditions>
+        <createTable  tableName="CM_LOG">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="class_name" type="varchar2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="table_name" type="varchar2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="primary_key" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="object" type="varchar2(4000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timestamp" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="operator" type="varchar2(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
