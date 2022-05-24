@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.request.personal_request.model.entity.
 import com.durys.jakub.companymanagement.request.personal_request.model.enums.FieldType;
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
+import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Builder
-public class PersonalRequestFieldType {
+public class PersonalRequestFieldType implements CmEntity<Long> {
 
     @Id
     private Long id;

@@ -4,6 +4,7 @@ import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.Co
 import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.ConfigurationType;
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
+import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +18,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Data
-public class ConfigurationValue {
+public class ConfigurationValue implements CmEntity<Long> {
 
     @Id
     private Long id;

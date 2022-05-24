@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.organisation_structure.model.entity;
 import com.durys.jakub.companymanagement.employee.model.entity.Employee;
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
+import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
-public class OrganisationStructure {
+public class OrganisationStructure implements CmEntity<Long> {
 
     @Id
     private Long id;

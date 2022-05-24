@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.request.personal_request.model.entity.
 
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
+import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "CM_PERSONAL_REQUEST_FIELD_TYPE_SETTINGS")
 @NoArgsConstructor
 @Data
-public class PersonalRequestFieldTypeSettings {
+public class PersonalRequestFieldTypeSettings implements CmEntity<Long> {
 
     @Id
     private Long id;
