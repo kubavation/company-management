@@ -20,7 +20,7 @@ public class LoggingAspect {
     private final CmLogService logService;
 
     @AfterReturning(
-            value = "execution(* org.springframework.data.jpa.repository.JpaRepository+.save(..))))",
+            value = "execution(* *..SafeDeleteRepository+.save(..))))",
             returning = "result")
     public <T extends CmEntity<? extends Long>> void log(Object result) {
         logService.log((T) result);
