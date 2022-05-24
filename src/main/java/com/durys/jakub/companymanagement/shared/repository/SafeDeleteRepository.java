@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.shared.repository;
 
+import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -9,7 +10,7 @@ import org.springframework.lang.NonNull;
 import java.io.Serializable;
 
 @NoRepositoryBean
-public interface SafeDeleteRepository<T, ID extends Serializable> extends JpaRepository<T,ID> {
+public interface SafeDeleteRepository<T extends CmEntity<ID>, ID extends Serializable> extends JpaRepository<T,ID> {
 
     @Override
     @Modifying
