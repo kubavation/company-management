@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.organisation_structure.model.entity;
 
 import com.durys.jakub.companymanagement.employee.model.entity.Employee;
+import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
 import lombok.*;
 
@@ -25,7 +26,7 @@ public class OrganisationStructure {
     private String shortcut;
     private String description;
 
-    @Enumerated(value = EnumType.STRING)
+    @Convert(converter = StatusConverter.class)
     private Status status;
 
     @Column(name = "DATE_FROM")

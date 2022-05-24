@@ -21,7 +21,7 @@ public class PersonalRequestField {
     private Long id;
 
     private String value;
-    
+
     @Convert(converter = StatusConverter.class)
     private Status status;
 

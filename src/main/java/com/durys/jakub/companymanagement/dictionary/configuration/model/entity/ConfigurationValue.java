@@ -2,6 +2,8 @@ package com.durys.jakub.companymanagement.dictionary.configuration.model.entity;
 
 import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.ConfigurationGroup;
 import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.ConfigurationType;
+import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
+import com.durys.jakub.companymanagement.shared.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,5 +31,7 @@ public class ConfigurationValue {
     private ConfigurationType configurationType;
 
     private String value;
-    private String status;
+
+    @Convert(converter = StatusConverter.class)
+    private Status status;
 }

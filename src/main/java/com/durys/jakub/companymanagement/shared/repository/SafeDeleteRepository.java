@@ -1,6 +1,5 @@
 package com.durys.jakub.companymanagement.shared.repository;
 
-import com.durys.jakub.companymanagement.shared.entity.BaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

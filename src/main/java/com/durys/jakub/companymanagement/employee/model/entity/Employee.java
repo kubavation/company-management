@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.employee.model.entity;
 
 import com.durys.jakub.companymanagement.organisation_structure.model.entity.OrganisationStructure;
+import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +27,7 @@ public class Employee {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Enumerated(value = EnumType.STRING)
+    @Convert(converter = StatusConverter.class)
     private Status status;
 
     @ManyToOne
