@@ -54,4 +54,8 @@ public class CmLogService {
             return "";
         }
     }
+
+    private void calculateChanges(Object object, Long pk) {
+        cmLogRepository.findLastObjectById(pk);
+    }
 }
