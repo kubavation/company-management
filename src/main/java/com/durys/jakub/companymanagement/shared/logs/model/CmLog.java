@@ -30,6 +30,7 @@ public class CmLog {
     private Long primaryKey;
 
     private String object;
+    private String changes;
     private LocalDateTime timestamp;
     private String operator;
 }

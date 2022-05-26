@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface CmLogRepository extends JpaRepository<CmLog, Long> {
 
     @Query(value =
-            "select * from (select * from CM_LOG c " +
-            "where c.primary_key = :pk order by c.timestamp desc) limit 1", nativeQuery = true)
-    Optional<CmLog> findLastObjectById(Long pk);
+            "select cc.* from (select * from CM_LOG c " +
+            "where c.primary_key = :pk and c.table_name = :tableName order by c.timestamp desc) cc limit 1", nativeQuery = true)
+    Optional<CmLog> findLastObjectByIdAndTableName(Long pk, String tableName);
 }

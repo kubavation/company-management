@@ -10,7 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Table;
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +23,11 @@ public class CmLogService {
     private final ObjectWriter jsonWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
     public <T extends CmEntity<? extends Long>> void log(T obj) {
-        cmLogRepository.save(of(obj));
+
+        CmLog log = of(obj);
+        log = withChanges(log, obj.getClass());
+
+        cmLogRepository.save(log);
     }
 
     public <T extends CmEntity<? extends Long>> CmLog of(T obj) {
@@ -55,7 +61,24 @@ public class CmLogService {
         }
     }
 
-    private void calculateChanges(Object object, Long pk) {
-        cmLogRepository.findLastObjectById(pk);
+    private String calculateChanges(CmLog log, Class<?> clazz) {
+        String changes =
+                cmLogRepository.findLastObjectByIdAndTableName(log.getPrimaryKey(), log.getTableName())
+                        .map(e -> {
+                            Field[] fields = clazz.getFields();
+                            for (Field field : fields) {
+                                System.out.println(field.getName());
+                            }
+                            return "test";
+                        })
+                        .orElse("brak");
+        System.out.println(changes);
+        return changes;
+    }
+
+    private CmLog withChanges(CmLog log, Class<?> clazz) {
+        String changes = calculateChanges(log, clazz);
+         log.setChanges(changes);
+        return log;
     }
 }
