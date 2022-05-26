@@ -5,4 +5,5 @@ import com.durys.jakub.companymanagement.shared.enums.Status;
 public interface CmEntity<T> {
    T getId();
    Status getStatus();
+   void setStatus(Status status);
 }

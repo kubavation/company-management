@@ -20,7 +20,7 @@ public class LoggingAspect {
     private final CmLogService logService;
 
     @AfterReturning(
-            value = "execution(* *..SafeDeleteRepository+.save(..))))",
+            value = "execution(* *..CmRepository+.save(..)) || execution(* *..CmRepository.safeDelete(..))",
             returning = "result")
     public <T extends CmEntity<? extends Long>> void log(Object result) {
         logService.log((T) result);
