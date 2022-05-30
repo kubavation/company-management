@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -104,11 +105,17 @@ public class CmLogService {
            Object oldValue = field.get(oldObj);
            Object newValue = field.get(newObj);
 
-           if (!Objects.equals(oldValue, newValue) || !Objects.equals(newValue, oldValue)) {
+           if ((!Objects.equals(oldValue, newValue) || !Objects.equals(newValue, oldValue))
+                && isFieldLoggable(field)) {
              sb.append(CHANGES_PATTERN.formatted(field.getName(), oldValue, newValue));
            }
        }
 
        return sb.toString();
+    }
+
+    private boolean isFieldLoggable(Field field) {
+        return !(Collection.class.isAssignableFrom(field.getType())
+            || field.getType().isAssignableFrom(CmEntity.class));
     }
 }
