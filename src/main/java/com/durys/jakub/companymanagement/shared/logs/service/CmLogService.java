@@ -31,10 +31,7 @@ public class CmLogService {
     private final static String CHANGES_PATTERN = "%s: %s->%s;";
 
     public <T extends CmEntity<? extends Long>> void log(T obj) {
-
-        CmLog log = of(obj);
-        log = withChanges(log, obj);
-
+        CmLog log = withChanges(of(obj), obj);
         cmLogRepository.save(log);
     }
 
@@ -87,7 +84,8 @@ public class CmLogService {
                         } catch (Exception ex) {
                            return "";
                         }
-                    }).orElse("");
+                    })
+                    .orElse("");
     }
 
     private CmLog withChanges(CmLog log, Object obj) {
