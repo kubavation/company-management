@@ -29,7 +29,8 @@ public class PersonalRequestService {
     }
 
     public void delete(Long id) {
-        Optional.of(findById(id)).ifPresent(personalRequestRepository::delete);
+        Optional.ofNullable(findById(id))
+             .ifPresent(personalRequestRepository::safeDelete);
     }
 
 }

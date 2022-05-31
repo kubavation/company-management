@@ -29,7 +29,6 @@ import java.util.stream.Collectors;
 public class PersonalRequestFacade {
 
     private final PersonalRequestService personalRequestService;
-    private final PersonalRequestFieldService personalRequestFieldService;
     private final PersonalRequestTypeService personalRequestTypeService;
     private final PersonalRequestFieldTypeService personalRequestFieldTypeService;
     private final EmployeeService employeeService;

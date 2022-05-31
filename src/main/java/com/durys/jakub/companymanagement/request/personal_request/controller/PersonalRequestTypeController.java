@@ -34,7 +34,7 @@ public class PersonalRequestTypeController {
     @DeleteMapping("/{typeId}")
     public ResponseEntity<?> delete(@PathVariable Long typeId) {
         personalRequestTypeService.delete(typeId);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(typeId);
     }
 
 

@@ -24,6 +24,6 @@ public class PersonalRequestController {
     @DeleteMapping("/{requestId}")
     public ResponseEntity<?> delete(@PathVariable Long requestId) {
         personalRequestFacade.delete(requestId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok(requestId);
     }
 }
