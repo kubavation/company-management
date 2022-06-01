@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.dictionary.configuration.model.enums;
+package com.durys.jakub.companymanagement.configuration.model.enums;
 
 public enum ConfigurationType {
 

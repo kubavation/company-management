@@ -1,7 +1,7 @@
-package com.durys.jakub.companymanagement.dictionary.configuration.model.entity;
+package com.durys.jakub.companymanagement.configuration.model.entity;
 
-import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.ConfigurationGroup;
-import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.ConfigurationType;
+import com.durys.jakub.companymanagement.configuration.model.enums.ConfigurationGroup;
+import com.durys.jakub.companymanagement.configuration.model.enums.ConfigurationType;
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
 import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;

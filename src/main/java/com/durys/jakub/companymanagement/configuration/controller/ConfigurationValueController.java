@@ -1,9 +1,9 @@
-package com.durys.jakub.companymanagement.dictionary.configuration.controller;
+package com.durys.jakub.companymanagement.configuration.controller;
 
-import com.durys.jakub.companymanagement.dictionary.configuration.model.entity.ConfigurationValue;
-import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.ConfigurationGroup;
-import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.ConfigurationType;
-import com.durys.jakub.companymanagement.dictionary.configuration.service.ConfigurationValueService;
+import com.durys.jakub.companymanagement.configuration.model.entity.ConfigurationValue;
+import com.durys.jakub.companymanagement.configuration.model.enums.ConfigurationGroup;
+import com.durys.jakub.companymanagement.configuration.model.enums.ConfigurationType;
+import com.durys.jakub.companymanagement.configuration.service.ConfigurationValueService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

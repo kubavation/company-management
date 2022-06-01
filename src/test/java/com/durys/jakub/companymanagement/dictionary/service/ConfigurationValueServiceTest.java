@@ -1,10 +1,10 @@
 package com.durys.jakub.companymanagement.dictionary.service;
 
-import com.durys.jakub.companymanagement.dictionary.configuration.model.entity.ConfigurationValue;
-import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.ConfigurationGroup;
-import com.durys.jakub.companymanagement.dictionary.configuration.model.enums.ConfigurationType;
-import com.durys.jakub.companymanagement.dictionary.configuration.repository.ConfigurationValueRepository;
-import com.durys.jakub.companymanagement.dictionary.configuration.service.ConfigurationValueService;
+import com.durys.jakub.companymanagement.configuration.model.entity.ConfigurationValue;
+import com.durys.jakub.companymanagement.configuration.model.enums.ConfigurationGroup;
+import com.durys.jakub.companymanagement.configuration.model.enums.ConfigurationType;
+import com.durys.jakub.companymanagement.configuration.repository.ConfigurationValueRepository;
+import com.durys.jakub.companymanagement.configuration.service.ConfigurationValueService;
 import com.durys.jakub.companymanagement.shared.enums.Status;
 import com.durys.jakub.companymanagement.shared.exception.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
