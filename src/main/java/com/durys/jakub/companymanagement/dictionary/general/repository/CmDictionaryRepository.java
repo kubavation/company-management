@@ -21,7 +21,8 @@ public interface CmDictionaryRepository<T extends CmDictionary & CmEntity<ID> , 
     }
 
     @Modifying
-    @Query(value = "UPDATE #{#entityName} x set x.dateTo = :#{#entity.dateFrom} where x.dictionary_id = :#{#entity.dictionaryId}")
+    @Query(value = "UPDATE #{#entityName} x set x.dateTo = :#{#entity.dateFrom} " +
+            " where x.dictionaryId = :#{#entity.dictionaryId} and x.dateFrom is null")
     void changeDateTo(@NonNull T entity);
 
 }
