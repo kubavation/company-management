@@ -17,7 +17,7 @@ public class CmDictionary {
     private Long dictionaryId;
 
     @Column(name = "DATE_FROM")
-    private LocalDateTime dataFrom;
+    private LocalDateTime dateFrom;
 
     @Column(name = "DATE_TO")
     private LocalDateTime dateTo;
