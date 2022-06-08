@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.dictionary.position.model;
 
 import com.durys.jakub.companymanagement.dictionary.general.model.CmDictionary;
+import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Position extends CmDictionary {
+public class Position extends CmDictionary implements CmEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
