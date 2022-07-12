@@ -2,7 +2,6 @@ package com.durys.jakub.companymanagement.configuration.controller;
 
 import com.durys.jakub.companymanagement.configuration.model.entity.ConfigurationValue;
 import com.durys.jakub.companymanagement.configuration.model.enums.ConfigurationGroup;
-import com.durys.jakub.companymanagement.configuration.model.enums.ConfigurationType;
 import com.durys.jakub.companymanagement.configuration.service.ConfigurationValueService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ public class ConfigurationValueController {
     private final ConfigurationValueService configurationValueService;
 
     @GetMapping("/type/{configurationType}")
-    public ResponseEntity<ConfigurationValue> findByConfigurationType(@PathVariable ConfigurationType configurationType) {
+    public ResponseEntity<ConfigurationValue> findByConfigurationType(@PathVariable String configurationType) {
         return ResponseEntity.ok(configurationValueService.findByConfigurationType(configurationType));
     }
 

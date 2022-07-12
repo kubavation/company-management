@@ -2,7 +2,6 @@ package com.durys.jakub.companymanagement.dictionary.service;
 
 import com.durys.jakub.companymanagement.configuration.model.entity.ConfigurationValue;
 import com.durys.jakub.companymanagement.configuration.model.enums.ConfigurationGroup;
-import com.durys.jakub.companymanagement.configuration.model.enums.ConfigurationType;
 import com.durys.jakub.companymanagement.configuration.repository.ConfigurationValueRepository;
 import com.durys.jakub.companymanagement.configuration.service.ConfigurationValueService;
 import com.durys.jakub.companymanagement.shared.enums.Status;
@@ -29,7 +28,7 @@ class ConfigurationValueServiceTest {
     @Test
     public void findByConfigurationType_shouldReturnConfigValue() {
         ConfigurationValue val1
-                = new ConfigurationValue(1L, ConfigurationGroup.DEFAULT, ConfigurationType.TEST, "value", Status.ACTIVE);
+                = new ConfigurationValue(1L, ConfigurationGroup.MENU_OPTION, ConfigurationType.TEST, "value", Status.ACTIVE);
 
         when(configurationValueRepository.findByConfigurationType(ConfigurationType.TEST))
                 .thenReturn(Optional.of(val1));
@@ -40,7 +39,7 @@ class ConfigurationValueServiceTest {
     @Test
     public void findByConfigurationType_shouldThrowException() {
         ConfigurationValue val1
-                = new ConfigurationValue(1L, ConfigurationGroup.DEFAULT, null, "value", Status.ACTIVE);
+                = new ConfigurationValue(1L, ConfigurationGroup.GENERAL, null, "value", Status.ACTIVE);
 
         when(configurationValueRepository.findByConfigurationType(ConfigurationType.TEST))
                 .thenThrow(EntityNotFoundException.class);
