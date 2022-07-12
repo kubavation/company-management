@@ -9,7 +9,9 @@ import java.util.function.Supplier;
 @Getter
 @AllArgsConstructor
 public enum MenuOption implements CmConfigurationType<Boolean> {
-    ADMINISTRATION("ADMINISTRATION", "/administration", true);
+    ADMINISTRATION("Administration", "/administration", true),
+    PERSONAL_DATA("Personal data", "/personal-data", true),
+    PERSONAL_REQUEST("Personal requests", "/personal-request", false);
 
     private final String name;
     private final String url;

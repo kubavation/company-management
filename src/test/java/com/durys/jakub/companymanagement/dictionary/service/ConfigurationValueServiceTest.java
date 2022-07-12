@@ -5,6 +5,7 @@ import com.durys.jakub.companymanagement.configuration.model.enums.Configuration
 import com.durys.jakub.companymanagement.configuration.model.enums.MenuOption;
 import com.durys.jakub.companymanagement.configuration.repository.ConfigurationValueRepository;
 import com.durys.jakub.companymanagement.configuration.service.ConfigurationValueService;
+import com.durys.jakub.companymanagement.configuration.util.ConfigurationTypeValueUtils;
 import com.durys.jakub.companymanagement.shared.enums.Status;
 import com.durys.jakub.companymanagement.shared.exception.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,8 @@ class ConfigurationValueServiceTest {
 
     @Mock
     private ConfigurationValueRepository configurationValueRepository;
+
+
 
     @Test
     public void findByConfigurationType_shouldReturnConfigValue() {
