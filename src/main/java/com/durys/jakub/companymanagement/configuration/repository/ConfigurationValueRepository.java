@@ -14,4 +14,6 @@ public interface ConfigurationValueRepository extends JpaRepository<Configuratio
     Optional<ConfigurationValue> findByConfigurationType(String type);
 
     List<ConfigurationValue> findAllByConfigurationGroup(ConfigurationGroup group);
+
+    Optional<ConfigurationValue> findByConfigurationGroupAndConfigurationType(ConfigurationGroup group, String type);
 }
