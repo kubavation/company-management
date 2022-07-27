@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.configuration.service;
 
+import com.durys.jakub.companymanagement.configuration.model.CmConfigurationType;
 import com.durys.jakub.companymanagement.configuration.model.entity.ConfigurationValue;
 import com.durys.jakub.companymanagement.configuration.model.enums.ConfigurationGroup;
 import com.durys.jakub.companymanagement.configuration.repository.ConfigurationValueRepository;
@@ -26,5 +27,11 @@ public class ConfigurationValueService {
 
     public List<ConfigurationValue> findAllByConfigurationGroup(ConfigurationGroup configurationGroup) {
         return configurationValueRepository.findAllByConfigurationGroup(configurationGroup);
+    }
+
+    public String getValueOrDefault(ConfigurationGroup configurationGroup, CmConfigurationType<?> type) {
+        return findByConfigurationGroupAndType(configurationGroup, type.name())
+                .map(ConfigurationValue::getValue)
+                .orElse(String.valueOf(type.defaultValue()));
     }
 }

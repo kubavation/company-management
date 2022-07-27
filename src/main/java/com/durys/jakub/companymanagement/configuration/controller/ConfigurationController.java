@@ -37,17 +37,11 @@ public class ConfigurationController {
                 configurationService.findAllByConfigurationGroup(configurationGroup);
 
         List<ConfigOption> result = configurationItems.stream()
-                .map(configType ->
-                        ConfigOption.of(configType, configurationGroup, getValueOrDefault(configurationGroup, configType)))
+                .map(configType -> ConfigOption.of(configType, configurationGroup,
+                        configurationValueService.getValueOrDefault(configurationGroup, configType)))
                 .toList();
 
         return ResponseEntity.ok(result);
     }
-
-    private String getValueOrDefault(ConfigurationGroup configurationGroup, CmConfigurationType<?> type) {
-        return configurationValueService
-                .findByConfigurationGroupAndType(configurationGroup, type.name())
-                .map(ConfigurationValue::getValue)
-                .orElse(String.valueOf(type.defaultValue()));
-    }
+    
 }
