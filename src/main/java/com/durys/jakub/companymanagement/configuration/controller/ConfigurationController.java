@@ -36,14 +36,12 @@ public class ConfigurationController {
         List<? extends CmConfigurationType<?>> configurationItems =
                 configurationService.findAllByConfigurationGroup(configurationGroup);
 
-        List<ConfigOption> res = configurationItems.stream()
-                .map(c ->
-                        ConfigOption.of(c, configurationGroup, getValueOrDefault(configurationGroup, c))
-
-                )
+        List<ConfigOption> result = configurationItems.stream()
+                .map(configType ->
+                        ConfigOption.of(configType, configurationGroup, getValueOrDefault(configurationGroup, configType)))
                 .toList();
-        
-        return ResponseEntity.ok(res);
+
+        return ResponseEntity.ok(result);
     }
 
     private String getValueOrDefault(ConfigurationGroup configurationGroup, CmConfigurationType<?> type) {
