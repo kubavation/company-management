@@ -15,12 +15,9 @@ public class ConfigurationService {
 
 
     public List<? extends CmConfigurationType<?>> findAllByConfigurationGroup(ConfigurationGroup configurationGroup) {
-
-        List<? extends CmConfigurationType<?>> types = configurationGroup.getClasses()
+        return configurationGroup.getClasses()
                 .stream()
                 .flatMap(c -> Arrays.stream(c.getEnumConstants()))
                 .toList();
-
-        return types;
     }
 }
