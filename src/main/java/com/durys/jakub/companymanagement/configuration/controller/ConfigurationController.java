@@ -38,9 +38,7 @@ public class ConfigurationController {
 
         List<ConfigOption> res = configurationItems.stream()
                 .map(c ->
-                        ConfigOption.of(
-                                getValueOrDefault(configurationGroup, c),
-                                configurationGroup, c.name(), c.desc())
+                        ConfigOption.of(c, configurationGroup, getValueOrDefault(configurationGroup, c))
 
                 )
                 .toList();
