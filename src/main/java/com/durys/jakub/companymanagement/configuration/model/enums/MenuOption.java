@@ -4,8 +4,6 @@ import com.durys.jakub.companymanagement.configuration.model.CmConfigurationType
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.function.Supplier;
-
 @Getter
 @AllArgsConstructor
 public enum MenuOption implements CmConfigurationType<Boolean> {
@@ -25,6 +23,11 @@ public enum MenuOption implements CmConfigurationType<Boolean> {
     @Override
     public String desc() {
         return this.desc;
+    }
+
+    @Override
+    public String declaringClassName() {
+        return this.getDeclaringClass().getSimpleName();
     }
 
 }

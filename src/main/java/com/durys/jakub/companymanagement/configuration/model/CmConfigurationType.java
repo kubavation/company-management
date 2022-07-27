@@ -5,4 +5,5 @@ public interface CmConfigurationType<T> {
     T defaultValue();
     String name();
     String desc();
+    String declaringClassName();
 }
