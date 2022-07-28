@@ -2,9 +2,8 @@ package com.durys.jakub.companymanagement.configuration.service;
 
 import com.durys.jakub.companymanagement.configuration.model.CmConfigurationType;
 import com.durys.jakub.companymanagement.configuration.model.entity.ConfigurationValue;
-import com.durys.jakub.companymanagement.configuration.model.enums.ConfigurationGroup;
+import com.durys.jakub.companymanagement.configuration.model.util.ConfigurationGroup;
 import com.durys.jakub.companymanagement.configuration.repository.ConfigurationValueRepository;
-import com.durys.jakub.companymanagement.shared.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

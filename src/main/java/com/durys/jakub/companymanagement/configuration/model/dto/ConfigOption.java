@@ -1,7 +1,7 @@
 package com.durys.jakub.companymanagement.configuration.model.dto;
 
 import com.durys.jakub.companymanagement.configuration.model.CmConfigurationType;
-import com.durys.jakub.companymanagement.configuration.model.enums.ConfigurationGroup;
+import com.durys.jakub.companymanagement.configuration.model.util.ConfigurationGroup;
 import lombok.*;
 
 @Data

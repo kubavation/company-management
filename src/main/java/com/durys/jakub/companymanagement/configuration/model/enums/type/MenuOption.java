@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.configuration.model.enums;
+package com.durys.jakub.companymanagement.configuration.model.enums.type;
 
 import com.durys.jakub.companymanagement.configuration.model.CmConfigurationType;
 import lombok.AllArgsConstructor;
