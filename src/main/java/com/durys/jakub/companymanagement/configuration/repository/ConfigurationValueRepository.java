@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.configuration.repository;
 
 import com.durys.jakub.companymanagement.configuration.model.entity.ConfigurationValue;
+import com.durys.jakub.companymanagement.configuration.model.enums.group.ConfigurationGroupName;
 import com.durys.jakub.companymanagement.configuration.model.util.ConfigurationGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,5 +16,5 @@ public interface ConfigurationValueRepository extends JpaRepository<Configuratio
 
     List<ConfigurationValue> findAllByConfigurationGroup(ConfigurationGroup group);
 
-    Optional<ConfigurationValue> findByConfigurationGroupAndConfigurationType(ConfigurationGroup group, String type);
+    Optional<ConfigurationValue> findByConfigurationGroupAndConfigurationType(ConfigurationGroupName groupName, String type);
 }
