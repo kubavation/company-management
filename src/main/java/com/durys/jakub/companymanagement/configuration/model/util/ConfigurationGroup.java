@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.configuration.model.util;
 
+import com.durys.jakub.companymanagement.configuration.exception.ConfigurationGroupNotExistsException;
 import com.durys.jakub.companymanagement.configuration.exception.ConfigurationTypeAlreadyExistsException;
 import com.durys.jakub.companymanagement.configuration.model.CmConfigurationType;
 import com.durys.jakub.companymanagement.configuration.model.enums.group.ConfigurationGroupName;
@@ -65,10 +66,11 @@ public class ConfigurationGroup {
     }
 
     public static ConfigurationGroupName getConfigurationGroupByType(CmConfigurationType<?> configurationType) {
-        return CONFIG_TYPE_MAP.entrySet().stream()
+        return CONFIG_TYPE_MAP.entrySet()
+                .stream()
                 .filter(entry -> entry.getKey().equals(configurationType.name()))
                 .map(Map.Entry::getValue)
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("TODO"));
+                .orElseThrow(ConfigurationGroupNotExistsException::new);
     }
 }
