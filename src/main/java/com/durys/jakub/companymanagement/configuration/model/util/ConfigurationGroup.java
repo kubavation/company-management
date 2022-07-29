@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.configuration.model.util;
 
+import com.durys.jakub.companymanagement.configuration.exception.ConfigurationTypeAlreadyExistsException;
 import com.durys.jakub.companymanagement.configuration.model.CmConfigurationType;
 import com.durys.jakub.companymanagement.configuration.model.enums.group.ConfigurationGroupName;
 import com.durys.jakub.companymanagement.configuration.model.enums.type.MenuOption;
@@ -49,7 +50,12 @@ public class ConfigurationGroup {
     }
 
     private static void addConfigTypes(List<? extends CmConfigurationType<?>> types, ConfigurationGroupName groupName) {
-        types.forEach(t -> CONFIG_TYPE_MAP.put(t.name(), groupName));
+        types.forEach(t -> {
+            if (CONFIG_TYPE_MAP.containsKey(t.name())) {
+                throw new ConfigurationTypeAlreadyExistsException(t.name());
+            }
+            CONFIG_TYPE_MAP.put(t.name(), groupName);
+        });
     }
 
     private static List<? extends CmConfigurationType<?>> configTypeList(Set<Class<? extends CmConfigurationType<?>>> classes) {

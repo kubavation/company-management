@@ -21,8 +21,6 @@ public class ConfigurationValueService {
     }
 
     public Optional<ConfigurationValue> findByConfigurationGroupAndType(ConfigurationGroup group, String type) {
-        System.out.println(group);
-        System.out.println(type);
         return configurationValueRepository.findByConfigurationGroupAndConfigurationType(group.getConfigurationGroupName(), type);
     }
 
