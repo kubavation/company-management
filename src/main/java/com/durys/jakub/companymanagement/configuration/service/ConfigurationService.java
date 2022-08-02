@@ -12,7 +12,7 @@ import java.util.List;
 public class ConfigurationService {
 
 
-    public List<? extends CmConfigurationType<?>> findAllByConfigurationGroup(ConfigurationGroup configurationGroup) {
+    public List<? extends CmConfigurationType<?>> findAllByConfigurationGroupName(ConfigurationGroup configurationGroup) {
         return configurationGroup.getConfigTypes();
     }
 }

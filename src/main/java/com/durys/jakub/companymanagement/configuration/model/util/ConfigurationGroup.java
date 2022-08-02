@@ -73,4 +73,5 @@ public class ConfigurationGroup {
                 .findFirst()
                 .orElseThrow(ConfigurationGroupNotExistsException::new);
     }
+
 }

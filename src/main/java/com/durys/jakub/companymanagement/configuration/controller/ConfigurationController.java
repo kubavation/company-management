@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.configuration.controller;
 import com.durys.jakub.companymanagement.configuration.model.CmConfigurationType;
 import com.durys.jakub.companymanagement.configuration.model.dto.ConfigOption;
 import com.durys.jakub.companymanagement.configuration.model.entity.ConfigurationValue;
+import com.durys.jakub.companymanagement.configuration.model.enums.group.ConfigurationGroupName;
 import com.durys.jakub.companymanagement.configuration.model.util.ConfigurationGroup;
 import com.durys.jakub.companymanagement.configuration.service.ConfigurationService;
 import com.durys.jakub.companymanagement.configuration.service.ConfigurationValueService;
@@ -28,11 +29,11 @@ public class ConfigurationController {
                 .orElseThrow(EntityNotFoundException.of(ConfigurationValue.class, configurationType));
     }
 
-    @GetMapping("/group/{configurationGroup}")
-    public ResponseEntity<?> findAllByConfigurationGroup(@PathVariable ConfigurationGroup configurationGroup) {
+    @GetMapping("/group/{configurationGroupName}")
+    public ResponseEntity<?> findAllByConfigurationGroup(@PathVariable ConfigurationGroupName configurationGroupName) {
 
         List<? extends CmConfigurationType<?>> configurationItems =
-                configurationService.findAllByConfigurationGroup(configurationGroup);
+                configurationService.findAllByConfigurationGroup(configurationGroupName);
 
         List<ConfigOption> result = configurationItems.stream()
                 .map(configType -> ConfigOption.of(configType, configurationGroup,
