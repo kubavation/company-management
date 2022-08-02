@@ -14,6 +14,6 @@ public class ConfigurationService {
 
 
     public List<? extends CmConfigurationType<?>> findAllByConfigurationGroupName(ConfigurationGroupName configurationGroupName) {
-        return configurationGroup.getConfigTypes();
+        return ConfigurationGroup.ofName(configurationGroupName).getConfigTypes();
     }
 }

@@ -33,11 +33,11 @@ public class ConfigurationController {
     public ResponseEntity<?> findAllByConfigurationGroup(@PathVariable ConfigurationGroupName configurationGroupName) {
 
         List<? extends CmConfigurationType<?>> configurationItems =
-                configurationService.findAllByConfigurationGroup(configurationGroupName);
+                configurationService.findAllByConfigurationGroupName(configurationGroupName);
 
         List<ConfigOption> result = configurationItems.stream()
-                .map(configType -> ConfigOption.of(configType, configurationGroup,
-                        configurationValueService.getValueOrDefault(configurationGroup, configType)))
+                .map(configType -> ConfigOption.of(configType, configurationGroupName,
+                        configurationValueService.getValueOrDefault(configurationGroupName, configType)))
                 .toList();
 
         return ResponseEntity.ok(result);

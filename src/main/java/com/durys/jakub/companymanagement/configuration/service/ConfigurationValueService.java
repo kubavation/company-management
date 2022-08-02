@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.configuration.service;
 
 import com.durys.jakub.companymanagement.configuration.model.CmConfigurationType;
 import com.durys.jakub.companymanagement.configuration.model.entity.ConfigurationValue;
+import com.durys.jakub.companymanagement.configuration.model.enums.group.ConfigurationGroupName;
 import com.durys.jakub.companymanagement.configuration.model.util.ConfigurationGroup;
 import com.durys.jakub.companymanagement.configuration.repository.ConfigurationValueRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,16 +21,16 @@ public class ConfigurationValueService {
         return configurationValueRepository.findByConfigurationType(configurationType);
     }
 
-    public Optional<ConfigurationValue> findByConfigurationGroupAndType(ConfigurationGroup group, String type) {
-        return configurationValueRepository.findByConfigurationGroupAndConfigurationType(group.getConfigurationGroupName(), type);
+    public Optional<ConfigurationValue> findByConfigurationGroupAndType(ConfigurationGroupName groupName, String type) {
+        return configurationValueRepository.findByConfigurationGroupAndConfigurationType(groupName, type);
     }
 
-    public List<ConfigurationValue> findAllByConfigurationGroup(ConfigurationGroup configurationGroup) {
-        return configurationValueRepository.findAllByConfigurationGroup(configurationGroup);
+    public List<ConfigurationValue> findAllByConfigurationGroup(ConfigurationGroupName configurationGroupName) {
+        return configurationValueRepository.findAllByConfigurationGroup(configurationGroupName);
     }
 
-    public String getValueOrDefault(ConfigurationGroup configurationGroup, CmConfigurationType<?> type) {
-        return findByConfigurationGroupAndType(configurationGroup, type.name())
+    public String getValueOrDefault(ConfigurationGroupName configurationGroupName, CmConfigurationType<?> type) {
+        return findByConfigurationGroupAndType(configurationGroupName, type.name())
                 .map(ConfigurationValue::getValue)
                 .orElse(String.valueOf(type.defaultValue()));
     }
