@@ -12,24 +12,13 @@ import lombok.NonNull;
 
 import java.util.*;
 
-import static java.util.Set.of;
-
-//@AllArgsConstructor
-//@Getter
-//public enum ConfigurationGroup {
-//    GENERAL("GENERAL", of()),
-//    MENU_OPTION("MENU_OPTION", of(MenuOption.class));
-//
-//
-//    private final String description;
-//    private final Set<Class<? extends CmConfigurationType<?>>> classes;
-//}
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 public class ConfigurationGroup {
 
     private static HashMap<String, ConfigurationGroupName> CONFIG_TYPE_MAP = new HashMap<>();
+    private static HashMap<ConfigurationGroupName, ConfigurationGroup> CONFIG_GROUP_MAP = new HashMap<>();
 
 
     public static final ConfigurationGroup GENERAL
@@ -42,12 +31,13 @@ public class ConfigurationGroup {
     @NonNull private final List<? extends CmConfigurationType<?>> configTypes;
 
 
-
     private static ConfigurationGroup of(ConfigurationGroupName name, String desc,
                                          Set<Class<? extends CmConfigurationType<?>>> classes) {
         List<? extends CmConfigurationType<?>> configTypes = configTypeList(classes);
         addConfigTypes(configTypes, name);
-        return new ConfigurationGroup(name, desc, configTypes);
+        var configGroup = new ConfigurationGroup(name, desc, configTypes);
+        addConfigGroup(name, configGroup);
+        return configGroup;
     }
 
     private static void addConfigTypes(List<? extends CmConfigurationType<?>> types, ConfigurationGroupName groupName) {
@@ -57,6 +47,10 @@ public class ConfigurationGroup {
             }
             CONFIG_TYPE_MAP.put(t.name(), groupName);
         });
+    }
+
+    private static void addConfigGroup(ConfigurationGroupName name, ConfigurationGroup configurationGroup) {
+        CONFIG_GROUP_MAP.put(name, configurationGroup);
     }
 
     private static List<? extends CmConfigurationType<?>> configTypeList(Set<Class<? extends CmConfigurationType<?>>> classes) {
@@ -74,4 +68,7 @@ public class ConfigurationGroup {
                 .orElseThrow(ConfigurationGroupNotExistsException::new);
     }
 
+    public static ConfigurationGroup ofName(ConfigurationGroupName name) {
+        return CONFIG_GROUP_MAP.get(name);
+    }
 }
