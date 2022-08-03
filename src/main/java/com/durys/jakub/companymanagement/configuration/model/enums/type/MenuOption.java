@@ -12,13 +12,13 @@ public enum MenuOption implements CmConfigurationType<String> {
     PERSONAL_REQUEST("Personal requests", "/personal-request", null, false);
 
     private final String desc;
-    private final String value;
+    private final String url;
     private final String defaultValue;
     private final Boolean enabled;
 
     @Override
     public String defaultValue() {
-        return defaultValue;
+        return getValue();
     }
 
     @Override
@@ -33,6 +33,6 @@ public enum MenuOption implements CmConfigurationType<String> {
 
     @Override
     public String getValue() {
-        return value;
+        return url;
     }
 }

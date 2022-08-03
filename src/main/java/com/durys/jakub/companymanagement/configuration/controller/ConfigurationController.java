@@ -35,10 +35,15 @@ public class ConfigurationController {
         List<? extends CmConfigurationType<?>> configurationItems =
                 configurationService.findAllByConfigurationGroupName(configurationGroupName);
 
+        configurationItems.stream().forEach(c -> System.out.println(c));
+
         List<ConfigOption> result = configurationItems.stream()
+                .filter(CmConfigurationType::isEnabled)
                 .map(configType -> ConfigOption.of(configType, configurationGroupName,
                         configurationValueService.getValueOrDefault(configurationGroupName, configType)))
                 .toList();
+
+        result.stream().forEach(c -> System.out.println(c));
 
         return ResponseEntity.ok(result);
     }
