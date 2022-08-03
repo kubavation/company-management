@@ -7,5 +7,4 @@ public interface CmConfigurationType<T> {
     String desc();
     T getValue();
     boolean isEnabled();
-    String declaringClassName();
 }
