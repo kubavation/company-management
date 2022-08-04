@@ -11,6 +11,7 @@ class MenuConfigService {
         File file = new File("src/main/resources/menu-config.json")
         String json = new JsonSlurper().parse(file).toString()
         println json
+
         json
     }
 }

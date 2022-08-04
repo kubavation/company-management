@@ -1,7 +1,23 @@
 {
-  "menu": {
-    "url": "",
-    "children": []
-  },
+  "menu": [
+    {
+      "name": "Administration",
+      "url": "/administration",
+      "enabled": true,
+      "children": []
+    },
+    {
+      "name": "Personal data",
+      "url": "/personal-data",
+      "enabled": true,
+      "children": []
+    },
+    {
+      "name": "TODO",
+      "url": "/todo",
+      "enabled": false,
+      "children": []
+    }
+  ],
   "id": "4e1378be-1351-11ed-861d-0242ac120002"
 }
