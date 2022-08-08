@@ -4,19 +4,35 @@
       "name": "Administration",
       "url": "/administration",
       "enabled": true,
+      "icon": "security",
       "children": []
     },
     {
       "name": "Personal data",
       "url": "/personal-data",
       "enabled": true,
-      "children": []
+      "icon": "insert_drive_file",
+      "children": [
+        {
+          "name": "Personal data child test1",
+          "url": "/personal-data1",
+          "enabled": true,
+          "icon": null
+        },
+        {
+          "name": "Personal data child test2",
+          "url": "/personal-data2",
+          "enabled": true,
+          "icon": null
+        }
+      ]
     },
     {
       "name": "TODO",
       "url": "/todo",
       "enabled": false,
-      "children": []
+      "children": [],
+      "icon": null
     }
   ],
   "id": "4e1378be-1351-11ed-861d-0242ac120002"
