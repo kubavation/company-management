@@ -6,6 +6,8 @@ import com.durys.jakub.companymanagement.shared.exception.EntityNotFoundExceptio
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class EmployeeService {
@@ -15,5 +17,9 @@ public class EmployeeService {
     public Employee findById(Long id) {
         return employeeRepository.findById(id)
                 .orElseThrow(EntityNotFoundException.of(Employee.class, id));
+    }
+
+    public List<Employee> findAll() {
+        return employeeRepository.findAll();
     }
 }
