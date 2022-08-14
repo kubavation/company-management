@@ -31,7 +31,7 @@ public class Employee implements CmEntity<Long> {
     @Convert(converter = StatusConverter.class)
     private Status status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organisation_id")
     private OrganisationStructure organisationStructure;
 
