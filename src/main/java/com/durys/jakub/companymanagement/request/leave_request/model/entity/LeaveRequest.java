@@ -12,6 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Table(name = "CM_LEAVE_REQUEST")
 @Entity
@@ -30,7 +31,18 @@ public class LeaveRequest implements CmEntity<Long> {
     @Convert(converter = LeaveRequestTypeConverter.class)
     private LeaveRequestType type;
 
+    private BigDecimal days;
+    private BigDecimal hours;
+
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
+
+    @ManyToOne
+    @JoinColumn(name = "assistant_id")
+    private Employee assistant;
+
+    @ManyToOne
+    @JoinColumn(name = "accepting_id")
+    private Employee accepting;
 }
