@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+    <include file="TABLE/create-log-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="TABLE/create-personal-request-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="TABLE/create-personal-request-field-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="ALTERS/alter-log-table-changelog-1.xml" relativeToChangelogFile="true"/>
+    <include file="ALTERS/alter-personal-request-type-table-changelog-1.xml" relativeToChangelogFile="true"/>
+    <include file="ALTERS/alter-personal-request-field-table-changelog-1.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>
