@@ -9,8 +9,8 @@ class MenuConfigService {
 
 
     List<MenuConfig> getMenuConfig() {
-        File file = new File("src/main/resources/menu-config.json")
-        def json = new JsonSlurper().parse(file)
+        def json = new JsonSlurper()
+                .parse(getClass().getClassLoader().getResource("menu-config.json"))
         json.menu.findAll {it.enabled}
     }
 }

@@ -16,7 +16,6 @@ import java.util.List;
 public class LeaveRequestController {
 
     private final LeaveRequestService leaveRequestService;
-
     private final LeaveRequestMapper leaveRequestMapper;
 
     @GetMapping("/{employeeId}")
