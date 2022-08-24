@@ -5,9 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
-@AllArgsConstructor
-public class KeyValue {
-    private Long key;
+@AllArgsConstructor(staticName = "of")
+public class KeyValue<T> {
+    private T key;
     private String value;
 }
