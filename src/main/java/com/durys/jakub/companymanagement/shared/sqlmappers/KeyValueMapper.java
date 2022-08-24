@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class KeyValueMapper implements RowMapper<KeyValue> {
 
     @Override
-    public KeyValue mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new KeyValue(rs.getLong(1), rs.getString(2));
+    public KeyValue<?> mapRow(ResultSet rs, int rowNum) throws SQLException {
+        return KeyValue.of(rs.getLong(1), rs.getString(2));
     }
 }
