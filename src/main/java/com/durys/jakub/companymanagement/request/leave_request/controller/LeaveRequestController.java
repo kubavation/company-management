@@ -25,7 +25,7 @@ public class LeaveRequestController {
     }
 
     @GetMapping("/employees/{employeeId}/types/{type}")
-    public List<LeaveRequestDTO> findAllByEmployeeIdAndRequestType(@PathVariable Long employeeId, @PathVariable LeaveRequestType type) {
-        return leaveRequestMapper.toDTO(leaveRequestService.findAllByEmployeeIdAndRequestType(employeeId, type));
+    public List<LeaveRequestDTO> findAllByEmployeeIdAndRequestType(@PathVariable Long employeeId, @PathVariable String type) {
+        return leaveRequestMapper.toDTO(leaveRequestService.findAllByEmployeeIdAndRequestType(employeeId, LeaveRequestType.ofShortcut(type)));
     }
 }
