@@ -15,9 +15,11 @@ public enum LeaveRequestType {
     private final String shortcut;
 
     public static LeaveRequestType ofShortcut(String shortcut) {
+
         return Stream.of(LeaveRequestType.values())
                 .filter(t -> t.getShortcut().equals(shortcut))
                 .findFirst()
                 .orElseThrow(RuntimeException::new);
     }
+
 }
