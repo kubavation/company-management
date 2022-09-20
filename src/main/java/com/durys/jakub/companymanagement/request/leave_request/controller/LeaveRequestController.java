@@ -6,9 +6,12 @@ import com.durys.jakub.companymanagement.request.leave_request.model.entity.Leav
 import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;
 import com.durys.jakub.companymanagement.request.leave_request.service.LeaveRequestService;
 import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/leave-requests")
@@ -20,12 +23,13 @@ public class LeaveRequestController {
     private final LeaveRequestMapper leaveRequestMapper;
 
     @GetMapping("/employees/{employeeId}")
-    public List<LeaveRequestDTO> findAllByEmployeeId(@PathVariable Long employeeId) {
-        return leaveRequestMapper.toDTO(leaveRequestService.findAllByEmployeeId(employeeId));
-    }
+    public List<LeaveRequestDTO> findAllByEmployeeIdAndRequestType(@PathVariable Long employeeId,
+                                                                   @RequestParam(required = false) String type) {
 
-    @GetMapping("/employees/{employeeId}/types/{type}")
-    public List<LeaveRequestDTO> findAllByEmployeeIdAndRequestType(@PathVariable Long employeeId, @PathVariable String type) {
+        if (StringUtils.isEmpty(type)) {
+            return leaveRequestMapper.toDTO(leaveRequestService.findAllByEmployeeId(employeeId));
+        }
+
         return leaveRequestMapper.toDTO(leaveRequestService.findAllByEmployeeIdAndRequestType(employeeId, LeaveRequestType.ofShortcut(type)));
     }
 }
