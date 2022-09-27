@@ -4,14 +4,13 @@ import com.durys.jakub.companymanagement.request.leave_request.model.enums.Leave
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class LeaveRequestDTO {
-    private Long id;
-    private Long employeeId;
-    private LeaveRequestType type;
-    private BigDecimal days;
-    private BigDecimal hours;
+public class LeaveRequestFilterDTO {
+    private LocalDate dateFrom;
+    private LocalDate dateTo;
+    //private List<LeaveRequestType> requestTypes; TODO
 }
