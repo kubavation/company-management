@@ -9,6 +9,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface LeaveRequestMapper {
+
     LeaveRequestMapper INSTANCE = Mappers.getMapper(LeaveRequestMapper.class);
 
     LeaveRequest toEntity(LeaveRequestDTO dto);
