@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Table(name = "CM_LEAVE_REQUEST")
 @Entity
@@ -30,6 +31,8 @@ public class LeaveRequest implements CmEntity<Long> {
 
     @Convert(converter = LeaveRequestTypeConverter.class)
     private LeaveRequestType type;
+
+    private LocalDate date;
 
     private BigDecimal days;
     private BigDecimal hours;
