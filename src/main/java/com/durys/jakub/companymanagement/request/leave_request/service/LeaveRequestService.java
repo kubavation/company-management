@@ -4,10 +4,13 @@ import com.durys.jakub.companymanagement.request.leave_request.model.dto.LeaveRe
 import com.durys.jakub.companymanagement.request.leave_request.model.entity.LeaveRequest;
 import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;
 import com.durys.jakub.companymanagement.request.leave_request.repository.LeaveRequestRepository;
+import com.durys.jakub.companymanagement.request.leave_request.util.LeaveRequestFilterUtil;
 import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -24,6 +27,10 @@ public class LeaveRequestService {
     }
 
     public List<LeaveRequest> findAllByFilters(Long employeeId, LeaveRequestFilterDTO filters) {
-        throw new UnsupportedOperationException();
+   
+
+        Specification<LeaveRequest> specification = LeaveRequestFilterUtil.buildSpecification(filters);
+
+        return leaveRequestRepository.findAll(specification);
     }
 }
