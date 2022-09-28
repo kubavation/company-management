@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.request.leave_request.controller;
 
 import com.durys.jakub.companymanagement.request.leave_request.model.converter.LeaveRequestMapper;
 import com.durys.jakub.companymanagement.request.leave_request.model.dto.LeaveRequestDTO;
+import com.durys.jakub.companymanagement.request.leave_request.model.dto.LeaveRequestFilterDTO;
 import com.durys.jakub.companymanagement.request.leave_request.model.entity.LeaveRequest;
 import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;
 import com.durys.jakub.companymanagement.request.leave_request.service.LeaveRequestService;
@@ -35,5 +36,14 @@ public class LeaveRequestController {
         }
 
         return leaveRequestMapper.toDTO(leaveRequestService.findAllByEmployeeIdAndRequestType(employeeId, LeaveRequestType.ofShortcut(type)));
+    }
+
+
+    @PostMapping("/employees/{employeeId}")
+    public List<LeaveRequestDTO> findAllByFilters(@PathVariable Long employeeId, @RequestBody LeaveRequestFilterDTO filters) {
+
+        log.info("calling findAllByFilters with employeeId {} and filters {}", employeeId, filters.toString());
+
+        return leaveRequestMapper.toDTO(leaveRequestService.findAllByFilters(employeeId, filters));
     }
 }
