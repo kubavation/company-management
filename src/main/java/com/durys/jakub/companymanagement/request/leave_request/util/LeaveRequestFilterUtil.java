@@ -7,6 +7,8 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Predicate;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +16,13 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LeaveRequestFilterUtil {
 
+    public static Specification<LeaveRequest> defaultValue() {
+        return (root, query, cb) -> cb.isTrue(root.get(LeaveRequest_.ID).isNotNull());
+    }
+
+    public static Specification<LeaveRequest> withEmployeeId(Long employeeId) {
+        return (root, query, cb) -> cb.equal(root.get(LeaveRequest_.EMPLOYEE), employeeId);
+    }
     public static Specification<LeaveRequest> betweenDates(LocalDate dateFrom, LocalDate dateTo) {
         return (root, query, cb) -> cb.between(root.get(LeaveRequest_.DATE), dateFrom, dateTo);
     }
@@ -25,10 +34,17 @@ public class LeaveRequestFilterUtil {
 
     public static Specification<LeaveRequest> buildSpecification(LeaveRequestFilterDTO filters) {
 
-        if (!Objects.isNull(filters.getDateFrom()) && !Objects.isNull(filters.getDateTo())) {
-            return betweenDates(filters.getDateFrom(), filters.getDateTo());
+        Specification<LeaveRequest> specification = defaultValue();
+
+        if (!Objects.isNull(filters.getEmployeeId())) {
+            specification = specification.and(withEmployeeId(filters.getEmployeeId()));
         }
 
-        return null;
+        if (!Objects.isNull(filters.getDateFrom()) && !Objects.isNull(filters.getDateTo())) {
+            specification =  specification.and(betweenDates(filters.getDateFrom(), filters.getDateTo()));
+        }
+
+
+        return specification;
     }
 }

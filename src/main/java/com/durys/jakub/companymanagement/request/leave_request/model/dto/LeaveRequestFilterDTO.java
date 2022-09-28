@@ -10,7 +10,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class LeaveRequestFilterDTO {
+    private Long employeeId;
     private LocalDate dateFrom;
     private LocalDate dateTo;
-    //private List<LeaveRequestType> requestTypes; TODO
+    private List<LeaveRequestType> requestTypes;
 }

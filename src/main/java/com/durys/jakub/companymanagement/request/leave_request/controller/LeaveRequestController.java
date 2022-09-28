@@ -39,11 +39,11 @@ public class LeaveRequestController {
     }
 
 
-    @PostMapping("/employees/{employeeId}")
-    public List<LeaveRequestDTO> findAllByFilters(@PathVariable Long employeeId, @RequestBody LeaveRequestFilterDTO filters) {
+    @PostMapping
+    public List<LeaveRequestDTO> findAllByFilters(@RequestBody LeaveRequestFilterDTO filters) {
 
-        log.info("calling findAllByFilters with employeeId {} and filters {}", employeeId, filters.toString());
+        log.info("calling findAllByFilters with filters: {}", filters.toString());
 
-        return leaveRequestMapper.toDTO(leaveRequestService.findAllByFilters(employeeId, filters));
+        return leaveRequestMapper.toDTO(leaveRequestService.findAllByFilters(filters));
     }
 }

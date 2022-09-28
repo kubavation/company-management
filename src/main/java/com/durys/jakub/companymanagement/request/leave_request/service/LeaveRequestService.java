@@ -26,8 +26,7 @@ public class LeaveRequestService {
         return leaveRequestRepository.findAllByEmployeeIdAndType(employeeId, type);
     }
 
-    public List<LeaveRequest> findAllByFilters(Long employeeId, LeaveRequestFilterDTO filters) {
-   
+    public List<LeaveRequest> findAllByFilters(LeaveRequestFilterDTO filters) {
 
         Specification<LeaveRequest> specification = LeaveRequestFilterUtil.buildSpecification(filters);
 
