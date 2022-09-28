@@ -27,9 +27,6 @@ public class LeaveRequestService {
     }
 
     public List<LeaveRequest> findAllByFilters(LeaveRequestFilterDTO filters) {
-
-        Specification<LeaveRequest> specification = LeaveRequestFilterUtil.buildSpecification(filters);
-
-        return leaveRequestRepository.findAll(specification);
+        return leaveRequestRepository.findAll(LeaveRequestFilterUtil.buildSpecification(filters));
     }
 }

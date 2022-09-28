@@ -3,13 +3,15 @@ package com.durys.jakub.companymanagement.request.leave_request.model.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Getter
 @AllArgsConstructor
 public enum LeaveRequestType {
-    ANNUAL("Annual leave", "AL"),
-    CHILDCARE("Childcare leave", "CL");
+    AL("Annual leave", "AL"),
+    CL("Childcare leave", "CL");
 
     private final String name;
     private final String shortcut;
