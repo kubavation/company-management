@@ -13,5 +13,5 @@ public class LeaveRequestFilterDTO {
     private Long employeeId;
     private LocalDate dateFrom;
     private LocalDate dateTo;
-    private List<LeaveRequestType> requestTypes;
+    private List<LeaveRequestType> requestType;
 }

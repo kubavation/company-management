@@ -43,8 +43,8 @@ public class LeaveRequestFilterUtil {
             specification =  specification.and(betweenDates(filters.getDateFrom(), filters.getDateTo()));
         }
 
-        if (CollectionUtils.isNotEmpty(filters.getRequestTypes())) {
-            specification = specification.and(withTypes(filters.getRequestTypes()));
+        if (CollectionUtils.isNotEmpty(filters.getRequestType())) {
+            specification = specification.and(withTypes(filters.getRequestType()));
         }
 
 
