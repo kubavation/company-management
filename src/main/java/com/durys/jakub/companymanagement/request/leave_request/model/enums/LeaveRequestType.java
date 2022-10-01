@@ -1,10 +1,9 @@
 package com.durys.jakub.companymanagement.request.leave_request.model.enums;
 
+import com.durys.jakub.companymanagement.request.leave_request.exception.InvalidShortcutOfLeaveRequestTypeException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Getter
@@ -21,7 +20,7 @@ public enum LeaveRequestType {
         return Stream.of(LeaveRequestType.values())
                 .filter(t -> t.getShortcut().equals(shortcut))
                 .findFirst()
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(() -> new InvalidShortcutOfLeaveRequestTypeException(shortcut));
     }
 
 }
