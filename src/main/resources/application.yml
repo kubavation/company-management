@@ -8,5 +8,11 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.xml
+  application:
+    name: company-management-core
 server:
   port: 8081
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8777/eureka/
