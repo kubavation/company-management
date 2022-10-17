@@ -9,9 +9,9 @@ spring:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.xml
   application:
-    name: company-management-core
+    name: COMPANY-MANAGEMENT
 server:
-  port: 8081
+  port: 0
 eureka:
   client:
     serviceUrl:
