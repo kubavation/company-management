@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/leave-privileges")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
 public class LeavePrivilegesContoller {
 
     @GetMapping("/types")

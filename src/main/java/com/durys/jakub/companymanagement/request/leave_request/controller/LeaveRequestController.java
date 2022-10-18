@@ -18,7 +18,6 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/leave-requests")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
 @Slf4j
 public class LeaveRequestController {
 
