@@ -56,4 +56,9 @@ public class LeaveRequestController {
     public List<EmployeeDTO> findStandInEmployees(@PathVariable Long employeeId) {
         return employeeMapper.toDTO(employeeService.findAll()); //todo by dates
     }
+
+    @PostMapping
+    public void create(@RequestBody LeaveRequestDTO leaveRequestDTO) {
+        log.info("in create {}", leaveRequestDTO);
+    }
 }

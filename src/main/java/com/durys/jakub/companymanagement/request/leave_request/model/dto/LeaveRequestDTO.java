@@ -14,6 +14,9 @@ public class LeaveRequestDTO {
     private Long employeeId;
     private LeaveRequestType type;
     private LocalDate date;
+    private LocalDate dateFrom;
+    private LocalDate dateTo;
     private BigDecimal days;
     private BigDecimal hours;
+    private Long standInEmployeeId;
 }
