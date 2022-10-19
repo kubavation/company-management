@@ -2,22 +2,19 @@ package com.durys.jakub.companymanagement.request.leave_request.controller;
 
 import com.durys.jakub.companymanagement.employee.converter.EmployeeMapper;
 import com.durys.jakub.companymanagement.employee.model.dto.EmployeeDTO;
-import com.durys.jakub.companymanagement.employee.model.entity.Employee;
 import com.durys.jakub.companymanagement.employee.service.EmployeeService;
 import com.durys.jakub.companymanagement.request.leave_request.model.converter.LeaveRequestMapper;
+import com.durys.jakub.companymanagement.request.leave_request.model.dto.CreateLeaveRequest;
 import com.durys.jakub.companymanagement.request.leave_request.model.dto.LeaveRequestDTO;
 import com.durys.jakub.companymanagement.request.leave_request.model.dto.LeaveRequestFilterDTO;
-import com.durys.jakub.companymanagement.request.leave_request.model.entity.LeaveRequest;
 import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;
 import com.durys.jakub.companymanagement.request.leave_request.service.LeaveRequestService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/leave-requests")
@@ -58,7 +55,7 @@ public class LeaveRequestController {
     }
 
     @PostMapping
-    public void create(@RequestBody LeaveRequestDTO leaveRequestDTO) {
-        log.info("in create {}", leaveRequestDTO);
+    public void create(@RequestBody CreateLeaveRequest createLeaveRequest) {
+        log.info("in create {}", createLeaveRequest);
     }
 }
