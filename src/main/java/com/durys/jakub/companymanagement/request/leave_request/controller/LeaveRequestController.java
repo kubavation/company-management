@@ -1,5 +1,9 @@
 package com.durys.jakub.companymanagement.request.leave_request.controller;
 
+import com.durys.jakub.companymanagement.employee.converter.EmployeeMapper;
+import com.durys.jakub.companymanagement.employee.model.dto.EmployeeDTO;
+import com.durys.jakub.companymanagement.employee.model.entity.Employee;
+import com.durys.jakub.companymanagement.employee.service.EmployeeService;
 import com.durys.jakub.companymanagement.request.leave_request.model.converter.LeaveRequestMapper;
 import com.durys.jakub.companymanagement.request.leave_request.model.dto.LeaveRequestDTO;
 import com.durys.jakub.companymanagement.request.leave_request.model.dto.LeaveRequestFilterDTO;
@@ -21,6 +25,8 @@ import java.util.Objects;
 @Slf4j
 public class LeaveRequestController {
 
+    private final EmployeeService employeeService;
+    private final EmployeeMapper employeeMapper;
     private final LeaveRequestService leaveRequestService;
     private final LeaveRequestMapper leaveRequestMapper;
 
@@ -44,5 +50,10 @@ public class LeaveRequestController {
         log.info("calling findAllByFilters with filters: {}", filters.toString());
 
         return leaveRequestMapper.toDTO(leaveRequestService.findAllByFilters(filters));
+    }
+
+    @GetMapping("/{employeeId}/standin-employees")
+    public List<EmployeeDTO> findStandInEmployees(@PathVariable Long employeeId) {
+        return employeeMapper.toDTO(employeeService.findAll()); //todo by dates
     }
 }
