@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -14,8 +15,8 @@ public class LeaveRequestDTO {
     private Long employeeId;
     private LeaveRequestType type;
     private LocalDate date;
-    private LocalDate dateFrom;
-    private LocalDate dateTo;
+    private LocalDateTime dateFrom;
+    private LocalDateTime dateTo;
     private BigDecimal days;
     private BigDecimal hours;
     private Long standInEmployeeId;
