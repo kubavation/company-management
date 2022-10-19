@@ -23,7 +23,7 @@ public class LeaveRequestFilterUtil {
         return (root, query, cb) -> cb.equal(root.get(LeaveRequest_.EMPLOYEE), employeeId);
     }
     public static Specification<LeaveRequest> betweenDates(LocalDate dateFrom, LocalDate dateTo) {
-        return (root, query, cb) -> cb.between(root.get(LeaveRequest_.DATE), dateFrom, dateTo);
+        return (root, query, cb) -> cb.between(root.get(LeaveRequest_.DATE_FROM), dateFrom, dateTo);
     }
 
     public static Specification<LeaveRequest> withTypes(List<LeaveRequestType> types) {
