@@ -44,7 +44,7 @@ public class LeaveRequestController {
     }
 
 
-    @PostMapping
+    @PostMapping("/filters")
     public List<LeaveRequestDTO> findAllByFilters(@RequestBody LeaveRequestFilterDTO filters) {
 
         log.info("calling findAllByFilters with filters: {}", filters.toString());
