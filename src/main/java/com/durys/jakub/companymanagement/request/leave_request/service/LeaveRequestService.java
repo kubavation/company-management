@@ -40,6 +40,11 @@ public class LeaveRequestService {
                 .days(BigDecimal.ONE)
                 .status(Status.ACTIVE)
                 .hours(BigDecimal.ZERO)
+                .type(createLeaveRequest.getType())
                 .build();
+    }
+
+    public void save(LeaveRequest leaveRequest) {
+        leaveRequestRepository.save(leaveRequest);
     }
 }

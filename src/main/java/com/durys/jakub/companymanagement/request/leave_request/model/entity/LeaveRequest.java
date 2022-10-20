@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 public class LeaveRequest implements CmEntity<Long> {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Convert(converter = StatusConverter.class)
@@ -31,7 +32,10 @@ public class LeaveRequest implements CmEntity<Long> {
     @Convert(converter = LeaveRequestTypeConverter.class)
     private LeaveRequestType type;
 
+    @Column(name = "DATE_FROM")
     private LocalDateTime dateFrom;
+
+    @Column(name = "DATE_TO")
     private LocalDateTime dateTo;
 
     private BigDecimal days;

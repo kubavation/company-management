@@ -7,9 +7,9 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet author="jdurys" id="24">
-        <renameColumn oldColumnName="date" newColumnName="dateFrom" tableName="CM_LEAVE_REQUEST"/>
+        <renameColumn oldColumnName="date" newColumnName="date_from" tableName="CM_LEAVE_REQUEST"/>
         <addColumn tableName="CM_LEAVE_REQUEST">
-            <column name="dateTo" type="date" />
+            <column name="date_To" type="date" />
         </addColumn>
     </changeSet>
 </databaseChangeLog>

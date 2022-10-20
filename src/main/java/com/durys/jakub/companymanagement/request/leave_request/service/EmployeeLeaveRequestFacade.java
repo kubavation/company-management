@@ -2,14 +2,19 @@ package com.durys.jakub.companymanagement.request.leave_request.service;
 
 import com.durys.jakub.companymanagement.employee.converter.EmployeeMapper;
 import com.durys.jakub.companymanagement.employee.model.dto.EmployeeDTO;
+import com.durys.jakub.companymanagement.employee.model.entity.Employee;
 import com.durys.jakub.companymanagement.employee.service.EmployeeService;
 import com.durys.jakub.companymanagement.request.leave_request.model.dto.CreateLeaveRequest;
+import com.durys.jakub.companymanagement.request.leave_request.model.entity.LeaveRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class EmployeeLeaveRequestFacade {
 
@@ -21,7 +26,22 @@ public class EmployeeLeaveRequestFacade {
         return employeeMapper.toDTO(employeeService.findAll());
     }
 
+    @Transactional
     public void create(CreateLeaveRequest createLeaveRequest) {
+       LeaveRequest entity = leaveRequestService.prepareEntity(createLeaveRequest);
 
+       Employee requestAuthor = employeeService
+               .findById(createLeaveRequest.getEmployeeId());
+
+       entity.setEmployee(requestAuthor);
+
+       Employee assistance = employeeService
+                .findById(createLeaveRequest.getStandInEmployeeId());
+
+       entity.setAssistant(assistance);
+
+       log.info("saving entity {}", entity);
+
+       leaveRequestService.save(entity);
     }
 }
