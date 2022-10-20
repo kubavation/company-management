@@ -30,6 +30,9 @@ public class EmployeeLeaveRequestFacade {
     public void create(CreateLeaveRequest createLeaveRequest) {
        LeaveRequest entity = leaveRequestService.prepareEntity(createLeaveRequest);
 
+       entity.setDays(leaveRequestService
+               .numberOfDaysBetween(createLeaveRequest.getDateFrom(), createLeaveRequest.getDateTo()));
+
        Employee requestAuthor = employeeService
                .findById(createLeaveRequest.getEmployeeId());
 

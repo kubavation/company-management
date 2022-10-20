@@ -12,6 +12,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +39,6 @@ public class LeaveRequestService {
         return LeaveRequest.builder()
                 .dateFrom(createLeaveRequest.getDateFrom())
                 .dateTo(createLeaveRequest.getDateTo())
-                .days(BigDecimal.ONE)
                 .status(Status.ACTIVE)
                 .hours(BigDecimal.ZERO)
                 .type(createLeaveRequest.getType())
@@ -46,5 +47,9 @@ public class LeaveRequestService {
 
     public void save(LeaveRequest leaveRequest) {
         leaveRequestRepository.save(leaveRequest);
+    }
+
+    public BigDecimal numberOfDaysBetween(LocalDateTime dateFrom, LocalDateTime dateTo) {
+        return BigDecimal.valueOf(ChronoUnit.DAYS.between(dateFrom, dateTo.plusDays(1)));
     }
 }
