@@ -13,6 +13,7 @@ import com.durys.jakub.companymanagement.request.leave_request.service.LeaveRequ
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,6 +56,7 @@ public class LeaveRequestController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody CreateLeaveRequest createLeaveRequest) {
         log.info("in create {}", createLeaveRequest);
         employeeLeaveRequestFacade.create(createLeaveRequest);
