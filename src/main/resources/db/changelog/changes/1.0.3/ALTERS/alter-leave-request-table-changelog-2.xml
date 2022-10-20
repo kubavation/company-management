@@ -9,7 +9,7 @@
     <changeSet author="jdurys" id="24">
         <renameColumn oldColumnName="date" newColumnName="date_from" tableName="CM_LEAVE_REQUEST"/>
         <addColumn tableName="CM_LEAVE_REQUEST">
-            <column name="date_To" type="date" />
+            <column name="date_to" type="date" />
         </addColumn>
     </changeSet>
 </databaseChangeLog>

@@ -40,7 +40,12 @@ public class EmployeeLeaveRequestFacade {
 
        entity.setAssistant(assistance);
 
-       log.info("saving entity {}", entity);
+        //todo
+        Employee accepting = employeeService
+                .findById(createLeaveRequest.getStandInEmployeeId());
+
+        entity.setAccepting(accepting);
+
 
        leaveRequestService.save(entity);
     }
