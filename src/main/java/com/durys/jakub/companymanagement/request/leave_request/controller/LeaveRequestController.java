@@ -8,6 +8,7 @@ import com.durys.jakub.companymanagement.request.leave_request.model.dto.CreateL
 import com.durys.jakub.companymanagement.request.leave_request.model.dto.LeaveRequestDTO;
 import com.durys.jakub.companymanagement.request.leave_request.model.dto.LeaveRequestFilterDTO;
 import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;
+import com.durys.jakub.companymanagement.request.leave_request.service.EmployeeLeaveRequestFacade;
 import com.durys.jakub.companymanagement.request.leave_request.service.LeaveRequestService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,10 +23,9 @@ import java.util.List;
 @Slf4j
 public class LeaveRequestController {
 
-    private final EmployeeService employeeService;
-    private final EmployeeMapper employeeMapper;
     private final LeaveRequestService leaveRequestService;
     private final LeaveRequestMapper leaveRequestMapper;
+    private final EmployeeLeaveRequestFacade employeeLeaveRequestFacade;
 
     @GetMapping("/employees/{employeeId}")
     public List<LeaveRequestDTO> findAllByEmployeeIdAndRequestType(@PathVariable Long employeeId,
@@ -51,11 +51,12 @@ public class LeaveRequestController {
 
     @GetMapping("/{employeeId}/standin-employees")
     public List<EmployeeDTO> findStandInEmployees(@PathVariable Long employeeId) {
-        return employeeMapper.toDTO(employeeService.findAll()); //todo by dates
+        return employeeLeaveRequestFacade.findStandInEmployees(employeeId);
     }
 
     @PostMapping
     public void create(@RequestBody CreateLeaveRequest createLeaveRequest) {
         log.info("in create {}", createLeaveRequest);
+        employeeLeaveRequestFacade.create(createLeaveRequest);
     }
 }
