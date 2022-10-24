@@ -32,6 +32,7 @@ public class LeaveRequestController {
     public List<LeaveRequestDTO> findAllByEmployeeIdAndRequestType(@PathVariable Long employeeId,
                                                                    @RequestParam(required = false) String type) {
 
+
         log.info("calling findAllByEmployeeIdAndRequestType with employeeId {} and type {}", employeeId, type);
 
         if (StringUtils.isEmpty(type)) {
@@ -60,5 +61,12 @@ public class LeaveRequestController {
     public void create(@RequestBody CreateLeaveRequest createLeaveRequest) {
         log.info("in create {}", createLeaveRequest);
         employeeLeaveRequestFacade.create(createLeaveRequest);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable Long id) {
+        log.info("in delete id = {}", id);
+        leaveRequestService.delete(id);
     }
 }

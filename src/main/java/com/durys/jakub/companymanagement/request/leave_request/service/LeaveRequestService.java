@@ -7,10 +7,12 @@ import com.durys.jakub.companymanagement.request.leave_request.model.enums.Leave
 import com.durys.jakub.companymanagement.request.leave_request.repository.LeaveRequestRepository;
 import com.durys.jakub.companymanagement.request.leave_request.util.LeaveRequestFilterUtil;
 import com.durys.jakub.companymanagement.shared.enums.Status;
+import com.durys.jakub.companymanagement.shared.exception.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -51,5 +53,15 @@ public class LeaveRequestService {
 
     public BigDecimal numberOfDaysBetween(LocalDateTime dateFrom, LocalDateTime dateTo) {
         return BigDecimal.valueOf(ChronoUnit.DAYS.between(dateFrom, dateTo.plusDays(1)));
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        leaveRequestRepository.findById(id)
+                .map(e -> {
+                    e.setStatus(Status.DELETED);
+                    return e;
+                })
+                .orElseThrow(() -> new EntityNotFoundException(LeaveRequest.class, id));
     }
 }
