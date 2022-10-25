@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.request.leave_request.model.converter;
 import com.durys.jakub.companymanagement.request.leave_request.model.dto.LeaveRequestDTO;
 import com.durys.jakub.companymanagement.request.leave_request.model.entity.LeaveRequest;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public interface LeaveRequestMapper {
 
     LeaveRequest toEntity(LeaveRequestDTO dto);
     List<LeaveRequest> toEntity(List<LeaveRequestDTO> dto);
+    @Mapping(target = "standInEmployeeId", source = "assistant.id")
     LeaveRequestDTO toDTO(LeaveRequest entity);
     List<LeaveRequestDTO> toDTO(List<LeaveRequest> entity);
 }
