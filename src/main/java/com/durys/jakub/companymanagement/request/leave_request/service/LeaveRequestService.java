@@ -57,11 +57,8 @@ public class LeaveRequestService {
 
     @Transactional
     public void delete(Long id) {
-        leaveRequestRepository.findById(id)
-                .map(e -> {
-                    e.setStatus(Status.DELETED);
-                    return e;
-                })
+        LeaveRequest entity = leaveRequestRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(LeaveRequest.class, id));
+        entity.setStatus(Status.DELETED);
     }
 }
