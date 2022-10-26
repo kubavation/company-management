@@ -63,6 +63,13 @@ public class LeaveRequestController {
         employeeLeaveRequestFacade.create(createLeaveRequest);
     }
 
+    @PostMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void edit(@PathVariable Long id, @RequestBody CreateLeaveRequest createLeaveRequest) {
+        log.info("in edit {}", createLeaveRequest);
+        employeeLeaveRequestFacade.edit(id, createLeaveRequest);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable Long id) {

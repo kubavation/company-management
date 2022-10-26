@@ -52,4 +52,33 @@ public class EmployeeLeaveRequestFacade {
 
        leaveRequestService.save(entity);
     }
+
+    public void edit(Long id, CreateLeaveRequest createLeaveRequest) {
+        LeaveRequest existingEntity = leaveRequestService.findById(id);
+        LeaveRequest entity = leaveRequestService.prepareEntity(createLeaveRequest);
+
+        entity.setId(id);
+
+        entity.setDays(leaveRequestService
+                .numberOfDaysBetween(createLeaveRequest.getDateFrom(), createLeaveRequest.getDateTo()));
+
+        Employee requestAuthor = employeeService
+                .findById(createLeaveRequest.getEmployeeId());
+
+        entity.setEmployee(requestAuthor);
+
+        Employee assistance = employeeService
+                .findById(createLeaveRequest.getStandInEmployeeId());
+
+        entity.setAssistant(assistance);
+
+        //todo
+        Employee accepting = employeeService
+                .findById(createLeaveRequest.getStandInEmployeeId());
+
+        entity.setAccepting(accepting);
+
+        leaveRequestService.save(entity);
+    }
+
 }

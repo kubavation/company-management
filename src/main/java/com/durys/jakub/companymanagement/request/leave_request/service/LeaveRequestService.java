@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +25,11 @@ import java.util.stream.Collectors;
 public class LeaveRequestService {
 
     private final LeaveRequestRepository leaveRequestRepository;
+
+    public LeaveRequest findById(Long id) {
+        return leaveRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(LeaveRequest.class, id));
+    }
 
     public List<LeaveRequest> findAllByEmployeeId(Long employeeId) {
         return leaveRequestRepository.findAllByEmployeeId(employeeId);
