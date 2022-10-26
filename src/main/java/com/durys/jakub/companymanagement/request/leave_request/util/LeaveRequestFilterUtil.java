@@ -10,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,7 +23,7 @@ public class LeaveRequestFilterUtil {
     public static Specification<LeaveRequest> withEmployeeId(Long employeeId) {
         return (root, query, cb) -> cb.equal(root.get(LeaveRequest_.EMPLOYEE), employeeId);
     }
-    public static Specification<LeaveRequest> betweenDates(LocalDate dateFrom, LocalDate dateTo) {
+    public static Specification<LeaveRequest> betweenDates(LocalDateTime dateFrom, LocalDateTime dateTo) {
         return (root, query, cb) -> cb.between(root.get(LeaveRequest_.DATE_FROM), dateFrom, dateTo);
     }
 
