@@ -16,8 +16,6 @@ import java.util.List;
 public class MenuConfigController {
 
     private final MenuConfigService menuConfigService;
-
-
     @GetMapping
     public List<MenuConfig> getMenuConfig() {
         return menuConfigService.getMenuConfig();
