@@ -14,4 +14,6 @@
     <include file="ALTERS/alter-organisation-table-changelog-1.xml" relativeToChangelogFile="true"/>
     <include file="ALTERS/alter-leave-request-table-changelog-1.xml" relativeToChangelogFile="true"/>
     <include file="ALTERS/alter-leave-request-table-changelog-2.xml" relativeToChangelogFile="true"/>
+
+    <include file="TABLE/create-employee-leave-privileges-table-changelog.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

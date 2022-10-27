@@ -36,5 +36,6 @@ public class EmployeeLeavePrivileges {
     private BigDecimal hours;
 
     private Status status;
+    private String operator;
 
 }

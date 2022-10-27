@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="jdurys" id="jdurys-1.0.3-create-EMPLOYEE_LEAVE_PRIVILEGES">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="CM_EMPLOYEE_LEAVE_PRIVILEGES"/>
+            </not>
+        </preConditions>
+        <createTable tableName="CM_EMPLOYEE_LEAVE_PRIVILEGES">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column  name="status" type="varchar2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="operator" type="varchar2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="leave_request_type" type="varchar2(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="year" type="number">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="hours" type="number">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="days" type="number">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="employee_id" type="number">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
