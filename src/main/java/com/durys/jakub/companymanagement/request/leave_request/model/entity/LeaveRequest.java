@@ -6,23 +6,24 @@ import com.durys.jakub.companymanagement.request.leave_request.model.enums.Leave
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
 import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Table(name = "CM_LEAVE_REQUEST")
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class LeaveRequest implements CmEntity<Long> {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Convert(converter = StatusConverter.class)
@@ -30,6 +31,12 @@ public class LeaveRequest implements CmEntity<Long> {
 
     @Convert(converter = LeaveRequestTypeConverter.class)
     private LeaveRequestType type;
+
+    @Column(name = "DATE_FROM")
+    private LocalDateTime dateFrom;
+
+    @Column(name = "DATE_TO")
+    private LocalDateTime dateTo;
 
     private BigDecimal days;
     private BigDecimal hours;

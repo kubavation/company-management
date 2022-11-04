@@ -33,6 +33,20 @@
       "enabled": true,
       "icon": "insert_drive_file",
       "children": []
+    },
+    {
+      "name": "Leave requests",
+      "url": "/leave-requests",
+      "enabled": true,
+      "icon": "insert_drive_file",
+      "children": []
+    },
+    {
+      "name": "Employees leave privileges",
+      "url": "/employees-leave-privileges",
+      "enabled": true,
+      "icon": "insert_drive_file",
+      "children": []
     }
   ],
   "id": "4e1378be-1351-11ed-861d-0242ac120002"

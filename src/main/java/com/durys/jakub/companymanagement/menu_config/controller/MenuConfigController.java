@@ -13,12 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/menu-config")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
 public class MenuConfigController {
 
     private final MenuConfigService menuConfigService;
-
-
     @GetMapping
     public List<MenuConfig> getMenuConfig() {
         return menuConfigService.getMenuConfig();
