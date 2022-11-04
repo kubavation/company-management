@@ -10,6 +10,11 @@ spring:
     change-log: classpath:db/changelog/db.changelog-master.xml
   application:
     name: COMPANY-MANAGEMENT
+  config:
+    import: optional:http://localhost:8888
+  cloud:
+    config:
+      label: master
 server:
   port: 0
 eureka:
