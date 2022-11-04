@@ -11,7 +11,7 @@ spring:
   application:
     name: COMPANY-MANAGEMENT
   config:
-    import: optional:http://localhost:8888
+    import: optional:configserver:http://localhost:8888
   cloud:
     config:
       label: master
