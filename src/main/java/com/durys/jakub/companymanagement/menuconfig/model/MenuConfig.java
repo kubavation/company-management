@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.menu_config.model;
+package com.durys.jakub.companymanagement.menuconfig.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

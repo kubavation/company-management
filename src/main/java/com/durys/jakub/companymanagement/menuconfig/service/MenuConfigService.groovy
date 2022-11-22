@@ -1,6 +1,6 @@
-package com.durys.jakub.companymanagement.menu_config.service
+package com.durys.jakub.companymanagement.menuconfig.service
 
-import com.durys.jakub.companymanagement.menu_config.model.MenuConfig
+import com.durys.jakub.companymanagement.menuconfig.model.MenuConfig
 import groovy.json.JsonSlurper
 import org.springframework.stereotype.Service
 

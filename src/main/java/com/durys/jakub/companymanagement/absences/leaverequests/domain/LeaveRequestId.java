@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.leaveRequestDDD.domain;
+package com.durys.jakub.companymanagement.absences.leaverequests.domain;
 
 import lombok.*;
 
