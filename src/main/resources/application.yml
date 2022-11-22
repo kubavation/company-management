@@ -15,6 +15,11 @@ spring:
   cloud:
     config:
       label: master
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/am-realm
 server:
   port: 0
 eureka:
