@@ -15,14 +15,4 @@ public class CompanyManagementApplication {
 		SpringApplication.run(CompanyManagementApplication.class, args);
 	}
 
-	@Bean
-	WebMvcConfigurer webMvcConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
-			}
-		};
-	}
-
 }
