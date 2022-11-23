@@ -1,15 +1,25 @@
 package com.durys.jakub.companymanagement.absences.leaverequests.domain;
 
+import com.durys.jakub.companymanagement.annotations.domain.Aggregate;
 import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;
 
+import java.util.UUID;
+
+@Aggregate
 class LeaveRequest {
 
-    private final LeaveRequestId requestId;
+    private LeaveRequestId requestId;
 
-    private final LeaveRequestType requestType;
+    private LeaveRequestType requestType;
 
-    LeaveRequest(LeaveRequestId requestId, LeaveRequestType requestType) {
-        this.requestId = requestId;
+    private AuthorId authorId;
+
+    private LeaveRequestPeriod period;
+
+    LeaveRequest(LeaveRequestType requestType, AuthorId authorId, LeaveRequestPeriod period) {
+        this.requestId = new LeaveRequestId(UUID.randomUUID());
         this.requestType = requestType;
+        this.authorId = authorId;
+        this.period = period;
     }
 }

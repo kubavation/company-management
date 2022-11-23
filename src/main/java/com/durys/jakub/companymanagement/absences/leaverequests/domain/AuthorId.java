@@ -3,12 +3,11 @@ package com.durys.jakub.companymanagement.absences.leaverequests.domain;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 @Getter
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 @EqualsAndHashCode
-public class LeaveRequestId implements Serializable {
-    private final UUID id;
+public class AuthorId implements Serializable {
+    private final Long id;
 }
