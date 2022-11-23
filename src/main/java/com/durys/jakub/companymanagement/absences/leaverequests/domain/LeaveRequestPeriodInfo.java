@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -34,6 +35,8 @@ class LeaveRequestPeriodInfo {
         this.dateTo = dateTo;
     }
 
-  
+    public Long numberOfDays() {
+        return ChronoUnit.DAYS.between(dateFrom, dateTo.plusDays(1));
+    }
 
 }
