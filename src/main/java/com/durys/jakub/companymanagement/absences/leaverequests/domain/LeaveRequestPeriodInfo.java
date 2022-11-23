@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 @ValueObject
@@ -16,7 +17,23 @@ class LeaveRequestPeriodInfo {
     private LocalDateTime dateTo;
 
     LeaveRequestPeriodInfo(LocalDateTime dateFrom, LocalDateTime dateTo) {
+
+        if (Objects.isNull(dateFrom)) {
+            throw new RuntimeException("Date from cannot be empty");
+        }
+
+        if (Objects.isNull(dateTo)) {
+            throw new RuntimeException("Date to cannot be empty");
+        }
+
+        if (dateTo.isBefore(dateFrom)) {
+            throw new RuntimeException("Date to cannot be before date from");
+        }
+
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
     }
+
+  
+
 }
