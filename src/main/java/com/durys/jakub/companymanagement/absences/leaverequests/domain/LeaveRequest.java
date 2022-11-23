@@ -14,9 +14,12 @@ class LeaveRequest {
 
     private AuthorId authorId;
 
-    LeaveRequest(LeaveRequestType requestType, AuthorId authorId) {
+    private LeaveRequestPeriodInfo period;
+
+    LeaveRequest(LeaveRequestType requestType, AuthorId authorId, LeaveRequestPeriodInfo period) {
         this.requestId = new LeaveRequestId(UUID.randomUUID());
         this.requestType = requestType;
         this.authorId = authorId;
+        this.period = period;
     }
 }
