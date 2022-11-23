@@ -8,7 +8,7 @@ class LeaveRequest {
 
     private final LeaveRequestType requestType;
 
-    public LeaveRequest(LeaveRequestId requestId, LeaveRequestType requestType) {
+    LeaveRequest(LeaveRequestId requestId, LeaveRequestType requestType) {
         this.requestId = requestId;
         this.requestType = requestType;
     }
