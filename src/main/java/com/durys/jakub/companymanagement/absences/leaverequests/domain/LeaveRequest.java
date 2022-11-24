@@ -16,10 +16,13 @@ class LeaveRequest {
 
     private LeaveRequestPeriod period;
 
+    private LeaveRequestStatus status;
+
     LeaveRequest(LeaveRequestType requestType, AuthorId authorId, LeaveRequestPeriod period) {
         this.requestId = new LeaveRequestId(UUID.randomUUID());
         this.requestType = requestType;
         this.authorId = authorId;
         this.period = period;
+        this.status = LeaveRequestStatus.CREATED;
     }
 }
