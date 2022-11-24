@@ -10,6 +10,6 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public record CreateLeaveRequestCommand(
+public record SubmitLeaveRequestCommand(
         AuthorId authorId, LeaveRequestPeriod period, LeaveRequestType type) implements Command {
 }

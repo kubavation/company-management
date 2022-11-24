@@ -23,6 +23,6 @@ class LeaveRequest {
         this.requestType = requestType;
         this.authorId = authorId;
         this.period = period;
-        this.status = LeaveRequestStatus.CREATED;
+        this.status = LeaveRequestStatus.SUBMITTED;
     }
 }
