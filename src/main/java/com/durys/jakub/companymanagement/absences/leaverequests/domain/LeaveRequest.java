@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.absences.leaverequests.domain;
 import com.durys.jakub.companymanagement.annotations.domain.Aggregate;
 import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;
 
+import javax.naming.OperationNotSupportedException;
 import java.util.UUID;
 
 @Aggregate
@@ -12,7 +13,7 @@ class LeaveRequest {
 
     private LeaveRequestType requestType;
 
-    private AuthorId authorId;
+    private final AuthorId authorId;
 
     private LeaveRequestPeriod period;
 
@@ -25,4 +26,14 @@ class LeaveRequest {
         this.period = period;
         this.status = LeaveRequestStatus.SUBMITTED;
     }
+
+    public void markAsDeleted() {
+        if (this.status != LeaveRequestStatus.SUBMITTED) {
+            throw new IllegalArgumentException(); //todo
+        }
+
+        this.status = LeaveRequestStatus.DELETED;
+    }
+
+    
 }
