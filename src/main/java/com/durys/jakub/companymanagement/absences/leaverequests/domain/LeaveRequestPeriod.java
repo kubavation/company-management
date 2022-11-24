@@ -7,10 +7,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 @ValueObject
-class LeaveRequestPeriod {
+public class LeaveRequestPeriod {
 
-    private LocalDateTime dateFrom;
-    private LocalDateTime dateTo;
+    private final LocalDateTime dateFrom;
+    private final LocalDateTime dateTo;
 
     LeaveRequestPeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
 
