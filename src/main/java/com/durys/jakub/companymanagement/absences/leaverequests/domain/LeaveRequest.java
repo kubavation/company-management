@@ -7,7 +7,7 @@ import javax.naming.OperationNotSupportedException;
 import java.util.UUID;
 
 @Aggregate
-class LeaveRequest {
+public class LeaveRequest {
 
     private LeaveRequestId requestId;
 
@@ -35,5 +35,5 @@ class LeaveRequest {
         this.status = LeaveRequestStatus.DELETED;
     }
 
-    
+
 }
