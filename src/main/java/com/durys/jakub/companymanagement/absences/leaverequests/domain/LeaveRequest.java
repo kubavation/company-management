@@ -1,10 +1,12 @@
 package com.durys.jakub.companymanagement.absences.leaverequests.domain;
 
 import com.durys.jakub.companymanagement.absences.leaverequests.domain.exception.InvalidStatusForOperationException;
+import com.durys.jakub.companymanagement.absences.leaverequests.domain.exception.OperationUnavailableException;
 import com.durys.jakub.companymanagement.absences.leaverequests.domain.vo.*;
 import com.durys.jakub.companymanagement.annotations.domain.Aggregate;
 import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Aggregate
@@ -31,7 +33,7 @@ public class LeaveRequest {
     }
 
     public void markAsDeleted() {
-        if (this.status != LeaveRequestStatus.SUBMITTED) {
+        if (status != LeaveRequestStatus.SUBMITTED) {
             throw new InvalidStatusForOperationException();
         }
 
@@ -39,12 +41,28 @@ public class LeaveRequest {
     }
 
     public void sendToAcceptant(AcceptantId acceptantId) {
-        if (this.status != LeaveRequestStatus.SUBMITTED) {
+        if (status != LeaveRequestStatus.SUBMITTED) {
             throw new InvalidStatusForOperationException();
         }
 
         this.status = LeaveRequestStatus.SEND_FOR_ACCEPTATION;
         this.acceptantId = acceptantId;
+    }
+
+    public void markAsCancelled() {
+        if (status == LeaveRequestStatus.DELETED) {
+            throw new InvalidStatusForOperationException();
+        }
+
+        if (LocalDateTime.now().isAfter(period.getDateFrom())) {
+            throw new OperationUnavailableException();
+        }
+
+        this.status = LeaveRequestStatus.CANCELLED;
+    }
+
+    public void markAsAccepted() {
+        this.status = LeaveRequestStatus.ACCEPTED;
     }
 
 

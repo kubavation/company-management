@@ -1,12 +1,16 @@
-package com.durys.jakub.companymanagement.absences.leaverequests.domain.vo;
+package com.durys.jakub.companymanagement.absences.leaverequests.domain;
 
+import com.durys.jakub.companymanagement.absences.leaverequests.domain.exception.InvalidLeaveRequestPeriodException;
 import com.durys.jakub.companymanagement.annotations.domain.ValueObject;
+import lombok.AccessLevel;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 @ValueObject
+@Getter(AccessLevel.PACKAGE)
 public class LeaveRequestPeriod {
 
     private final LocalDateTime dateFrom;
@@ -14,16 +18,12 @@ public class LeaveRequestPeriod {
 
     LeaveRequestPeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
 
-        if (Objects.isNull(dateFrom)) {
-            throw new RuntimeException("Date from cannot be empty");
-        }
+        Objects.requireNonNull(dateFrom, "invalid dateFrom parameter");
+        Objects.requireNonNull(dateTo, "invalid dateTo parameter");
 
-        if (Objects.isNull(dateTo)) {
-            throw new RuntimeException("Date to cannot be empty");
-        }
 
         if (dateTo.isBefore(dateFrom)) {
-            throw new RuntimeException("Date to cannot be before date from");
+            throw new InvalidLeaveRequestPeriodException();
         }
 
         this.dateFrom = dateFrom;
