@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.absences.leaverequests.domain;
 
+import com.durys.jakub.companymanagement.absences.leaverequests.domain.exception.InvalidStatusForOperationException;
 import com.durys.jakub.companymanagement.absences.leaverequests.domain.vo.*;
 import com.durys.jakub.companymanagement.annotations.domain.Aggregate;
 import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;
@@ -31,7 +32,7 @@ public class LeaveRequest {
 
     public void markAsDeleted() {
         if (this.status != LeaveRequestStatus.SUBMITTED) {
-            throw new IllegalArgumentException(); //todo
+            throw new InvalidStatusForOperationException();
         }
 
         this.status = LeaveRequestStatus.DELETED;
@@ -39,7 +40,7 @@ public class LeaveRequest {
 
     public void sendToAcceptant(AcceptantId acceptantId) {
         if (this.status != LeaveRequestStatus.SUBMITTED) {
-            throw new IllegalArgumentException();
+            throw new InvalidStatusForOperationException();
         }
 
         this.status = LeaveRequestStatus.SEND_FOR_ACCEPTATION;
