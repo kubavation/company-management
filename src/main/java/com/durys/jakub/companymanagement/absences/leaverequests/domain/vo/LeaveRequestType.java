@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.absences.leaverequests.domain;
+package com.durys.jakub.companymanagement.absences.leaverequests.domain.vo;
 
 import lombok.AllArgsConstructor;
 
