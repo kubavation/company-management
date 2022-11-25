@@ -61,5 +61,9 @@ public class LeaveRequest {
         this.status = LeaveRequestStatus.CANCELLED;
     }
 
+    public void markAsAccepted() {
+        this.status = LeaveRequestStatus.ACCEPTED;
+    }
+
 
 }
