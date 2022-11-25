@@ -1,12 +1,15 @@
-package com.durys.jakub.companymanagement.absences.leaverequests.domain.vo;
+package com.durys.jakub.companymanagement.absences.leaverequests.domain;
 
 import com.durys.jakub.companymanagement.annotations.domain.ValueObject;
+import lombok.AccessLevel;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 @ValueObject
+@Getter(AccessLevel.PACKAGE)
 public class LeaveRequestPeriod {
 
     private final LocalDateTime dateFrom;
