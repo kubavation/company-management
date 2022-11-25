@@ -37,7 +37,14 @@ public class LeaveRequest {
         this.status = LeaveRequestStatus.DELETED;
     }
 
-  
+    public void sendToAcceptant(AcceptantId acceptantId) {
+        if (this.status != LeaveRequestStatus.SUBMITTED) {
+            throw new IllegalArgumentException();
+        }
+
+        this.status = LeaveRequestStatus.SEND_FOR_ACCEPTATION;
+        this.acceptantId = acceptantId;
+    }
 
 
 }
