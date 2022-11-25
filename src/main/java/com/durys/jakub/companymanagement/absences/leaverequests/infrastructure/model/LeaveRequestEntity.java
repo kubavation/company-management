@@ -40,6 +40,6 @@ public class LeaveRequestEntity implements CmEntity<Long> {
     private BigDecimal hours;
 
     private Long employeeId;
-    
+
     private Long acceptingId;
 }

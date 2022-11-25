@@ -1,9 +1,9 @@
 package com.durys.jakub.companymanagement.absences.leaverequests.domain;
 
+import com.durys.jakub.companymanagement.absences.leaverequests.domain.vo.*;
 import com.durys.jakub.companymanagement.annotations.domain.Aggregate;
 import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;
 
-import javax.naming.OperationNotSupportedException;
 import java.util.UUID;
 
 @Aggregate
