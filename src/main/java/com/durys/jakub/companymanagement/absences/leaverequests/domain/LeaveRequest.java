@@ -15,6 +15,8 @@ public class LeaveRequest {
 
     private final AuthorId authorId;
 
+    private AcceptantId acceptantId;
+
     private LeaveRequestPeriod period;
 
     private LeaveRequestStatus status;
@@ -34,6 +36,8 @@ public class LeaveRequest {
 
         this.status = LeaveRequestStatus.DELETED;
     }
+
+  
 
 
 }
