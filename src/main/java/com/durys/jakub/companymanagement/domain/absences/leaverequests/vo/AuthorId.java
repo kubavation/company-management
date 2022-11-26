@@ -5,9 +5,5 @@ import lombok.*;
 import java.io.Serializable;
 
 @Getter
-@RequiredArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
-@EqualsAndHashCode
-public class AuthorId implements Serializable {
-    private final Long id;
+public record AuthorId(Long id) implements Serializable {
 }

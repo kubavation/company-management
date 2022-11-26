@@ -1,7 +1,7 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidLeaveRequestPeriodException;
 import com.durys.jakub.companymanagement.commons.domain.ValueObject;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidLeaveRequestPeriodException;
 import lombok.AccessLevel;
 import lombok.Getter;
 

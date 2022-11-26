@@ -1,9 +1,6 @@
-package com.durys.jakub.companymanagement.employees.domain;
+package com.durys.jakub.companymanagement.domain.employees;
 
-import com.durys.jakub.companymanagement.annotations.domain.Aggregate;
-import com.durys.jakub.companymanagement.annotations.domain.ValueObject;
-
-import java.util.UUID;
+import com.durys.jakub.companymanagement.commons.domain.ValueObject;
 
 @ValueObject
 public class EmployeePersonalData {

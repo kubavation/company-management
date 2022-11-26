@@ -1,14 +1,10 @@
-package com.durys.jakub.companymanagement.domain.absences.leaverequests.domain;
+package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.domain.exception.InvalidStatusForOperationException;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.domain.exception.OperationUnavailableException;
-import com.durys.jakub.companymanagement.absences.leaverequests.domain.vo.*;
-import com.durys.jakub.companymanagement.annotations.domain.Aggregate;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.domain.vo.AcceptantId;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.domain.vo.AuthorId;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.domain.vo.LeaveRequestId;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.domain.vo.LeaveRequestStatus;
-import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;
+
+import com.durys.jakub.companymanagement.commons.domain.Aggregate;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

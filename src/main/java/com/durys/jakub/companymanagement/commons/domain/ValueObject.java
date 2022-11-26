@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.annotations.domain;
+package com.durys.jakub.companymanagement.commons.domain;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

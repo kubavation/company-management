@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.domain.absences.leaverequests.domain.vo;
+package com.durys.jakub.companymanagement.domain.absences.leaverequests.vo;
 
 import lombok.*;
 
@@ -6,9 +6,5 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Getter
-@RequiredArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
-@EqualsAndHashCode
-public class LeaveRequestId implements Serializable {
-    private final UUID value;
+public record LeaveRequestId(UUID value) {
 }

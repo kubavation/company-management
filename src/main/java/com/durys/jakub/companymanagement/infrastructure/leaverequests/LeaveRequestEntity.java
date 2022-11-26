@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.infrastructure.leaverequests.model;
+package com.durys.jakub.companymanagement.infrastructure.leaverequests;
 
 import com.durys.jakub.companymanagement.request.leave_request.model.converter.LeaveRequestTypeConverter;
 import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;

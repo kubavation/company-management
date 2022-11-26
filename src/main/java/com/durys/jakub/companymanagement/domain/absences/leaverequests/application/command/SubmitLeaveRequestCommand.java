@@ -1,7 +1,6 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests.application.command;
 
 
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.AuthorId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestPeriod;
 import com.durys.jakub.companymanagement.cqrs.commands.Command;
 import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;

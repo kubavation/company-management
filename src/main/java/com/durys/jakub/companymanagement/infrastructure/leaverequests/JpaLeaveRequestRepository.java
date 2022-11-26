@@ -1,8 +1,8 @@
 package com.durys.jakub.companymanagement.infrastructure.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -12,7 +12,8 @@ public class JpaLeaveRequestRepository implements LeaveRequestRepository {
 
     @Override
     public LeaveRequest load(LeaveRequestId id) {
-        return leaveRequestDAO.getById(id.getValue());
+        return null;
+        //return leaveRequestDAO.getById(id.getValue());
     }
 
     @Override
