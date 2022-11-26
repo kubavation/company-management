@@ -4,20 +4,21 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequ
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
 import lombok.AllArgsConstructor;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 @AllArgsConstructor
 public class JpaLeaveRequestRepository implements LeaveRequestRepository {
 
-    private final LeaveRequestDAO leaveRequestDAO;
+    private final NamedParameterJdbcTemplate jdbcTemplate;
 
     @Override
     public LeaveRequest load(LeaveRequestId id) {
         return null;
-        //return leaveRequestDAO.getById(id.getValue());
     }
 
     @Override
     public void save(LeaveRequest leaveRequest) {
         //todo
     }
+
 }
