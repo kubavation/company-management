@@ -16,5 +16,5 @@ public class EmployeePersonalData {
         this.lastName = lastName;
         this.gender = gender;
     }
-    
+
 }
