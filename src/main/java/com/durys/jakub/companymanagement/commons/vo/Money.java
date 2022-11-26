@@ -1,6 +1,6 @@
 package com.durys.jakub.companymanagement.commons.vo;
 
-import com.durys.jakub.companymanagement.annotations.domain.ValueObject;
+import com.durys.jakub.companymanagement.commons.domain.ValueObject;
 
 import java.math.BigDecimal;
 
