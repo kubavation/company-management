@@ -7,8 +7,10 @@ import java.util.UUID;
 @Aggregate
 public class Employee {
     private final EmployeeId employeeId;
+    private final EmployeePersonalData employeePersonalData;
 
-    public Employee() {
+    public Employee(EmployeePersonalData employeePersonalData) {
         this.employeeId = new EmployeeId(UUID.randomUUID());
+        this.employeePersonalData = employeePersonalData;
     }
 }
