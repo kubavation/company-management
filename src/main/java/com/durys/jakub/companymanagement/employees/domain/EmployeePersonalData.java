@@ -8,8 +8,7 @@ import java.util.UUID;
 @ValueObject
 public class EmployeePersonalData {
     private final FirstName firstName;
-    private final LastName lastName;
-
+    private LastName lastName;
     private final Gender gender;
 
     public EmployeePersonalData(FirstName firstName, LastName lastName, Gender gender) {
@@ -17,4 +16,5 @@ public class EmployeePersonalData {
         this.lastName = lastName;
         this.gender = gender;
     }
+    
 }
