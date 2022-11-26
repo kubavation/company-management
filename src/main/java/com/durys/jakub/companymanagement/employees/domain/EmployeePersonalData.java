@@ -10,8 +10,11 @@ public class EmployeePersonalData {
     private final FirstName firstName;
     private final LastName lastName;
 
-    public EmployeePersonalData(FirstName firstName, LastName lastName) {
+    private final Gender gender;
+
+    public EmployeePersonalData(FirstName firstName, LastName lastName, Gender gender) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.gender = gender;
     }
 }
