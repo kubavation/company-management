@@ -1,20 +1,20 @@
 package com.durys.jakub.companymanagement.infrastructure.leaverequests;
 
 import com.durys.jakub.companymanagement.commons.AggregateAssembler;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestAggregate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LeaveRequestAggregateAssembler implements AggregateAssembler<LeaveRequestEntity, LeaveRequest> {
+public class LeaveRequestAggregateAssembler implements AggregateAssembler<LeaveRequestEntity, LeaveRequestAggregate> {
 
 
     @Override
-    public LeaveRequestEntity toEntity(LeaveRequest aggregate) {
+    public LeaveRequestEntity toEntity(LeaveRequestAggregate aggregate) {
         return null;
     }
 
     @Override
-    public LeaveRequest toAggregate(LeaveRequestEntity entity) {
+    public LeaveRequestAggregate toAggregate(LeaveRequestEntity entity) {
         return null;
     }
 }

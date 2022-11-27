@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Aggregate
-public class LeaveRequest {
+public class LeaveRequestAggregate {
 
     private LeaveRequestId requestId;
 
@@ -24,7 +24,7 @@ public class LeaveRequest {
 
     private LeaveRequestStatus status;
 
-    LeaveRequest(LeaveRequestType requestType, AuthorId authorId, LeaveRequestPeriod period) {
+    LeaveRequestAggregate(LeaveRequestType requestType, AuthorId authorId, LeaveRequestPeriod period) {
         this.requestId = new LeaveRequestId(UUID.randomUUID());
         this.requestType = requestType;
         this.authorId = authorId;
@@ -64,6 +64,9 @@ public class LeaveRequest {
     public void markAsAccepted() {
         this.status = LeaveRequestStatus.ACCEPTED;
     }
+    
+
+
 
 
 }
