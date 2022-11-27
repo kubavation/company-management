@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.Objects;
+
 @AllArgsConstructor
 public class JpaLeaveRequestRepository implements LeaveRequestRepository {
 
@@ -15,9 +18,12 @@ public class JpaLeaveRequestRepository implements LeaveRequestRepository {
 
     @Override
     public LeaveRequestAggregate load(LeaveRequestId id) {
-        LeaveRequestEntity entity =  jdbcTemplate.queryForObject(
-                "SELECT lr.* FROM CM_LEAVE_REQUEST rl where id = :id",
+        LeaveRequestEntity entity =  jdbcTemplate.queryForObject("SELECT lr.* FROM CM_LEAVE_REQUEST rl where id = :id",
                 new BeanPropertySqlParameterSource(LeaveRequestEntity.class), LeaveRequestEntity.class);
+
+        if (Objects.isNull(entity)) {
+            throw new EntityNotFoundException();
+        }
 
         return leaveRequestAggregateAssembler.toAggregate(entity);
     }

@@ -1,7 +1,8 @@
 package com.durys.jakub.companymanagement.infrastructure.leaverequests;
 
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestStatus;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.request.leave_request.model.converter.LeaveRequestTypeConverter;
-import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
 import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
@@ -10,6 +11,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 
 @Entity
@@ -22,10 +24,10 @@ public class LeaveRequestEntity implements CmEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
 
-    @Convert(converter = StatusConverter.class)
-    private Status status;
+    @Enumerated(EnumType.STRING)
+    private LeaveRequestStatus requestStatus;
 
     @Convert(converter = LeaveRequestTypeConverter.class)
     private LeaveRequestType type;
@@ -42,4 +44,6 @@ public class LeaveRequestEntity implements CmEntity<Long> {
     private Long employeeId;
 
     private Long acceptingId;
+
+    private Status status;
 }

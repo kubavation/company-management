@@ -69,7 +69,7 @@ public class LeaveRequestAggregate {
     }
 
 
-    public static class LeaveRequestAggregateBuilder {
+    public static class Builder {
         private LeaveRequestId requestId;
         private LeaveRequestType requestType;
         private AuthorId authorId;
@@ -77,38 +77,37 @@ public class LeaveRequestAggregate {
         private LeaveRequestPeriod period;
         private LeaveRequestStatus status;
 
-        public LeaveRequestAggregateBuilder builder(LeaveRequestId requestId) {
+        public Builder(LeaveRequestId requestId) {
             this.requestId = requestId;
-            return this;
         }
 
-        public LeaveRequestAggregateBuilder requestType(LeaveRequestType requestType) {
+        public Builder requestType(LeaveRequestType requestType) {
             this.requestType = requestType;
             return this;
         }
 
-        public LeaveRequestAggregateBuilder author(AuthorId authorId) {
+        public Builder author(AuthorId authorId) {
             this.authorId = authorId;
             return this;
         }
 
-        public LeaveRequestAggregateBuilder acceptant(AcceptantId acceptantId) {
+        public Builder acceptant(AcceptantId acceptantId) {
             this.acceptantId = acceptantId;
             return this;
         }
 
-        public LeaveRequestAggregateBuilder period(LeaveRequestPeriod period) {
+        public Builder period(LeaveRequestPeriod period) {
             this.period = period;
             return this;
         }
 
-        public LeaveRequestAggregateBuilder status(LeaveRequestStatus status) {
+        public Builder status(LeaveRequestStatus status) {
             this.status = status;
             return this;
         }
 
         public LeaveRequestAggregate build() {
-            return new LeaveRequestAggregate (requestId, requestType, authorId, acceptantId, period, status);
+            return new LeaveRequestAggregate(requestId, requestType, authorId, acceptantId, period, status);
         }
 
     }

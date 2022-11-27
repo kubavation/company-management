@@ -16,7 +16,7 @@ public class LeaveRequestPeriod {
     private final LocalDateTime dateFrom;
     private final LocalDateTime dateTo;
 
-    LeaveRequestPeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
+    public LeaveRequestPeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
 
         Objects.requireNonNull(dateFrom, "invalid dateFrom parameter");
         Objects.requireNonNull(dateTo, "invalid dateTo parameter");
