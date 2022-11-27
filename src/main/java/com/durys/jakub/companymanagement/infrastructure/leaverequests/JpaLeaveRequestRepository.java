@@ -1,12 +1,14 @@
 package com.durys.jakub.companymanagement.infrastructure.leaverequests;
 
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestAggregate;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
 import lombok.AllArgsConstructor;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
+import javax.persistence.EntityNotFoundException;
+import java.util.Objects;
 
 @AllArgsConstructor
 public class JpaLeaveRequestRepository implements LeaveRequestRepository {
@@ -15,16 +17,19 @@ public class JpaLeaveRequestRepository implements LeaveRequestRepository {
     private final LeaveRequestAggregateAssembler leaveRequestAggregateAssembler;
 
     @Override
-    public LeaveRequest load(LeaveRequestId id) {
-        LeaveRequestEntity entity =  jdbcTemplate.queryForObject(
-                "SELECT lr.* FROM CM_LEAVE_REQUEST rl where id = :id",
+    public LeaveRequestAggregate load(LeaveRequestId id) {
+        LeaveRequestEntity entity =  jdbcTemplate.queryForObject("SELECT lr.* FROM CM_LEAVE_REQUEST rl where id = :id",
                 new BeanPropertySqlParameterSource(LeaveRequestEntity.class), LeaveRequestEntity.class);
+
+        if (Objects.isNull(entity)) {
+            throw new EntityNotFoundException();
+        }
 
         return leaveRequestAggregateAssembler.toAggregate(entity);
     }
 
     @Override
-    public void save(LeaveRequest leaveRequest) {
+    public void save(LeaveRequestAggregate leaveRequestAggregate) {
         //todo
     }
 

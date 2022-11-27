@@ -10,7 +10,7 @@ class LeaveRequestConfiguration {
 
 
     @Bean
-    LeaveRequestRepository leaveRequestRepository(NamedParameterJdbcTemplate jdbcTemplate) {
-        return new JpaLeaveRequestRepository(jdbcTemplate);
+    LeaveRequestRepository leaveRequestRepository(NamedParameterJdbcTemplate jdbcTemplate, LeaveRequestAggregateAssembler assembler) {
+        return new JpaLeaveRequestRepository(jdbcTemplate, assembler);
     }
 }

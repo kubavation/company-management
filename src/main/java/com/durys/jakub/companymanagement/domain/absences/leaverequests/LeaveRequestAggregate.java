@@ -5,14 +5,17 @@ import com.durys.jakub.companymanagement.commons.domain.Aggregate;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Aggregate
-public class LeaveRequest {
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public class LeaveRequestAggregate {
 
-    private LeaveRequestId requestId;
+    private final LeaveRequestId requestId;
 
     private LeaveRequestType requestType;
 
@@ -24,7 +27,7 @@ public class LeaveRequest {
 
     private LeaveRequestStatus status;
 
-    LeaveRequest(LeaveRequestType requestType, AuthorId authorId, LeaveRequestPeriod period) {
+    LeaveRequestAggregate(LeaveRequestType requestType, AuthorId authorId, LeaveRequestPeriod period) {
         this.requestId = new LeaveRequestId(UUID.randomUUID());
         this.requestType = requestType;
         this.authorId = authorId;
@@ -64,6 +67,52 @@ public class LeaveRequest {
     public void markAsAccepted() {
         this.status = LeaveRequestStatus.ACCEPTED;
     }
+
+
+    public static class Builder {
+        private LeaveRequestId requestId;
+        private LeaveRequestType requestType;
+        private AuthorId authorId;
+        private AcceptantId acceptantId;
+        private LeaveRequestPeriod period;
+        private LeaveRequestStatus status;
+
+        public Builder(LeaveRequestId requestId) {
+            this.requestId = requestId;
+        }
+
+        public Builder requestType(LeaveRequestType requestType) {
+            this.requestType = requestType;
+            return this;
+        }
+
+        public Builder author(AuthorId authorId) {
+            this.authorId = authorId;
+            return this;
+        }
+
+        public Builder acceptant(AcceptantId acceptantId) {
+            this.acceptantId = acceptantId;
+            return this;
+        }
+
+        public Builder period(LeaveRequestPeriod period) {
+            this.period = period;
+            return this;
+        }
+
+        public Builder status(LeaveRequestStatus status) {
+            this.status = status;
+            return this;
+        }
+
+        public LeaveRequestAggregate build() {
+            return new LeaveRequestAggregate(requestId, requestType, authorId, acceptantId, period, status);
+        }
+
+    }
+
+
 
 
 }
