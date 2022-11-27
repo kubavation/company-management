@@ -15,7 +15,15 @@ public class LeaveRequestAggregateAssembler implements AggregateAssembler<LeaveR
 
     @Override
     public LeaveRequestEntity toEntity(LeaveRequestAggregate aggregate) {
-        return null;
+        return LeaveRequestEntity.builder()
+                .id(aggregate.getRequestId().value())
+                .requestStatus(aggregate.getStatus())
+                .employeeId(aggregate.getAuthorId().id())
+                .acceptingId(aggregate.getAcceptantId().id())
+                .dateFrom(aggregate.getPeriod().getDateFrom())
+                .dateTo(aggregate.getPeriod().getDateTo())
+                .type(aggregate.getRequestType())
+                .build();
     }
 
     @Override
