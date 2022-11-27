@@ -18,7 +18,7 @@ public class JpaLeaveRequestRepository implements LeaveRequestRepository {
 
     @Override
     public LeaveRequestAggregate load(LeaveRequestId id) {
-        LeaveRequestEntity entity =  jdbcTemplate.queryForObject("SELECT lr.* FROM CM_LEAVE_REQUEST rl where id = :id",
+        LeaveRequestEntity entity =  jdbcTemplate.queryForObject("SELECT lr.* FROM CM_LEAVE_REQUEST rl where rl.id = :id",
                 new BeanPropertySqlParameterSource(LeaveRequestEntity.class), LeaveRequestEntity.class);
 
         if (Objects.isNull(entity)) {

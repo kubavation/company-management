@@ -7,12 +7,14 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Aggregate
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
 public class LeaveRequestAggregate {
 
     private final LeaveRequestId requestId;

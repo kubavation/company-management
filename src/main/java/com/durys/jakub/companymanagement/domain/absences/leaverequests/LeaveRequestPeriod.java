@@ -10,7 +10,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 @ValueObject
-@Getter(AccessLevel.PACKAGE)
+@Getter
 public class LeaveRequestPeriod {
 
     private final LocalDateTime dateFrom;
