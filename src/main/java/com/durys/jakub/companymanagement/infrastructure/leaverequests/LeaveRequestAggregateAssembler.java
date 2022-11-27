@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class LeaveRequestAggregateAssembler implements AggregateAssembler<LeaveRequestEntity, LeaveRequestAggregate> {
 
-
     @Override
     public LeaveRequestEntity toEntity(LeaveRequestAggregate aggregate) {
         return LeaveRequestEntity.builder()

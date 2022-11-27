@@ -29,7 +29,7 @@ public class LeaveRequestAggregate {
 
     private LeaveRequestStatus status;
 
-    LeaveRequestAggregate(LeaveRequestType requestType, AuthorId authorId, LeaveRequestPeriod period) {
+    public LeaveRequestAggregate(LeaveRequestType requestType, AuthorId authorId, LeaveRequestPeriod period) {
         this.requestId = new LeaveRequestId(UUID.randomUUID());
         this.requestType = requestType;
         this.authorId = authorId;
