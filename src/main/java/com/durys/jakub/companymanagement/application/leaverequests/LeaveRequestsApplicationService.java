@@ -42,7 +42,13 @@ public class LeaveRequestsApplicationService {
 
         //todo check if acceptant is available
         leaveRequestAggregate.sendToAcceptant(new AcceptantId(acceptantId));
-        
+
+        leaveRequestRepository.save(leaveRequestAggregate);
+    }
+
+    public void cancelLeaveRequest(UUID leaveRequestId) {
+        LeaveRequestAggregate leaveRequestAggregate = leaveRequestRepository.load(new LeaveRequestId(leaveRequestId));
+        leaveRequestAggregate.markAsCancelled();
         leaveRequestRepository.save(leaveRequestAggregate);
     }
 
