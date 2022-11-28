@@ -52,6 +52,12 @@ public class LeaveRequestsApplicationService {
         leaveRequestRepository.save(leaveRequestAggregate);
     }
 
+    public void deleteLeaveRequest(UUID leaveRequestId) {
+        LeaveRequestAggregate leaveRequestAggregate = leaveRequestRepository.load(new LeaveRequestId(leaveRequestId));
+        leaveRequestAggregate.markAsDeleted();
+        leaveRequestRepository.save(leaveRequestAggregate);
+    }
+
     public void acceptLeaveRequest(UUID leaveRequestId) {
         LeaveRequestAggregate leaveRequestAggregate = leaveRequestRepository.load(new LeaveRequestId(leaveRequestId));
         leaveRequestAggregate.markAsAccepted();
