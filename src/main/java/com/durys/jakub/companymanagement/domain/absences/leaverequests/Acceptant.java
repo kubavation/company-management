@@ -13,4 +13,8 @@ public class Acceptant {
         leaveRequest.markAsAccepted();
     }
 
+    public void reject(LeaveRequestAggregate leaveRequest) {
+        leaveRequest.markAsAccepted();
+    }
+
 }

@@ -70,6 +70,10 @@ public class LeaveRequestAggregate {
         this.status = LeaveRequestStatus.ACCEPTED;
     }
 
+    public void markAsRejected() {
+        this.status = LeaveRequestStatus.REJECTED;
+    }
+
 
     public static class Builder {
         private LeaveRequestId requestId;
