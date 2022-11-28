@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.domain.employees;
+package com.durys.jakub.companymanagement.domain.employees.model;
 
 import lombok.*;
 
@@ -6,6 +6,6 @@ import lombok.*;
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 @EqualsAndHashCode
-class FirstName {
+class LastName {
     private final String value;
 }

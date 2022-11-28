@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.domain.employees;
+package com.durys.jakub.companymanagement.domain.employees.model;
 
 import lombok.*;
 
