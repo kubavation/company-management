@@ -8,7 +8,8 @@ import lombok.Getter;
 public enum LeaveRequestType {
 
     AL("Annual leave", "AL"),
-    CL("Childcare leave", "CL");
+    CL("Childcare leave", "CL"),
+    LR("Leave at request", "LR");
 
     private final String name;
     private final String shortcut;
