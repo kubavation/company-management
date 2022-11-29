@@ -1,9 +1,7 @@
 package com.durys.jakub.companymanagement.application.leaverequests;
 
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.Applicant;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestAggregate;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestPeriod;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.AcceptantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +36,7 @@ public class LeaveRequestsApplicationService {
         }
 
         //todo check if acceptant is available
-        //leaveRequestAggregate.sendToAcceptant(new AcceptantId(acceptantId));
+        leaveRequestAggregate.sendToAcceptant(new Acceptant(new AcceptantId(acceptantId)));
 
         leaveRequestRepository.save(leaveRequestAggregate);
     }

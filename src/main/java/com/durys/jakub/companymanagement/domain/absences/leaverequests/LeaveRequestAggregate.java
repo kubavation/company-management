@@ -79,7 +79,7 @@ public class LeaveRequestAggregate {
         private LeaveRequestId requestId;
         private LeaveRequestType requestType;
         private Applicant applicant;
-        private AcceptantId acceptantId;
+        private Acceptant acceptant;
         private LeaveRequestPeriod period;
         private LeaveRequestStatus status;
 
@@ -97,8 +97,8 @@ public class LeaveRequestAggregate {
             return this;
         }
 
-        public Builder acceptant(AcceptantId acceptantId) {
-            this.acceptantId = acceptantId;
+        public Builder acceptant(Acceptant acceptant) {
+            this.acceptant = acceptant;
             return this;
         }
 
@@ -113,7 +113,7 @@ public class LeaveRequestAggregate {
         }
 
         public LeaveRequestAggregate build() {
-            return new LeaveRequestAggregate(requestId, requestType, applicant, acceptantId, period, status);
+            return new LeaveRequestAggregate(requestId, requestType, applicant, acceptant, period, status);
         }
 
     }
