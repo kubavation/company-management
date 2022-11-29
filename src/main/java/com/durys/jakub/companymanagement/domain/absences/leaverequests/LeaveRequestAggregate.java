@@ -23,7 +23,7 @@ public class LeaveRequestAggregate {
 
     private final Applicant applicant;
 
-    private AcceptantId acceptantId;
+    private Acceptant acceptant;
 
     private LeaveRequestPeriod period;
 
@@ -45,13 +45,13 @@ public class LeaveRequestAggregate {
         this.status = LeaveRequestStatus.DELETED;
     }
 
-    public void sendToAcceptant(AcceptantId acceptantId) {
+    public void sendToAcceptant(Acceptant acceptant) {
         if (status != LeaveRequestStatus.SUBMITTED) {
             throw new InvalidStatusForOperationException();
         }
 
         this.status = LeaveRequestStatus.SEND_FOR_ACCEPTATION;
-        this.acceptantId = acceptantId;
+        this.acceptant = acceptant;
     }
 
     public void markAsCancelled() {
