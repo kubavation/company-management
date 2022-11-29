@@ -17,7 +17,7 @@ public class LeaveRequestAggregateAssembler implements AggregateAssembler<LeaveR
         return LeaveRequestEntity.builder()
                 .id(aggregate.getRequestId().value())
                 .requestStatus(aggregate.getStatus())
-                .employeeId(aggregate.getAuthorId().id())
+                .employeeId(aggregate.getApplicant().getApplicantId().getId())
                 .acceptingId(aggregate.getAcceptantId().id())
                 .dateFrom(aggregate.getPeriod().getDateFrom())
                 .dateTo(aggregate.getPeriod().getDateTo())

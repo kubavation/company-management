@@ -21,7 +21,7 @@ public class LeaveRequestAggregate {
 
     private LeaveRequestType requestType;
 
-    private final AuthorId authorId;
+    private final Applicant applicant;
 
     private AcceptantId acceptantId;
 
@@ -29,10 +29,10 @@ public class LeaveRequestAggregate {
 
     private LeaveRequestStatus status;
 
-    public LeaveRequestAggregate(LeaveRequestType requestType, AuthorId authorId, LeaveRequestPeriod period) {
+    public LeaveRequestAggregate(LeaveRequestType requestType, Applicant applicant, LeaveRequestPeriod period) {
         this.requestId = new LeaveRequestId(UUID.randomUUID());
         this.requestType = requestType;
-        this.authorId = authorId;
+        this.applicant = applicant;
         this.period = period;
         this.status = LeaveRequestStatus.SUBMITTED;
     }
@@ -78,7 +78,7 @@ public class LeaveRequestAggregate {
     public static class Builder {
         private LeaveRequestId requestId;
         private LeaveRequestType requestType;
-        private AuthorId authorId;
+        private Applicant applicant;
         private AcceptantId acceptantId;
         private LeaveRequestPeriod period;
         private LeaveRequestStatus status;
@@ -92,8 +92,8 @@ public class LeaveRequestAggregate {
             return this;
         }
 
-        public Builder author(AuthorId authorId) {
-            this.authorId = authorId;
+        public Builder applicant(Applicant applicant) {
+            this.applicant = applicant;
             return this;
         }
 
@@ -113,7 +113,7 @@ public class LeaveRequestAggregate {
         }
 
         public LeaveRequestAggregate build() {
-            return new LeaveRequestAggregate(requestId, requestType, authorId, acceptantId, period, status);
+            return new LeaveRequestAggregate(requestId, requestType, applicant, acceptantId, period, status);
         }
 
     }

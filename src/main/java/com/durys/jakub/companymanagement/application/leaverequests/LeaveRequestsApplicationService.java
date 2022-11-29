@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.application.leaverequests;
 
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.Applicant;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestAggregate;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestPeriod;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
@@ -27,7 +28,7 @@ public class LeaveRequestsApplicationService {
     public void submitLeaveRequest(Long authorId, String type, LocalDateTime from, LocalDateTime to) {
 
         LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.valueOf(type), new AuthorId(authorId), new LeaveRequestPeriod(from, to));
+                LeaveRequestType.valueOf(type), new Applicant(), new LeaveRequestPeriod(from, to));
 
         leaveRequestRepository.save(leaveRequestAggregate);
     }
