@@ -6,12 +6,15 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.Accept
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
 import lombok.Getter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Getter
 public class Applicant {
     private final ApplicantId applicantId;
+
+    private List<LeavePrivileges> leavePrivileges;
 
     public Applicant(ApplicantId applicantId) {
         this.applicantId = applicantId;

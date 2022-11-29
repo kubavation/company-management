@@ -9,6 +9,7 @@ import lombok.Getter;
 @Getter
 public class Acceptant {
     private final AcceptantId accptantId;
+
     public Acceptant(AcceptantId accptantId) {
         this.accptantId = accptantId;
     }
