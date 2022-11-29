@@ -25,10 +25,10 @@ public class LeaveRequestsApplicationService {
     private final LeaveRequestRepository leaveRequestRepository;
 
 
-    public void submitLeaveRequest(Long authorId, String type, LocalDateTime from, LocalDateTime to) {
+    public void submitLeaveRequest(Long applicantId, String type, LocalDateTime from, LocalDateTime to) {
 
         LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.valueOf(type), new Applicant(), new LeaveRequestPeriod(from, to));
+                LeaveRequestType.valueOf(type), new Applicant(applicantId), new LeaveRequestPeriod(from, to));
 
         leaveRequestRepository.save(leaveRequestAggregate);
     }
