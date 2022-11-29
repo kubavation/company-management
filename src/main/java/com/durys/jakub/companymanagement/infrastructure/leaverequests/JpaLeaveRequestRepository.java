@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.HashMap;
 import java.util.Objects;
 
 @AllArgsConstructor
@@ -30,7 +31,8 @@ public class JpaLeaveRequestRepository implements LeaveRequestRepository {
 
     @Override
     public void save(LeaveRequestAggregate leaveRequestAggregate) {
-        //todo
+        LeaveRequestEntity entity = leaveRequestAggregateAssembler.toEntity(leaveRequestAggregate);
+        jdbcTemplate.update("INSERT INTO CM_LEAVE_REQUEST (todo) values (todo)", new HashMap<>());
     }
 
 }
