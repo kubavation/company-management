@@ -21,18 +21,18 @@ public class LeaveRequestAggregate {
 
     private LeaveRequestType requestType;
 
-    private final AuthorId authorId;
+    private final Applicant applicant;
 
-    private AcceptantId acceptantId;
+    private Acceptant acceptant;
 
     private LeaveRequestPeriod period;
 
     private LeaveRequestStatus status;
 
-    public LeaveRequestAggregate(LeaveRequestType requestType, AuthorId authorId, LeaveRequestPeriod period) {
+    public LeaveRequestAggregate(LeaveRequestType requestType, Applicant applicant, LeaveRequestPeriod period) {
         this.requestId = new LeaveRequestId(UUID.randomUUID());
         this.requestType = requestType;
-        this.authorId = authorId;
+        this.applicant = applicant;
         this.period = period;
         this.status = LeaveRequestStatus.SUBMITTED;
     }
@@ -45,13 +45,13 @@ public class LeaveRequestAggregate {
         this.status = LeaveRequestStatus.DELETED;
     }
 
-    public void sendToAcceptant(AcceptantId acceptantId) {
+    public void sendToAcceptant(Acceptant acceptant) {
         if (status != LeaveRequestStatus.SUBMITTED) {
             throw new InvalidStatusForOperationException();
         }
 
         this.status = LeaveRequestStatus.SEND_FOR_ACCEPTATION;
-        this.acceptantId = acceptantId;
+        this.acceptant = acceptant;
     }
 
     public void markAsCancelled() {
@@ -78,8 +78,8 @@ public class LeaveRequestAggregate {
     public static class Builder {
         private LeaveRequestId requestId;
         private LeaveRequestType requestType;
-        private AuthorId authorId;
-        private AcceptantId acceptantId;
+        private Applicant applicant;
+        private Acceptant acceptant;
         private LeaveRequestPeriod period;
         private LeaveRequestStatus status;
 
@@ -92,13 +92,13 @@ public class LeaveRequestAggregate {
             return this;
         }
 
-        public Builder author(AuthorId authorId) {
-            this.authorId = authorId;
+        public Builder applicant(Applicant applicant) {
+            this.applicant = applicant;
             return this;
         }
 
-        public Builder acceptant(AcceptantId acceptantId) {
-            this.acceptantId = acceptantId;
+        public Builder acceptant(Acceptant acceptant) {
+            this.acceptant = acceptant;
             return this;
         }
 
@@ -113,7 +113,7 @@ public class LeaveRequestAggregate {
         }
 
         public LeaveRequestAggregate build() {
-            return new LeaveRequestAggregate(requestId, requestType, authorId, acceptantId, period, status);
+            return new LeaveRequestAggregate(requestId, requestType, applicant, acceptant, period, status);
         }
 
     }
