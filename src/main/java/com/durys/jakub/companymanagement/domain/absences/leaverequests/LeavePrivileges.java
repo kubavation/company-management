@@ -21,7 +21,7 @@ public class LeavePrivileges {
     private Integer daysEntitled;
     private BigDecimal hoursEntitled;
 
-    private Integer daysUser;
-    private BigDecimal hoursUser;
+    private Integer daysUsed;
+    private BigDecimal hoursUsed;
 
 }
