@@ -26,7 +26,11 @@ public class Applicant {
     }
 
     public LeaveRequestAggregate submit(LeaveRequestType requestType, LeaveRequestPeriod period) {
-        return new LeaveRequestAggregate(requestType, this, period);
+        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(requestType, this, period);
+
+        //todo validate
+
+        return leaveRequestAggregate;
     }
 
 }
