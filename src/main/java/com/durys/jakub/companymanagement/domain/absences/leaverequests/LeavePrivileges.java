@@ -6,11 +6,13 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveR
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
+@Getter
 public class LeavePrivileges {
 
     private final LeaveRequestType leaveRequestType;
@@ -38,5 +40,9 @@ public class LeavePrivileges {
         return daysEntitled - daysUsed;
     }
 
+
+    public boolean inPrivileges(LeaveRequestPeriod period, LeaveRequestType type) {
+        return period.getDateTo().isAfter(dateFrom) && period.getDateTo().isBefore(dateTo) && type.equals(leaveRequestType);
+    }
 
 }
