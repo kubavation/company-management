@@ -37,7 +37,7 @@ public class LeaveRequestAggregate {
         this.status = LeaveRequestStatus.SUBMITTED;
     }
 
-    public void markAsDeleted() {
+     void markAsDeleted() {
         if (status != LeaveRequestStatus.SUBMITTED) {
             throw new InvalidStatusForOperationException();
         }
@@ -45,7 +45,7 @@ public class LeaveRequestAggregate {
         this.status = LeaveRequestStatus.DELETED;
     }
 
-    public void sendToAcceptant(Acceptant acceptant) {
+     void sendToAcceptant(Acceptant acceptant) {
         if (status != LeaveRequestStatus.SUBMITTED) {
             throw new InvalidStatusForOperationException();
         }
@@ -54,7 +54,7 @@ public class LeaveRequestAggregate {
         this.acceptant = acceptant;
     }
 
-    public void markAsCancelled() {
+    void markAsCancelled() {
         if (status == LeaveRequestStatus.DELETED) {
             throw new InvalidStatusForOperationException();
         }
@@ -66,11 +66,11 @@ public class LeaveRequestAggregate {
         this.status = LeaveRequestStatus.CANCELLED;
     }
 
-    public void markAsAccepted() {
+    void markAsAccepted() {
         this.status = LeaveRequestStatus.ACCEPTED;
     }
 
-    public void markAsRejected() {
+    void markAsRejected() {
         this.status = LeaveRequestStatus.REJECTED;
     }
 
