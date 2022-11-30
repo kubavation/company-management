@@ -29,12 +29,14 @@ public class Applicant {
     public LeaveRequestAggregate submit(LeaveRequestType requestType, LeaveRequestPeriod period) {
         LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(requestType, this, period);
 
+        LeavePrivileges privileges = loadPrivileges(requestType, period);
+        privileges.checkCompatibility(leaveRequestAggregate);
 
         return leaveRequestAggregate;
     }
 
 
-    public LeavePrivileges load(LeaveRequestType requestType, LeaveRequestPeriod period) {
+    public LeavePrivileges loadPrivileges(LeaveRequestType requestType, LeaveRequestPeriod period) {
         return leavePrivileges.stream()
                 .filter(p -> p.inPrivileges(period, requestType))
                 .findFirst()
