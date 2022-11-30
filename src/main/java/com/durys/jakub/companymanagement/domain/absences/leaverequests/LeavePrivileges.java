@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.commons.domain.Entity;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.RequestedDaysExceedLeavePrivilegesException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
@@ -23,5 +24,19 @@ public class LeavePrivileges {
 
     private Integer daysUsed;
     private BigDecimal hoursUsed;
+
+
+    public void checkCompatibility(LeaveRequestAggregate leaveRequest) {
+
+        if (leaveRequest.getPeriod().numberOfDays() > daysAvailable()) {
+            throw new RequestedDaysExceedLeavePrivilegesException();
+        }
+
+    }
+
+    public Integer daysAvailable() {
+        return daysEntitled - daysUsed;
+    }
+
 
 }
