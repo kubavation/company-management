@@ -35,6 +35,18 @@ public class Applicant {
         return leaveRequestAggregate;
     }
 
+    public void delete(LeaveRequestAggregate leaveRequest) {
+        leaveRequest.markAsDeleted();
+    }
+
+    public void cancel(LeaveRequestAggregate leaveRequest) {
+        leaveRequest.markAsCancelled();
+    }
+
+    public void send(LeaveRequestAggregate leaveRequest, Acceptant acceptant) {
+        leaveRequest.sendToAcceptant(acceptant);
+    }
+
 
     public LeavePrivileges loadPrivileges(LeaveRequestType requestType, LeaveRequestPeriod period) {
         return leavePrivileges.stream()
