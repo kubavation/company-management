@@ -65,14 +65,17 @@ public class LeaveRequestsApplicationService {
         Applicant applicant = leaveRequest.getApplicant();
 
         applicant.cancel(leaveRequest);
-        
+
         leaveRequestRepository.save(leaveRequest);
     }
 
     public void acceptLeaveRequest(LeaveRequestId leaveRequestId) {
-        LeaveRequestAggregate leaveRequestAggregate = leaveRequestRepository.load(leaveRequestId);
-        leaveRequestAggregate.markAsAccepted();
-        leaveRequestRepository.save(leaveRequestAggregate);
+        LeaveRequestAggregate leaveRequest = leaveRequestRepository.load(leaveRequestId);
+
+        Acceptant acceptant = leaveRequest.getAcceptant();
+
+        acceptant.accept(leaveRequest);
+        leaveRequestRepository.save(acceptant);
     }
 
 
