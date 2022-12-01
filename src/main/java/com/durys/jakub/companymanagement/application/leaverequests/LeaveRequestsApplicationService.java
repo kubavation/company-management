@@ -34,13 +34,13 @@ public class LeaveRequestsApplicationService {
 
     public void sendRequestToAcceptant(ApplicantId applicantId, LeaveRequestId leaveRequestId, AcceptantId acceptantId) {
 
-        Applicant applicant = employeeRepository.load(applicantId);
-
         LeaveRequestAggregate leaveRequest = leaveRequestRepository.load(leaveRequestId);
 
         if (Objects.isNull(leaveRequest)) {
             throw new EntityNotFoundException();
         }
+
+        Applicant applicant = leaveRequest.getApplicant();
 
         Acceptant acceptant = employeeRepository.load(acceptantId);
 
