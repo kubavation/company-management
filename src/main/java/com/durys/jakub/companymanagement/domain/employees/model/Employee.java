@@ -5,12 +5,17 @@ import com.durys.jakub.companymanagement.commons.domain.Aggregate;
 import java.util.UUID;
 
 @Aggregate
-public class Employee {
+public class Employee implements Employable {
     private final EmployeeId employeeId;
     private final EmployeePersonalData employeePersonalData;
 
     public Employee(EmployeePersonalData employeePersonalData) {
         this.employeeId = new EmployeeId(UUID.randomUUID());
         this.employeePersonalData = employeePersonalData;
+    }
+
+    @Override
+    public EmployeeId getId() {
+        return employeeId;
     }
 }
