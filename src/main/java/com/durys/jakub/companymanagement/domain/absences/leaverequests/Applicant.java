@@ -28,7 +28,7 @@ public class Applicant implements Employable {
         this.applicantId = new ApplicantId(applicantId);
     }
 
-    public LeaveRequestAggregate submit(LeaveRequestType requestType, LeaveRequestPeriod period) {
+    public LeaveRequestAggregate submitLeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period) {
         LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(requestType, this, period);
 
         LeavePrivileges privileges = loadPrivileges(requestType, period);

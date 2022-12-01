@@ -2,8 +2,10 @@ package com.durys.jakub.companymanagement.application.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.AcceptantId;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
+import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,29 +20,33 @@ public class LeaveRequestsApplicationService {
 
     private final LeaveRequestRepository leaveRequestRepository;
 
-//    todo employee/applicant repo
-//            retrieve acceptant/applicant and make changes  in leaveRequests
+    private final EmployeeRepository employeeRepository;
 
-    public void submitLeaveRequest(Long applicantId, String type, LocalDateTime from, LocalDateTime to) {
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.valueOf(type), new Applicant(applicantId), new LeaveRequestPeriod(from, to));
+    public void submitLeaveRequest(ApplicantId applicantId, LeaveRequestType type, LocalDateTime from, LocalDateTime to) {
+
+        Applicant applicant = employeeRepository.load(applicantId);
+
+        LeaveRequestAggregate leaveRequestAggregate = applicant.submitLeaveRequest(type, new LeaveRequestPeriod(from, to));
 
         leaveRequestRepository.save(leaveRequestAggregate);
     }
 
-    public void sendRequestToAcceptant(LeaveRequestId leaveRequestId, AcceptantId acceptantId) {
+    public void sendRequestToAcceptant(ApplicantId applicantId, LeaveRequestId leaveRequestId, AcceptantId acceptantId) {
 
-        LeaveRequestAggregate leaveRequestAggregate = leaveRequestRepository.load(leaveRequestId);
+        Applicant applicant = employeeRepository.load(applicantId);
 
-        if (Objects.isNull(leaveRequestAggregate)) {
+        LeaveRequestAggregate leaveRequest = leaveRequestRepository.load(leaveRequestId);
+
+        if (Objects.isNull(leaveRequest)) {
             throw new EntityNotFoundException();
         }
 
-        //todo check if acceptant is available
-        leaveRequestAggregate.sendToAcceptant(new Acceptant(new AcceptantId(acceptantId)));
+        Acceptant acceptant = employeeRepository.load(acceptantId);
 
-        leaveRequestRepository.save(leaveRequestAggregate);
+        applicant.send(leaveRequest, acceptant);
+
+        leaveRequestRepository.save(leaveRequest);
     }
 
     public void cancelLeaveRequest(LeaveRequestId leaveRequestId) {
