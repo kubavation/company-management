@@ -50,9 +50,13 @@ public class LeaveRequestsApplicationService {
     }
 
     public void cancelLeaveRequest(LeaveRequestId leaveRequestId) {
-        LeaveRequestAggregate leaveRequestAggregate = leaveRequestRepository.load(leaveRequestId);
-        leaveRequestAggregate.markAsCancelled();
-        leaveRequestRepository.save(leaveRequestAggregate);
+        LeaveRequestAggregate leaveRequest = leaveRequestRepository.load(leaveRequestId);
+
+        Applicant applicant = leaveRequest.getApplicant();
+
+        applicant.cancel(leaveRequest);
+
+        leaveRequestRepository.save(leaveRequest);
     }
 
     public void deleteLeaveRequest(LeaveRequestId leaveRequestId) {
