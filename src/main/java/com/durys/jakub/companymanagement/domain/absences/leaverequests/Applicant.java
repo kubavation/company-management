@@ -24,7 +24,7 @@ public class Applicant implements Employable {
         this.applicantId = applicantId;
     }
 
-    public Applicant(Long applicantId) {
+    public Applicant(UUID applicantId) {
         this.applicantId = new ApplicantId(applicantId);
     }
 
