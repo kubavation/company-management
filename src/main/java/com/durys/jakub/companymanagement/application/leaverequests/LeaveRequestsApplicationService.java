@@ -60,9 +60,13 @@ public class LeaveRequestsApplicationService {
     }
 
     public void deleteLeaveRequest(LeaveRequestId leaveRequestId) {
-        LeaveRequestAggregate leaveRequestAggregate = leaveRequestRepository.load(leaveRequestId);
-        leaveRequestAggregate.markAsDeleted();
-        leaveRequestRepository.save(leaveRequestAggregate);
+        LeaveRequestAggregate leaveRequest = leaveRequestRepository.load(leaveRequestId);
+
+        Applicant applicant = leaveRequest.getApplicant();
+
+        applicant.cancel(leaveRequest);
+        
+        leaveRequestRepository.save(leaveRequest);
     }
 
     public void acceptLeaveRequest(LeaveRequestId leaveRequestId) {
