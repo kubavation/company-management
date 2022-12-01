@@ -24,11 +24,11 @@ public class Applicant implements Employable {
         this.applicantId = applicantId;
     }
 
-    public Applicant(Long applicantId) {
+    public Applicant(UUID applicantId) {
         this.applicantId = new ApplicantId(applicantId);
     }
 
-    public LeaveRequestAggregate submit(LeaveRequestType requestType, LeaveRequestPeriod period) {
+    public LeaveRequestAggregate submitLeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period) {
         LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(requestType, this, period);
 
         LeavePrivileges privileges = loadPrivileges(requestType, period);
@@ -59,6 +59,6 @@ public class Applicant implements Employable {
 
     @Override
     public EmployeeId getId() {
-        return EmployeeId.from(applicantId.id());
+        return applicantId;
     }
 }
