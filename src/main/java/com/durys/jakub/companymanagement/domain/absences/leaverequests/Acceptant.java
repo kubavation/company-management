@@ -26,6 +26,6 @@ public class Acceptant implements Employable {
 
     @Override
     public EmployeeId getId() {
-        return EmployeeId.from(accptantId.id());
+        return accptantId;
     }
 }

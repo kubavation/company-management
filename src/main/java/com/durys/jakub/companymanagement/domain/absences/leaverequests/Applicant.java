@@ -59,6 +59,6 @@ public class Applicant implements Employable {
 
     @Override
     public EmployeeId getId() {
-        return EmployeeId.from(applicantId.id());
+        return applicantId;
     }
 }
