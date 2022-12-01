@@ -75,7 +75,7 @@ public class LeaveRequestsApplicationService {
         Acceptant acceptant = leaveRequest.getAcceptant();
 
         acceptant.accept(leaveRequest);
-        leaveRequestRepository.save(acceptant);
+        leaveRequestRepository.save(leaveRequest);
     }
 
 
