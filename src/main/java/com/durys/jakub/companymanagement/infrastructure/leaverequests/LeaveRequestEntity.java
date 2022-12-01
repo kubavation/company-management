@@ -41,9 +41,9 @@ public class LeaveRequestEntity implements CmEntity<Long> {
     private BigDecimal days;
     private BigDecimal hours;
 
-    private Long employeeId;
+    private UUID employeeId;
 
-    private Long acceptingId;
+    private UUID acceptingId;
 
     private Status status;
 }
