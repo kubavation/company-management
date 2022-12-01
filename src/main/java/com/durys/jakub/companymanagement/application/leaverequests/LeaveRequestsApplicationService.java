@@ -32,7 +32,7 @@ public class LeaveRequestsApplicationService {
         leaveRequestRepository.save(leaveRequestAggregate);
     }
 
-    public void sendRequestToAcceptant(ApplicantId applicantId, LeaveRequestId leaveRequestId, AcceptantId acceptantId) {
+    public void sendRequestToAcceptant(LeaveRequestId leaveRequestId, AcceptantId acceptantId) {
 
         LeaveRequestAggregate leaveRequest = leaveRequestRepository.load(leaveRequestId);
 
