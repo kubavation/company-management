@@ -6,6 +6,8 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.AcceptantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
+import com.durys.jakub.companymanagement.domain.employees.model.Employable;
+import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.Getter;
 
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.UUID;
 
 @Entity
 @Getter
-public class Applicant {
+public class Applicant implements Employable {
     private final ApplicantId applicantId;
 
     private List<LeavePrivileges> leavePrivileges;
@@ -55,4 +57,8 @@ public class Applicant {
                 .orElseThrow(LeavePrivilegesNotGrantedException::new);
     }
 
+    @Override
+    public EmployeeId getId() {
+        return EmployeeId.from(applicantId.id());
+    }
 }

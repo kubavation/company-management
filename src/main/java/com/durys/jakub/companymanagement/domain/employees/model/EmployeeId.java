@@ -11,4 +11,8 @@ import java.util.UUID;
 @EqualsAndHashCode
 public class EmployeeId implements Serializable {
     private final UUID id;
+
+    public static EmployeeId from(UUID id) {
+        return new EmployeeId(id);
+    }
 }
