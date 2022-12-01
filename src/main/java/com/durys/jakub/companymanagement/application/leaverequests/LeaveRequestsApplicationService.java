@@ -18,6 +18,8 @@ public class LeaveRequestsApplicationService {
 
     private final LeaveRequestRepository leaveRequestRepository;
 
+//    todo employee/applicant repo
+//            retrieve acceptant/applicant and make changes  in leaveRequests
 
     public void submitLeaveRequest(Long applicantId, String type, LocalDateTime from, LocalDateTime to) {
 
@@ -27,7 +29,7 @@ public class LeaveRequestsApplicationService {
         leaveRequestRepository.save(leaveRequestAggregate);
     }
 
-    public void sendRequestToAcceptant(LeaveRequestId leaveRequestId, Long acceptantId) {
+    public void sendRequestToAcceptant(LeaveRequestId leaveRequestId, AcceptantId acceptantId) {
 
         LeaveRequestAggregate leaveRequestAggregate = leaveRequestRepository.load(leaveRequestId);
 
