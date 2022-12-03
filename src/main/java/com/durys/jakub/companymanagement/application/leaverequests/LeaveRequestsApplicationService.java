@@ -78,5 +78,9 @@ public class LeaveRequestsApplicationService {
         leaveRequestRepository.save(leaveRequest);
     }
 
+    public LeaveRequestAggregate loadLeaveRequest(LeaveRequestId leaveRequestId) {
+        return leaveRequestRepository.load(leaveRequestId);
+    }
+
 
 }
