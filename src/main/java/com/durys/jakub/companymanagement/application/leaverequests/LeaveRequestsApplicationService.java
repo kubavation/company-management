@@ -78,6 +78,15 @@ public class LeaveRequestsApplicationService {
         leaveRequestRepository.save(leaveRequest);
     }
 
+    public void rejectLeaveRequest(LeaveRequestId leaveRequestId) {
+        LeaveRequestAggregate leaveRequest = leaveRequestRepository.load(leaveRequestId);
+
+        Acceptant acceptant = leaveRequest.getAcceptant();
+
+        acceptant.reject(leaveRequest);
+        leaveRequestRepository.save(leaveRequest);
+    }
+
     public LeaveRequestAggregate loadLeaveRequest(LeaveRequestId leaveRequestId) {
         return leaveRequestRepository.load(leaveRequestId);
     }
