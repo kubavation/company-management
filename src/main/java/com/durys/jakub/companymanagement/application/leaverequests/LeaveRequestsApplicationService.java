@@ -19,6 +19,7 @@ import java.util.UUID;
 public class LeaveRequestsApplicationService {
 
     private final LeaveRequestRepository leaveRequestRepository;
+    private final LeavePrivilegesRepository leavePrivilegesRepository;
 
     private final EmployeeRepository employeeRepository;
 
@@ -26,6 +27,9 @@ public class LeaveRequestsApplicationService {
     public void submitLeaveRequest(ApplicantId applicantId, LeaveRequestType type, LocalDateTime from, LocalDateTime to) {
 
         Applicant applicant = employeeRepository.load(applicantId);
+
+        LeavePrivileges leavePrivileges = leavePrivilegesRepository.load(applicantId, type, from, to);
+        //todo connent
 
         LeaveRequestAggregate leaveRequestAggregate = applicant.submitLeaveRequest(type, new LeaveRequestPeriod(from, to));
 
@@ -75,6 +79,15 @@ public class LeaveRequestsApplicationService {
         Acceptant acceptant = leaveRequest.getAcceptant();
 
         acceptant.accept(leaveRequest);
+        leaveRequestRepository.save(leaveRequest);
+    }
+
+    public void rejectLeaveRequest(LeaveRequestId leaveRequestId) {
+        LeaveRequestAggregate leaveRequest = leaveRequestRepository.load(leaveRequestId);
+
+        Acceptant acceptant = leaveRequest.getAcceptant();
+
+        acceptant.reject(leaveRequest);
         leaveRequestRepository.save(leaveRequest);
     }
 

@@ -21,7 +21,7 @@ public class Acceptant implements Employable {
     }
 
     public void reject(LeaveRequestAggregate leaveRequest) {
-        leaveRequest.markAsAccepted();
+        leaveRequest.markAsRejected();
     }
 
     @Override
