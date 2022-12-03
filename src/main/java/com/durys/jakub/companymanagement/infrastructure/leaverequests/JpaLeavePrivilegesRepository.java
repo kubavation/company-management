@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +29,7 @@ public class JpaLeavePrivilegesRepository implements LeavePrivilegesRepository {
     }
 
     @Override
-    public LeavePrivileges load(EmployeeId employeeId, LeaveRequestType requestType, LocalDate from, LocalDate to) {
+    public LeavePrivileges load(EmployeeId employeeId, LeaveRequestType requestType, LocalDateTime from, LocalDateTime to) {
         return null;
     }
 }

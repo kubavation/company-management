@@ -5,11 +5,12 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveR
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface LeavePrivilegesRepository {
 
     List<LeavePrivileges> load(EmployeeId employeeId);
 
-    LeavePrivileges load(EmployeeId employeeId, LeaveRequestType requestType, LocalDate from, LocalDate to);
+    LeavePrivileges load(EmployeeId employeeId, LeaveRequestType requestType, LocalDateTime from, LocalDateTime to);
 }

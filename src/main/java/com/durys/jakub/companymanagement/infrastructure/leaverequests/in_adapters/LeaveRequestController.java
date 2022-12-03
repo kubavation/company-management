@@ -17,7 +17,8 @@ public class LeaveRequestController {
 
     @GetMapping("/employees/{employeeId}/leave-requestes/{leaveRequestId}")
     LeaveRequestDTO findLeaveRequest(@PathVariable Long employeeId, @PathVariable UUID leaveRequestId) {
-        return leaveRequestsApplicationService.loadLeaveRequest(new LeaveRequestId(leaveRequestId));
+       // return leaveRequestsApplicationService.loadLeaveRequest(new LeaveRequestId(leaveRequestId));
+        throw new UnsupportedOperationException();
     }
 
 }
