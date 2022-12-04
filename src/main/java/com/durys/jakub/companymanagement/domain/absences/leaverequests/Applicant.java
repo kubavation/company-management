@@ -24,10 +24,6 @@ public class Applicant implements Employable {
         this.applicantId = applicantId;
     }
 
-    public Applicant(UUID applicantId) {
-        this.applicantId = new ApplicantId(applicantId);
-    }
-
     public LeaveRequestAggregate submitLeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period) {
         LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(requestType, this, period);
 
@@ -35,10 +31,6 @@ public class Applicant implements Employable {
         privileges.checkCompatibility(leaveRequestAggregate);
 
         return leaveRequestAggregate;
-    }
-
-    public void delete(LeaveRequestAggregate leaveRequest) {
-        leaveRequest.markAsDeleted();
     }
 
     public void cancel(LeaveRequestAggregate leaveRequest) {
@@ -55,6 +47,10 @@ public class Applicant implements Employable {
                 .filter(p -> p.inPrivileges(period, requestType))
                 .findFirst()
                 .orElseThrow(LeavePrivilegesNotGrantedException::new);
+    }
+
+    public void withPrivileges(List<LeavePrivileges> leavePrivileges) {
+        this.leavePrivileges = leavePrivileges;
     }
 
     @Override
