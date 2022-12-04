@@ -41,8 +41,10 @@ public class LeaveRequestEntity {
     private BigDecimal days;
     private BigDecimal hours;
 
+    @Column(name = "EMPLOYEE_ID")
     private UUID employeeId;
 
+    @Column(name = "ACCEPTING_ID")
     private UUID acceptingId;
 
     private Status status;
