@@ -9,7 +9,6 @@ import java.util.UUID;
 
 
 @Getter
-@AllArgsConstructor
 public class ApplicantId extends EmployeeId {
     public ApplicantId(UUID id) {
         super(id);

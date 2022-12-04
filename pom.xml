@@ -122,7 +122,11 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-
+		<dependency>
+			<groupId>io.vavr</groupId>
+			<artifactId>vavr</artifactId>
+			<version>0.10.4</version>
+		</dependency>
 
 
 		<dependency>
@@ -130,6 +134,7 @@
 			<artifactId>spring-boot-starter-webflux</artifactId>
 			<version>2.7.5</version>
 		</dependency>
+
 
 	</dependencies>
 

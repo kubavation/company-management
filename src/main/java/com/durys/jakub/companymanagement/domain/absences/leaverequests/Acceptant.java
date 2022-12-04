@@ -24,6 +24,7 @@ public class Acceptant implements Employable {
         leaveRequest.markAsRejected();
     }
 
+
     @Override
     public EmployeeId getId() {
         return accptantId;

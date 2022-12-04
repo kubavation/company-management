@@ -20,7 +20,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 @Table(name = "CM_LEAVE_REQUEST")
-public class LeaveRequestEntity implements CmEntity<Long> {
+public class LeaveRequestEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
