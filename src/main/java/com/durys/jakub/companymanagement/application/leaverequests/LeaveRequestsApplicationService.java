@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -27,9 +28,9 @@ public class LeaveRequestsApplicationService {
     public void submitLeaveRequest(ApplicantId applicantId, LeaveRequestType type, LocalDateTime from, LocalDateTime to) {
 
         Applicant applicant = employeeRepository.load(applicantId);
+        List<LeavePrivileges> leavePrivileges = leavePrivilegesRepository.load(applicantId);
+        applicant.withPrivileges(leavePrivileges);
 
-        LeavePrivileges leavePrivileges = leavePrivilegesRepository.load(applicantId, type, from, to);
-        //todo connent
 
         LeaveRequestAggregate leaveRequestAggregate = applicant.submitLeaveRequest(type, new LeaveRequestPeriod(from, to));
 

@@ -33,10 +33,6 @@ public class Applicant implements Employable {
         return leaveRequestAggregate;
     }
 
-    public void delete(LeaveRequestAggregate leaveRequest) {
-        leaveRequest.markAsDeleted();
-    }
-
     public void cancel(LeaveRequestAggregate leaveRequest) {
         leaveRequest.markAsCancelled();
     }
@@ -51,6 +47,10 @@ public class Applicant implements Employable {
                 .filter(p -> p.inPrivileges(period, requestType))
                 .findFirst()
                 .orElseThrow(LeavePrivilegesNotGrantedException::new);
+    }
+
+    public void withPrivileges(List<LeavePrivileges> leavePrivileges) {
+        this.leavePrivileges = leavePrivileges;
     }
 
     @Override
