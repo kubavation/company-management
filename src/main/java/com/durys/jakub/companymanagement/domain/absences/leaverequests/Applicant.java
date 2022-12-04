@@ -17,7 +17,6 @@ import java.util.UUID;
 @Getter
 public class Applicant implements Employable {
     private final ApplicantId applicantId;
-
     private List<LeavePrivileges> leavePrivileges;
 
     public Applicant(ApplicantId applicantId) {
@@ -39,6 +38,10 @@ public class Applicant implements Employable {
 
     public void send(LeaveRequestAggregate leaveRequest, Acceptant acceptant) {
         leaveRequest.sendToAcceptant(acceptant);
+    }
+
+    public void delete(LeaveRequestAggregate leaveRequest) {
+        leaveRequest.markAsDeleted();
     }
 
 

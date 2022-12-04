@@ -21,7 +21,6 @@ public class LeaveRequestsApplicationService {
 
     private final LeaveRequestRepository leaveRequestRepository;
     private final LeavePrivilegesRepository leavePrivilegesRepository;
-
     private final EmployeeRepository employeeRepository;
 
 
@@ -69,7 +68,7 @@ public class LeaveRequestsApplicationService {
 
         Applicant applicant = leaveRequest.getApplicant();
 
-        applicant.cancel(leaveRequest);
+        applicant.delete(leaveRequest);
 
         leaveRequestRepository.save(leaveRequest);
     }
