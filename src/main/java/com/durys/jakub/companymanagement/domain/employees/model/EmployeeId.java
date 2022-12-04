@@ -7,7 +7,6 @@ import java.util.UUID;
 
 @Getter
 @RequiredArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @EqualsAndHashCode
 public class EmployeeId implements Serializable {
     protected final UUID id;

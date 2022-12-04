@@ -20,12 +20,12 @@ public class HashMapLeaveRequestRepository implements LeaveRequestRepository {
 
     @Override
     public LeaveRequestAggregate load(LeaveRequestId id) {
-        return DB.get(id.getValue());
+        return DB.get(id.value());
     }
 
     @Override
     public void save(LeaveRequestAggregate leaveRequestAggregate) {
-        DB.put(leaveRequestAggregate.getRequestId().getValue(), leaveRequestAggregate);
+        DB.put(leaveRequestAggregate.getRequestId().value(), leaveRequestAggregate);
     }
 
 }
