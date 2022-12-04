@@ -24,10 +24,6 @@ public class Applicant implements Employable {
         this.applicantId = applicantId;
     }
 
-    public Applicant(UUID applicantId) {
-        this.applicantId = new ApplicantId(applicantId);
-    }
-
     public LeaveRequestAggregate submitLeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period) {
         LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(requestType, this, period);
 
