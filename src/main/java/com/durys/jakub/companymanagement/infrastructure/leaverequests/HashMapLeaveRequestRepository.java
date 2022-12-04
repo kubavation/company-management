@@ -10,18 +10,22 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import javax.persistence.EntityNotFoundException;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.UUID;
 
 @AllArgsConstructor
 public class HashMapLeaveRequestRepository implements LeaveRequestRepository {
 
+
+    private static HashMap<UUID, LeaveRequestAggregate> DB = new HashMap<>();
+
     @Override
     public LeaveRequestAggregate load(LeaveRequestId id) {
-        return null;
+        return DB.get(id.getValue());
     }
 
     @Override
     public void save(LeaveRequestAggregate leaveRequestAggregate) {
-
+        DB.put(leaveRequestAggregate.getRequestId().getValue(), leaveRequestAggregate);
     }
 
 }
