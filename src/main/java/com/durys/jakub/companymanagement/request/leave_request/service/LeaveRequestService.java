@@ -4,12 +4,11 @@ import com.durys.jakub.companymanagement.request.leave_request.model.dto.CreateL
 import com.durys.jakub.companymanagement.request.leave_request.model.dto.LeaveRequestFilterDTO;
 import com.durys.jakub.companymanagement.request.leave_request.model.entity.LeaveRequest;
 import com.durys.jakub.companymanagement.request.leave_request.model.enums.LeaveRequestType;
-import com.durys.jakub.companymanagement.request.leave_request.repository.LeaveRequestRepository;
+import com.durys.jakub.companymanagement.request.leave_request.repository.JpaLeaveRequestRepository;
 import com.durys.jakub.companymanagement.request.leave_request.util.LeaveRequestFilterUtil;
 import com.durys.jakub.companymanagement.shared.enums.Status;
 import com.durys.jakub.companymanagement.shared.exception.EntityNotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,30 +16,28 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class LeaveRequestService {
 
-    private final LeaveRequestRepository leaveRequestRepository;
+    private final JpaLeaveRequestRepository jpaLeaveRequestRepository;
 
     public LeaveRequest findById(Long id) {
-        return leaveRequestRepository.findById(id)
+        return jpaLeaveRequestRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(LeaveRequest.class, id));
     }
 
     public List<LeaveRequest> findAllByEmployeeId(Long employeeId) {
-        return leaveRequestRepository.findAllByEmployeeId(employeeId);
+        return jpaLeaveRequestRepository.findAllByEmployeeId(employeeId);
     }
 
     public List<LeaveRequest> findAllByEmployeeIdAndRequestType(Long employeeId, LeaveRequestType type) {
-        return leaveRequestRepository.findAllByEmployeeIdAndType(employeeId, type);
+        return jpaLeaveRequestRepository.findAllByEmployeeIdAndType(employeeId, type);
     }
 
     public List<LeaveRequest> findAllByFilters(LeaveRequestFilterDTO filters) {
-        return leaveRequestRepository.findAll(LeaveRequestFilterUtil.buildSpecification(filters));
+        return jpaLeaveRequestRepository.findAll(LeaveRequestFilterUtil.buildSpecification(filters));
     }
 
     public LeaveRequest prepareEntity(CreateLeaveRequest createLeaveRequest) {
@@ -54,7 +51,7 @@ public class LeaveRequestService {
     }
 
     public void save(LeaveRequest leaveRequest) {
-        leaveRequestRepository.save(leaveRequest);
+        jpaLeaveRequestRepository.save(leaveRequest);
     }
 
     public BigDecimal numberOfDaysBetween(LocalDateTime dateFrom, LocalDateTime dateTo) {
@@ -63,7 +60,7 @@ public class LeaveRequestService {
 
     @Transactional
     public void delete(Long id) {
-        LeaveRequest entity = leaveRequestRepository.findById(id)
+        LeaveRequest entity = jpaLeaveRequestRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(LeaveRequest.class, id));
         entity.setStatus(Status.DELETED);
     }
