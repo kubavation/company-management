@@ -105,6 +105,8 @@
 			<artifactId>spring-cloud-config-client</artifactId>
 		</dependency>
 
+
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-oauth2-resource-server</artifactId>
@@ -125,6 +127,14 @@
 			<artifactId>vavr</artifactId>
 			<version>0.10.4</version>
 		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+			<version>2.7.5</version>
+		</dependency>
+
 
 	</dependencies>
 
