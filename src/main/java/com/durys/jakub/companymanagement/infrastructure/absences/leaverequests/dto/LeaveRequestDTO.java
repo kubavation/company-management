@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.infrastructure.leaverequests.dto;
+package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

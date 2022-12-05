@@ -1,12 +1,10 @@
-package com.durys.jakub.companymanagement.infrastructure.leaverequests.in_adapters;
+package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.in_adapters;
 
 import com.durys.jakub.companymanagement.application.leaverequests.LeaveRequestsApplicationService;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
-import com.durys.jakub.companymanagement.infrastructure.leaverequests.dto.LeaveRequestDTO;
+import com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.dto.LeaveRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
