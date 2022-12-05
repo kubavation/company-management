@@ -1,8 +1,9 @@
-package com.durys.jakub.companymanagement.infrastructure.leaverequests;
+package com.durys.jakub.companymanagement.infrastructure.leaverequests.out_adapters;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestAggregate;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
+import com.durys.jakub.companymanagement.infrastructure.leaverequests.LeaveRequestAggregateAssembler;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

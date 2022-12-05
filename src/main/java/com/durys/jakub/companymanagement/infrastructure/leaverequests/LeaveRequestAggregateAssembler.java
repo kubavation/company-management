@@ -6,6 +6,7 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.Applicant
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestAggregate;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestPeriod;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
+import com.durys.jakub.companymanagement.infrastructure.leaverequests.out_adapters.LeaveRequestEntity;
 import org.springframework.stereotype.Component;
 
 @Component
