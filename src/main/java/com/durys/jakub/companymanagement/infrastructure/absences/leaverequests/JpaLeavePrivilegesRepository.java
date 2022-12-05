@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.infrastructure.leaverequests;
+package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivileges;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesRepository;

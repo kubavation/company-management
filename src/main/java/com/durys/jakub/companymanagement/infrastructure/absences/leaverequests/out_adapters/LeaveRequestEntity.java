@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.infrastructure.leaverequests.out_adapters;
+package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.out_adapters;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestStatus;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
