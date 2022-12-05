@@ -27,9 +27,5 @@ public class JpaLeavePrivilegesRepository implements LeavePrivilegesRepository {
     public List<LeavePrivileges> load(EmployeeId employeeId) {
         return null;
     }
-
-    @Override
-    public LeavePrivileges load(EmployeeId employeeId, LeaveRequestType requestType, LocalDateTime from, LocalDateTime to) {
-        return null;
-    }
+    
 }
