@@ -2,8 +2,8 @@ package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 
 import com.durys.jakub.companymanagement.commons.domain.Entity;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivileges;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.LeavePrivilegesNotGrantedException;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.AcceptantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
@@ -11,7 +11,6 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.Getter;
 
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Getter

@@ -1,12 +1,13 @@
 package com.durys.jakub.companymanagement.application.leaverequests;
 
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivileges;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.AcceptantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
-import io.vavr.control.Try;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,6 @@ import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor

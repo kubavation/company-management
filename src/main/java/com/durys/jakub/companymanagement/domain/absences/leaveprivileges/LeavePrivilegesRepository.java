@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.domain.absences.leaverequests;
+package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
