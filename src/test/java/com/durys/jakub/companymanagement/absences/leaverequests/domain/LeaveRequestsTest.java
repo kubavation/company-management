@@ -32,7 +32,7 @@ class LeaveRequestsTest {
 
     @Test
     void submitLeaveRequest_shouldSaveRequest() {
-       
+
     }
 
 }

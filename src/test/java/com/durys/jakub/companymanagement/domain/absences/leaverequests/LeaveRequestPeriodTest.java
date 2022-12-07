@@ -15,7 +15,7 @@ class LeaveRequestPeriodTest {
     void createLeaveRequestPeriod_shouldCreate() {
         LocalDateTime currentDate = LocalDateTime.now();
         LeaveRequestPeriod leaveRequestPeriod = new LeaveRequestPeriod(currentDate, currentDate);
-        assertEquals(1, leaveRequestPeriod.numberOfDays());
+        assertDoesNotThrow(() -> new LeaveRequestPeriod(currentDate, currentDate));
     }
 
     @Test
