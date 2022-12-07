@@ -91,4 +91,17 @@ class LeaveRequestAggregateTest {
     }
 
 
+    @Test
+    void acceptLeaveRequest_shouldMarkLeaveRequestAsAccepted() {
+
+        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
+                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(LocalDateTime.now(), LocalDateTime.now())
+        );
+
+        leaveRequestAggregate.markAsAccepted();
+
+        assertEquals(LeaveRequestStatus.ACCEPTED, leaveRequestAggregate.getStatus());
+    }
+
+
 }
