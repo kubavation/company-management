@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 @Aggregate
@@ -46,6 +47,9 @@ public class LeaveRequestAggregate {
     }
 
      void sendToAcceptant(Acceptant acceptant) {
+
+        Objects.requireNonNull(acceptant, "You have to provide acceptant");
+
         if (status != LeaveRequestStatus.SUBMITTED) {
             throw new InvalidStatusForOperationException();
         }
