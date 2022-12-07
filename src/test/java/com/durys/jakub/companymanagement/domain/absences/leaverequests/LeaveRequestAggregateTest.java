@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidLeaveRequestPeriodException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.AcceptantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestStatus;
@@ -129,6 +130,32 @@ class LeaveRequestAggregateTest {
         leaveRequestAggregate.markAsCancelled();
 
         assertEquals(LeaveRequestStatus.CANCELLED, leaveRequestAggregate.getStatus());
+    }
+
+    @Test
+    void cancelLeaveRequest_shouldThrowInvalidStatusForOperationException() {
+
+        LocalDateTime dateFrom = LocalDateTime.now().plusHours(1);
+
+        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
+                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(dateFrom, dateFrom)
+        );
+        leaveRequestAggregate.markAsDeleted();
+
+
+        assertThrows(InvalidStatusForOperationException.class, leaveRequestAggregate::markAsCancelled);;
+    }
+
+    @Test
+    void cancelLeaveRequest_shouldThrowOperationUnavailableException() {
+
+        LocalDateTime dateFrom = LocalDateTime.now().minusHours(1);
+
+        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
+                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(dateFrom, dateFrom)
+        );
+
+        assertThrows(OperationUnavailableException.class, leaveRequestAggregate::markAsCancelled);;
     }
 
 
