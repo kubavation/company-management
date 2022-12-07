@@ -104,4 +104,17 @@ class LeaveRequestAggregateTest {
     }
 
 
+    @Test
+    void rejectLeaveRequest_shouldMarkLeaveRequestAsRejected() {
+
+        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
+                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(LocalDateTime.now(), LocalDateTime.now())
+        );
+
+        leaveRequestAggregate.markAsRejected();
+
+        assertEquals(LeaveRequestStatus.REJECTED, leaveRequestAggregate.getStatus());
+    }
+
+
 }
