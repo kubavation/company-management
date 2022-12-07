@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
@@ -16,11 +17,12 @@ public class LeaveRequestPeriod {
     private final LocalDateTime dateFrom;
     private final LocalDateTime dateTo;
 
+    private final Long numberOfDays;
+
     public LeaveRequestPeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
 
-        Objects.requireNonNull(dateFrom, "invalid dateFrom parameter");
-        Objects.requireNonNull(dateTo, "invalid dateTo parameter");
-
+        Objects.requireNonNull(dateFrom, "Date from value not provided");
+        Objects.requireNonNull(dateTo, "Date from value not provided");
 
         if (dateTo.isBefore(dateFrom)) {
             throw new InvalidLeaveRequestPeriodException();
@@ -28,10 +30,12 @@ public class LeaveRequestPeriod {
 
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
+
+        this.numberOfDays = ChronoUnit.DAYS.between(dateFrom, dateTo.plusDays(1));
     }
 
     public Long numberOfDays() {
-        return ChronoUnit.DAYS.between(dateFrom, dateTo.plusDays(1));
+        return numberOfDays;
     }
 
 }

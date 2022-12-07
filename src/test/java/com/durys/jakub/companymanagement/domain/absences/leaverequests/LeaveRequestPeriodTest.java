@@ -27,6 +27,18 @@ class LeaveRequestPeriodTest {
     }
 
     @Test
+    void createLeaveRequestPeriod_shouldThrowShouldThrowExceptionWhenDateFromIsNull() {
+        assertThrows(RuntimeException.class,
+                () -> new LeaveRequestPeriod(null, LocalDateTime.now()));
+    }
+
+    @Test
+    void createLeaveRequestPeriod_shouldThrowShouldThrowExceptionWhenDateToIsNull() {
+        assertThrows(RuntimeException.class,
+                () -> new LeaveRequestPeriod(LocalDateTime.now(), null));
+    }
+
+    @Test
     void getLeaveRequestPeriodNumberOfDays_shouldReturn1Day() {
         LocalDateTime date1 = LocalDate.now().atTime(LocalTime.of(8,0));
         LocalDateTime date2 = LocalDate.now().atTime(LocalTime.of(16,0));
