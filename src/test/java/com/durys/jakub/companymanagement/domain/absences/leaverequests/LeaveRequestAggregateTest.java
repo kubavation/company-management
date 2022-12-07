@@ -117,4 +117,19 @@ class LeaveRequestAggregateTest {
     }
 
 
+    @Test
+    void cancelLeaveRequest_shouldMarkLeaveRequestAsCanceled() {
+
+        LocalDateTime dateFrom = LocalDateTime.now().plusHours(1);
+
+        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
+                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(dateFrom, dateFrom)
+        );
+
+        leaveRequestAggregate.markAsCancelled();
+
+        assertEquals(LeaveRequestStatus.CANCELLED, leaveRequestAggregate.getStatus());
+    }
+
+
 }
