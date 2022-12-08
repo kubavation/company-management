@@ -16,6 +16,6 @@ public class ApplicantLeavePrivilegesService implements LeavePrivilegesService {
 
     @Override
     public LeavePrivileges load(ApplicantId applicantId, LeaveRequestType requestType, LocalDate date) {
-        return leavePrivilegesRepository.load();
+        return leavePrivilegesRepository.load(applicantId, requestType, date);
     }
 }

@@ -21,7 +21,7 @@ public class HashMapLeavePrivilegesRepository implements LeavePrivilegesReposito
     }
 
     @Override
-    public <T extends EmployeeId> List<LeavePrivileges> load(T employeeId, LeaveRequestType type, LocalDate date) {
+    public <T extends EmployeeId> LeavePrivileges load(T employeeId, LeaveRequestType type, LocalDate date) {
         return null;
     }
 }
