@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Getter
@@ -20,30 +19,7 @@ public class LeavePrivileges {
     private final LeaveRequestType leaveRequestType;
     private final EmployeeId employeeId;
 
-    private LeavePrivilegesPeriod period;
-
-    private Integer daysEntitled;
-    private BigDecimal hoursEntitled;
-
-    private Integer daysUsed;
-    private BigDecimal hoursUsed;
-
-
-    public void checkCompatibility(LeaveRequestAggregate leaveRequest) {
-
-        if (leaveRequest.getPeriod().numberOfDays() > daysAvailable()) {
-            throw new RequestedDaysExceedLeavePrivilegesException();
-        }
-
-    }
-
-    public Integer daysAvailable() {
-        return daysEntitled - daysUsed;
-    }
-
-
-    public boolean inPrivileges(LeaveRequestPeriod period, LeaveRequestType type) {
-        return period.getDateTo().isAfter(period.getDateFrom()) && period.getDateTo().isBefore(period.getDateTo()) && type.equals(leaveRequestType);
-    }
+    private final LeavePrivilegesPeriod period;
+    private final GrantedPrivileges grantedPrivileges;
 
 }
