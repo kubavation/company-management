@@ -49,7 +49,7 @@ public class LeaveRequestsApplicationService {
 
         Acceptant acceptant = employeeRepository.load(acceptantId);
 
-        applicant.send(leaveRequest, acceptant);
+        applicant.sendToAcceptant(leaveRequest, acceptant);
 
         leaveRequestRepository.save(leaveRequest);
     }
