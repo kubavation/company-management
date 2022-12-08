@@ -81,6 +81,8 @@ class LeaveRequestAggregateTest {
         assertThrows(InvalidStatusForOperationException.class, () -> leaveRequestAggregate.sendToAcceptant(acceptant));
     }
 
+
+
     @Test
     void sendLeaveRequestToAcceptant_shouldThrowExceptionWhenAcceptantIsNull() {
 
@@ -99,9 +101,21 @@ class LeaveRequestAggregateTest {
                 LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(LocalDateTime.now(), LocalDateTime.now())
         );
 
+        leaveRequestAggregate.sendToAcceptant(new Acceptant(new AcceptantId(UUID.randomUUID())));
+
         leaveRequestAggregate.markAsAccepted();
 
         assertEquals(LeaveRequestStatus.ACCEPTED, leaveRequestAggregate.getStatus());
+    }
+
+    @Test
+    void acceptLeaveRequest_shouldThrowInvalidStatusForOperationException() {
+
+        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
+                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(LocalDateTime.now(), LocalDateTime.now())
+        );
+
+        assertThrows(InvalidStatusForOperationException.class, leaveRequestAggregate::markAsAccepted);
     }
 
 

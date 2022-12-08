@@ -20,8 +20,7 @@ public class LeavePrivileges {
     private final LeaveRequestType leaveRequestType;
     private final EmployeeId employeeId;
 
-    private LocalDateTime dateFrom;
-    private LocalDateTime dateTo;
+    private LeavePrivilegesPeriod period;
 
     private Integer daysEntitled;
     private BigDecimal hoursEntitled;
@@ -44,7 +43,7 @@ public class LeavePrivileges {
 
 
     public boolean inPrivileges(LeaveRequestPeriod period, LeaveRequestType type) {
-        return period.getDateTo().isAfter(dateFrom) && period.getDateTo().isBefore(dateTo) && type.equals(leaveRequestType);
+        return period.getDateTo().isAfter(period.getDateFrom()) && period.getDateTo().isBefore(period.getDateTo()) && type.equals(leaveRequestType);
     }
 
 }

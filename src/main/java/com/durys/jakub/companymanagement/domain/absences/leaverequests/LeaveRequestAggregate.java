@@ -71,6 +71,11 @@ public class LeaveRequestAggregate {
     }
 
     void markAsAccepted() {
+
+        if (status != LeaveRequestStatus.SEND_FOR_ACCEPTATION) {
+            throw new InvalidStatusForOperationException();
+        }
+
         this.status = LeaveRequestStatus.ACCEPTED;
     }
 
