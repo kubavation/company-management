@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
 import com.durys.jakub.companymanagement.commons.domain.ValueObject;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.exception.InvalidLeavePrivilegesPeriodException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidLeaveRequestPeriodException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +24,7 @@ public class LeavePrivilegesPeriod {
         Objects.requireNonNull(dateTo, "Date from value not provided");
 
         if (dateTo.isBefore(dateFrom)) {
-            throw new InvalidLeaveRequestPeriodException();
+            throw new InvalidLeavePrivilegesPeriodException();
         }
 
         this.dateFrom = dateFrom;
