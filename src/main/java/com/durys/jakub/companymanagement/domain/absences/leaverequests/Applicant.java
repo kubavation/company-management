@@ -25,8 +25,8 @@ public class Applicant implements Employable {
     public LeaveRequestAggregate submitLeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period) {
         LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(requestType, this, period);
 
-        LeavePrivileges privileges = loadPrivileges(requestType, period);
-        privileges.checkCompatibility(leaveRequestAggregate);
+//        LeavePrivileges privileges = loadPrivileges(requestType, period);
+//        //privileges.checkCompatibility(leaveRequestAggregate);
 
         return leaveRequestAggregate;
     }
@@ -35,7 +35,7 @@ public class Applicant implements Employable {
         leaveRequest.markAsCancelled();
     }
 
-    public void send(LeaveRequestAggregate leaveRequest, Acceptant acceptant) {
+    public void sendToAcceptant(LeaveRequestAggregate leaveRequest, Acceptant acceptant) {
         leaveRequest.sendToAcceptant(acceptant);
     }
 
@@ -43,13 +43,6 @@ public class Applicant implements Employable {
         leaveRequest.markAsDeleted();
     }
 
-
-    public LeavePrivileges loadPrivileges(LeaveRequestType requestType, LeaveRequestPeriod period) {
-        return leavePrivileges.stream()
-                .filter(p -> p.inPrivileges(period, requestType))
-                .findFirst()
-                .orElseThrow(LeavePrivilegesNotGrantedException::new);
-    }
 
     public void withPrivileges(List<LeavePrivileges> leavePrivileges) {
         this.leavePrivileges = leavePrivileges;
