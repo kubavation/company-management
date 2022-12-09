@@ -13,4 +13,6 @@ public interface LeavePrivilegesRepository {
     <T extends EmployeeId> List<LeavePrivileges> load(T employeeId);
 
     <T extends EmployeeId> LeavePrivileges load(T employeeId, LeaveRequestType type, LocalDate date);
+
+    void save(LeavePrivileges leavePrivileges);
 }
