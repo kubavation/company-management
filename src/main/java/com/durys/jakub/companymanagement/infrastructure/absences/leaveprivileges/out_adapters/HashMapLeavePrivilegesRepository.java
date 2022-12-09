@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.infrastructure.absences.leaveprivilege
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivileges;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestAggregate;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.LeavePrivilegesNotGrantedException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
@@ -22,11 +23,17 @@ public class HashMapLeavePrivilegesRepository implements LeavePrivilegesReposito
 
     @Override
     public <T extends EmployeeId> LeavePrivileges load(T employeeId, LeaveRequestType type, LocalDate date) {
-        return null;
+        return load(employeeId)
+                .stream()
+                .filter(l -> l.getLeaveRequestType().equals(type))
+                .findFirst()
+                .orElseThrow(LeavePrivilegesNotGrantedException::new);
     }
 
     @Override
     public void save(LeavePrivileges leavePrivileges) {
-
+        List<LeavePrivileges> privileges = DB.get(leavePrivileges.getEmployeeId());
+        privileges.add(leavePrivileges);
+        DB.put(leavePrivileges.getEmployeeId(), privileges);
     }
 }

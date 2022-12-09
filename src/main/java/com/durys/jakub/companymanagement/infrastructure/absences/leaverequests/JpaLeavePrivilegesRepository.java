@@ -27,6 +27,6 @@ public class JpaLeavePrivilegesRepository implements LeavePrivilegesRepository {
 
     @Override
     public void save(LeavePrivileges leavePrivileges) {
-        
+
     }
 }
