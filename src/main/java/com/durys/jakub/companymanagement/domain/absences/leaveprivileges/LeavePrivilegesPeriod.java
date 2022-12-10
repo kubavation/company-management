@@ -31,4 +31,13 @@ public class LeavePrivilegesPeriod {
         this.dateTo = dateTo;
     }
 
+    public boolean isInPeriod(LocalDate date) {
+
+        if (Objects.isNull(date)) {
+            return false;
+        }
+
+        return !date.isAfter(dateTo) && !date.isBefore(dateFrom);
+    }
+
 }
