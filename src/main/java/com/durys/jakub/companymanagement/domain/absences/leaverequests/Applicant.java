@@ -16,18 +16,14 @@ import java.util.List;
 @Getter
 public class Applicant implements Employable {
     private final ApplicantId applicantId;
-    private List<LeavePrivileges> leavePrivileges;
 
     public Applicant(ApplicantId applicantId) {
         this.applicantId = applicantId;
     }
 
-    public LeaveRequestAggregate submitLeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period) {
+    public LeaveRequestAggregate submitLeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period, LeavePrivileges leavePrivileges) {
         LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(requestType, this, period);
-
-//        LeavePrivileges privileges = loadPrivileges(requestType, period);
-//        //privileges.checkCompatibility(leaveRequestAggregate);
-
+        leavePrivileges.checkCompatibility(leaveRequestAggregate);
         return leaveRequestAggregate;
     }
 
@@ -43,10 +39,6 @@ public class Applicant implements Employable {
         leaveRequest.markAsDeleted();
     }
 
-
-    public void withPrivileges(List<LeavePrivileges> leavePrivileges) {
-        this.leavePrivileges = leavePrivileges;
-    }
 
     @Override
     public EmployeeId getId() {

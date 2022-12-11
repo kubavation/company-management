@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.application.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivileges;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesRepository;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesService;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.AcceptantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
@@ -24,15 +25,16 @@ public class LeaveRequestsApplicationService {
     private final LeavePrivilegesRepository leavePrivilegesRepository;
     private final EmployeeRepository employeeRepository;
 
+    private final LeavePrivilegesService leavePrivilegesService;
+
 
     public void submitLeaveRequest(ApplicantId applicantId, LeaveRequestType type, LocalDateTime from, LocalDateTime to) {
 
         Applicant applicant = employeeRepository.load(applicantId);
-        List<LeavePrivileges> leavePrivileges = leavePrivilegesRepository.load(applicantId);
-        applicant.withPrivileges(leavePrivileges);
 
+        LeavePrivileges leavePrivileges = leavePrivilegesService.load(applicant.getApplicantId(), type, to.toLocalDate());
 
-        LeaveRequestAggregate leaveRequestAggregate = applicant.submitLeaveRequest(type, new LeaveRequestPeriod(from, to));
+        LeaveRequestAggregate leaveRequestAggregate = applicant.submitLeaveRequest(type, new LeaveRequestPeriod(from, to), leavePrivileges);
 
         leaveRequestRepository.save(leaveRequestAggregate);
     }
