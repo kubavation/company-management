@@ -27,6 +27,11 @@ public class LeavePrivileges {
 
 
     public void checkCompatibility(LeaveRequestAggregate leaveRequestAggregate) {
+
+        if (!employeeId.equals(leaveRequestAggregate.getApplicant().getApplicantId())) {
+            throw new RuntimeException("Invalid employeeId param");
+        }
+
         Long numberOfDays = leaveRequestAggregate.getPeriod().numberOfDays();
         if (numberOfDays > grantedPrivileges.getDaysEntitled()) {
             throw new RequestedDaysExceedLeavePrivilegesException();
