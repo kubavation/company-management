@@ -33,7 +33,27 @@ class LeavePrivilegesTest {
         LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(LeaveRequestType.AL,
                 new Applicant(new ApplicantId(employeeId)),
                 new LeaveRequestPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
-        
+
         assertThrows(RequestedDaysExceedLeavePrivilegesException.class, () -> leavePrivileges.checkCompatibility(leaveRequestAggregate));
+    }
+
+    @Test
+    void checkCompatibility_shouldNotThrowAnyException() {
+
+        UUID employeeId = UUID.randomUUID();
+
+        LocalDate from = LocalDate.of(2022, 1 ,1);
+        LocalDate to = LocalDate.of(2022,12, 31);
+
+        LeavePrivileges leavePrivileges = new LeavePrivileges(LeaveRequestType.AL, new EmployeeId(employeeId),
+                new LeavePrivilegesPeriod(from, to),
+                new GrantedPrivileges(26, 180)
+        );
+
+        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(LeaveRequestType.AL,
+                new Applicant(new ApplicantId(employeeId)),
+                new LeaveRequestPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
+
+        assertDoesNotThrow(() -> leavePrivileges.checkCompatibility(leaveRequestAggregate));
     }
 }
