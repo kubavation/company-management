@@ -80,4 +80,26 @@ class LeavePrivilegesTest {
 
         assertEquals("Invalid employeeId param", exception.getMessage());
     }
+
+    @Test
+    void checkCompatibility_shouldThrowInvalidParameterException_invalidRequestType() {
+
+        UUID employeeId = UUID.randomUUID();
+
+        LocalDate from = LocalDate.of(2022, 1 ,1);
+        LocalDate to = LocalDate.of(2022,12, 31);
+
+        LeavePrivileges leavePrivileges = new LeavePrivileges(LeaveRequestType.AL, new EmployeeId(employeeId),
+                new LeavePrivilegesPeriod(from, to),
+                new GrantedPrivileges(26, 180)
+        );
+
+        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(LeaveRequestType.CL,
+                new Applicant(new ApplicantId(employeeId)),
+                new LeaveRequestPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> leavePrivileges.checkCompatibility(leaveRequestAggregate));
+
+        assertEquals("Invalid requestType param", exception.getMessage());
+    }
 }
