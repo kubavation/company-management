@@ -18,6 +18,26 @@ import static org.junit.jupiter.api.Assertions.*;
 class LeavePrivilegesTest {
 
     @Test
+    void checkCompatibility_shouldNotThrowAnyException() {
+
+        UUID employeeId = UUID.randomUUID();
+
+        LocalDate from = LocalDate.of(2022, 1 ,1);
+        LocalDate to = LocalDate.of(2022,12, 31);
+
+        LeavePrivileges leavePrivileges = new LeavePrivileges(LeaveRequestType.AL, new EmployeeId(employeeId),
+                new LeavePrivilegesPeriod(from, to),
+                new GrantedPrivileges(26, 180)
+        );
+
+        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(LeaveRequestType.AL,
+                new Applicant(new ApplicantId(employeeId)),
+                new LeaveRequestPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
+
+        assertDoesNotThrow(() -> leavePrivileges.checkCompatibility(leaveRequestAggregate));
+    }
+    
+    @Test
     void checkCompatibility_shouldThrowRequestedDaysExceedLeavePrivilegesException() {
 
         UUID employeeId = UUID.randomUUID();
@@ -36,24 +56,28 @@ class LeavePrivilegesTest {
 
         assertThrows(RequestedDaysExceedLeavePrivilegesException.class, () -> leavePrivileges.checkCompatibility(leaveRequestAggregate));
     }
+    
 
     @Test
-    void checkCompatibility_shouldNotThrowAnyException() {
+    void checkCompatibility_shouldThrowInvalidParameterException_invalidEmployeeId() {
 
-        UUID employeeId = UUID.randomUUID();
+        UUID privilegesEmployeeId = UUID.randomUUID();
+        UUID applicantId = UUID.randomUUID();
 
         LocalDate from = LocalDate.of(2022, 1 ,1);
         LocalDate to = LocalDate.of(2022,12, 31);
 
-        LeavePrivileges leavePrivileges = new LeavePrivileges(LeaveRequestType.AL, new EmployeeId(employeeId),
+        LeavePrivileges leavePrivileges = new LeavePrivileges(LeaveRequestType.AL, new EmployeeId(privilegesEmployeeId),
                 new LeavePrivilegesPeriod(from, to),
                 new GrantedPrivileges(26, 180)
         );
 
         LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(LeaveRequestType.AL,
-                new Applicant(new ApplicantId(employeeId)),
+                new Applicant(new ApplicantId(applicantId)),
                 new LeaveRequestPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
 
-        assertDoesNotThrow(() -> leavePrivileges.checkCompatibility(leaveRequestAggregate));
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> leavePrivileges.checkCompatibility(leaveRequestAggregate));
+
+        assertEquals("Invalid employeeId param", exception.getMessage());
     }
 }
