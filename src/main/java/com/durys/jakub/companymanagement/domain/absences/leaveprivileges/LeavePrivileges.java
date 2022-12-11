@@ -32,6 +32,10 @@ public class LeavePrivileges {
             throw new RuntimeException("Invalid employeeId param");
         }
 
+        if (!leaveRequestType.equals(leaveRequestAggregate.getRequestType())) {
+            throw new RuntimeException("Invalid requestType param");
+        }
+
         Long numberOfDays = leaveRequestAggregate.getPeriod().numberOfDays();
         if (numberOfDays > grantedPrivileges.getDaysEntitled()) {
             throw new RequestedDaysExceedLeavePrivilegesException();
