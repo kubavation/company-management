@@ -26,6 +26,7 @@ public class HashMapLeavePrivilegesRepository implements LeavePrivilegesReposito
         return load(employeeId)
                 .stream()
                 .filter(l -> l.getLeaveRequestType().equals(type))
+                .filter(l -> l.getPeriod().isInPeriod(date))
                 .findFirst()
                 .orElseThrow(LeavePrivilegesNotGrantedException::new);
     }
