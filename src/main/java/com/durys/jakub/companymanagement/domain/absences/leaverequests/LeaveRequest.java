@@ -30,6 +30,7 @@ public abstract class LeaveRequest {
     }
 
     void markAsDeleted() {
+
         if (status != LeaveRequestStatus.SUBMITTED) {
             throw new InvalidStatusForOperationException();
         }
@@ -50,6 +51,7 @@ public abstract class LeaveRequest {
     }
 
     void markAsCancelled() {
+
         if (status == LeaveRequestStatus.DELETED) {
             throw new InvalidStatusForOperationException();
         }
