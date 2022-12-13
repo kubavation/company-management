@@ -15,16 +15,13 @@ public abstract class LeaveRequest {
     private final LeaveRequestType requestType;
 
     private LeaveRequestPeriod period;
-    private final Applicant applicant;
-
     private Acceptant acceptant;
 
     private LeaveRequestStatus status;
 
-    public LeaveRequest(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period, Applicant applicant) {
+    public LeaveRequest(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
         this.requestId = requestId;
         this.requestType = requestType;
-        this.applicant = applicant;
         this.period = period;
         this.status = LeaveRequestStatus.SUBMITTED;
     }
