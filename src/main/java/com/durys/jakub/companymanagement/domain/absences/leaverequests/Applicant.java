@@ -17,11 +17,18 @@ import java.util.List;
 public class Applicant implements Employable {
     private final ApplicantId applicantId;
 
+    private List<LeavePrivileges> leavePrivileges;
+
     public Applicant(ApplicantId applicantId) {
         this.applicantId = applicantId;
     }
 
-    public LeaveRequestAggregate submitLeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period, LeavePrivileges leavePrivileges) {
+    public Applicant(ApplicantId applicantId, List<LeavePrivileges> leavePrivileges) {
+        this.applicantId = applicantId;
+        this.leavePrivileges = leavePrivileges;
+    }
+
+    public LeaveRequestAggregate submitLeaveRequest(LeaveRequest leaveRequest, LeavePrivileges leavePrivileges) {
         LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(requestType, this, period);
         leavePrivileges.checkCompatibility(leaveRequestAggregate);
         return leaveRequestAggregate;
