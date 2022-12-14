@@ -33,7 +33,7 @@ public class Applicant implements Employable {
 
     public void submitLeaveRequest(LeaveRequest leaveRequest) {
 
-        LeavePrivilege privilege = getLeavePrivilege(leaveRequest.getRequestType(), leaveRequest.getPeriod().getDateTo().toLocalDate());
+        LeavePrivilege privilege = getLeavePrivilege(leaveRequest.getRequestType(), leaveRequest.getPeriod().getTo().toLocalDate());
         privilege.checkCompatibility(leaveRequest);
     }
 
