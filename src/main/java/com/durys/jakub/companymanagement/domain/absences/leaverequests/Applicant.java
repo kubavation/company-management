@@ -3,11 +3,14 @@ package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.commons.domain.Entity;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilege;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.LeavePrivilegesNotGrantedException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -26,10 +29,10 @@ public class Applicant implements Employable {
         this.leavePrivileges = leavePrivileges;
     }
 
-    public LeaveRequestAggregate submitLeaveRequest(LeaveRequest leaveRequest) {
-       // LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(requestType, this, period);
-        leavePrivileges.checkCompatibility(leaveRequestAggregate);
-        return leaveRequestAggregate;
+    public void submitLeaveRequest(LeaveRequest leaveRequest) {
+
+        LeavePrivilege privilege = getLeavePrivilege(leaveRequest.getRequestType(), leaveRequest.getPeriod().getDateTo().toLocalDate());
+        privilege.checkCompatibility(leaveRequest);
     }
 
     public void cancel(LeaveRequestAggregate leaveRequest) {
@@ -50,7 +53,13 @@ public class Applicant implements Employable {
         return applicantId;
     }
 
-
+    LeavePrivilege getLeavePrivilege(LeaveRequestType type, LocalDate date) {
+        return leavePrivileges.stream()
+                .filter(lp -> lp.getPeriod().isInPeriod(date))
+                .filter(lp -> lp.getLeaveRequestType().equals(type))
+                .findFirst()
+                .orElseThrow(LeavePrivilegesNotGrantedException::new);
+    }
 
 
 }

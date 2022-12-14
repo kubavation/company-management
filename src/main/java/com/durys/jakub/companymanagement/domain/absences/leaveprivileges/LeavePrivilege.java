@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestAggregate;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.RequestedDaysExceedLeavePrivilegesException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
@@ -25,17 +26,17 @@ public class LeavePrivilege {
     }
 
 
-    public void checkCompatibility(LeaveRequestAggregate leaveRequestAggregate) {
+    public void checkCompatibility(LeaveRequest leaveRequest) {
 
-        if (!employeeId.equals(leaveRequestAggregate.getApplicant().getApplicantId())) {
+        if (!employeeId.equals(leaveRequest.getApplicant().getApplicantId())) {
             throw new RuntimeException("Invalid employeeId param");
         }
 
-        if (!leaveRequestType.equals(leaveRequestAggregate.getRequestType())) {
+        if (!leaveRequestType.equals(leaveRequest.getRequestType())) {
             throw new RuntimeException("Invalid requestType param");
         }
 
-        Long numberOfDays = leaveRequestAggregate.getPeriod().numberOfDays();
+        Long numberOfDays = leaveRequest.getPeriod().numberOfDays();
         if (numberOfDays > grantedPrivileges.getDaysEntitled()) {
             throw new RequestedDaysExceedLeavePrivilegesException();
         }
