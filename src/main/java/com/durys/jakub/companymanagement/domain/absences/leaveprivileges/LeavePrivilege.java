@@ -14,7 +14,6 @@ public class LeavePrivilege {
 
     private final LeaveRequestType leaveRequestType;
     private final EmployeeId employeeId;
-
     private final LeavePrivilegesPeriod period;
     private final GrantedPrivileges grantedPrivileges;
 
@@ -27,10 +26,6 @@ public class LeavePrivilege {
 
 
     public void checkCompatibility(LeaveRequest leaveRequest) {
-
-        if (!employeeId.equals(leaveRequest.getApplicant().getApplicantId())) {
-            throw new RuntimeException("Invalid employeeId param");
-        }
 
         if (!leaveRequestType.equals(leaveRequest.getRequestType())) {
             throw new RuntimeException("Invalid requestType param");
