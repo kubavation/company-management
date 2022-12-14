@@ -16,6 +16,6 @@ public class LeaveRequestHourlyPeriod extends LeaveRequestPeriod {
 
     @Override
     public BigDecimal quantity() {
-        return BigDecimal.valueOf(ChronoUnit.DAYS.between(from, to) + 1);
+        return BigDecimal.valueOf(ChronoUnit.HOURS.between(from, to));
     }
 }

@@ -19,6 +19,6 @@ public class LeaveRequestDailyPeriod extends LeaveRequestPeriod {
 
     @Override
     public BigDecimal quantity() {
-        return BigDecimal.valueOf(ChronoUnit.DAYS.between(from, to.plusDays(1)));
+        return BigDecimal.valueOf(ChronoUnit.DAYS.between(from, to) + 1);
     }
 }
