@@ -5,10 +5,13 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestStatus;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+
+@Getter
 public abstract class LeaveRequest {
 
     private final LeaveRequestId requestId;

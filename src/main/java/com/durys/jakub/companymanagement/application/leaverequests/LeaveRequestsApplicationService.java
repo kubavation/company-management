@@ -1,6 +1,6 @@
 package com.durys.jakub.companymanagement.application.leaverequests;
 
-import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivileges;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilege;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesService;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -32,7 +31,7 @@ public class LeaveRequestsApplicationService {
 
         Applicant applicant = employeeRepository.load(applicantId);
 
-        LeavePrivileges leavePrivileges = leavePrivilegesService.load(applicant.getApplicantId(), type, to.toLocalDate());
+        LeavePrivilege leavePrivileges = leavePrivilegesService.load(applicant.getApplicantId(), type, to.toLocalDate());
 
         LeaveRequestAggregate leaveRequestAggregate = applicant.submitLeaveRequest(type, new LeaveRequestPeriod(from, to), leavePrivileges);
 

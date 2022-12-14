@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface LeavePrivilegesRepository {
 
-    <T extends EmployeeId> List<LeavePrivileges> load(T employeeId);
+    <T extends EmployeeId> List<LeavePrivilege> load(T employeeId);
 
-    <T extends EmployeeId> LeavePrivileges load(T employeeId, LeaveRequestType type, LocalDate date);
+    <T extends EmployeeId> LeavePrivilege load(T employeeId, LeaveRequestType type, LocalDate date);
 
-    void save(LeavePrivileges leavePrivileges);
+    void save(LeavePrivilege leavePrivileges);
 }

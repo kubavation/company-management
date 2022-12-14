@@ -1,6 +1,6 @@
 package com.durys.jakub.companymanagement.infrastructure.absences.leaveprivileges;
 
-import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivileges;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilege;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesService;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
@@ -15,7 +15,7 @@ public class ApplicantLeavePrivilegesService implements LeavePrivilegesService {
     private final LeavePrivilegesRepository leavePrivilegesRepository;
 
     @Override
-    public LeavePrivileges load(ApplicantId applicantId, LeaveRequestType requestType, LocalDate date) {
+    public LeavePrivilege load(ApplicantId applicantId, LeaveRequestType requestType, LocalDate date) {
         return leavePrivilegesRepository.load(applicantId, requestType, date);
     }
 }

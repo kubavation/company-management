@@ -6,5 +6,5 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveR
 import java.time.LocalDate;
 
 public interface LeavePrivilegesService {
-    LeavePrivileges load(ApplicantId applicantId, LeaveRequestType requestType, LocalDate date);
+    LeavePrivilege load(ApplicantId applicantId, LeaveRequestType requestType, LocalDate date);
 }
