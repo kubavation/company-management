@@ -6,15 +6,14 @@ import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 @ValueObject
 @Getter
 public abstract class LeaveRequestPeriod {
 
-    private final LocalDateTime from;
-    private final LocalDateTime to;
+    protected final LocalDateTime from;
+    protected final LocalDateTime to;
 
     private final BigDecimal quantity;
 
@@ -33,6 +32,6 @@ public abstract class LeaveRequestPeriod {
         this.quantity = quantity();
     }
 
-    public abstract BigDecimal quantity();
+    protected abstract BigDecimal quantity();
 
 }
