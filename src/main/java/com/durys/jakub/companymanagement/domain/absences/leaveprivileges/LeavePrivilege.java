@@ -4,13 +4,12 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequ
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.RequestedDaysExceedLeavePrivilegesException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 
 
 @Getter
-public class LeavePrivileges {
+public class LeavePrivilege {
 
     private final LeaveRequestType leaveRequestType;
     private final EmployeeId employeeId;
@@ -18,7 +17,7 @@ public class LeavePrivileges {
     private final LeavePrivilegesPeriod period;
     private final GrantedPrivileges grantedPrivileges;
 
-    public LeavePrivileges(LeaveRequestType leaveRequestType, EmployeeId employeeId, LeavePrivilegesPeriod period, GrantedPrivileges grantedPrivileges) {
+    public LeavePrivilege(LeaveRequestType leaveRequestType, EmployeeId employeeId, LeavePrivilegesPeriod period, GrantedPrivileges grantedPrivileges) {
         this.leaveRequestType = leaveRequestType;
         this.employeeId = employeeId;
         this.period = period;

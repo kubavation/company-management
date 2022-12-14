@@ -10,12 +10,11 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LeavePrivilegesTest {
+class LeavePrivilegeTest {
 
     @Test
     void checkCompatibility_shouldNotThrowAnyException() {
@@ -25,7 +24,7 @@ class LeavePrivilegesTest {
         LocalDate from = LocalDate.of(2022, 1 ,1);
         LocalDate to = LocalDate.of(2022,12, 31);
 
-        LeavePrivileges leavePrivileges = new LeavePrivileges(LeaveRequestType.AL, new EmployeeId(employeeId),
+        LeavePrivilege leavePrivileges = new LeavePrivilege(LeaveRequestType.AL, new EmployeeId(employeeId),
                 new LeavePrivilegesPeriod(from, to),
                 new GrantedPrivileges(26, 180)
         );
@@ -45,7 +44,7 @@ class LeavePrivilegesTest {
         LocalDate from = LocalDate.of(2022, 1 ,1);
         LocalDate to = LocalDate.of(2022,12, 31);
 
-        LeavePrivileges leavePrivileges = new LeavePrivileges(LeaveRequestType.AL, new EmployeeId(employeeId),
+        LeavePrivilege leavePrivileges = new LeavePrivilege(LeaveRequestType.AL, new EmployeeId(employeeId),
                 new LeavePrivilegesPeriod(from, to),
                 new GrantedPrivileges(1, 10)
         );
@@ -67,7 +66,7 @@ class LeavePrivilegesTest {
         LocalDate from = LocalDate.of(2022, 1 ,1);
         LocalDate to = LocalDate.of(2022,12, 31);
 
-        LeavePrivileges leavePrivileges = new LeavePrivileges(LeaveRequestType.AL, new EmployeeId(privilegesEmployeeId),
+        LeavePrivilege leavePrivileges = new LeavePrivilege(LeaveRequestType.AL, new EmployeeId(privilegesEmployeeId),
                 new LeavePrivilegesPeriod(from, to),
                 new GrantedPrivileges(26, 180)
         );
@@ -89,7 +88,7 @@ class LeavePrivilegesTest {
         LocalDate from = LocalDate.of(2022, 1 ,1);
         LocalDate to = LocalDate.of(2022,12, 31);
 
-        LeavePrivileges leavePrivileges = new LeavePrivileges(LeaveRequestType.AL, new EmployeeId(employeeId),
+        LeavePrivilege leavePrivileges = new LeavePrivilege(LeaveRequestType.AL, new EmployeeId(employeeId),
                 new LeavePrivilegesPeriod(from, to),
                 new GrantedPrivileges(26, 180)
         );
