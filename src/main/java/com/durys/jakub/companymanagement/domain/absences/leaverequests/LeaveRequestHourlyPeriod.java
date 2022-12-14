@@ -10,7 +10,7 @@ import java.time.temporal.ChronoUnit;
 public class LeaveRequestHourlyPeriod extends LeaveRequestPeriod {
 
 
-    protected LeaveRequestHourlyPeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
+    public LeaveRequestHourlyPeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
         super(dateFrom, dateTo);
     }
 

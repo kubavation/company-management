@@ -37,15 +37,15 @@ public class Applicant implements Employable {
         privilege.checkCompatibility(leaveRequest);
     }
 
-    public void cancel(LeaveRequestAggregate leaveRequest) {
+    public void cancel(LeaveRequest leaveRequest) {
         leaveRequest.markAsCancelled();
     }
 
-    public void sendToAcceptant(LeaveRequestAggregate leaveRequest, Acceptant acceptant) {
+    public void sendToAcceptant(LeaveRequest leaveRequest, Acceptant acceptant) {
         leaveRequest.sendToAcceptant(acceptant);
     }
 
-    public void delete(LeaveRequestAggregate leaveRequest) {
+    public void delete(LeaveRequest leaveRequest) {
         leaveRequest.markAsDeleted();
     }
 

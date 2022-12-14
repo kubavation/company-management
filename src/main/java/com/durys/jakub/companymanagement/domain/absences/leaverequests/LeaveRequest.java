@@ -9,6 +9,7 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 
 @Getter
@@ -22,8 +23,8 @@ public abstract class LeaveRequest {
 
     private LeaveRequestStatus status;
 
-    public LeaveRequest(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
-        this.requestId = requestId;
+    public LeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period) {
+        this.requestId = new LeaveRequestId(UUID.randomUUID());
         this.requestType = requestType;
         this.period = period;
         this.status = LeaveRequestStatus.SUBMITTED;

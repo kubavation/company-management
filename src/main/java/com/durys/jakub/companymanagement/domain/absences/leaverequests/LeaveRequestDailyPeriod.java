@@ -13,7 +13,7 @@ import java.util.Objects;
 public class LeaveRequestDailyPeriod extends LeaveRequestPeriod {
 
 
-    protected LeaveRequestDailyPeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
+    public LeaveRequestDailyPeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
         super(dateFrom, dateTo);
     }
 

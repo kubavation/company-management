@@ -1,8 +1,6 @@
 package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.Applicant;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestAggregate;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestPeriod;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.RequestedDaysExceedLeavePrivilegesException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
@@ -29,11 +27,10 @@ class LeavePrivilegeTest {
                 new GrantedPrivileges(26, 180)
         );
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(LeaveRequestType.AL,
-                new Applicant(new ApplicantId(employeeId)),
-                new LeaveRequestPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
+        LeaveRequest leaveRequest = new DailyLeaveRequest(LeaveRequestType.AL,
+                new LeaveRequestDailyPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
 
-        assertDoesNotThrow(() -> leavePrivileges.checkCompatibility(leaveRequestAggregate));
+        assertDoesNotThrow(() -> leavePrivileges.checkCompatibility(leaveRequest));
     }
     
     @Test
@@ -49,11 +46,10 @@ class LeavePrivilegeTest {
                 new GrantedPrivileges(1, 10)
         );
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(LeaveRequestType.AL,
-                new Applicant(new ApplicantId(employeeId)),
-                new LeaveRequestPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
+        LeaveRequest leaveRequest = new DailyLeaveRequest(LeaveRequestType.AL,
+                new LeaveRequestDailyPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
 
-        assertThrows(RequestedDaysExceedLeavePrivilegesException.class, () -> leavePrivileges.checkCompatibility(leaveRequestAggregate));
+        assertThrows(RequestedDaysExceedLeavePrivilegesException.class, () -> leavePrivileges.checkCompatibility(leaveRequest));
     }
     
 
@@ -71,11 +67,10 @@ class LeavePrivilegeTest {
                 new GrantedPrivileges(26, 180)
         );
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(LeaveRequestType.AL,
-                new Applicant(new ApplicantId(applicantId)),
-                new LeaveRequestPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
+        LeaveRequest leaveRequest = new DailyLeaveRequest(LeaveRequestType.AL,
+                new LeaveRequestDailyPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
 
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> leavePrivileges.checkCompatibility(leaveRequestAggregate));
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> leavePrivileges.checkCompatibility(leaveRequest));
 
         assertEquals("Invalid employeeId param", exception.getMessage());
     }
@@ -93,11 +88,10 @@ class LeavePrivilegeTest {
                 new GrantedPrivileges(26, 180)
         );
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(LeaveRequestType.CL,
-                new Applicant(new ApplicantId(employeeId)),
-                new LeaveRequestPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
+        LeaveRequest leaveRequest = new DailyLeaveRequest(LeaveRequestType.CL,
+                new LeaveRequestDailyPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
 
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> leavePrivileges.checkCompatibility(leaveRequestAggregate));
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> leavePrivileges.checkCompatibility(leaveRequest));
 
         assertEquals("Invalid requestType param", exception.getMessage());
     }
