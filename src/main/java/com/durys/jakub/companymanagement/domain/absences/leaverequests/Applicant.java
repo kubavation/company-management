@@ -17,21 +17,23 @@ import java.util.List;
 @Getter
 public class Applicant implements Employable {
     private final ApplicantId applicantId;
-
     private List<LeavePrivilege> leavePrivileges;
+
+    private List<LeaveRequest> leaveRequests;
 
     public Applicant(ApplicantId applicantId) {
         this.applicantId = applicantId;
     }
 
-    public Applicant(ApplicantId applicantId, List<LeavePrivilege> leavePrivileges) {
+    public Applicant(ApplicantId applicantId, List<LeavePrivilege> leavePrivileges, List<LeaveRequest> leaveRequests) {
         this.applicantId = applicantId;
         this.leavePrivileges = leavePrivileges;
+        this.leaveRequests = leaveRequests;
     }
 
     public void submitLeaveRequest(LeaveRequest leaveRequest) {
 
-        LeavePrivilege privilege = getLeavePrivilege(leaveRequest.getRequestType(), leaveRequest.getPeriod().getDateTo().toLocalDate());
+        LeavePrivilege privilege = getLeavePrivilege(leaveRequest.getRequestType(), leaveRequest.getPeriod().getTo().toLocalDate());
         privilege.checkCompatibility(leaveRequest);
     }
 

@@ -2,24 +2,23 @@ package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.commons.domain.ValueObject;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidLeaveRequestPeriodException;
-import lombok.AccessLevel;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 @ValueObject
 @Getter
-public class LeaveRequestPeriod {
+public abstract class LeaveRequestPeriod {
 
-    private final LocalDateTime dateFrom;
-    private final LocalDateTime dateTo;
+    private final LocalDateTime from;
+    private final LocalDateTime to;
 
-    private final Long numberOfDays;
+    private final BigDecimal quantity;
 
-    public LeaveRequestPeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
+    protected LeaveRequestPeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
 
         Objects.requireNonNull(dateFrom, "Date from value not provided");
         Objects.requireNonNull(dateTo, "Date from value not provided");
@@ -28,14 +27,12 @@ public class LeaveRequestPeriod {
             throw new InvalidLeaveRequestPeriodException();
         }
 
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
+        this.from = dateFrom;
+        this.to = dateTo;
 
-        this.numberOfDays = ChronoUnit.DAYS.between(dateFrom, dateTo.plusDays(1));
+        this.quantity = quantity();
     }
 
-    public Long numberOfDays() {
-        return numberOfDays;
-    }
+    public abstract BigDecimal quantity();
 
 }

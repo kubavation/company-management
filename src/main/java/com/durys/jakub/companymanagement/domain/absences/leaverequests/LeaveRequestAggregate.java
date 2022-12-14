@@ -63,7 +63,7 @@ public class LeaveRequestAggregate {
             throw new InvalidStatusForOperationException();
         }
 
-        if (LocalDateTime.now().isAfter(period.getDateFrom())) {
+        if (LocalDateTime.now().isAfter(period.getFrom())) {
             throw new OperationUnavailableException();
         }
 
