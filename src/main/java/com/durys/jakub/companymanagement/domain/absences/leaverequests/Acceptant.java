@@ -16,11 +16,11 @@ public class Acceptant implements Employable {
         this.accptantId = accptantId;
     }
 
-    public void accept(LeaveRequestAggregate leaveRequest) {
+    public void accept(LeaveRequest leaveRequest) {
         leaveRequest.markAsAccepted();
     }
 
-    public void reject(LeaveRequestAggregate leaveRequest) {
+    public void reject(LeaveRequest leaveRequest) {
         leaveRequest.markAsRejected();
     }
 
