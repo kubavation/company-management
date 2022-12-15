@@ -4,7 +4,7 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveR
 
 public interface LeaveRequestRepository {
 
-    LeaveRequestAggregate load(LeaveRequestId id);
+    LeaveRequest load(LeaveRequestId id);
 
-    void save(LeaveRequestAggregate leaveRequestAggregate);
+    void save(LeaveRequest leaveRequest);
 }
