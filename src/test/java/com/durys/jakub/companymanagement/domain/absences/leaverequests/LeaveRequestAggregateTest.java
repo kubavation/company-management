@@ -19,66 +19,66 @@ class LeaveRequestAggregateTest {
 
     @Test
     void submitLeaveRequest_shouldSubmitLeaveRequest() {
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(LocalDateTime.now(), LocalDateTime.now())
+        LeaveRequest leaveRequest = new DailyLeaveRequest(
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()),  new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
-        assertEquals(LeaveRequestStatus.SUBMITTED, leaveRequestAggregate.getStatus());
+        assertEquals(LeaveRequestStatus.SUBMITTED, leaveRequest.getStatus());
     }
 
 
     @Test
     void deleteLeaveRequest_shouldMarkLeaveRequestAsDeleted() {
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(LocalDateTime.now(), LocalDateTime.now())
+        LeaveRequest leaveRequest  = new DailyLeaveRequest(
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
-        leaveRequestAggregate.markAsDeleted();
+        leaveRequest.markAsDeleted();
 
-        assertEquals(LeaveRequestStatus.DELETED, leaveRequestAggregate.getStatus());
+        assertEquals(LeaveRequestStatus.DELETED, leaveRequest.getStatus());
     }
 
     @Test
     void deleteLeaveRequest_shouldThrowInvalidStatusForOperationException() {
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(LocalDateTime.now(), LocalDateTime.now())
+        LeaveRequest leaveRequest = new DailyLeaveRequest(
+                LeaveRequestType.AL,  new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
-        leaveRequestAggregate.markAsRejected();
 
+        leaveRequest.markAsRejected();
 
-
-        assertThrows(InvalidStatusForOperationException.class, leaveRequestAggregate::markAsDeleted);
+        assertThrows(InvalidStatusForOperationException.class, leaveRequest::markAsDeleted);
     }
 
 
     @Test
     void sendLeaveRequestToAcceptant_shouldSendToAcceptant() {
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(LocalDateTime.now(), LocalDateTime.now())
+        LeaveRequest leaveRequest  = new DailyLeaveRequest(
+                LeaveRequestType.AL,  new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()),
+                new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         Acceptant acceptant = new Acceptant(new AcceptantId(UUID.randomUUID()));
 
 
-        leaveRequestAggregate.sendToAcceptant(acceptant);
+        leaveRequest.sendToAcceptant(acceptant);
 
-        assertEquals(LeaveRequestStatus.SEND_FOR_ACCEPTATION, leaveRequestAggregate.getStatus());
-        assertEquals(acceptant.getAccptantId(), leaveRequestAggregate.getAcceptant().getAccptantId());
+        assertEquals(LeaveRequestStatus.SEND_FOR_ACCEPTATION, leaveRequest.getStatus());
+        assertEquals(acceptant.getAccptantId(), leaveRequest.getAcceptant().getAccptantId());
     }
 
     @Test
     void sendLeaveRequestToAcceptant_shouldThrowInvalidStatusForOperationException() {
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(LocalDateTime.now(), LocalDateTime.now())
-        );
+        LeaveRequest leaveRequest = new DailyLeaveRequest(
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                );
 
-        leaveRequestAggregate.markAsDeleted();
+        leaveRequest.markAsDeleted();
         Acceptant acceptant = new Acceptant(new AcceptantId(UUID.randomUUID()));
 
 
-        assertThrows(InvalidStatusForOperationException.class, () -> leaveRequestAggregate.sendToAcceptant(acceptant));
+        assertThrows(InvalidStatusForOperationException.class, () -> leaveRequest.sendToAcceptant(acceptant));
     }
 
 
@@ -86,49 +86,47 @@ class LeaveRequestAggregateTest {
     @Test
     void sendLeaveRequestToAcceptant_shouldThrowExceptionWhenAcceptantIsNull() {
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(LocalDateTime.now(), LocalDateTime.now())
+        LeaveRequest leaveRequest = new DailyLeaveRequest(
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
-        assertThrows(RuntimeException.class, () -> leaveRequestAggregate.sendToAcceptant(null));
+        assertThrows(RuntimeException.class, () -> leaveRequest.sendToAcceptant(null));
     }
 
 
     @Test
     void acceptLeaveRequest_shouldMarkLeaveRequestAsAccepted() {
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(LocalDateTime.now(), LocalDateTime.now())
+        LeaveRequest leaveRequest = new DailyLeaveRequest(
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
-        leaveRequestAggregate.sendToAcceptant(new Acceptant(new AcceptantId(UUID.randomUUID())));
+        leaveRequest.sendToAcceptant(new Acceptant(new AcceptantId(UUID.randomUUID())));
 
-        leaveRequestAggregate.markAsAccepted();
-
-        assertEquals(LeaveRequestStatus.ACCEPTED, leaveRequestAggregate.getStatus());
+        assertEquals(LeaveRequestStatus.ACCEPTED, leaveRequest.getStatus());
     }
 
     @Test
     void acceptLeaveRequest_shouldThrowInvalidStatusForOperationException() {
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(LocalDateTime.now(), LocalDateTime.now())
+        LeaveRequest leaveRequest = new DailyLeaveRequest(
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
-        assertThrows(InvalidStatusForOperationException.class, leaveRequestAggregate::markAsAccepted);
+        assertThrows(InvalidStatusForOperationException.class, leaveRequest::markAsAccepted);
     }
 
 
     @Test
     void rejectLeaveRequest_shouldMarkLeaveRequestAsRejected() {
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(LocalDateTime.now(), LocalDateTime.now())
+        LeaveRequest leaveRequest = new DailyLeaveRequest(
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
-        leaveRequestAggregate.markAsRejected();
+        leaveRequest.markAsRejected();
 
-        assertEquals(LeaveRequestStatus.REJECTED, leaveRequestAggregate.getStatus());
+        assertEquals(LeaveRequestStatus.REJECTED, leaveRequest.getStatus());
     }
 
 
@@ -137,13 +135,13 @@ class LeaveRequestAggregateTest {
 
         LocalDateTime dateFrom = LocalDateTime.now().plusHours(1);
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(dateFrom, dateFrom)
+        LeaveRequest leaveRequest = new DailyLeaveRequest(
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(dateFrom, dateFrom), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
-        leaveRequestAggregate.markAsCancelled();
+        leaveRequest.markAsCancelled();
 
-        assertEquals(LeaveRequestStatus.CANCELLED, leaveRequestAggregate.getStatus());
+        assertEquals(LeaveRequestStatus.CANCELLED, leaveRequest.getStatus());
     }
 
     @Test
@@ -151,13 +149,13 @@ class LeaveRequestAggregateTest {
 
         LocalDateTime dateFrom = LocalDateTime.now().plusHours(1);
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(dateFrom, dateFrom)
+        LeaveRequest leaveRequest = new DailyLeaveRequest(
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(dateFrom, dateFrom), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
-        leaveRequestAggregate.markAsDeleted();
+        leaveRequest.markAsDeleted();
 
 
-        assertThrows(InvalidStatusForOperationException.class, leaveRequestAggregate::markAsCancelled);;
+        assertThrows(InvalidStatusForOperationException.class, leaveRequest::markAsCancelled);
     }
 
     @Test
@@ -165,11 +163,11 @@ class LeaveRequestAggregateTest {
 
         LocalDateTime dateFrom = LocalDateTime.now().minusHours(1);
 
-        LeaveRequestAggregate leaveRequestAggregate = new LeaveRequestAggregate(
-                LeaveRequestType.AL, new Applicant(new ApplicantId(UUID.randomUUID())), new LeaveRequestPeriod(dateFrom, dateFrom)
+        LeaveRequest leaveRequest = new DailyLeaveRequest(
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(dateFrom, dateFrom), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
-        assertThrows(OperationUnavailableException.class, leaveRequestAggregate::markAsCancelled);;
+        assertThrows(OperationUnavailableException.class, leaveRequest::markAsCancelled);;
     }
 
 
