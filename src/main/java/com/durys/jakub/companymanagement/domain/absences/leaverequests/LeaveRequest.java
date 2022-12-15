@@ -19,14 +19,16 @@ public abstract class LeaveRequest {
     private final LeaveRequestType requestType;
 
     private LeaveRequestPeriod period;
-    private Acceptant acceptant;
 
+    private final Applicant applicant;
+    private Acceptant acceptant;
     private LeaveRequestStatus status;
 
-    public LeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period) {
+    public LeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period, Applicant applicant) {
         this.requestId = new LeaveRequestId(UUID.randomUUID());
         this.requestType = requestType;
         this.period = period;
+        this.applicant = applicant;
         this.status = LeaveRequestStatus.SUBMITTED;
     }
 
