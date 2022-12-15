@@ -20,4 +20,9 @@ public class GrantedPrivileges {
         this.hoursEntitled = hours;
     }
 
+    public GrantedPrivileges(Integer days, Integer hours) {
+        this.daysEntitled = new BigDecimal(days);
+        this.hoursEntitled = new BigDecimal(hours);
+    }
+
 }
