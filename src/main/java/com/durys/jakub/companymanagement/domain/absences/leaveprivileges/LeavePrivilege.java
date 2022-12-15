@@ -1,5 +1,7 @@
 package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.DailyLeaveRequest;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.HourlyLeaveRequest;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestAggregate;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.RequestedDaysExceedLeavePrivilegesException;
@@ -7,6 +9,7 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveR
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 
 
 @Getter
@@ -31,10 +34,23 @@ public class LeavePrivilege {
             throw new RuntimeException("Invalid requestType param");
         }
 
-        Long numberOfDays = leaveRequest.getPeriod().numberOfDays();
-        if (numberOfDays > grantedPrivileges.getDaysEntitled()) {
-            throw new RequestedDaysExceedLeavePrivilegesException();
+        BigDecimal quantity = leaveRequest.getPeriod().getQuantity();
+
+        if (leaveRequest instanceof DailyLeaveRequest) {
+
+            if (quantity.compareTo(grantedPrivileges.getDaysEntitled()) > 0) {
+                throw new RequestedDaysExceedLeavePrivilegesException();
+            }
         }
+
+        if (leaveRequest instanceof HourlyLeaveRequest) {
+
+            if (quantity.compareTo(grantedPrivileges.getHoursEntitled()) > 0) {
+                throw new RequestedDaysExceedLeavePrivilegesException();
+            }
+        }
+
+
     }
 
 }

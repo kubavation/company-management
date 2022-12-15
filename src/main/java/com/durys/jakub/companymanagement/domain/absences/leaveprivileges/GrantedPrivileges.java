@@ -12,10 +12,10 @@ import java.util.Objects;
 @Getter
 public class GrantedPrivileges {
 
-    private Integer daysEntitled;
-    private Integer hoursEntitled;
+    private BigDecimal daysEntitled;
+    private BigDecimal hoursEntitled;
 
-    public GrantedPrivileges(Integer days, Integer hours) {
+    public GrantedPrivileges(BigDecimal days, BigDecimal hours) {
         this.daysEntitled = days;
         this.hoursEntitled = hours;
     }
