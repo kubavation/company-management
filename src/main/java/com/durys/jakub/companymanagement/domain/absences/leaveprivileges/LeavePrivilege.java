@@ -3,7 +3,6 @@ package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.DailyLeaveRequest;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.HourlyLeaveRequest;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestAggregate;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.RequestedDaysExceedLeavePrivilegesException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
