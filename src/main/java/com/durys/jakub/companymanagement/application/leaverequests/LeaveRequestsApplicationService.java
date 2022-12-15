@@ -1,8 +1,5 @@
 package com.durys.jakub.companymanagement.application.leaverequests;
 
-import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilege;
-import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesRepository;
-import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesService;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.AcceptantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
@@ -21,10 +18,7 @@ import java.util.Objects;
 public class LeaveRequestsApplicationService {
 
     private final LeaveRequestRepository leaveRequestRepository;
-    private final LeavePrivilegesRepository leavePrivilegesRepository;
     private final EmployeeRepository employeeRepository;
-
-    private final LeavePrivilegesService leavePrivilegesService;
 
 
     public void submitLeaveRequest(ApplicantId applicantId, LeaveRequestType type, LocalDateTime from, LocalDateTime to) {
