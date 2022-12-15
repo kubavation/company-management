@@ -24,13 +24,13 @@ class LeavePrivilegePeriodTest {
     @Test
     void isInPrevileges_shouldReturnTrueWhenDateIsInPeriod() {
         LeavePrivilegesPeriod period =  new LeavePrivilegesPeriod(LocalDate.now().minusDays(1), LocalDate.now().plusDays(1));
-        assertEquals(true, period.isInPeriod(LocalDate.now()));
+        assertTrue(period.isInPeriod(LocalDate.now()));
     }
 
     @Test
     void isInPrevileges_shouldReturnFaleWhenDateIsNotInPeriod() {
         LeavePrivilegesPeriod period =  new LeavePrivilegesPeriod(LocalDate.now().minusDays(1), LocalDate.now().plusDays(1));
-        assertEquals(false, period.isInPeriod(LocalDate.now().minusDays(2)));
+        assertFalse(period.isInPeriod(LocalDate.now().minusDays(2)));
     }
 
 }

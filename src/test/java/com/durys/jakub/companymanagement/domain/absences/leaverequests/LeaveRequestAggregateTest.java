@@ -102,6 +102,7 @@ class LeaveRequestAggregateTest {
         );
 
         leaveRequest.sendToAcceptant(new Acceptant(new AcceptantId(UUID.randomUUID())));
+        leaveRequest.markAsAccepted();
 
         assertEquals(LeaveRequestStatus.ACCEPTED, leaveRequest.getStatus());
     }
