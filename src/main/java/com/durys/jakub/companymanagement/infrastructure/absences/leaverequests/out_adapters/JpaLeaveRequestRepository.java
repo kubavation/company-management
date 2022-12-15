@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.out_adapters;
 
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestAggregate;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
@@ -19,7 +20,7 @@ public class JpaLeaveRequestRepository implements LeaveRequestRepository {
     private final LeaveRequestAggregateAssembler leaveRequestAggregateAssembler;
 
     @Override
-    public LeaveRequestAggregate load(LeaveRequestId id) {
+    public LeaveRequest load(LeaveRequestId id) {
         LeaveRequestEntity entity =  jdbcTemplate.queryForObject("SELECT lr.* FROM CM_LEAVE_REQUEST rl where rl.id = :id",
                 new BeanPropertySqlParameterSource(LeaveRequestEntity.class), LeaveRequestEntity.class);
 
@@ -31,8 +32,8 @@ public class JpaLeaveRequestRepository implements LeaveRequestRepository {
     }
 
     @Override
-    public void save(LeaveRequestAggregate leaveRequestAggregate) {
-        LeaveRequestEntity entity = leaveRequestAggregateAssembler.toEntity(leaveRequestAggregate);
+    public void save(LeaveRequest leaveRequest) {
+        LeaveRequestEntity entity = leaveRequestAggregateAssembler.toEntity(leaveRequest);
         jdbcTemplate.update("INSERT INTO CM_LEAVE_REQUEST (todo) values (todo)", new HashMap<>());
     }
 
