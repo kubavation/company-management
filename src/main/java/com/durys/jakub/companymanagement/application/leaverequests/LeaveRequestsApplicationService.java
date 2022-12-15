@@ -31,11 +31,10 @@ public class LeaveRequestsApplicationService {
 
         Applicant applicant = employeeRepository.load(applicantId);
 
-        LeavePrivilege leavePrivileges = leavePrivilegesService.load(applicant.getApplicantId(), type, to.toLocalDate());
+        LeaveRequest leaveRequest = new DailyLeaveRequest(type, new LeaveRequestDailyPeriod(from, to));
+        applicant.submitLeaveRequest(leaveRequest);
 
-        LeaveRequestAggregate leaveRequestAggregate = applicant.submitLeaveRequest(type, new LeaveRequestPeriod(from, to), leavePrivileges);
-
-        leaveRequestRepository.save(leaveRequestAggregate);
+        leaveRequestRepository.save(leaveRequest);
     }
 
     public void sendRequestToAcceptant(LeaveRequestId leaveRequestId, AcceptantId acceptantId) {
