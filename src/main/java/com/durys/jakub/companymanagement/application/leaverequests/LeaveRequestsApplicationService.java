@@ -31,7 +31,7 @@ public class LeaveRequestsApplicationService {
 
         Applicant applicant = employeeRepository.load(applicantId);
 
-        LeaveRequest leaveRequest = new DailyLeaveRequest(type, new LeaveRequestDailyPeriod(from, to));
+        LeaveRequest leaveRequest = new DailyLeaveRequest(type, new LeaveRequestDailyPeriod(from, to), applicant);
         applicant.submitLeaveRequest(leaveRequest);
 
         leaveRequestRepository.save(leaveRequest);
@@ -39,7 +39,7 @@ public class LeaveRequestsApplicationService {
 
     public void sendRequestToAcceptant(LeaveRequestId leaveRequestId, AcceptantId acceptantId) {
 
-        LeaveRequestAggregate leaveRequest = leaveRequestRepository.load(leaveRequestId);
+        LeaveRequest leaveRequest = leaveRequestRepository.load(leaveRequestId);
 
         if (Objects.isNull(leaveRequest)) {
             throw new EntityNotFoundException();
@@ -55,44 +55,44 @@ public class LeaveRequestsApplicationService {
     }
 
     public void cancelLeaveRequest(LeaveRequestId leaveRequestId) {
-        LeaveRequestAggregate leaveRequest = leaveRequestRepository.load(leaveRequestId);
+
+        LeaveRequest leaveRequest = leaveRequestRepository.load(leaveRequestId);
 
         Applicant applicant = leaveRequest.getApplicant();
-
         applicant.cancel(leaveRequest);
 
         leaveRequestRepository.save(leaveRequest);
     }
 
     public void deleteLeaveRequest(LeaveRequestId leaveRequestId) {
-        LeaveRequestAggregate leaveRequest = leaveRequestRepository.load(leaveRequestId);
+
+        LeaveRequest leaveRequest = leaveRequestRepository.load(leaveRequestId);
 
         Applicant applicant = leaveRequest.getApplicant();
-
         applicant.delete(leaveRequest);
 
         leaveRequestRepository.save(leaveRequest);
     }
 
     public void acceptLeaveRequest(LeaveRequestId leaveRequestId) {
-        LeaveRequestAggregate leaveRequest = leaveRequestRepository.load(leaveRequestId);
+        LeaveRequest leaveRequest = leaveRequestRepository.load(leaveRequestId);
 
         Acceptant acceptant = leaveRequest.getAcceptant();
-
         acceptant.accept(leaveRequest);
+
         leaveRequestRepository.save(leaveRequest);
     }
 
     public void rejectLeaveRequest(LeaveRequestId leaveRequestId) {
-        LeaveRequestAggregate leaveRequest = leaveRequestRepository.load(leaveRequestId);
+        LeaveRequest leaveRequest = leaveRequestRepository.load(leaveRequestId);
 
         Acceptant acceptant = leaveRequest.getAcceptant();
-
         acceptant.reject(leaveRequest);
+
         leaveRequestRepository.save(leaveRequest);
     }
 
-    public LeaveRequestAggregate loadLeaveRequest(LeaveRequestId leaveRequestId) {
+    public LeaveRequest loadLeaveRequest(LeaveRequestId leaveRequestId) {
         return leaveRequestRepository.load(leaveRequestId);
     }
 

@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.out_adapters;
 
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestAggregate;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
@@ -16,16 +17,16 @@ import java.util.UUID;
 public class HashMapLeaveRequestRepository implements LeaveRequestRepository {
 
 
-    private static HashMap<UUID, LeaveRequestAggregate> DB = new HashMap<>();
+    private static HashMap<UUID, LeaveRequest> DB = new HashMap<>();
 
     @Override
-    public LeaveRequestAggregate load(LeaveRequestId id) {
+    public LeaveRequest load(LeaveRequestId id) {
         return DB.get(id.value());
     }
 
     @Override
-    public void save(LeaveRequestAggregate leaveRequestAggregate) {
-        DB.put(leaveRequestAggregate.getRequestId().value(), leaveRequestAggregate);
+    public void save(LeaveRequest leaveRequest) {
+        DB.put(leaveRequest.getRequestId().value(), leaveRequest);
     }
 
 }

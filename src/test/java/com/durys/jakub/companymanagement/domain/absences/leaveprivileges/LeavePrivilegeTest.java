@@ -22,13 +22,14 @@ class LeavePrivilegeTest {
         LocalDate from = LocalDate.of(2022, 1 ,1);
         LocalDate to = LocalDate.of(2022,12, 31);
 
+
         LeavePrivilege leavePrivileges = new LeavePrivilege(LeaveRequestType.AL, new EmployeeId(employeeId),
                 new LeavePrivilegesPeriod(from, to),
                 new GrantedPrivileges(26, 180)
         );
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(LeaveRequestType.AL,
-                new LeaveRequestDailyPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
+                new LeaveRequestDailyPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)), new Applicant(new ApplicantId(employeeId)));
 
         assertDoesNotThrow(() -> leavePrivileges.checkCompatibility(leaveRequest));
     }
@@ -47,7 +48,8 @@ class LeavePrivilegeTest {
         );
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(LeaveRequestType.AL,
-                new LeaveRequestDailyPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
+                new LeaveRequestDailyPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)),
+                new Applicant(new ApplicantId(employeeId)));
 
         assertThrows(RequestedDaysExceedLeavePrivilegesException.class, () -> leavePrivileges.checkCompatibility(leaveRequest));
     }
@@ -68,7 +70,8 @@ class LeavePrivilegeTest {
         );
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(LeaveRequestType.AL,
-                new LeaveRequestDailyPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
+                new LeaveRequestDailyPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)),
+                new Applicant(new ApplicantId(applicantId)));
 
         RuntimeException exception = assertThrows(RuntimeException.class, () -> leavePrivileges.checkCompatibility(leaveRequest));
 
@@ -89,7 +92,8 @@ class LeavePrivilegeTest {
         );
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(LeaveRequestType.CL,
-                new LeaveRequestDailyPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)));
+                new LeaveRequestDailyPeriod(from.atStartOfDay().plusDays(10), from.atStartOfDay().plusDays(20)),
+                new Applicant(new ApplicantId(employeeId)));
 
         RuntimeException exception = assertThrows(RuntimeException.class, () -> leavePrivileges.checkCompatibility(leaveRequest));
 

@@ -4,7 +4,7 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveR
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 
 public class DailyLeaveRequest extends LeaveRequest {
-    public DailyLeaveRequest(LeaveRequestType requestType, LeaveRequestDailyPeriod period) {
-        super(requestType, period);
+    public DailyLeaveRequest(LeaveRequestType requestType, LeaveRequestDailyPeriod period, Applicant applicant) {
+        super(requestType, period, applicant);
     }
 }
