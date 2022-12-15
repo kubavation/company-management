@@ -35,18 +35,12 @@ public class LeavePrivilege {
 
         BigDecimal quantity = leaveRequest.getPeriod().getQuantity();
 
-        if (leaveRequest instanceof DailyLeaveRequest) {
-
-            if (quantity.compareTo(grantedPrivileges.getDaysEntitled()) > 0) {
-                throw new RequestedDaysExceedLeavePrivilegesException();
-            }
+        if (leaveRequest instanceof DailyLeaveRequest && quantity.compareTo(grantedPrivileges.getDaysEntitled()) > 0) {
+            throw new RequestedDaysExceedLeavePrivilegesException();
         }
 
-        if (leaveRequest instanceof HourlyLeaveRequest) {
-
-            if (quantity.compareTo(grantedPrivileges.getHoursEntitled()) > 0) {
-                throw new RequestedDaysExceedLeavePrivilegesException();
-            }
+        if (leaveRequest instanceof HourlyLeaveRequest && quantity.compareTo(grantedPrivileges.getHoursEntitled()) > 0) {
+            throw new RequestedDaysExceedLeavePrivilegesException();
         }
 
 
