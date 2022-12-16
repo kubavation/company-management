@@ -24,7 +24,7 @@ public abstract class LeaveRequest {
     private Acceptant acceptant;
     private LeaveRequestStatus status;
 
-    public LeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period, Applicant applicant) {
+    protected LeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period, Applicant applicant) {
         this.requestId = new LeaveRequestId(UUID.randomUUID());
         this.requestType = requestType;
         this.period = period;

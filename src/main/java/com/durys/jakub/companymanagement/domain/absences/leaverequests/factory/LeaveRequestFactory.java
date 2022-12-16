@@ -12,7 +12,7 @@ public class LeaveRequestFactory {
 
     public static LeaveRequest create(LeaveRequestType type, Applicant applicant, LocalDateTime from, LocalDateTime to) {
 
-        if (type.equals(LeaveRequestType.CL)) { //TODO
+        if (type.equals(LeaveRequestType.CL)) {
             return new HourlyLeaveRequest(type, new LeaveRequestHourlyPeriod(from, to), applicant);
         }
 
