@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.application.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.factory.LeaveRequestFactory;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.AcceptantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
@@ -25,7 +26,7 @@ public class LeaveRequestsApplicationService {
 
         Applicant applicant = employeeRepository.load(applicantId);
 
-        LeaveRequest leaveRequest = new DailyLeaveRequest(type, new LeaveRequestDailyPeriod(from, to), applicant);
+        LeaveRequest leaveRequest = LeaveRequestFactory.create(type, applicant, from, to);
         applicant.submitLeaveRequest(leaveRequest);
 
         leaveRequestRepository.save(leaveRequest);
