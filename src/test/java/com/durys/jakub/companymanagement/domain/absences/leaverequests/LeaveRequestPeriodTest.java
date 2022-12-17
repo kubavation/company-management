@@ -29,14 +29,18 @@ class LeaveRequestPeriodTest {
 
     @Test
     void createLeaveRequestPeriod_shouldThrowShouldThrowExceptionWhenDateFromIsNull() {
-        assertThrows(RuntimeException.class,
+        Exception exception = assertThrows(RuntimeException.class,
                 () -> new LeaveRequestDailyPeriod(null, LocalDate.now()));
+
+        assertEquals("Date from value not provided", exception.getMessage());
     }
 
     @Test
     void createLeaveRequestPeriod_shouldThrowShouldThrowExceptionWhenDateToIsNull() {
-        assertThrows(RuntimeException.class,
+        Exception exception = assertThrows(RuntimeException.class,
                 () -> new LeaveRequestDailyPeriod(LocalDate.now(), null));
+
+        assertEquals("Date from value not provided", exception.getMessage());
     }
 
     @Test
