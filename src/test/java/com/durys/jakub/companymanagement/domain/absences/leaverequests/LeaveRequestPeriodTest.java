@@ -40,7 +40,7 @@ class LeaveRequestPeriodTest {
     }
 
     @Test
-    void getLeaveRequestPeriodNumberOfDays_shouldReturn1Day() {
+    void getLeaveRequestDailyPeriodNumberOfDays_shouldReturn1Day() {
         LocalDateTime date1 = LocalDate.now().atTime(LocalTime.of(8,0));
         LocalDateTime date2 = LocalDate.now().atTime(LocalTime.of(16,0));
         LeaveRequestPeriod leaveRequestPeriod = new LeaveRequestDailyPeriod(date1, date2);
