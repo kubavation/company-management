@@ -16,6 +16,6 @@ public class LeaveRequestFactory {
             return new HourlyLeaveRequest(type, new LeaveRequestHourlyPeriod(from, to), applicant);
         }
 
-        return new DailyLeaveRequest(type, new LeaveRequestDailyPeriod(from, to), applicant);
+        return new DailyLeaveRequest(type, new LeaveRequestDailyPeriod(from.toLocalDate(), to.toLocalDate()), applicant);
     }
 }
