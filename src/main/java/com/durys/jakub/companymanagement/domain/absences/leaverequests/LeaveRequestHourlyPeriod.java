@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.commons.domain.ValueObject;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidLeaveRequestPeriodException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -17,5 +18,14 @@ public class LeaveRequestHourlyPeriod extends LeaveRequestPeriod {
     @Override
     public BigDecimal quantity() {
         return BigDecimal.valueOf(ChronoUnit.HOURS.between(from, to));
+    }
+
+    @Override
+    protected void validatePeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
+
+        if (!dateTo.isAfter(dateFrom)) {
+            throw new InvalidLeaveRequestPeriodException();
+        }
+        
     }
 }
