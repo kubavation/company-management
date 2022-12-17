@@ -5,7 +5,7 @@ import com.durys.jakub.companymanagement.commons.domain.ValueObject;
 @ValueObject
 public class EmployeePersonalData {
     private final FirstName firstName;
-    private LastName lastName;
+    private final LastName lastName;
     private final Gender gender;
 
     public EmployeePersonalData(FirstName firstName, LastName lastName, Gender gender) {

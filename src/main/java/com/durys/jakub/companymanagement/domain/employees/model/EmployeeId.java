@@ -9,6 +9,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @EqualsAndHashCode
 public class EmployeeId implements Serializable {
+
     protected final UUID id;
 
     public static EmployeeId from(UUID id) {
