@@ -26,6 +26,6 @@ public class LeaveRequestHourlyPeriod extends LeaveRequestPeriod {
         if (!dateTo.isAfter(dateFrom)) {
             throw new InvalidLeaveRequestPeriodException();
         }
-        
+
     }
 }

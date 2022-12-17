@@ -21,4 +21,12 @@ public class LeaveRequestDailyPeriod extends LeaveRequestPeriod {
     public BigDecimal quantity() {
         return BigDecimal.valueOf(ChronoUnit.DAYS.between(from, to) + 1);
     }
+
+    @Override
+    protected void validatePeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
+
+        if (dateTo.isBefore(dateFrom)) {
+            throw new InvalidLeaveRequestPeriodException();
+        }
+    }
 }
