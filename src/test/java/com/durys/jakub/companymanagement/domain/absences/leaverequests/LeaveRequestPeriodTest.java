@@ -47,4 +47,12 @@ class LeaveRequestPeriodTest {
         assertEquals(BigDecimal.ONE, leaveRequestPeriod.quantity());
     }
 
+    @Test
+    void getLeaveRequestHourlyPeriodNumberOfHours_shouldReturn2Hour() {
+        LocalDateTime date1 = LocalDate.now().atTime(LocalTime.of(8,0));
+        LocalDateTime date2 = LocalDate.now().atTime(LocalTime.of(10,0));
+        LeaveRequestPeriod leaveRequestPeriod = new LeaveRequestHourlyPeriod(date1, date2);
+        assertEquals(BigDecimal.valueOf(2), leaveRequestPeriod.quantity());
+    }
+
 }
