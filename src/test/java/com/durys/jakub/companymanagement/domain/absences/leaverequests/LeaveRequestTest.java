@@ -1,6 +1,5 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidLeaveRequestPeriodException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.AcceptantId;
@@ -10,12 +9,11 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveR
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LeaveRequestAggregateTest {
+class LeaveRequestTest {
 
 
     @Test
