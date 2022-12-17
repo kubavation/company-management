@@ -9,6 +9,7 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveR
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -20,7 +21,7 @@ class LeaveRequestAggregateTest {
     @Test
     void submitLeaveRequest_shouldSubmitLeaveRequest() {
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()),  new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()),  new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         assertEquals(LeaveRequestStatus.SUBMITTED, leaveRequest.getStatus());
@@ -30,7 +31,7 @@ class LeaveRequestAggregateTest {
     @Test
     void deleteLeaveRequest_shouldMarkLeaveRequestAsDeleted() {
         LeaveRequest leaveRequest  = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         leaveRequest.markAsDeleted();
@@ -41,7 +42,7 @@ class LeaveRequestAggregateTest {
     @Test
     void deleteLeaveRequest_shouldThrowInvalidStatusForOperationException() {
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL,  new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL,  new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         leaveRequest.markAsRejected();
@@ -54,7 +55,7 @@ class LeaveRequestAggregateTest {
     void sendLeaveRequestToAcceptant_shouldSendToAcceptant() {
 
         LeaveRequest leaveRequest  = new DailyLeaveRequest(
-                LeaveRequestType.AL,  new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()),
+                LeaveRequestType.AL,  new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()),
                 new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
@@ -71,7 +72,7 @@ class LeaveRequestAggregateTest {
     void sendLeaveRequestToAcceptant_shouldThrowInvalidStatusForOperationException() {
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
                 );
 
         leaveRequest.markAsDeleted();
@@ -87,7 +88,7 @@ class LeaveRequestAggregateTest {
     void sendLeaveRequestToAcceptant_shouldThrowExceptionWhenAcceptantIsNull() {
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         assertThrows(RuntimeException.class, () -> leaveRequest.sendToAcceptant(null));
@@ -98,7 +99,7 @@ class LeaveRequestAggregateTest {
     void acceptLeaveRequest_shouldMarkLeaveRequestAsAccepted() {
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         leaveRequest.sendToAcceptant(new Acceptant(new AcceptantId(UUID.randomUUID())));
@@ -111,7 +112,7 @@ class LeaveRequestAggregateTest {
     void acceptLeaveRequest_shouldThrowInvalidStatusForOperationException() {
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         assertThrows(InvalidStatusForOperationException.class, leaveRequest::markAsAccepted);
@@ -122,7 +123,7 @@ class LeaveRequestAggregateTest {
     void rejectLeaveRequest_shouldMarkLeaveRequestAsRejected() {
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDateTime.now(), LocalDateTime.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         leaveRequest.markAsRejected();
@@ -134,7 +135,7 @@ class LeaveRequestAggregateTest {
     @Test
     void cancelLeaveRequest_shouldMarkLeaveRequestAsCanceled() {
 
-        LocalDateTime dateFrom = LocalDateTime.now().plusHours(1);
+        LocalDate dateFrom = LocalDate.now().plusDays(1);
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
                 LeaveRequestType.AL, new LeaveRequestDailyPeriod(dateFrom, dateFrom), new Applicant(new ApplicantId(UUID.randomUUID()))
@@ -148,7 +149,7 @@ class LeaveRequestAggregateTest {
     @Test
     void cancelLeaveRequest_shouldThrowInvalidStatusForOperationException() {
 
-        LocalDateTime dateFrom = LocalDateTime.now().plusHours(1);
+        LocalDate dateFrom = LocalDate.now().plusDays(1);
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
                 LeaveRequestType.AL, new LeaveRequestDailyPeriod(dateFrom, dateFrom), new Applicant(new ApplicantId(UUID.randomUUID()))
@@ -162,7 +163,7 @@ class LeaveRequestAggregateTest {
     @Test
     void cancelLeaveRequest_shouldThrowOperationUnavailableException() {
 
-        LocalDateTime dateFrom = LocalDateTime.now().minusHours(1);
+        LocalDate dateFrom = LocalDate.now().minusDays(1);
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
                 LeaveRequestType.AL, new LeaveRequestDailyPeriod(dateFrom, dateFrom), new Applicant(new ApplicantId(UUID.randomUUID()))
