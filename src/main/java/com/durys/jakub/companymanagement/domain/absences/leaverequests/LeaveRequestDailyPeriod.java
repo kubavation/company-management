@@ -5,7 +5,9 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
@@ -13,8 +15,8 @@ import java.util.Objects;
 public class LeaveRequestDailyPeriod extends LeaveRequestPeriod {
 
 
-    public LeaveRequestDailyPeriod(LocalDateTime dateFrom, LocalDateTime dateTo) {
-        super(dateFrom, dateTo);
+    public LeaveRequestDailyPeriod(LocalDate dateFrom, LocalDate dateTo) {
+        super(dateFrom.atStartOfDay(), dateTo.atStartOfDay());
     }
 
     @Override
