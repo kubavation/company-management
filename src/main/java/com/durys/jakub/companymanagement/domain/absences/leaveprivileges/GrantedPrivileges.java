@@ -12,8 +12,8 @@ import java.util.Objects;
 @Getter
 public class GrantedPrivileges {
 
-    private BigDecimal daysEntitled;
-    private BigDecimal hoursEntitled;
+    private final BigDecimal daysEntitled;
+    private final BigDecimal hoursEntitled;
 
     public GrantedPrivileges(BigDecimal days, BigDecimal hours) {
         this.daysEntitled = days;
