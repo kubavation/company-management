@@ -23,26 +23,26 @@ class LeaveRequestPeriodTest {
 
     @Test
     void createLeaveRequestPeriod_shouldThrowInvalidLeaveRequestPeriodException() {
-        LocalDateTime currentDate = LocalDateTime.now();
-        assertThrows(InvalidLeaveRequestPeriodException.class, () -> new LeaveRequestDailyPeriod(currentDate, currentDate.minusSeconds(1)));
+        LocalDate currentDate = LocalDate.now();
+        assertThrows(InvalidLeaveRequestPeriodException.class, () -> new LeaveRequestDailyPeriod(currentDate, currentDate.minusDays(1)));
     }
 
     @Test
     void createLeaveRequestPeriod_shouldThrowShouldThrowExceptionWhenDateFromIsNull() {
         assertThrows(RuntimeException.class,
-                () -> new LeaveRequestDailyPeriod(null, LocalDateTime.now()));
+                () -> new LeaveRequestDailyPeriod(null, LocalDate.now()));
     }
 
     @Test
     void createLeaveRequestPeriod_shouldThrowShouldThrowExceptionWhenDateToIsNull() {
         assertThrows(RuntimeException.class,
-                () -> new LeaveRequestDailyPeriod(LocalDateTime.now(), null));
+                () -> new LeaveRequestDailyPeriod(LocalDate.now(), null));
     }
 
     @Test
     void getLeaveRequestDailyPeriodNumberOfDays_shouldReturn1Day() {
-        LocalDateTime date1 = LocalDate.now().atTime(LocalTime.of(8,0));
-        LocalDateTime date2 = LocalDate.now().atTime(LocalTime.of(16,0));
+        LocalDate date1 = LocalDate.now();
+        LocalDate date2 = LocalDate.now();
         LeaveRequestPeriod leaveRequestPeriod = new LeaveRequestDailyPeriod(date1, date2);
         assertEquals(BigDecimal.ONE, leaveRequestPeriod.quantity());
     }
