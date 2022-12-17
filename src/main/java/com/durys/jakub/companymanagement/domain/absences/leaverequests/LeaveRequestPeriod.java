@@ -22,9 +22,7 @@ public abstract class LeaveRequestPeriod {
         Objects.requireNonNull(dateFrom, "Date from value not provided");
         Objects.requireNonNull(dateTo, "Date from value not provided");
 
-        if (dateTo.isBefore(dateFrom)) {
-            throw new InvalidLeaveRequestPeriodException();
-        }
+        validatePeriod(dateFrom, dateTo);
 
         this.from = dateFrom;
         this.to = dateTo;
@@ -33,5 +31,7 @@ public abstract class LeaveRequestPeriod {
     }
 
     protected abstract BigDecimal quantity();
+
+    protected abstract void validatePeriod(LocalDateTime dateFrom, LocalDateTime dateTo);
 
 }
