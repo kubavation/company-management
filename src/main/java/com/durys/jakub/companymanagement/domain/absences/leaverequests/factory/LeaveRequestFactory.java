@@ -13,9 +13,9 @@ public class LeaveRequestFactory {
     public static LeaveRequest create(LeaveRequestType type, Applicant applicant, LocalDateTime from, LocalDateTime to) {
 
         if (type.equals(LeaveRequestType.CL)) {
-            return new HourlyLeaveRequest(type, new LeaveRequestHourlyPeriod(from, to), applicant);
+            return new HourlyLeaveRequest(type, LeaveRequestHourlyPeriod.of(from, to), applicant);
         }
 
-        return new DailyLeaveRequest(type, new LeaveRequestDailyPeriod(from.toLocalDate(), to.toLocalDate()), applicant);
+        return new DailyLeaveRequest(type, LeaveRequestDailyPeriod.of(from.toLocalDate(), to.toLocalDate()), applicant);
     }
 }

@@ -29,7 +29,7 @@ class LeavePrivilegeTest {
         );
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(LeaveRequestType.AL,
-                new LeaveRequestDailyPeriod(from.plusDays(10), from.plusDays(20)), new Applicant(new ApplicantId(employeeId)));
+                LeaveRequestDailyPeriod.of(from.plusDays(10), from.plusDays(20)), new Applicant(new ApplicantId(employeeId)));
 
         assertDoesNotThrow(() -> leavePrivileges.checkCompatibility(leaveRequest));
     }
@@ -48,7 +48,7 @@ class LeavePrivilegeTest {
         );
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(LeaveRequestType.AL,
-                new LeaveRequestDailyPeriod(from.plusDays(10), from.plusDays(20)),
+                LeaveRequestDailyPeriod.of(from.plusDays(10), from.plusDays(20)),
                 new Applicant(new ApplicantId(employeeId)));
 
         assertThrows(RequestedDaysExceedLeavePrivilegesException.class, () -> leavePrivileges.checkCompatibility(leaveRequest));
@@ -70,7 +70,7 @@ class LeavePrivilegeTest {
         );
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(LeaveRequestType.AL,
-                new LeaveRequestDailyPeriod(from.plusDays(10), from.plusDays(20)),
+                LeaveRequestDailyPeriod.of(from.plusDays(10), from.plusDays(20)),
                 new Applicant(new ApplicantId(applicantId)));
 
         RuntimeException exception = assertThrows(RuntimeException.class, () -> leavePrivileges.checkCompatibility(leaveRequest));
@@ -92,7 +92,7 @@ class LeavePrivilegeTest {
         );
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(LeaveRequestType.CL,
-                new LeaveRequestDailyPeriod(from.plusDays(10), from.plusDays(20)),
+                LeaveRequestDailyPeriod.of(from.plusDays(10), from.plusDays(20)),
                 new Applicant(new ApplicantId(employeeId)));
 
         RuntimeException exception = assertThrows(RuntimeException.class, () -> leavePrivileges.checkCompatibility(leaveRequest));
