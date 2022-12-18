@@ -10,5 +10,6 @@ public class Contract {
 
     private final EmployeeId employeeId;
 
-    
+    private final ContractType contractType;
+
 }
