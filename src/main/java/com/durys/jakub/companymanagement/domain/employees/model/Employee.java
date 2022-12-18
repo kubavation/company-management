@@ -10,13 +10,17 @@ public class Employee implements Employable {
     private final EmployeeId employeeId;
     private final EmployeePersonalData employeePersonalData;
 
-    public Employee(EmployeePersonalData employeePersonalData) {
-        this.employeeId = new EmployeeId(UUID.randomUUID());
+    public Employee(EmployeeId employeeId, EmployeePersonalData employeePersonalData) {
+        this.employeeId = employeeId;
         this.employeePersonalData = employeePersonalData;
     }
 
     @Override
     public EmployeeId getId() {
         return employeeId;
+    }
+
+    public EmployeePersonalData personalData() {
+        return employeePersonalData;
     }
 }
