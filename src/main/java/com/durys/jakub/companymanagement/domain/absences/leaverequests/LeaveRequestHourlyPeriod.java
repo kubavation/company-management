@@ -13,7 +13,7 @@ import java.util.Objects;
 public class LeaveRequestHourlyPeriod extends LeaveRequestPeriod {
 
 
-    public static LeaveRequestHourlyPeriod from(LocalDateTime from, LocalDateTime to) {
+    public static LeaveRequestHourlyPeriod of(LocalDateTime from, LocalDateTime to) {
         Objects.requireNonNull(from, "Date from value not provided");
         Objects.requireNonNull(to, "Date from value not provided");
 

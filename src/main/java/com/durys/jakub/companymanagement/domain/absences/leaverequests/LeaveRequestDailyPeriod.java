@@ -17,7 +17,7 @@ import java.util.Objects;
 public class LeaveRequestDailyPeriod extends LeaveRequestPeriod {
 
 
-    public static LeaveRequestDailyPeriod from(LocalDate from, LocalDate to) {
+    public static LeaveRequestDailyPeriod of(LocalDate from, LocalDate to) {
         Objects.requireNonNull(from, "Date from value not provided");
         Objects.requireNonNull(to, "Date from value not provided");
 
