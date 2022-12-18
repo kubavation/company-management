@@ -18,19 +18,19 @@ class LeaveRequestPeriodTest {
     @Test
     void createLeaveRequestPeriod_shouldCreate() {
         LocalDate currentDate = LocalDate.now();
-        assertDoesNotThrow(() -> new LeaveRequestDailyPeriod(currentDate, currentDate));
+        assertDoesNotThrow(() -> LeaveRequestDailyPeriod.of(currentDate, currentDate));
     }
 
     @Test
     void createLeaveRequestPeriod_shouldThrowInvalidLeaveRequestPeriodException() {
         LocalDate currentDate = LocalDate.now();
-        assertThrows(InvalidLeaveRequestPeriodException.class, () -> new LeaveRequestDailyPeriod(currentDate, currentDate.minusDays(1)));
+        assertThrows(InvalidLeaveRequestPeriodException.class, () -> LeaveRequestDailyPeriod.of(currentDate, currentDate.minusDays(1)));
     }
 
     @Test
     void createLeaveRequestPeriod_shouldThrowShouldThrowExceptionWhenDateFromIsNull() {
         Exception exception = assertThrows(RuntimeException.class,
-                () -> new LeaveRequestDailyPeriod(null, LocalDate.now()));
+                () -> LeaveRequestDailyPeriod.of(null, LocalDate.now()));
 
         assertEquals("Date from value not provided", exception.getMessage());
     }
@@ -38,7 +38,7 @@ class LeaveRequestPeriodTest {
     @Test
     void createLeaveRequestPeriod_shouldThrowShouldThrowExceptionWhenDateToIsNull() {
         Exception exception = assertThrows(RuntimeException.class,
-                () -> new LeaveRequestDailyPeriod(LocalDate.now(), null));
+                () -> LeaveRequestDailyPeriod.of(LocalDate.now(), null));
 
         assertEquals("Date from value not provided", exception.getMessage());
     }
@@ -47,7 +47,7 @@ class LeaveRequestPeriodTest {
     void getLeaveRequestDailyPeriodNumberOfDays_shouldReturn1Day() {
         LocalDate date1 = LocalDate.now();
         LocalDate date2 = LocalDate.now();
-        LeaveRequestPeriod leaveRequestPeriod = new LeaveRequestDailyPeriod(date1, date2);
+        LeaveRequestPeriod leaveRequestPeriod = LeaveRequestDailyPeriod.of(date1, date2);
         assertEquals(BigDecimal.ONE, leaveRequestPeriod.quantity());
     }
 
@@ -55,7 +55,7 @@ class LeaveRequestPeriodTest {
     void getLeaveRequestHourlyPeriodNumberOfHours_shouldReturn2Hour() {
         LocalDateTime date1 = LocalDate.now().atTime(LocalTime.of(8,0));
         LocalDateTime date2 = LocalDate.now().atTime(LocalTime.of(10,0));
-        LeaveRequestPeriod leaveRequestPeriod = new LeaveRequestHourlyPeriod(date1, date2);
+        LeaveRequestPeriod leaveRequestPeriod = LeaveRequestHourlyPeriod.of(date1, date2);
         assertEquals(BigDecimal.valueOf(2), leaveRequestPeriod.quantity());
     }
 
