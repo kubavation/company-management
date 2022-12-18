@@ -12,4 +12,6 @@ public class Contract {
 
     private final ContractType contractType;
 
+    private final ContractNumber contractNumber;
+
 }
