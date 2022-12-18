@@ -10,9 +10,9 @@ import java.util.UUID;
 @EqualsAndHashCode
 public class EmployeeId implements Serializable {
 
-    protected final UUID id;
+    protected final UUID value;
 
-    public static EmployeeId from(UUID id) {
-        return new EmployeeId(id);
+    public static EmployeeId from(UUID value) {
+        return new EmployeeId(value);
     }
 }

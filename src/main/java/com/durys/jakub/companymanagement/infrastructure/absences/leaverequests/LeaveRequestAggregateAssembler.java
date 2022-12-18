@@ -2,7 +2,6 @@ package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.commons.AggregateAssembler;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
 import com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.out_adapters.LeaveRequestEntity;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +13,8 @@ public class LeaveRequestAggregateAssembler implements AggregateAssembler<LeaveR
         return LeaveRequestEntity.builder()
                 .id(aggregate.getRequestId().value())
                 .requestStatus(aggregate.getStatus())
-                .employeeId(aggregate.getApplicant().getApplicantId().getId())
-                .acceptingId(aggregate.getAcceptant().getAccptantId().getId())
+                .employeeId(aggregate.getApplicant().getApplicantId().getValue())
+                .acceptingId(aggregate.getAcceptant().getAccptantId().getValue())
                 .dateFrom(aggregate.getPeriod().getFrom())
                 .dateTo(aggregate.getPeriod().getTo())
                 .type(aggregate.getRequestType())
