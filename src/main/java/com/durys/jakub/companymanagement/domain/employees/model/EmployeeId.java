@@ -5,7 +5,6 @@ import lombok.*;
 import java.io.Serializable;
 import java.util.UUID;
 
-@Getter
 @RequiredArgsConstructor
 @EqualsAndHashCode
 public class EmployeeId implements Serializable {
@@ -14,5 +13,9 @@ public class EmployeeId implements Serializable {
 
     public static EmployeeId from(UUID value) {
         return new EmployeeId(value);
+    }
+
+    public UUID value() {
+        return value;
     }
 }
