@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.employees.model;
 
 import com.durys.jakub.companymanagement.commons.domain.Aggregate;
+import com.durys.jakub.companymanagement.domain.employees.model.vo.EmployeePersonalData;
 
 import java.util.UUID;
 
