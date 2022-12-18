@@ -19,7 +19,7 @@ class LeaveRequestTest {
     @Test
     void submitLeaveRequest_shouldSubmitLeaveRequest() {
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()),  new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, LeaveRequestDailyPeriod.of(LocalDate.now(), LocalDate.now()),  new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         assertEquals(LeaveRequestStatus.SUBMITTED, leaveRequest.getStatus());
@@ -29,7 +29,7 @@ class LeaveRequestTest {
     @Test
     void deleteLeaveRequest_shouldMarkLeaveRequestAsDeleted() {
         LeaveRequest leaveRequest  = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, LeaveRequestDailyPeriod.of(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         leaveRequest.markAsDeleted();
@@ -40,7 +40,7 @@ class LeaveRequestTest {
     @Test
     void deleteLeaveRequest_shouldThrowInvalidStatusForOperationException() {
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL,  new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, LeaveRequestDailyPeriod.of(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         leaveRequest.markAsRejected();
@@ -53,7 +53,7 @@ class LeaveRequestTest {
     void sendLeaveRequestToAcceptant_shouldSendToAcceptant() {
 
         LeaveRequest leaveRequest  = new DailyLeaveRequest(
-                LeaveRequestType.AL,  new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()),
+                LeaveRequestType.AL, LeaveRequestDailyPeriod.of(LocalDate.now(), LocalDate.now()),
                 new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
@@ -70,7 +70,7 @@ class LeaveRequestTest {
     void sendLeaveRequestToAcceptant_shouldThrowInvalidStatusForOperationException() {
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, LeaveRequestDailyPeriod.of(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
                 );
 
         leaveRequest.markAsDeleted();
@@ -86,7 +86,7 @@ class LeaveRequestTest {
     void sendLeaveRequestToAcceptant_shouldThrowExceptionWhenAcceptantIsNull() {
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, LeaveRequestDailyPeriod.of(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         assertThrows(RuntimeException.class, () -> leaveRequest.sendToAcceptant(null));
@@ -97,7 +97,7 @@ class LeaveRequestTest {
     void acceptLeaveRequest_shouldMarkLeaveRequestAsAccepted() {
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, LeaveRequestDailyPeriod.of(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         leaveRequest.sendToAcceptant(new Acceptant(new AcceptantId(UUID.randomUUID())));
@@ -110,7 +110,7 @@ class LeaveRequestTest {
     void acceptLeaveRequest_shouldThrowInvalidStatusForOperationException() {
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, LeaveRequestDailyPeriod.of(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         assertThrows(InvalidStatusForOperationException.class, leaveRequest::markAsAccepted);
@@ -121,7 +121,7 @@ class LeaveRequestTest {
     void rejectLeaveRequest_shouldMarkLeaveRequestAsRejected() {
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, LeaveRequestDailyPeriod.of(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         leaveRequest.markAsRejected();
@@ -136,7 +136,7 @@ class LeaveRequestTest {
         LocalDate dateFrom = LocalDate.now().plusDays(1);
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(dateFrom, dateFrom), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, LeaveRequestDailyPeriod.of(dateFrom, dateFrom), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         leaveRequest.markAsCancelled();
@@ -150,7 +150,7 @@ class LeaveRequestTest {
         LocalDate dateFrom = LocalDate.now().plusDays(1);
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(dateFrom, dateFrom), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, LeaveRequestDailyPeriod.of(dateFrom, dateFrom), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
         leaveRequest.markAsDeleted();
 
@@ -164,7 +164,7 @@ class LeaveRequestTest {
         LocalDate dateFrom = LocalDate.now().minusDays(1);
 
         LeaveRequest leaveRequest = new DailyLeaveRequest(
-                LeaveRequestType.AL, new LeaveRequestDailyPeriod(dateFrom, dateFrom), new Applicant(new ApplicantId(UUID.randomUUID()))
+                LeaveRequestType.AL, LeaveRequestDailyPeriod.of(dateFrom, dateFrom), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
         assertThrows(OperationUnavailableException.class, leaveRequest::markAsCancelled);;
