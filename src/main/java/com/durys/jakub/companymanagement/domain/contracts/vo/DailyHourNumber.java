@@ -12,4 +12,9 @@ class DailyHourNumber {
     public static DailyHourNumber of(int hours, int minutes) {
         return new DailyHourNumber(LocalTime.of(hours, minutes));
     }
+
+    public LocalTime value() {
+        return value;
+    }
+
 }
