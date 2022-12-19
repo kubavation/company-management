@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 @ValueObject
 public class Money {
     private final BigDecimal amount;
-
     public Money(BigDecimal amount) {
 
         if (BigDecimal.ZERO.compareTo(amount) <= 0) {
