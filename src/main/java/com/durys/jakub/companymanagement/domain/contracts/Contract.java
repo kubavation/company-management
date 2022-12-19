@@ -20,11 +20,9 @@ public class Contract {
 
     private List<ContractAnnex> annexes;
 
-    public Contract(ContractId contractId, EmployeeId employeeId,
-                    ContractType contractType, ContractNumber contractNumber, ContractData contractData) {
+    public Contract(ContractId contractId, EmployeeId employeeId, ContractNumber contractNumber, ContractData contractData) {
         this.contractId = contractId;
         this.employeeId = employeeId;
-        this.contractType = contractType;
         this.contractNumber = contractNumber;
         this.contractData = contractData;
         this.annexes = new ArrayList<>();
