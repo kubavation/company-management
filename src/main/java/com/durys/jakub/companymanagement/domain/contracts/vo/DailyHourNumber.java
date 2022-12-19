@@ -10,6 +10,11 @@ class DailyHourNumber {
     }
 
     public static DailyHourNumber of(int hours, int minutes) {
+
+        if (hours < 0 || minutes < 0) {
+            throw new IllegalArgumentException();
+        }
+
         return new DailyHourNumber(LocalTime.of(hours, minutes));
     }
 

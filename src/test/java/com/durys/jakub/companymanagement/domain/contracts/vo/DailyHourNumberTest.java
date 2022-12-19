@@ -17,11 +17,11 @@ class DailyHourNumberTest {
 
     @Test
     void createDailyHourNumber_shouldThrowIllegalArgumentException_WhenNumberOfHoursIsSmallerThan0() {
-        assertThrows(IllegalAccessException.class, () -> DailyHourNumber.of(-1,0));
+        assertThrows(IllegalArgumentException.class, () -> DailyHourNumber.of(-1,0));
     }
 
     @Test
     void createDailyHourNumber_shouldThrowIllegalArgumentException_WhenNumberOfMinutesIsSmallerThan0() {
-        assertThrows(IllegalAccessException.class, () -> DailyHourNumber.of(1,-1));
+        assertThrows(IllegalArgumentException.class, () -> DailyHourNumber.of(1,-1));
     }
 }
