@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.contracts.vo;
 
 import java.time.LocalTime;
+import java.time.temporal.TemporalAdjuster;
 
 class DailyHourNumber {
     private final LocalTime value;

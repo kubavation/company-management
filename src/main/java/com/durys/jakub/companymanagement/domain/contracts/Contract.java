@@ -31,4 +31,8 @@ public class Contract {
         this.contractData = contractData;
         this.annexes = new ArrayList<>();
     }
+
+    public void markWithAnnex(ContractAnnex annex) {
+        annexes.add(annex);
+    }
 }
