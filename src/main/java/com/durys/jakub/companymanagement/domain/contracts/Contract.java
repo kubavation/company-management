@@ -14,8 +14,6 @@ public class Contract {
 
     private final EmployeeId employeeId;
 
-    private final ContractType contractType;
-
     private final ContractNumber contractNumber;
 
     private final ContractData contractData;
