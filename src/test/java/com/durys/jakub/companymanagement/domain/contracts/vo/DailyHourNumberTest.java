@@ -15,4 +15,13 @@ class DailyHourNumberTest {
         assertEquals(LocalTime.of(8, 0), object.value());
     }
 
+    @Test
+    void createDailyHourNumber_shouldThrowIllegalArgumentException_WhenNumberOfHoursIsSmallerThan0() {
+        assertThrows(IllegalAccessException.class, () -> DailyHourNumber.of(-1,0));
+    }
+
+    @Test
+    void createDailyHourNumber_shouldThrowIllegalArgumentException_WhenNumberOfMinutesIsSmallerThan0() {
+        assertThrows(IllegalAccessException.class, () -> DailyHourNumber.of(1,-1));
+    }
 }
