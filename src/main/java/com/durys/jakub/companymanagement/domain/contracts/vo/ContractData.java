@@ -11,8 +11,11 @@ public class ContractData {
     private final Position position;
     private final Salary salary;
 
-    public ContractData(Position position, Salary salary) {
+    private final WorkingTime workingTime;
+
+    public ContractData(Position position, Salary salary, WorkingTime workingTime) {
         this.position = position;
         this.salary = salary;
+        this.workingTime = workingTime;
     }
 }
