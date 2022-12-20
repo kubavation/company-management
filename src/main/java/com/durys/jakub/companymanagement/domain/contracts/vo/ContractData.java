@@ -12,7 +12,6 @@ public class ContractData {
     private final Position position;
     private final Salary salary;
     private final WorkingTime workingTime;
-
     private final ContractType contractType;
 
     public ContractData(Position position, Salary salary, WorkingTime workingTime, ContractType contractType) {
