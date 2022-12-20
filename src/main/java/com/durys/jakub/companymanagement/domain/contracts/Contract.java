@@ -6,17 +6,18 @@ import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 public class Contract {
 
-    private final ContractId contractId;
+    private ContractId contractId;
 
-    private final EmployeeId employeeId;
+    private EmployeeId employeeId;
 
-    private final ContractNumber contractNumber;
+    private ContractNumber contractNumber;
 
-    private final ContractData contractData;
+    private ContractData contractData;
 
     private List<ContractAnnex> annexes;
 
@@ -28,7 +29,19 @@ public class Contract {
         this.annexes = new ArrayList<>();
     }
 
+    public void conclude(EmployeeId employeeId, ContractNumber contractNumber, ContractData contractData) {
+        this.contractId = new ContractId(UUID.randomUUID());
+        this.employeeId = employeeId;
+        this.contractData = contractData;
+        this.contractNumber = contractNumber;
+        this.annexes = new ArrayList<>();
+    }
+
     public void markWithAnnex(ContractAnnex annex) {
         annexes.add(annex);
+    }
+
+    void recalculateContractData() {
+        
     }
 }
