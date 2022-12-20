@@ -42,9 +42,26 @@ class ContractPeriodTest {
         LocalDate from = null;
         LocalDate to = LocalDate.of(2001, Month.JANUARY, 1);
 
-        Exception exception = assertThrows(RuntimeException.class, () -> new ContractPeriod(null, from, to));
+        Exception exception = assertThrows(RuntimeException.class, () -> new ContractPeriod(ContractPeriodType.FIXED_TERM, from, to));
 
         assertEquals("invalid date from param", exception.getMessage());
     }
-    
+
+    @Test
+    void createContractPeriod_shouldThrowException_whenDateToIsNotDefinedAndTypeRequiresDateTo() {
+
+        LocalDate from = LocalDate.of(2001, Month.JANUARY, 1);
+        LocalDate to = null;
+
+        assertThrows(ContractPeriodEndDateNotDefinedException.class, () -> new ContractPeriod(ContractPeriodType.FIXED_TERM, from, to));
+    }
+
+    @Test
+    void createContractPeriod_shouldThrowException_whenDateToIsDefinedAndTypeIsPermanent() {
+
+        LocalDate from = LocalDate.of(2001, Month.JANUARY, 1);
+        LocalDate to = LocalDate.of(2002, Month.JANUARY, 1);
+
+        assertThrows(ContractPeriodEndDateIncorectlyDefined.class, () -> new ContractPeriod(ContractPeriodType.PERMANENT, from, to));
+    }
 }
