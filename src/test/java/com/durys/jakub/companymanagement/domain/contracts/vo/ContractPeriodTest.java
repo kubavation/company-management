@@ -15,4 +15,15 @@ class ContractPeriodTest {
                 LocalDate.of(2000, Month.JANUARY, 1),
                 LocalDate.of(2001, Month.JANUARY, 1)));
     }
+
+    @Test
+    void createContractPeriod_shouldThrowException_whenPeriodTypeIsEmpty() {
+
+        LocalDate from = LocalDate.of(2000, Month.JANUARY, 1);
+        LocalDate to = LocalDate.of(2001, Month.JANUARY, 1);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> new ContractPeriod(null, from, to));
+
+        assertEquals("invalid period type param", exception.getMessage());
+    }
 }
