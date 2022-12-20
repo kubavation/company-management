@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.domain.contracts.vo;
 
+import com.durys.jakub.companymanagement.domain.contracts.exception.ContractPeriodEndDateIncorrectlyDefined;
 import com.durys.jakub.companymanagement.domain.contracts.exception.ContractPeriodEndDateNotDefinedException;
 import com.durys.jakub.companymanagement.domain.contracts.exception.InvalidContractPeriodException;
 import org.junit.jupiter.api.Test;
@@ -64,6 +65,6 @@ class ContractPeriodTest {
         LocalDate from = LocalDate.of(2001, Month.JANUARY, 1);
         LocalDate to = LocalDate.of(2002, Month.JANUARY, 1);
 
-        assertThrows(ContractPeriodEndDateIncorectlyDefined.class, () -> new ContractPeriod(ContractPeriodType.PERMANENT, from, to));
+        assertThrows(ContractPeriodEndDateIncorrectlyDefined.class, () -> new ContractPeriod(ContractPeriodType.PERMANENT, from, to));
     }
 }
