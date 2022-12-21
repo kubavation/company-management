@@ -29,7 +29,15 @@ public class Contract {
         this.annexes = new ArrayList<>();
     }
 
-    public void markWithAnnex(ContractAnnex annex) {
-        annexes.add(annex);
+    public Contract(EmployeeId employeeId, ContractNumber contractNumber, ContractData contractData) {
+        this.contractId = new ContractId(UUID.randomUUID());
+        this.employeeId = employeeId;
+        this.contractNumber = contractNumber;
+        this.contractData = contractData;
+        this.annexes = new ArrayList<>();
+    }
+
+    public void markWithAnnex(ContractData contractData) {
+        annexes.add(new ContractAnnex());
     }
 }
