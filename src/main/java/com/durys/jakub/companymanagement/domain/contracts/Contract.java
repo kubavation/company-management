@@ -32,8 +32,4 @@ public class Contract {
     public void markWithAnnex(ContractAnnex annex) {
         annexes.add(annex);
     }
-
-    void recalculateContractData() {
-
-    }
 }
