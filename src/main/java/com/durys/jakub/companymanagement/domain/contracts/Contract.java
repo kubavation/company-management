@@ -38,6 +38,6 @@ public class Contract {
     }
 
     public void markWithAnnex(ContractData contractData) {
-        annexes.add(new ContractAnnex());
+        annexes.add(new ContractAnnex(contractData, contractId));
     }
 }
