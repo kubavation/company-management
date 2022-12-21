@@ -11,13 +11,13 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Contract {
 
-    private ContractId contractId;
+    private final ContractId contractId;
 
-    private EmployeeId employeeId;
+    private final EmployeeId employeeId;
 
-    private ContractNumber contractNumber;
+    private final ContractNumber contractNumber;
 
-    private ContractData contractData;
+    private final ContractData contractData;
 
     private List<ContractAnnex> annexes;
 
@@ -29,19 +29,7 @@ public class Contract {
         this.annexes = new ArrayList<>();
     }
 
-    public void conclude(EmployeeId employeeId, ContractNumber contractNumber, ContractData contractData) {
-        this.contractId = new ContractId(UUID.randomUUID());
-        this.employeeId = employeeId;
-        this.contractData = contractData;
-        this.contractNumber = contractNumber;
-        this.annexes = new ArrayList<>();
-    }
-
     public void markWithAnnex(ContractAnnex annex) {
         annexes.add(annex);
-    }
-
-    void recalculateContractData() {
-        
     }
 }
