@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-public class LeaveRequestController {
+class LeaveRequestController {
 
     private final LeaveRequestsApplicationService leaveRequestsApplicationService;
 
