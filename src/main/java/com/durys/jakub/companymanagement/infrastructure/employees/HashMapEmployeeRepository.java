@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.infrastructure.employees.out_adapters;
+package com.durys.jakub.companymanagement.infrastructure.employees;
 
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
