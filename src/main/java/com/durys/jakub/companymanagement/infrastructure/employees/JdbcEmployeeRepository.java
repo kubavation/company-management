@@ -7,6 +7,8 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeReposito
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 public class JdbcEmployeeRepository implements EmployeeRepository {
 
@@ -20,5 +22,10 @@ public class JdbcEmployeeRepository implements EmployeeRepository {
     @Override
     public void save(Employee employee) {
 
+    }
+
+    @Override
+    public UUID nextId() {
+        return UUID.randomUUID();
     }
 }

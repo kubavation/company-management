@@ -6,18 +6,29 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 public class HashMapEmployeeRepository implements EmployeeRepository {
 
-    private static HashMap<EmployeeId, Employable> DB = new HashMap<>();
+    private static final HashMap<EmployeeId, Employable> DB = new HashMap<>();
 
     @Override
     public <T extends Employable> T load(EmployeeId employeeId) {
+
+        if (!DB.containsKey(employeeId)) {
+            return null;
+        }
+
         return (T) DB.get(employeeId);
     }
 
     @Override
     public void save(Employee employee) {
+        DB.put(employee.getId(), employee);
+    }
 
+    @Override
+    public UUID nextId() {
+        return UUID.randomUUID();
     }
 }

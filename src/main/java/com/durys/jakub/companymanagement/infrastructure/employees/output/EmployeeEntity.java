@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.infrastructure.employees.out_adapters;
+package com.durys.jakub.companymanagement.infrastructure.employees.output;
 
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
@@ -34,5 +34,6 @@ public class EmployeeEntity {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
+        this.status = Status.ACTIVE;
     }
 }
