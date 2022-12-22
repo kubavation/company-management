@@ -34,5 +34,6 @@ public class EmployeeEntity {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
+        this.status = Status.ACTIVE;
     }
 }
