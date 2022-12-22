@@ -1,9 +1,7 @@
-package com.durys.jakub.companymanagement.employee.model.entity;
+package com.durys.jakub.companymanagement.infrastructure.employees.out_adapters;
 
-import com.durys.jakub.companymanagement.organisation_structure.model.entity.OrganisationStructure;
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
-import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,31 +12,27 @@ import javax.persistence.*;
 @Table(name = "CM_EMPLOYEE")
 @Entity
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class Employee implements CmEntity<Long> {
+public class EmployeeEntity {
 
     @Id
     private Long id;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
-
     @Column(name = "LAST_NAME")
     private String lastName;
+    private String gender;
 
     @Convert(converter = StatusConverter.class)
     private Status status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organisation_id")
-    private OrganisationStructure organisationStructure;
-
-
-    public Employee(Long id, String firstName, String lastName) {
+    public EmployeeEntity(Long id, String firstName, String lastName, String gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.gender = gender;
     }
 }

@@ -9,6 +9,6 @@ class EmployeesConfiguration {
 
     @Bean
     EmployeeRepository employeeRepository() {
-        return new JpaEmployeeRepository();
+        return new HashMapEmployeeRepository();
     }
 }

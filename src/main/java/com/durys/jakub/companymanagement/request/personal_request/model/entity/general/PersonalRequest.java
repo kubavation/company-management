@@ -1,6 +1,5 @@
 package com.durys.jakub.companymanagement.request.personal_request.model.entity.general;
 
-import com.durys.jakub.companymanagement.employee.model.entity.Employee;
 import com.durys.jakub.companymanagement.request.personal_request.model.entity.dict.PersonalRequestType;
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
@@ -28,7 +27,7 @@ public class PersonalRequest implements CmEntity<Long> {
 
     @ManyToOne
     @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "ID")
-    private Employee employee;
+    private Object employee;
 
     @ManyToOne
     @JoinColumn(name = "REQUEST_TYPE_ID", referencedColumnName = "ID")

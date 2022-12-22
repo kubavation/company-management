@@ -2,7 +2,6 @@ package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestStatus;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
-import com.durys.jakub.companymanagement.request.leave_request.model.converter.LeaveRequestTypeConverter;
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
 import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
@@ -29,8 +28,7 @@ public class LeaveRequestEntity {
     @Enumerated(EnumType.STRING)
     private LeaveRequestStatus requestStatus;
 
-    @Convert(converter = LeaveRequestTypeConverter.class)
-    private LeaveRequestType type;
+    private String type;
 
     @Column(name = "DATE_FROM")
     private LocalDateTime dateFrom;
