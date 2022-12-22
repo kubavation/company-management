@@ -9,15 +9,20 @@ import java.util.HashMap;
 
 public class HashMapEmployeeRepository implements EmployeeRepository {
 
-    private static HashMap<EmployeeId, Employable> DB = new HashMap<>();
+    private static final HashMap<EmployeeId, Employable> DB = new HashMap<>();
 
     @Override
     public <T extends Employable> T load(EmployeeId employeeId) {
+
+        if (!DB.containsKey(employeeId)) {
+            return null;
+        }
+
         return (T) DB.get(employeeId);
     }
 
     @Override
     public void save(Employee employee) {
-
+        DB.put(employee.getId(), employee);
     }
 }
