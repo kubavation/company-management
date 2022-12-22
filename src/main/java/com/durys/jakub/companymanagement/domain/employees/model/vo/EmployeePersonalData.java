@@ -14,4 +14,10 @@ public class EmployeePersonalData {
         this.gender = gender;
     }
 
+    public EmployeePersonalData(String firstName, String lastName, String gender) {
+        this.firstName = new FirstName(firstName);
+        this.lastName = new LastName(lastName);
+        this.gender = Gender.valueOf(gender);
+    }
+
 }
