@@ -27,7 +27,7 @@ public class PersonalRequest implements CmEntity<Long> {
 
     @ManyToOne
     @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "ID")
-    private Object employee;
+    private PersonalRequestType employee;
 
     @ManyToOne
     @JoinColumn(name = "REQUEST_TYPE_ID", referencedColumnName = "ID")
