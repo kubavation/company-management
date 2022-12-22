@@ -6,6 +6,7 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 public class HashMapEmployeeRepository implements EmployeeRepository {
 
@@ -24,5 +25,10 @@ public class HashMapEmployeeRepository implements EmployeeRepository {
     @Override
     public void save(Employee employee) {
         DB.put(employee.getId(), employee);
+    }
+
+    @Override
+    public UUID nextId() {
+        return UUID.randomUUID();
     }
 }

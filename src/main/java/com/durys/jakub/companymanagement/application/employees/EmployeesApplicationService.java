@@ -14,7 +14,7 @@ public class EmployeesApplicationService {
     private final EmployeeRepository employeeRepository;
 
     public void employ(String firstName, String lastName, String gender) {
-        Employee employee = new Employee(new EmployeeId(UUID.randomUUID()), new EmployeePersonalData(firstName, lastName, gender));
+        Employee employee = new Employee(new EmployeeId(employeeRepository.nextId()), new EmployeePersonalData(firstName, lastName, gender));
         employeeRepository.save(employee);
     }
 
