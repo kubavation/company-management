@@ -25,7 +25,6 @@ public class EmployeeEntity {
     private String firstName;
     @Column(name = "LAST_NAME")
     private String lastName;
-
     private String gender;
 
     @Convert(converter = StatusConverter.class)
