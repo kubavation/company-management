@@ -17,7 +17,7 @@ public class LeaveRequestAggregateAssembler implements AggregateAssembler<LeaveR
                 .acceptingId(aggregate.getAcceptant().getAccptantId().value())
                 .dateFrom(aggregate.getPeriod().getFrom())
                 .dateTo(aggregate.getPeriod().getTo())
-                .type(aggregate.getRequestType())
+                //.type(aggregate.getRequestType())
                 .build();
     }
 

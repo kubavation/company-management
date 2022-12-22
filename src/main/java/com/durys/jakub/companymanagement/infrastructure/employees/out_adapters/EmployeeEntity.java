@@ -1,6 +1,5 @@
 package com.durys.jakub.companymanagement.infrastructure.employees.out_adapters;
 
-import com.durys.jakub.companymanagement.organisation_structure.model.entity.OrganisationStructure;
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
 import com.durys.jakub.companymanagement.shared.enums.Status;
 import lombok.AllArgsConstructor;
