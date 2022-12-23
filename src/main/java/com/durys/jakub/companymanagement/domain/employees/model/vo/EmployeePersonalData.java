@@ -1,8 +1,11 @@
 package com.durys.jakub.companymanagement.domain.employees.model.vo;
 
 import com.durys.jakub.companymanagement.commons.domain.ValueObject;
+import lombok.AccessLevel;
+import lombok.Getter;
 
 @ValueObject
+@Getter(AccessLevel.PUBLIC)
 public class EmployeePersonalData {
     private final FirstName firstName;
     private final LastName lastName;
