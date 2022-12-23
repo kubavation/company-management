@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
-class EmployeesConfiguration {
+public class EmployeesConfiguration {
 
     @Bean
-    EmployeeRepository mapEmployeeRepository() {
+    public EmployeeRepository hashMapEmployeeRepository() {
         return new HashMapEmployeeRepository();
     }
 
@@ -22,7 +22,7 @@ class EmployeesConfiguration {
     }
 
     @Bean
-    EmployeesApplicationService employeesApplicationService(EmployeeRepository employeeRepository) {
+    public EmployeesApplicationService employeesApplicationService(EmployeeRepository employeeRepository) {
         return new EmployeesApplicationService(employeeRepository);
     }
 }
