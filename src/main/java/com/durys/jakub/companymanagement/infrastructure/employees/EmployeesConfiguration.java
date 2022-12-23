@@ -4,13 +4,21 @@ import com.durys.jakub.companymanagement.application.employees.EmployeesApplicat
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 class EmployeesConfiguration {
 
     @Bean
-    EmployeeRepository employeeRepository() {
+    @Primary
+    EmployeeRepository mapEmployeeRepository() {
         return new HashMapEmployeeRepository();
+    }
+
+    @Bean
+    EmployeeRepository jdbcEmployeeRepository(JdbcTemplate jdbcTemplate) {
+        return new JdbcEmployeeRepository(jdbcTemplate);
     }
 
     @Bean
