@@ -6,7 +6,7 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeReposito
 import com.durys.jakub.companymanagement.domain.employees.model.vo.EmployeePersonalData;
 import lombok.RequiredArgsConstructor;
 
-import java.util.UUID;
+
 
 @RequiredArgsConstructor
 public class EmployeesApplicationService {
