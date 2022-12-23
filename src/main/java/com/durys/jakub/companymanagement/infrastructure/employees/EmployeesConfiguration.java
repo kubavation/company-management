@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class EmployeesConfiguration {
 
     @Bean
-    public EmployeeRepository mapEmployeeRepository() {
+    public EmployeeRepository hashMapEmployeeRepository() {
         return new HashMapEmployeeRepository();
     }
 
