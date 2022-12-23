@@ -23,4 +23,8 @@ public class Employee implements Employable {
     public EmployeePersonalData personalData() {
         return employeePersonalData;
     }
+
+    public String name() {
+        return String.format("%s %s", employeePersonalData.getFirstName(),employeePersonalData.getFirstName());
+    }
 }
