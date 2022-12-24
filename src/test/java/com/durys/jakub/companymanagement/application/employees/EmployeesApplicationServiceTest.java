@@ -23,7 +23,7 @@ class EmployeesApplicationServiceTest {
 
     private final EmployeeRepository employeeRepository = employeesConfiguration.hashMapEmployeeRepository();
 
-    
+
     private final EmployeesApplicationService employeesApplicationService = employeesConfiguration.employeesApplicationService(employeeRepository);
 
 
