@@ -1,9 +1,11 @@
 package com.durys.jakub.companymanagement.application.employees;
 
+import com.durys.jakub.companymanagement.commons.IdentityProvider;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
 import com.durys.jakub.companymanagement.infrastructure.employees.EmployeesConfiguration;
+import com.durys.jakub.companymanagement.infrastructure.shared.IdentityProviderConfiguration;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -23,8 +25,9 @@ class EmployeesApplicationServiceTest {
 
     private final EmployeeRepository employeeRepository = employeesConfiguration.hashMapEmployeeRepository();
 
+    private final IdentityProvider identityProvider = new IdentityProviderConfiguration().identityProvider();
 
-    private final EmployeesApplicationService employeesApplicationService = employeesConfiguration.employeesApplicationService(employeeRepository);
+    private final EmployeesApplicationService employeesApplicationService = employeesConfiguration.employeesApplicationService(employeeRepository, identityProvider);
 
 
     @Test
@@ -32,7 +35,6 @@ class EmployeesApplicationServiceTest {
 
         final UUID nextId = UUID.randomUUID();
 
-        when(employeeRepository.nextId()).thenReturn(nextId);
 
         employeesApplicationService.employ("Dave", "James", "MAN");
 
