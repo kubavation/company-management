@@ -24,8 +24,4 @@ public class JdbcEmployeeRepository implements EmployeeRepository {
 
     }
 
-    @Override
-    public UUID nextId() {
-        return UUID.randomUUID();
-    }
 }

@@ -26,9 +26,4 @@ public class HashMapEmployeeRepository implements EmployeeRepository {
     public void save(Employee employee) {
         DB.put(employee.getId(), employee);
     }
-
-    @Override
-    public UUID nextId() {
-        return UUID.randomUUID();
-    }
 }
