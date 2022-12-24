@@ -11,12 +11,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class EmployeesConfiguration {
 
     @Bean
+    @Primary
     public EmployeeRepository hashMapEmployeeRepository() {
         return new HashMapEmployeeRepository();
     }
 
     @Bean
-    @Primary
     EmployeeRepository jdbcEmployeeRepository(JdbcTemplate jdbcTemplate) {
         return new JdbcEmployeeRepository(jdbcTemplate);
     }
