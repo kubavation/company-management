@@ -4,7 +4,7 @@ import com.durys.jakub.companymanagement.commons.IdentityProvider;
 
 import java.util.UUID;
 
-class UUIDIdentityProvider implements IdentityProvider {
+public class UUIDIdentityProvider implements IdentityProvider {
 
     @Override
     public UUID nextId() {
