@@ -31,8 +31,6 @@ class EmployeesApplicationServiceTest {
 
         final UUID nextId = UUID.randomUUID();
 
-        when(identityProvider.nextId()).thenReturn(nextId);
-
 
         employeesApplicationService.employ("Dave", "James", "MAN");
 
