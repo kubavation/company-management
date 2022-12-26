@@ -1,7 +1,7 @@
 package com.durys.jakub.companymanagement.dictionary.service;
 
-import com.durys.jakub.companymanagement.configuration.repository.ConfigurationValueRepository;
-import com.durys.jakub.companymanagement.configuration.service.ConfigurationValueService;
+import com.durys.jakub.companymanagement.crud.configuration.repository.ConfigurationValueRepository;
+import com.durys.jakub.companymanagement.crud.configuration.service.ConfigurationValueService;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
