@@ -33,7 +33,7 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
 
     private void prepareHandlers() {
         log.info("start - prepare command handlers");
-        
+
         Map<String, CommandHandler> handlerBeans = configurableListableBeanFactory.getBeansOfType(CommandHandler.class);
         handlerBeans.entrySet()
                 .stream()
