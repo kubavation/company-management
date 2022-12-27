@@ -1,6 +1,6 @@
-package com.durys.jakub.companymanagement.application.leaverequests.commands.handlers;
+package com.durys.jakub.companymanagement.application.absences.leaverequests.commands.handlers;
 
-import com.durys.jakub.companymanagement.application.leaverequests.commands.SubmitLeaveRequestCommand;
+import com.durys.jakub.companymanagement.application.absences.leaverequests.commands.SubmitLeaveRequestCommand;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 

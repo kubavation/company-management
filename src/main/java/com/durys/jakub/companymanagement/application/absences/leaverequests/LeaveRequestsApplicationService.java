@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.application.leaverequests;
+package com.durys.jakub.companymanagement.application.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.factory.LeaveRequestFactory;
