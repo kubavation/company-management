@@ -37,10 +37,7 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
         Map<String, CommandHandler> handlerBeans = configurableListableBeanFactory.getBeansOfType(CommandHandler.class);
         handlerBeans.entrySet()
                 .stream()
-                .forEach(entry -> {
-                    Class<? extends Command> commandType = handlerCommandType(entry.getValue().getClass());
-                    handlers.put(commandType, entry.getKey());
-                });
+                .forEach(entry -> handlers.put(handlerCommandType(entry.getValue().getClass()), entry.getKey()));
     }
 
 
@@ -49,7 +46,7 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
         Type[] handlerInterfaces = handlerClass.getGenericInterfaces();
 
         for (Type type: handlerInterfaces) {
-            if (type instanceof CommandHandler<?>) {
+            if (type instanceof CommandHandler) {
                 return (Class<? extends Command>) ((ParameterizedType) type).getActualTypeArguments()[0].getClass();
             }
         }
