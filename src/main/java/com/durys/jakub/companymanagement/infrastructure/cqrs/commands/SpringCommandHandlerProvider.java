@@ -15,7 +15,7 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
 
     private final ConfigurableListableBeanFactory configurableListableBeanFactory;
 
-    private final Map<Class<?>, String> handlers = new HashMap<>();
+    private final Map<Class<? extends Command>, String> handlers = new HashMap<>();
 
     public SpringCommandHandlerProvider(ConfigurableListableBeanFactory configurableListableBeanFactory) {
         this.configurableListableBeanFactory = configurableListableBeanFactory;
@@ -23,8 +23,8 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
     }
 
     @Override
-    public <T extends Command> CommandHandler<T> getCommandHandler(T command) {
-        return commandHandlerOf(command.getClass());
+    public <T extends Command> CommandHandler<T> getCommandHandler(Class<T> command) {
+        return commandHandlerOf(command);
     }
 
 
@@ -33,26 +33,26 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
         handlerBeans.entrySet()
                 .stream()
                 .forEach(entry -> {
-                    Class<?> commandType = handlerCommandType(entry.getValue().getClass());
+                    Class<? extends Command> commandType = handlerCommandType(entry.getValue().getClass());
                     handlers.put(commandType, entry.getKey());
                 });
     }
 
 
-    private Class<?> handlerCommandType(Class<? extends CommandHandler> handlerClass) {
+    private Class<? extends Command> handlerCommandType(Class<? extends CommandHandler> handlerClass) {
 
         Type[] handlerInterfaces = handlerClass.getGenericInterfaces();
 
         for (Type type: handlerInterfaces) {
             if (type instanceof CommandHandler<?>) {
-                return ((ParameterizedType) type).getActualTypeArguments()[0].getClass();
+                return (Class<? extends Command>) ((ParameterizedType) type).getActualTypeArguments()[0].getClass();
             }
         }
 
         return null;
     }
 
-    private CommandHandler<?> commandHandlerOf(Class<?> commandType) {
+    private <T extends Command> CommandHandler<T> commandHandlerOf(Class<T> commandType) {
         return configurableListableBeanFactory.getBean(handlers.get(commandType), CommandHandler.class);
     }
 
