@@ -24,7 +24,7 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
 
     @Override
     public <T extends Command> CommandHandler<T> getCommandHandler(T command) {
-        return null;
+        return commandHandlerOf(command.getClass());
     }
 
 
@@ -50,6 +50,10 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
         }
 
         return null;
+    }
+
+    private CommandHandler<?> commandHandlerOf(Class<?> commandType) {
+        return configurableListableBeanFactory.getBean(handlers.get(commandType), CommandHandler.class);
     }
 
 }
