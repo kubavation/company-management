@@ -34,8 +34,8 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
     private void prepareHandlers() {
         log.info("start - prepare command handlers");
 
-        Map<String, CommandHandler> handlerBeans = configurableListableBeanFactory.getBeansOfType(CommandHandler.class);
-        handlerBeans.entrySet()
+        configurableListableBeanFactory.getBeansOfType(CommandHandler.class)
+                .entrySet()
                 .stream()
                 .forEach(entry -> handlers.put(handlerCommandType(entry.getValue().getClass()), entry.getKey()));
     }
