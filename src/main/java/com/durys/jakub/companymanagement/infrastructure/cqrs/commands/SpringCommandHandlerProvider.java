@@ -26,7 +26,7 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
 
     @Override
     public <T extends Command> CommandHandler<T> getCommandHandlerFor(T command) {
-        log.info("searching for commandHandler | command = {}", command.getClass().getName());
+        log.info("searching for commandHandler | command = {}", command.getClass().getSimpleName());
         return commandHandlerOf((Class<T>)command.getClass());
     }
 
