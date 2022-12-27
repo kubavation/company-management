@@ -25,22 +25,19 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
     }
 
     @Override
-    public <T extends Command> CommandHandler<T> getCommandHandler(Class<T> command) {
-        log.info("searching for commandHandler | command = {}", command.getName());
-        return commandHandlerOf(command);
+    public <T extends Command> CommandHandler<T> getCommandHandlerFor(T command) {
+        log.info("searching for commandHandler | command = {}", command.getClass().getName());
+        return commandHandlerOf((Class<T>)command.getClass());
     }
 
 
     private void prepareHandlers() {
         log.info("start - prepare command handlers");
-        
-        Map<String, CommandHandler> handlerBeans = configurableListableBeanFactory.getBeansOfType(CommandHandler.class);
-        handlerBeans.entrySet()
+
+        configurableListableBeanFactory.getBeansOfType(CommandHandler.class)
+                .entrySet()
                 .stream()
-                .forEach(entry -> {
-                    Class<? extends Command> commandType = handlerCommandType(entry.getValue().getClass());
-                    handlers.put(commandType, entry.getKey());
-                });
+                .forEach(entry -> handlers.put(handlerCommandType(entry.getValue().getClass()), entry.getKey()));
     }
 
 
@@ -49,7 +46,7 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
         Type[] handlerInterfaces = handlerClass.getGenericInterfaces();
 
         for (Type type: handlerInterfaces) {
-            if (type instanceof CommandHandler<?>) {
+            if (type instanceof CommandHandler) {
                 return (Class<? extends Command>) ((ParameterizedType) type).getActualTypeArguments()[0].getClass();
             }
         }
