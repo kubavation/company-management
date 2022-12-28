@@ -25,7 +25,7 @@ public class GrantLeaveRequestPrivilegesCommandHandler implements CommandHandler
 
         Employee employee = employeeRepository.load(EmployeeId.from(command.getEmployeeId()));
 
-        LeavePrivilege leavePrivilege = new LeavePrivilege(LeaveRequestType.valueOf(command.getLeaveType()), employee.getId(),
+        LeavePrivilege leavePrivilege = new LeavePrivilege(LeaveRequestType.valueOf(command.getLeaveType())
                 new LeavePrivilegesPeriod(command.getFrom(), command.getTo()),
                 new GrantedPrivileges(command.getDaysEntitled(), command.getHoursEntitled()));
 
