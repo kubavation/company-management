@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
@@ -30,8 +31,9 @@ public class LeaveEntitlementEmployee implements Employable {
         this.leavePrivileges = Collections.emptyList();
     }
 
-    void grant(LeavePrivilege leavePrivilege) {
-
+    void grant(LeaveRequestType leaveRequestType, LeavePrivilegesPeriod period, GrantedPrivileges privileges) {
+        LeavePrivilege leavePrivilege = new LeavePrivilege(leaveRequestType, period, privileges);
+        leavePrivileges.add(leavePrivilege);
     }
 
     @Override
