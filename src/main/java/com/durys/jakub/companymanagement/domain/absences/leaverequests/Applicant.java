@@ -1,7 +1,7 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 
-import com.durys.jakub.companymanagement.commons.domain.Entity;
+import com.durys.jakub.companymanagement.commons.domain.DomainEntity;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilege;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.LeavePrivilegesNotGrantedException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
@@ -13,7 +13,7 @@ import lombok.Getter;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
+@DomainEntity
 @Getter
 public class Applicant implements Employable {
     private final ApplicantId applicantId;
