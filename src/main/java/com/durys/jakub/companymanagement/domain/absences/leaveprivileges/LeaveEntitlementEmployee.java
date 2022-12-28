@@ -31,7 +31,7 @@ public class LeaveEntitlementEmployee implements Employable {
         this.leavePrivileges = Collections.emptyList();
     }
 
-    void grant(LeaveRequestType leaveRequestType, LeavePrivilegesPeriod period, GrantedPrivileges privileges) {
+    public void grantWith(LeaveRequestType leaveRequestType, LeavePrivilegesPeriod period, GrantedPrivileges privileges) {
         LeavePrivilege leavePrivilege = new LeavePrivilege(leaveRequestType, period, privileges);
         leavePrivileges.add(leavePrivilege);
     }
