@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.application.leaverequests.commands;
+package com.durys.jakub.companymanagement.application.absences.leaverequests.commands;
 
 import com.durys.jakub.companymanagement.cqrs.commands.Command;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;

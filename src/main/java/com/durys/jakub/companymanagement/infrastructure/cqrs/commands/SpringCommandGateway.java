@@ -8,7 +8,6 @@ public class SpringCommandGateway implements CommandGateway {
 
     private final CommandHandlerProvider commandHandlerProvider;
 
-
     public SpringCommandGateway(CommandHandlerProvider commandHandlerProvider) {
         this.commandHandlerProvider = commandHandlerProvider;
     }

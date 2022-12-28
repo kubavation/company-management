@@ -1,6 +1,6 @@
 package com.durys.jakub.companymanagement.absences.leaverequests.domain;
 
-import com.durys.jakub.companymanagement.application.leaverequests.LeaveRequestsApplicationService;
+import com.durys.jakub.companymanagement.application.absences.leaverequests.LeaveRequestsApplicationService;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
