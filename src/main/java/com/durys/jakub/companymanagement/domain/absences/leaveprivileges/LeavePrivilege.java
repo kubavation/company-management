@@ -15,13 +15,11 @@ import java.math.BigDecimal;
 public class LeavePrivilege {
 
     private final LeaveRequestType leaveRequestType;
-    private final EmployeeId employeeId;
     private final LeavePrivilegesPeriod period;
     private final GrantedPrivileges grantedPrivileges;
 
-    public LeavePrivilege(LeaveRequestType leaveRequestType, EmployeeId employeeId, LeavePrivilegesPeriod period, GrantedPrivileges grantedPrivileges) {
+    public LeavePrivilege(LeaveRequestType leaveRequestType, LeavePrivilegesPeriod period, GrantedPrivileges grantedPrivileges) {
         this.leaveRequestType = leaveRequestType;
-        this.employeeId = employeeId;
         this.period = period;
         this.grantedPrivileges = grantedPrivileges;
     }
