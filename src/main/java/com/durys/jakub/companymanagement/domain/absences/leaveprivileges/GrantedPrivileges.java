@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @ValueObject
 @Getter
-class GrantedPrivileges {
+public class GrantedPrivileges {
 
     private final BigDecimal daysEntitled;
     private final BigDecimal hoursEntitled;
