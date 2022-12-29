@@ -12,13 +12,13 @@ import java.math.BigDecimal;
 
 
 @Getter
-class LeavePrivilege {
+public class LeavePrivilege {
 
     private final LeaveRequestType leaveRequestType;
     private final LeavePrivilegesPeriod period;
     private final GrantedPrivileges grantedPrivileges;
 
-    public LeavePrivilege(LeaveRequestType leaveRequestType, LeavePrivilegesPeriod period, GrantedPrivileges grantedPrivileges) {
+    LeavePrivilege(LeaveRequestType leaveRequestType, LeavePrivilegesPeriod period, GrantedPrivileges grantedPrivileges) {
         this.leaveRequestType = leaveRequestType;
         this.period = period;
         this.grantedPrivileges = grantedPrivileges;
