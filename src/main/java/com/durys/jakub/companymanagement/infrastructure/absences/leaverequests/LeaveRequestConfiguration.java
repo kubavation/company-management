@@ -1,6 +1,5 @@
 package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests;
 
-import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
 import com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.out_adapters.HashMapLeaveRequestRepository;
 import com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.out_adapters.JpaLeaveRequestRepository;
@@ -23,8 +22,4 @@ class LeaveRequestConfiguration {
         return new HashMapLeaveRequestRepository();
     }
 
-    @Bean
-    LeavePrivilegesRepository leavePrivilegesRepository(NamedParameterJdbcTemplate jdbcTemplate) {
-        return new JpaLeavePrivilegesRepository(jdbcTemplate);
-    }
 }
