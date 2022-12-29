@@ -1,7 +1,6 @@
 package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilege;
-import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilegesRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.AllArgsConstructor;
