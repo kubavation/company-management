@@ -2,13 +2,9 @@ package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
 import com.durys.jakub.companymanagement.commons.domain.ValueObject;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.exception.InvalidLeavePrivilegesPeriodException;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidLeaveRequestPeriodException;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 @ValueObject
@@ -31,7 +27,7 @@ public class LeavePrivilegesPeriod {
         this.dateTo = dateTo;
     }
 
-    public boolean isInPeriod(LocalDate date) {
+    public boolean includes(LocalDate date) {
 
         if (Objects.isNull(date)) {
             return false;
