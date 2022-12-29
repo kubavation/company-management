@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 
 
 @Getter
-public class LeavePrivilege {
+class LeavePrivilege {
 
     private final LeaveRequestType leaveRequestType;
     private final LeavePrivilegesPeriod period;

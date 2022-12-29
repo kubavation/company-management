@@ -13,7 +13,7 @@ import java.util.Objects;
 
 @ValueObject
 @Getter
-public class LeavePrivilegesPeriod {
+class LeavePrivilegesPeriod {
 
     private final LocalDate dateFrom;
     private final LocalDate dateTo;
