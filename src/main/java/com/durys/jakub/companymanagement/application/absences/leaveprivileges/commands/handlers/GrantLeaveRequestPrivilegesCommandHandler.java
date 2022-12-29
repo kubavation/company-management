@@ -7,6 +7,8 @@ import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.*;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.RequiredArgsConstructor;
 
+import javax.transaction.Transactional;
+
 @CommandHandling
 @RequiredArgsConstructor
 public class GrantLeaveRequestPrivilegesCommandHandler implements CommandHandler<GrantLeaveRequestPrivilegesCommand> {
@@ -14,6 +16,7 @@ public class GrantLeaveRequestPrivilegesCommandHandler implements CommandHandler
     private final LeaveEntitlementEmployeeRepository leaveEntitlementEmployeeRepository;
 
     @Override
+    @Transactional
     public void handle(GrantLeaveRequestPrivilegesCommand command) {
 
         LeaveEntitlementEmployee employee = leaveEntitlementEmployeeRepository.load(EmployeeId.from(command.getEmployeeId()));
