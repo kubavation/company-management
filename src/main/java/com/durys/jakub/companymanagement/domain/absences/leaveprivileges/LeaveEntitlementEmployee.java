@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @AggregateRoot
 public class LeaveEntitlementEmployee implements Employable {
@@ -43,14 +44,22 @@ public class LeaveEntitlementEmployee implements Employable {
     }
 
 
-
-    private LeavePrivilege getPrivilege(LeaveType leaveType, LocalDate statusAs) {
-        return leavePrivileges
-                .stream()
+    private Optional<LeavePrivilege> getPrivilege(LeaveType leaveType, LocalDate statusAs) {
+        return leavePrivileges.stream()
                 .filter(privilege -> privilege.getLeaveType().equals(leaveType))
                 .filter(privilege -> privilege.isEntitledAtDay(statusAs))
-                .findFirst()
-                .orElse(null);
+                .findFirst();
+    }
+
+    private boolean leavePrivilegeAlreadyEntitled(LeaveType leaveType, LeavePrivilegesPeriod period) {
+
+       if (getPrivilege(leaveType, period.getDateFrom()).isPresent()) {
+           throw new RuntimeException();
+       }
+
+        if (getPrivilege(leaveType, period.getDateTo()).isPresent()) {
+            throw new RuntimeException();
+        }
     }
 
 }
