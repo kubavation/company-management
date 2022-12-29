@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.exception.LeavePrivilegeIsAlreadyEntitledException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
@@ -39,6 +40,11 @@ public class LeaveEntitlementEmployee implements Employable {
     }
 
     public void grantWith(LeaveType leaveType, LeavePrivilegesPeriod period, GrantedPrivileges privileges) {
+
+        if (leavePrivilegeAlreadyEntitled(leaveType, period)) {
+            throw new LeavePrivilegeIsAlreadyEntitledException();
+        }
+
         LeavePrivilege leavePrivilege = new LeavePrivilege(leaveType, period, privileges);
         leavePrivileges.add(leavePrivilege);
     }
@@ -53,13 +59,8 @@ public class LeaveEntitlementEmployee implements Employable {
 
     private boolean leavePrivilegeAlreadyEntitled(LeaveType leaveType, LeavePrivilegesPeriod period) {
 
-       if (getPrivilege(leaveType, period.getDateFrom()).isPresent()) {
-           throw new RuntimeException();
-       }
-
-        if (getPrivilege(leaveType, period.getDateTo()).isPresent()) {
-            throw new RuntimeException();
-        }
+       return getPrivilege(leaveType, period.getDateFrom()).isPresent()
+               || getPrivilege(leaveType, period.getDateTo()).isPresent();
     }
 
 }
