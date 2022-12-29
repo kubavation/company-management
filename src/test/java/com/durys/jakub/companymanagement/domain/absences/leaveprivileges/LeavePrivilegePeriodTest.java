@@ -1,7 +1,6 @@
 package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.exception.InvalidLeavePrivilegesPeriodException;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestPeriod;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -24,13 +23,13 @@ class LeavePrivilegePeriodTest {
     @Test
     void isInPrevileges_shouldReturnTrueWhenDateIsInPeriod() {
         LeavePrivilegesPeriod period =  new LeavePrivilegesPeriod(LocalDate.now().minusDays(1), LocalDate.now().plusDays(1));
-        assertTrue(period.isInPeriod(LocalDate.now()));
+        assertTrue(period.includes(LocalDate.now()));
     }
 
     @Test
     void isInPrevileges_shouldReturnFaleWhenDateIsNotInPeriod() {
         LeavePrivilegesPeriod period =  new LeavePrivilegesPeriod(LocalDate.now().minusDays(1), LocalDate.now().plusDays(1));
-        assertFalse(period.isInPeriod(LocalDate.now().minusDays(2)));
+        assertFalse(period.includes(LocalDate.now().minusDays(2)));
     }
 
 }
