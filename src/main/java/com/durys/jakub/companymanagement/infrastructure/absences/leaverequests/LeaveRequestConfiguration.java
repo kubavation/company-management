@@ -22,8 +22,4 @@ class LeaveRequestConfiguration {
         return new HashMapLeaveRequestRepository();
     }
 
-    @Bean
-    LeavePrivilegesRepository leavePrivilegesRepository(NamedParameterJdbcTemplate jdbcTemplate) {
-        return new JpaLeavePrivilegesRepository(jdbcTemplate);
-    }
 }
