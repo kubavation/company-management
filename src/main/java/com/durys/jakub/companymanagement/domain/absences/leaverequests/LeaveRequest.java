@@ -19,24 +19,19 @@ public abstract class LeaveRequest {
 
     private final LeaveRequestId requestId;
     private final LeaveRequestType requestType;
-
-    private LeaveRequestPeriod period;
-
-    private final Applicant applicant;
+    private final LeaveRequestPeriod period;
+    private LeaveRequestStatus status;
 
     private final ApplicantId applicantId;
 
-    private final AcceptantId acceptantId;
-
-    private Acceptant acceptant;
-    private LeaveRequestStatus status;
+    private AcceptantId acceptantId;
 
 
-    protected LeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period, Applicant applicant) {
+    protected LeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period, ApplicantId applicantId) {
         this.requestId = new LeaveRequestId(UUID.randomUUID());
         this.requestType = requestType;
         this.period = period;
-        this.applicant = applicant;
+        this.applicantId = applicantId;
         this.status = LeaveRequestStatus.SUBMITTED;
     }
 
@@ -58,7 +53,7 @@ public abstract class LeaveRequest {
         }
 
         this.status = LeaveRequestStatus.SEND_FOR_ACCEPTATION;
-        this.acceptant = acceptant;
+        this.acceptantId = acceptant.getAccptantId();
     }
 
     void markAsCancelled() {

@@ -31,7 +31,7 @@ public class SubmitLeaveRequestCommandHandler implements CommandHandler<SubmitLe
         LeaveEntitlementEmployee leavePrivileges = leaveEntitlementEmployeeRepository.load(new EmployeeId(command.getApplicantId()));
         LeaveRequest leaveRequest = LeaveRequestFactory.create(
                 command.getType(), applicant, command.getFrom(), command.getTo());
-        
+
         if (leavePrivileges.compliant(leaveRequest)) {
             //todo
         }
