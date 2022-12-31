@@ -62,7 +62,7 @@ class LeaveRequestTest {
         Acceptant acceptant = new Acceptant(new AcceptantId(UUID.randomUUID()));
 
 
-        leaveRequest.sendToAcceptant(acceptant);
+        leaveRequest.setAcceptant(acceptant);
 
         assertEquals(LeaveRequestStatus.SEND_FOR_ACCEPTATION, leaveRequest.getStatus());
         assertEquals(acceptant.getAccptantId(), leaveRequest.getAcceptant().getAccptantId());
@@ -79,7 +79,7 @@ class LeaveRequestTest {
         Acceptant acceptant = new Acceptant(new AcceptantId(UUID.randomUUID()));
 
 
-        assertThrows(InvalidStatusForOperationException.class, () -> leaveRequest.sendToAcceptant(acceptant));
+        assertThrows(InvalidStatusForOperationException.class, () -> leaveRequest.setAcceptant(acceptant));
     }
 
 
@@ -91,7 +91,7 @@ class LeaveRequestTest {
                 LeaveRequestType.AL, LeaveRequestDailyPeriod.of(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
-        assertThrows(RuntimeException.class, () -> leaveRequest.sendToAcceptant(null));
+        assertThrows(RuntimeException.class, () -> leaveRequest.setAcceptant(null));
     }
 
 
@@ -102,7 +102,7 @@ class LeaveRequestTest {
                 LeaveRequestType.AL, LeaveRequestDailyPeriod.of(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
-        leaveRequest.sendToAcceptant(new Acceptant(new AcceptantId(UUID.randomUUID())));
+        leaveRequest.setAcceptant(new Acceptant(new AcceptantId(UUID.randomUUID())));
         leaveRequest.markAsAccepted();
 
         assertEquals(LeaveRequestStatus.ACCEPTED, leaveRequest.getStatus());
