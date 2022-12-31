@@ -2,9 +2,8 @@ package com.durys.jakub.companymanagement.domain.absences.leaverequests.applican
 
 
 import com.durys.jakub.companymanagement.commons.domain.DomainEntity;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.Acceptant;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.Acceptant;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.ApplicantId;
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.Getter;
