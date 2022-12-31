@@ -2,7 +2,7 @@
 //
 //import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 //import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.RequestedDaysExceedLeavePrivilegesException;
-//import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
+//import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.ApplicantId;
 //import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 //import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 //import org.junit.jupiter.api.Test;
