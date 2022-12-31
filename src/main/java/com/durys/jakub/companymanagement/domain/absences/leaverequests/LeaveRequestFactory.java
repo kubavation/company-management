@@ -1,7 +1,7 @@
-package com.durys.jakub.companymanagement.domain.absences.leaverequests.factory;
+package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.Applicant;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.Applicant;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -13,6 +13,7 @@ public class LeaveRequestFactory {
 
     public static LeaveRequest create(LeaveRequestType type, Applicant applicant, LocalDateTime from, LocalDateTime to) {
 
+        //todo explore domain
         if (type.equals(LeaveRequestType.CL)) {
             return new HourlyLeaveRequest(type, LeaveRequestHourlyPeriod.of(from, to), applicant);
         }

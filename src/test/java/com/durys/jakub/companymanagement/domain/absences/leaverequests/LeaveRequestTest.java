@@ -1,11 +1,9 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.Acceptant;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.Applicant;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.AcceptantId;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.ApplicantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestStatus;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import org.junit.jupiter.api.Test;
@@ -62,7 +60,7 @@ class LeaveRequestTest {
         Acceptant acceptant = new Acceptant(new AcceptantId(UUID.randomUUID()));
 
 
-        leaveRequest.sendToAcceptant(acceptant);
+        leaveRequest.setAcceptant(acceptant);
 
         assertEquals(LeaveRequestStatus.SEND_FOR_ACCEPTATION, leaveRequest.getStatus());
         assertEquals(acceptant.getAccptantId(), leaveRequest.getAcceptant().getAccptantId());
@@ -79,7 +77,7 @@ class LeaveRequestTest {
         Acceptant acceptant = new Acceptant(new AcceptantId(UUID.randomUUID()));
 
 
-        assertThrows(InvalidStatusForOperationException.class, () -> leaveRequest.sendToAcceptant(acceptant));
+        assertThrows(InvalidStatusForOperationException.class, () -> leaveRequest.setAcceptant(acceptant));
     }
 
 
@@ -91,7 +89,7 @@ class LeaveRequestTest {
                 LeaveRequestType.AL, LeaveRequestDailyPeriod.of(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
-        assertThrows(RuntimeException.class, () -> leaveRequest.sendToAcceptant(null));
+        assertThrows(RuntimeException.class, () -> leaveRequest.setAcceptant(null));
     }
 
 
@@ -102,7 +100,7 @@ class LeaveRequestTest {
                 LeaveRequestType.AL, LeaveRequestDailyPeriod.of(LocalDate.now(), LocalDate.now()), new Applicant(new ApplicantId(UUID.randomUUID()))
         );
 
-        leaveRequest.sendToAcceptant(new Acceptant(new AcceptantId(UUID.randomUUID())));
+        leaveRequest.setAcceptant(new Acceptant(new AcceptantId(UUID.randomUUID())));
         leaveRequest.markAsAccepted();
 
         assertEquals(LeaveRequestStatus.ACCEPTED, leaveRequest.getStatus());

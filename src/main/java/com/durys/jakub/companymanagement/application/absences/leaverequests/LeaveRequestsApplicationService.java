@@ -2,10 +2,10 @@ package com.durys.jakub.companymanagement.application.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.Acceptant;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.Applicant;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.factory.LeaveRequestFactory;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.Applicant;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestFactory;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.AcceptantId;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.ApplicantId;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.ApplicantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
@@ -29,7 +29,7 @@ public class LeaveRequestsApplicationService {
         Applicant applicant = employeeRepository.load(applicantId);
 
         LeaveRequest leaveRequest = LeaveRequestFactory.create(type, applicant, from, to); //todo przenies
-        applicant.submitLeaveRequest(leaveRequest);
+        applicant.submit(leaveRequest);
 
         leaveRequestRepository.save(leaveRequest);
     }

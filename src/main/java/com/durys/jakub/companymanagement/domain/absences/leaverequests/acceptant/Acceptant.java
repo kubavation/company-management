@@ -26,7 +26,7 @@ public class Acceptant implements Employable {
 
 
     @Override
-    public EmployeeId getId() {
+    public EmployeeId id() {
         return accptantId;
     }
 }

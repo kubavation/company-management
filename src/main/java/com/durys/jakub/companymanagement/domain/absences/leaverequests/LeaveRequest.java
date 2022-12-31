@@ -1,9 +1,8 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
+import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.Acceptant;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.AcceptantId;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.Applicant;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.ApplicantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
@@ -15,28 +14,24 @@ import java.util.UUID;
 
 
 @Getter
-public abstract class LeaveRequest {
+@AggregateRoot
+abstract class LeaveRequest {
 
     private final LeaveRequestId requestId;
     private final LeaveRequestType requestType;
-
-    private LeaveRequestPeriod period;
-
-    private final Applicant applicant;
+    private final LeaveRequestPeriod period;
+    private LeaveRequestStatus status;
 
     private final ApplicantId applicantId;
 
-    private final AcceptantId acceptantId;
-
-    private Acceptant acceptant;
-    private LeaveRequestStatus status;
+    private AcceptantId acceptantId;
 
 
-    protected LeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period, Applicant applicant) {
+    protected LeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period, ApplicantId applicantId) {
         this.requestId = new LeaveRequestId(UUID.randomUUID());
         this.requestType = requestType;
         this.period = period;
-        this.applicant = applicant;
+        this.applicantId = applicantId;
         this.status = LeaveRequestStatus.SUBMITTED;
     }
 
@@ -49,7 +44,7 @@ public abstract class LeaveRequest {
         this.status = LeaveRequestStatus.DELETED;
     }
 
-    void sendToAcceptant(Acceptant acceptant) {
+    void setAcceptant(Acceptant acceptant) {
 
         Objects.requireNonNull(acceptant, "You have to provide acceptant");
 
@@ -58,7 +53,7 @@ public abstract class LeaveRequest {
         }
 
         this.status = LeaveRequestStatus.SEND_FOR_ACCEPTATION;
-        this.acceptant = acceptant;
+        this.acceptantId = acceptant.getAccptantId();
     }
 
     void markAsCancelled() {
