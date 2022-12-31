@@ -2,9 +2,7 @@ package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestStatus;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -21,8 +19,14 @@ public abstract class LeaveRequest {
     private LeaveRequestPeriod period;
 
     private final Applicant applicant;
+
+    private final ApplicantId applicantId;
+
+    private final AcceptantId acceptantId;
+
     private Acceptant acceptant;
     private LeaveRequestStatus status;
+
 
     protected LeaveRequest(LeaveRequestType requestType, LeaveRequestPeriod period, Applicant applicant) {
         this.requestId = new LeaveRequestId(UUID.randomUUID());
