@@ -1,15 +1,14 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant;
 
 
-import com.durys.jakub.companymanagement.commons.domain.DomainEntity;
+import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.Acceptant;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.Getter;
 
-@DomainEntity
-@Getter
+@AggregateRoot
 public class Applicant implements Employable {
     private final ApplicantId applicantId;
 
@@ -39,7 +38,7 @@ public class Applicant implements Employable {
 
 
     @Override
-    public EmployeeId getId() {
+    public EmployeeId id() {
         return applicantId;
     }
 
