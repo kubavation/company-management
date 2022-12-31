@@ -2,7 +2,6 @@ package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.Acceptant;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.AcceptantId;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.ApplicantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
@@ -14,7 +13,7 @@ import java.util.UUID;
 
 
 @Getter
-public abstract class LeaveRequest {
+abstract class LeaveRequest {
 
     private final LeaveRequestId requestId;
     private final LeaveRequestType requestType;
