@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests.factory;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.Applicant;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

@@ -2,7 +2,7 @@ package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestId;
 import com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.LeaveRequestAggregateAssembler;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;

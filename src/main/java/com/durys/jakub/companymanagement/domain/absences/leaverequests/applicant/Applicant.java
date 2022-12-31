@@ -13,6 +13,8 @@ import lombok.Getter;
 public class Applicant implements Employable {
     private final ApplicantId applicantId;
 
+    //todo list of leavePrivileges
+
     public Applicant(ApplicantId applicantId) {
         this.applicantId = applicantId;
     }

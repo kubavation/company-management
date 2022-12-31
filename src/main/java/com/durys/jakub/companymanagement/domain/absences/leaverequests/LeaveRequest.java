@@ -1,5 +1,9 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.Acceptant;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.AcceptantId;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.Applicant;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.ApplicantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;

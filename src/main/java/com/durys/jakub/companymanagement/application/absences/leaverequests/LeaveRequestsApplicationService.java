@@ -1,10 +1,12 @@
 package com.durys.jakub.companymanagement.application.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.Acceptant;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.Applicant;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.factory.LeaveRequestFactory;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.AcceptantId;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.ApplicantId;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestId;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.AcceptantId;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.applicant.ApplicantId;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
