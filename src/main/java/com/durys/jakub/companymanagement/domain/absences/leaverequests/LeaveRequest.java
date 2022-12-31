@@ -81,4 +81,42 @@ abstract class LeaveRequest {
     void markAsRejected() {
         this.status = LeaveRequestStatus.REJECTED;
     }
+
+
+
+    public static class Builder {
+        private LeaveRequestId requestId;
+        private LeaveRequestType requestType;
+        private LeaveRequestPeriod period;
+        private LeaveRequestStatus status;
+
+        private AcceptantId acceptantId;
+        private ApplicantId applicantId;
+
+        public Builder of(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
+            return new Builder(requestId, requestType, period);
+        }
+
+        public Builder of(LeaveRequestType requestType, LeaveRequestPeriod period) {
+            return new Builder(null, requestType, period);
+        }
+
+        private Builder(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
+            this.requestId = requestId;
+            this.requestType = requestType;
+            this.period = period;
+        }
+
+        public Builder inStatus(LeaveRequestStatus status) {
+           this.status = status;
+           return this;
+        }
+
+        public Builder withAcceptant(AcceptantId acceptantId) {
+            this.acceptantId = acceptantId;
+            return this;
+        }
+
+    }
+
 }
