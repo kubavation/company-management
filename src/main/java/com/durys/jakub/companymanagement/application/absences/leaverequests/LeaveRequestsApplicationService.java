@@ -29,7 +29,7 @@ public class LeaveRequestsApplicationService {
         Applicant applicant = employeeRepository.load(applicantId);
 
         LeaveRequest leaveRequest = LeaveRequestFactory.create(type, applicant, from, to); //todo przenies
-        applicant.submitLeaveRequest(leaveRequest);
+        applicant.submit(leaveRequest);
 
         leaveRequestRepository.save(leaveRequest);
     }

@@ -6,7 +6,6 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import lombok.Getter;
 
 @AggregateRoot
 public class Applicant implements Employable {
@@ -18,18 +17,18 @@ public class Applicant implements Employable {
         this.applicantId = applicantId;
     }
 
-    public void submitLeaveRequest(LeaveRequest leaveRequest) {
+    public void submit(LeaveRequest leaveRequest) {
 
 //        LeavePrivilege privilege = getLeavePrivilege(leaveRequest.getRequestType(), leaveRequest.getPeriod().getTo().toLocalDate());
 //        privilege.checkCompatibility(leaveRequest);
     }
 
-    void cancel(LeaveRequest leaveRequest) {
+    public void cancel(LeaveRequest leaveRequest) {
         leaveRequest.markAsCancelled();
     }
 
-    void sendToAcceptant(LeaveRequest leaveRequest, Acceptant acceptant) {
-        leaveRequest.sendToAcceptant(acceptant);
+    public void sendToAcceptant(LeaveRequest leaveRequest, Acceptant acceptant) {
+        leaveRequest.(acceptant);
     }
 
     void delete(LeaveRequest leaveRequest) {

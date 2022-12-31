@@ -36,7 +36,7 @@ public class SubmitLeaveRequestCommandHandler implements CommandHandler<SubmitLe
             //todo
         }
 
-        applicant.submitLeaveRequest(leaveRequest);
+        applicant.submit(leaveRequest);
 
         leaveRequestRepository.save(leaveRequest);
     }
