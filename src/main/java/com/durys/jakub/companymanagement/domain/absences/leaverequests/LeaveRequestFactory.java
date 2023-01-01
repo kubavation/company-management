@@ -11,13 +11,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LeaveRequestFactory {
 
-    public static LeaveRequest create(LeaveRequestType type, Applicant applicant, LocalDateTime from, LocalDateTime to) {
+    public static LeaveRequest create(LeaveRequestId requestId, LeaveRequestType type, ApplicantId applicantId, LocalDateTime from, LocalDateTime to) {
 
         //todo explore domain
         if (type.equals(LeaveRequestType.CL)) {
-            return new HourlyLeaveRequest(type, LeaveRequestHourlyPeriod.of(from, to), applicant);
+            return new HourlyLeaveRequest(requestId, type, LeaveRequestHourlyPeriod.of(from, to), applicantId);
         }
 
-        return new DailyLeaveRequest(type, LeaveRequestDailyPeriod.of(from.toLocalDate(), to.toLocalDate()), applicant);
+        return new DailyLeaveRequest(requestId, type, LeaveRequestDailyPeriod.of(from.toLocalDate(), to.toLocalDate()), applicantId);
     }
 }
