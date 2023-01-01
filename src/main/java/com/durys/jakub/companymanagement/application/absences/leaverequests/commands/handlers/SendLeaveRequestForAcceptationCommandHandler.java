@@ -25,7 +25,7 @@ public class SendLeaveRequestForAcceptationCommandHandler implements CommandHand
 
         Acceptant acceptant = employeeRepository.load(new AcceptantId(command.getAcceptantId()));
 
-        leaveRequest.getApplicant().sendToAcceptant(leaveRequest, acceptant);
+        acceptant.accept(leaveRequest);
 
         leaveRequestRepository.save(leaveRequest);
     }
