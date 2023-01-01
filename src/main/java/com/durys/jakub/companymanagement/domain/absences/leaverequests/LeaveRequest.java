@@ -38,10 +38,9 @@ public abstract class LeaveRequest {
     }
 
 
-    LeaveRequest markAsSubmitted(WorkInProgress workInProgress) {
-        return workInProgress
-                .inStatus(LeaveRequestStatus.SUBMITTED)
-                .toInstance();
+    LeaveRequest markAsSubmitted() {
+        this.status = LeaveRequestStatus.SUBMITTED;
+        return this;
     }
 
     void markAsDeleted() {
@@ -125,8 +124,8 @@ public abstract class LeaveRequest {
             return this;
         }
 
-        LeaveRequest toInstance() {
-            return LeaveRequestFactory.create(this);
+        LeaveRequest submit() {
+            return LeaveRequestFactory.create(this).markAsSubmitted();
         }
     }
 
