@@ -8,12 +8,12 @@ public class HourlyLeaveRequest extends LeaveRequest {
         super(leaveRequestId, requestType, period, applicantId);
     }
 
-    public HourlyLeaveRequest(Builder builder) {
-        super(builder);
+    public HourlyLeaveRequest(WorkInProgress workInProgress) {
+        super(workInProgress);
     }
 
     @Override
-    LeaveRequest instance(LeaveRequest.Builder builder) {
-        return new HourlyLeaveRequest(builder);
+    LeaveRequest instance(WorkInProgress workInProgress) {
+        return new HourlyLeaveRequest(workInProgress);
     }
 }

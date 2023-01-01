@@ -7,12 +7,12 @@ public class DailyLeaveRequest extends LeaveRequest {
         super(leaveRequestId, requestType, period, applicantId);
     }
 
-    DailyLeaveRequest(Builder builder) {
-        super(builder);
+    DailyLeaveRequest(WorkInProgress workInProgress) {
+        super(workInProgress);
     }
 
     @Override
-    LeaveRequest instance(LeaveRequest.Builder builder) {
-        return new DailyLeaveRequest(builder);
+    LeaveRequest instance(WorkInProgress workInProgress) {
+        return new DailyLeaveRequest(workInProgress);
     }
 }

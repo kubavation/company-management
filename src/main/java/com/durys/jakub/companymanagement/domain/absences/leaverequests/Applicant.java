@@ -11,14 +11,14 @@ public class Applicant implements Employable {
 
     //todo list of leavePrivileges
 
+
     public Applicant(ApplicantId applicantId) {
         this.applicantId = applicantId;
     }
 
-    public void submit(LeaveRequest leaveRequest) {
 
-//        LeavePrivilege privilege = getLeavePrivilege(leaveRequest.getRequestType(), leaveRequest.getPeriod().getTo().toLocalDate());
-//        privilege.checkCompatibility(leaveRequest);
+    public LeaveRequest submit(LeaveRequest.WorkInProgress leaveRequest) {
+        return leaveRequest.instance().markAsSubmitted()
     }
 
     public void cancel(LeaveRequest leaveRequest) {

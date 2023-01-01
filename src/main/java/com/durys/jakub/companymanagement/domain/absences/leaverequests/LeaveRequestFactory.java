@@ -1,7 +1,5 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.Applicant;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -21,7 +19,7 @@ public class LeaveRequestFactory {
         return new DailyLeaveRequest(requestId, type, LeaveRequestDailyPeriod.of(from.toLocalDate(), to.toLocalDate()), applicantId);
     }
 
-    public static LeaveRequest create(LeaveRequest.Builder builder) {
-        return create(builder.getRequestId(), builder.getRequestType(), builder.getApplicantId(), builder.getPeriod().from, builder.getPeriod().to);
+    public static LeaveRequest create(LeaveRequest.WorkInProgress workInProgress) {
+        return create(workInProgress.getRequestId(), workInProgress.getRequestType(), workInProgress.getApplicantId(), workInProgress.getPeriod().from, workInProgress.getPeriod().to);
     }
 }

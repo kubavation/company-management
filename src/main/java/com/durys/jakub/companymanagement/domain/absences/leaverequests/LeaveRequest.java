@@ -31,17 +31,17 @@ public abstract class LeaveRequest {
         this.applicantId = applicantId;
     }
 
-    LeaveRequest(LeaveRequest.Builder builder) {
-        this(builder.requestId, builder.requestType, builder.period, builder.applicantId);
-        this.status = builder.status;
-        this.acceptantId = builder.acceptantId;
+    LeaveRequest(WorkInProgress workInProgress) {
+        this(workInProgress.requestId, workInProgress.requestType, workInProgress.period, workInProgress.applicantId);
+        this.status = workInProgress.status;
+        this.acceptantId = workInProgress.acceptantId;
     }
 
 
-    LeaveRequest markAsSubmitted(LeaveRequest.Builder builder) {
-        builder
-            .inStatus(LeaveRequestStatus.SUBMITTED);
-        return instance(builder);
+    LeaveRequest markAsSubmitted(WorkInProgress workInProgress) {
+        return workInProgress
+            .inStatus(LeaveRequestStatus.SUBMITTED)
+            .instance();
     }
 
     void markAsDeleted() {
@@ -91,9 +91,10 @@ public abstract class LeaveRequest {
         this.status = LeaveRequestStatus.REJECTED;
     }
 
-    abstract LeaveRequest instance(LeaveRequest.Builder builder);
+    abstract LeaveRequest instance(WorkInProgress workInProgress);
 
-    public static class Builder {
+    @Getter
+    public static class WorkInProgress {
         private LeaveRequestId requestId;
         private LeaveRequestType requestType;
         private LeaveRequestPeriod period;
@@ -102,28 +103,32 @@ public abstract class LeaveRequest {
         private AcceptantId acceptantId;
         private ApplicantId applicantId;
 
-        public Builder of(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
-            return new Builder(requestId, requestType, period);
+        public WorkInProgress of(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
+            return new WorkInProgress(requestId, requestType, period);
         }
 
-        public Builder of(LeaveRequestType requestType, LeaveRequestPeriod period) {
-            return new Builder(null, requestType, period);
+        public WorkInProgress of(LeaveRequestType requestType, LeaveRequestPeriod period) {
+            return new WorkInProgress(null, requestType, period);
         }
 
-        private Builder(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
+        private WorkInProgress(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
             this.requestId = requestId;
             this.requestType = requestType;
             this.period = period;
         }
 
-        public Builder inStatus(LeaveRequestStatus status) {
+        public WorkInProgress inStatus(LeaveRequestStatus status) {
            this.status = status;
            return this;
         }
 
-        public Builder withAcceptant(AcceptantId acceptantId) {
+        public WorkInProgress withAcceptant(AcceptantId acceptantId) {
             this.acceptantId = acceptantId;
             return this;
+        }
+
+        LeaveRequest instance() {
+            return LeaveRequestFactory.create(this);
         }
     }
 
