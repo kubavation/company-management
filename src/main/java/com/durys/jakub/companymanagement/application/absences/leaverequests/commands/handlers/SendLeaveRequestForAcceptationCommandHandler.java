@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @CommandHandling
 @RequiredArgsConstructor
-public class SendLeaveRequestForAcceptiationCommandHandler implements CommandHandler<SendLeaveRequestForAcceptationCommand> {
+public class SendLeaveRequestForAcceptationCommandHandler implements CommandHandler<SendLeaveRequestForAcceptationCommand> {
 
     private final LeaveRequestRepository leaveRequestRepository;
     private final EmployeeRepository employeeRepository;
