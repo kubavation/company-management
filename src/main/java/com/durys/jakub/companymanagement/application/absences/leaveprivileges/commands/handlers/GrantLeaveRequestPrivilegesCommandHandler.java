@@ -13,18 +13,18 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class GrantLeaveRequestPrivilegesCommandHandler implements CommandHandler<GrantLeaveRequestPrivilegesCommand> {
 
-    private final LeaveEntitlementEmployeeRepository leaveEntitlementEmployeeRepository;
+    private final LeaveEntitlementsRepository leaveEntitlementsRepository;
 
     @Override
     @Transactional
     public void handle(GrantLeaveRequestPrivilegesCommand command) {
 
-        LeaveEntitlementEmployee employee = leaveEntitlementEmployeeRepository.load(EmployeeId.from(command.getEmployeeId()));
+        LeaveEntitlements employee = leaveEntitlementsRepository.load(EmployeeId.from(command.getEmployeeId()));
 
         employee.grantWith(LeaveType.valueOf(command.getLeaveType()),
                 new LeavePrivilegesPeriod(command.getFrom(), command.getTo()),
                 new GrantedPrivileges(command.getDaysEntitled(), command.getHoursEntitled()));
 
-        leaveEntitlementEmployeeRepository.save(employee);
+        leaveEntitlementsRepository.save(employee);
     }
 }

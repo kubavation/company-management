@@ -5,7 +5,6 @@ import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.excepti
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import io.vavr.control.Either;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -14,7 +13,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @AggregateRoot
-public class LeaveEntitlementEmployee implements Employable {
+public class LeaveEntitlements implements Employable {
 
     private final EmployeeId employeeId;
     private List<LeavePrivilege> leavePrivileges;
@@ -24,7 +23,7 @@ public class LeaveEntitlementEmployee implements Employable {
         return employeeId;
     }
 
-    public LeaveEntitlementEmployee(EmployeeId employeeId, List<LeavePrivilege> leavePrivileges) {
+    public LeaveEntitlements(EmployeeId employeeId, List<LeavePrivilege> leavePrivileges) {
         this.employeeId = employeeId;
         this.leavePrivileges = leavePrivileges;
 
@@ -34,7 +33,7 @@ public class LeaveEntitlementEmployee implements Employable {
 
     }
 
-    public LeaveEntitlementEmployee(EmployeeId employeeId) {
+    public LeaveEntitlements(EmployeeId employeeId) {
         this.employeeId = employeeId;
         this.leavePrivileges = Collections.emptyList();
     }

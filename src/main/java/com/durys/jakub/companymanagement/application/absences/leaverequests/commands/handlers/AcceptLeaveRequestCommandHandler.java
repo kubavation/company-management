@@ -3,7 +3,7 @@ package com.durys.jakub.companymanagement.application.absences.leaverequests.com
 import com.durys.jakub.companymanagement.application.absences.leaverequests.commands.AcceptLeaveRequestCommand;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
-import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementEmployeeRepository;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementsRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 public class AcceptLeaveRequestCommandHandler implements CommandHandler<AcceptLeaveRequestCommand> {
 
     private final LeaveRequestRepository leaveRequestRepository;
-    private final LeaveEntitlementEmployeeRepository leaveEntitlementEmployeeRepository;
+    private final LeaveEntitlementsRepository leaveEntitlementsRepository;
     private final EmployeeRepository employeeRepository;
 
     @Override

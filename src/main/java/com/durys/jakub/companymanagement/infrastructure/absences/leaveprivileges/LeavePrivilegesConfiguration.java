@@ -1,7 +1,7 @@
 package com.durys.jakub.companymanagement.infrastructure.absences.leaveprivileges;
 
-import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementEmployeeRepository;
-import com.durys.jakub.companymanagement.infrastructure.absences.leaveprivileges.out_adapters.InMemoryLeaveEntitlementEmployeeRepository;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementsRepository;
+import com.durys.jakub.companymanagement.infrastructure.absences.leaveprivileges.out_adapters.InMemoryLeaveEntitlementsRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 public class LeavePrivilegesConfiguration {
 
     @Bean
-    LeaveEntitlementEmployeeRepository inMemory() {
-        return new InMemoryLeaveEntitlementEmployeeRepository();
+    LeaveEntitlementsRepository inMemory() {
+        return new InMemoryLeaveEntitlementsRepository();
     }
 
 }

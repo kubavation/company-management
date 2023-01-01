@@ -3,8 +3,8 @@ package com.durys.jakub.companymanagement.application.absences.leaverequests.com
 import com.durys.jakub.companymanagement.application.absences.leaverequests.commands.SubmitLeaveRequestCommand;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
-import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementEmployee;
-import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementEmployeeRepository;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlements;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementsRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.Applicant;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
@@ -20,7 +20,7 @@ import javax.transaction.Transactional;
 public class SubmitLeaveRequestCommandHandler implements CommandHandler<SubmitLeaveRequestCommand> {
 
     private final LeaveRequestRepository leaveRequestRepository;
-    private final LeaveEntitlementEmployeeRepository leaveEntitlementEmployeeRepository;
+    private final LeaveEntitlementsRepository leaveEntitlementsRepository;
 
     private final EmployeeRepository employeeRepository;
 
@@ -30,7 +30,7 @@ public class SubmitLeaveRequestCommandHandler implements CommandHandler<SubmitLe
 
         Applicant applicant = employeeRepository.load(new ApplicantId(command.getApplicantId()));
 
-        LeaveEntitlementEmployee leavePrivileges = leaveEntitlementEmployeeRepository.load(new EmployeeId(command.getApplicantId()));
+        LeaveEntitlements leavePrivileges = leaveEntitlementsRepository.load(new EmployeeId(command.getApplicantId()));
 
         LeaveRequest.WorkInProgress workInProgressLeaveRequest = LeaveRequest.WorkInProgress.of(command.getType(), command.getFrom(), command.getTo());
 
