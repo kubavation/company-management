@@ -10,17 +10,17 @@ import java.util.Objects;
 
 @ValueObject
 @Getter
-public class GrantedPrivileges {
+class GrantedPrivileges {
 
     private final BigDecimal daysEntitled;
     private final BigDecimal hoursEntitled;
 
-    public GrantedPrivileges(BigDecimal days, BigDecimal hours) {
+    GrantedPrivileges(BigDecimal days, BigDecimal hours) {
         this.daysEntitled = days;
         this.hoursEntitled = hours;
     }
 
-    public GrantedPrivileges(Integer days, Integer hours) {
+    GrantedPrivileges(Integer days, Integer hours) {
         this.daysEntitled = new BigDecimal(days);
         this.hoursEntitled = new BigDecimal(hours);
     }
