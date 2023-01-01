@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant;
+package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import java.util.UUID;

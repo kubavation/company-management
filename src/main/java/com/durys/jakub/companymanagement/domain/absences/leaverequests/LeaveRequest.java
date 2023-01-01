@@ -1,8 +1,6 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.Acceptant;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.AcceptantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
@@ -10,12 +8,11 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.UUID;
 
 
 @Getter
 @AggregateRoot
-abstract class LeaveRequest {
+public abstract class LeaveRequest {
 
     private final LeaveRequestId requestId;
     private final LeaveRequestType requestType;

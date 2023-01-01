@@ -2,7 +2,6 @@ package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.Acceptant;
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
@@ -17,8 +16,6 @@ public class Applicant implements Employable {
     }
 
     public void submit(LeaveRequest leaveRequest) {
-
-        leaveRequest
 
 //        LeavePrivilege privilege = getLeavePrivilege(leaveRequest.getRequestType(), leaveRequest.getPeriod().getTo().toLocalDate());
 //        privilege.checkCompatibility(leaveRequest);
