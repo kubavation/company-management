@@ -40,8 +40,8 @@ public abstract class LeaveRequest {
 
     LeaveRequest markAsSubmitted(WorkInProgress workInProgress) {
         return workInProgress
-            .inStatus(LeaveRequestStatus.SUBMITTED)
-            .instance();
+                .inStatus(LeaveRequestStatus.SUBMITTED)
+                .toInstance();
     }
 
     void markAsDeleted() {
@@ -91,8 +91,6 @@ public abstract class LeaveRequest {
         this.status = LeaveRequestStatus.REJECTED;
     }
 
-    abstract LeaveRequest instance(WorkInProgress workInProgress);
-
     @Getter
     public static class WorkInProgress {
         private LeaveRequestId requestId;
@@ -127,7 +125,7 @@ public abstract class LeaveRequest {
             return this;
         }
 
-        LeaveRequest instance() {
+        LeaveRequest toInstance() {
             return LeaveRequestFactory.create(this);
         }
     }

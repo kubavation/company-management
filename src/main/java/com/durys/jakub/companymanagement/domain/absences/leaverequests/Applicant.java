@@ -18,7 +18,7 @@ public class Applicant implements Employable {
 
 
     public LeaveRequest submit(LeaveRequest.WorkInProgress leaveRequest) {
-        return leaveRequest.instance().markAsSubmitted()
+        return leaveRequest.toInstance()
     }
 
     public void cancel(LeaveRequest leaveRequest) {
