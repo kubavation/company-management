@@ -6,4 +6,13 @@ public class DailyLeaveRequest extends LeaveRequest {
     public DailyLeaveRequest(LeaveRequestId leaveRequestId, LeaveRequestType requestType, LeaveRequestDailyPeriod period, ApplicantId applicantId) {
         super(leaveRequestId, requestType, period, applicantId);
     }
+
+    DailyLeaveRequest(Builder builder) {
+        super(builder);
+    }
+
+    @Override
+    LeaveRequest instance(LeaveRequest.Builder builder) {
+        return new DailyLeaveRequest(builder);
+    }
 }

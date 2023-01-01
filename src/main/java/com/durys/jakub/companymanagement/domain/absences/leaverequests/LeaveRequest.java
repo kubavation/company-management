@@ -32,13 +32,19 @@ abstract class LeaveRequest {
         this.requestType = requestType;
         this.period = period;
         this.applicantId = applicantId;
-        this.status = LeaveRequestStatus.SUBMITTED;
+    }
+
+    LeaveRequest(LeaveRequest.Builder builder) {
+        this(builder.requestId, builder.requestType, builder.period, builder.applicantId);
+        this.status = builder.status;
+        this.acceptantId = builder.acceptantId;
     }
 
 
-    void markAsSubmitted(LeaveRequest.Builder builder) {
+    LeaveRequest markAsSubmitted(LeaveRequest.Builder builder) {
         builder
-            .inStatus(LeaveRequestStatus.SUBMITTED)
+            .inStatus(LeaveRequestStatus.SUBMITTED);
+        return instance(builder);
     }
 
     void markAsDeleted() {
@@ -88,9 +94,7 @@ abstract class LeaveRequest {
         this.status = LeaveRequestStatus.REJECTED;
     }
 
-
-    abstract LeaveRequest instance();
-
+    abstract LeaveRequest instance(LeaveRequest.Builder builder);
 
     public static class Builder {
         private LeaveRequestId requestId;
@@ -124,12 +128,6 @@ abstract class LeaveRequest {
             this.acceptantId = acceptantId;
             return this;
         }
-
-
-        LeaveRequest instance() {
-            return new LeaveReq
-        }
-
     }
 
 }
