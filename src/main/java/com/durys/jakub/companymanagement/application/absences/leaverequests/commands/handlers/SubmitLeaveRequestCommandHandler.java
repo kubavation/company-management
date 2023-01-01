@@ -33,7 +33,7 @@ public class SubmitLeaveRequestCommandHandler implements CommandHandler<SubmitLe
                 command.getType(), applicant, command.getFrom(), command.getTo());
 
         if (leavePrivileges.compliant(leaveRequest)) {
-            //todo
+            //todo explore comain
         }
 
         applicant.submit(leaveRequest);

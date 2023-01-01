@@ -18,6 +18,8 @@ public class SendLeaveRequestForAcceptationCommandHandler implements CommandHand
     private final LeaveRequestRepository leaveRequestRepository;
     private final EmployeeRepository employeeRepository;
 
+    //todo acceptant repository / explore domain
+
     @Override
     public void handle(SendLeaveRequestForAcceptationCommand command) {
 
