@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @AggregateRoot
 @RequiredArgsConstructor
 public class Acceptant implements Employable {
-    private final AcceptantId accptantId;
+    private final AcceptantId acceptantId;
 
 
     public void accept(LeaveRequest leaveRequest) {
@@ -23,6 +23,6 @@ public class Acceptant implements Employable {
 
     @Override
     public EmployeeId employeeId() {
-        return accptantId;
+        return acceptantId;
     }
 }
