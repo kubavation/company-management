@@ -31,12 +31,6 @@ public abstract class LeaveRequest {
         this.applicantId = applicantId;
     }
 
-    LeaveRequest(WorkInProgress workInProgress) {
-        this(workInProgress.requestId, workInProgress.requestType, workInProgress.period, workInProgress.applicantId);
-        this.status = workInProgress.status;
-        this.acceptantId = workInProgress.acceptantId;
-    }
-
 
     LeaveRequest markAsSubmitted() {
         this.status = LeaveRequestStatus.SUBMITTED;
@@ -94,24 +88,26 @@ public abstract class LeaveRequest {
     public static class WorkInProgress {
         private LeaveRequestId requestId;
         private LeaveRequestType requestType;
-        private LeaveRequestPeriod period;
+        private LocalDateTime from;
+        private LocalDateTime to;
         private LeaveRequestStatus status;
 
         private AcceptantId acceptantId;
         private ApplicantId applicantId;
 
-        public WorkInProgress of(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
-            return new WorkInProgress(requestId, requestType, period);
+        public static WorkInProgress of(LeaveRequestId requestId, LeaveRequestType requestType, LocalDateTime from, LocalDateTime to) {
+            return new WorkInProgress(requestId, requestType, from, to);
         }
 
-        public WorkInProgress of(LeaveRequestType requestType, LeaveRequestPeriod period) {
-            return new WorkInProgress(null, requestType, period);
+        public static WorkInProgress of(LeaveRequestType requestType, LocalDateTime from, LocalDateTime to) {
+            return new WorkInProgress(null, requestType, from, to);
         }
 
-        private WorkInProgress(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
+        private WorkInProgress(LeaveRequestId requestId, LeaveRequestType requestType, LocalDateTime from, LocalDateTime to) {
             this.requestId = requestId;
             this.requestType = requestType;
-            this.period = period;
+            this.from = from;
+            this.to = to;
         }
 
         public WorkInProgress inStatus(LeaveRequestStatus status) {
@@ -121,6 +117,11 @@ public abstract class LeaveRequest {
 
         public WorkInProgress withAcceptant(AcceptantId acceptantId) {
             this.acceptantId = acceptantId;
+            return this;
+        }
+
+        public WorkInProgress withApplicant(ApplicantId applicantId) {
+            this.applicantId = applicantId;
             return this;
         }
 
