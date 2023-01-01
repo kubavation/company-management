@@ -33,9 +33,8 @@ public class Applicant implements Employable {
         leaveRequest.markAsDeleted();
     }
 
-
     @Override
-    public EmployeeId id() {
+    public EmployeeId employeeId() {
         return applicantId;
     }
 

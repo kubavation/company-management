@@ -22,7 +22,7 @@ public class Acceptant implements Employable {
 
 
     @Override
-    public EmployeeId id() {
+    public EmployeeId employeeId() {
         return accptantId;
     }
 }

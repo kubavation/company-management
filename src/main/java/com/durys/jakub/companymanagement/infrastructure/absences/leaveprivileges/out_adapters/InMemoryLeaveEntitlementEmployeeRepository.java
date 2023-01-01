@@ -18,6 +18,6 @@ public class InMemoryLeaveEntitlementEmployeeRepository implements LeaveEntitlem
 
     @Override
     public void save(LeaveEntitlementEmployee leaveEntitlementEmployee) {
-        DB.put(leaveEntitlementEmployee.id(), leaveEntitlementEmployee);
+        DB.put(leaveEntitlementEmployee.employeeId(), leaveEntitlementEmployee);
     }
 }

@@ -61,7 +61,7 @@ public abstract class LeaveRequest {
         }
 
         this.status = LeaveRequestStatus.SEND_FOR_ACCEPTATION;
-        this.acceptantId = acceptant.getAccptantId();
+        this.acceptantId = acceptant.employeeId();
     }
 
     void markAsCancelled() {

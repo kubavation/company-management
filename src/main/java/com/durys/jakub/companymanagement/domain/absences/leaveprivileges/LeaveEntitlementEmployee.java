@@ -20,7 +20,7 @@ public class LeaveEntitlementEmployee implements Employable {
     private List<LeavePrivilege> leavePrivileges;
 
     @Override
-    public EmployeeId id() {
+    public EmployeeId employeeId() {
         return employeeId;
     }
 
