@@ -4,7 +4,7 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveR
 
 public class HourlyLeaveRequest extends LeaveRequest {
 
-    public HourlyLeaveRequest(LeaveRequestType requestType, LeaveRequestHourlyPeriod period, ApplicantId applicantId) {
-        super(requestType, period, applicantId);
+    public HourlyLeaveRequest(LeaveRequestId leaveRequestId, LeaveRequestType requestType, LeaveRequestHourlyPeriod period, ApplicantId applicantId) {
+        super(leaveRequestId, requestType, period, applicantId);
     }
 }
