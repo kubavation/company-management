@@ -6,6 +6,7 @@ import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.vo.Leav
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -40,13 +41,13 @@ public class LeaveEntitlements {
     }
 
 
-    public void add(LeaveType leaveType, LeavePrivilegesPeriod period, GrantedPrivileges privileges) {
+    public void add(LeaveType leaveType, LocalDate from, LocalDate to, BigDecimal days, BigDecimal hours) {
 
-        if (leavePrivilegeAlreadyEntitled(leaveType, period)) {
+        if (leavePrivilegeAlreadyEntitled(leaveType, new LeavePrivilegesPeriod(from, to))) {
             throw new LeavePrivilegeIsAlreadyEntitledException();
         }
 
-        LeavePrivilege leavePrivilege = new LeavePrivilege(leaveType, period, privileges);
+        LeavePrivilege leavePrivilege = new LeavePrivilege(leaveType, new LeavePrivilegesPeriod(from, to), new GrantedPrivileges(days, hours));
         leavePrivileges.add(leavePrivilege);
     }
 
