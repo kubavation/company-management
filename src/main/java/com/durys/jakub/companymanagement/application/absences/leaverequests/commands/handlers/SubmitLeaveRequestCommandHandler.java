@@ -14,6 +14,8 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 
+import javax.transaction.Transactional;
+
 @CommandHandling
 @RequiredArgsConstructor
 public class SubmitLeaveRequestCommandHandler implements CommandHandler<SubmitLeaveRequestCommand> {
@@ -24,19 +26,20 @@ public class SubmitLeaveRequestCommandHandler implements CommandHandler<SubmitLe
     private final EmployeeRepository employeeRepository;
 
     @Override
+    @Transactional
     public void handle(SubmitLeaveRequestCommand command) {
 
         Applicant applicant = employeeRepository.load(new ApplicantId(command.getApplicantId()));
 
         LeaveEntitlementEmployee leavePrivileges = leaveEntitlementEmployeeRepository.load(new EmployeeId(command.getApplicantId()));
-        LeaveRequest leaveRequest = LeaveRequestFactory.create(
-                command.getType(), applicant, command.getFrom(), command.getTo());
 
-        if (leavePrivileges.compliant(leaveRequest)) {
-            //todo explore comain
-        }
+        LeaveRequest.WorkInProgress workInProgressLeaveRequest = LeaveRequest.WorkInProgress.of(command.getType(), command.getFrom(), command.getTo());
 
-        applicant.submit(leaveRequest);
+//        if (leavePrivileges.compliant(leaveRequest)) {
+//            //todo explore comain
+//        }
+
+        LeaveRequest leaveRequest = applicant.submit(workInProgressLeaveRequest);
 
         leaveRequestRepository.save(leaveRequest);
     }
