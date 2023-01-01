@@ -13,15 +13,11 @@ import java.util.Objects;
 import java.util.Optional;
 
 @AggregateRoot
-public class LeaveEntitlements implements Employable {
+public class LeaveEntitlements {
 
     private final EmployeeId employeeId;
     private List<LeavePrivilege> leavePrivileges;
-
-    @Override
-    public EmployeeId employeeId() {
-        return employeeId;
-    }
+    
 
     public LeaveEntitlements(EmployeeId employeeId, List<LeavePrivilege> leavePrivileges) {
         this.employeeId = employeeId;
