@@ -1,8 +1,6 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.Acceptant;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.acceptant.AcceptantId;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
@@ -10,12 +8,11 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.UUID;
 
 
 @Getter
 @AggregateRoot
-abstract class LeaveRequest {
+public abstract class LeaveRequest {
 
     private final LeaveRequestId requestId;
     private final LeaveRequestType requestType;
@@ -32,13 +29,19 @@ abstract class LeaveRequest {
         this.requestType = requestType;
         this.period = period;
         this.applicantId = applicantId;
-        this.status = LeaveRequestStatus.SUBMITTED;
+    }
+
+    LeaveRequest(WorkInProgress workInProgress) {
+        this(workInProgress.requestId, workInProgress.requestType, workInProgress.period, workInProgress.applicantId);
+        this.status = workInProgress.status;
+        this.acceptantId = workInProgress.acceptantId;
     }
 
 
-    void markAsSubmitted(LeaveRequest.Builder builder) {
-        builder
+    LeaveRequest markAsSubmitted(WorkInProgress workInProgress) {
+        return workInProgress
             .inStatus(LeaveRequestStatus.SUBMITTED)
+            .instance();
     }
 
     void markAsDeleted() {
@@ -88,11 +91,10 @@ abstract class LeaveRequest {
         this.status = LeaveRequestStatus.REJECTED;
     }
 
+    abstract LeaveRequest instance(WorkInProgress workInProgress);
 
-    abstract LeaveRequest instance();
-
-
-    public static class Builder {
+    @Getter
+    public static class WorkInProgress {
         private LeaveRequestId requestId;
         private LeaveRequestType requestType;
         private LeaveRequestPeriod period;
@@ -101,35 +103,33 @@ abstract class LeaveRequest {
         private AcceptantId acceptantId;
         private ApplicantId applicantId;
 
-        public Builder of(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
-            return new Builder(requestId, requestType, period);
+        public WorkInProgress of(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
+            return new WorkInProgress(requestId, requestType, period);
         }
 
-        public Builder of(LeaveRequestType requestType, LeaveRequestPeriod period) {
-            return new Builder(null, requestType, period);
+        public WorkInProgress of(LeaveRequestType requestType, LeaveRequestPeriod period) {
+            return new WorkInProgress(null, requestType, period);
         }
 
-        private Builder(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
+        private WorkInProgress(LeaveRequestId requestId, LeaveRequestType requestType, LeaveRequestPeriod period) {
             this.requestId = requestId;
             this.requestType = requestType;
             this.period = period;
         }
 
-        public Builder inStatus(LeaveRequestStatus status) {
+        public WorkInProgress inStatus(LeaveRequestStatus status) {
            this.status = status;
            return this;
         }
 
-        public Builder withAcceptant(AcceptantId acceptantId) {
+        public WorkInProgress withAcceptant(AcceptantId acceptantId) {
             this.acceptantId = acceptantId;
             return this;
         }
 
-
         LeaveRequest instance() {
-            return new LeaveReq
+            return LeaveRequestFactory.create(this);
         }
-
     }
 
 }
