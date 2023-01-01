@@ -20,4 +20,8 @@ public class LeaveRequestFactory {
 
         return new DailyLeaveRequest(requestId, type, LeaveRequestDailyPeriod.of(from.toLocalDate(), to.toLocalDate()), applicantId);
     }
+
+    public static LeaveRequest create(LeaveRequest.Builder builder) {
+        return create(builder.getRequestId(), builder.getRequestType(), builder.getApplicantId(), builder.getPeriod().from, builder.getPeriod().to);
+    }
 }
