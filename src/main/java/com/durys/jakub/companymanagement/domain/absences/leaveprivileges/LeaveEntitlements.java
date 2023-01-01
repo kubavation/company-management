@@ -27,19 +27,12 @@ public class LeaveEntitlements {
         if (Objects.isNull(leavePrivileges)) {
             this.leavePrivileges = Collections.emptyList();
         }
-
     }
 
     public LeaveEntitlements(EmployeeId employeeId) {
         this.employeeId = employeeId;
         this.leavePrivileges = Collections.emptyList();
     }
-
-    public boolean compliant(LeaveRequest leaveRequest) {
-        //todo
-        return true;
-    }
-
 
     public void add(LeaveType leaveType, LocalDate from, LocalDate to, BigDecimal days, BigDecimal hours) {
 
