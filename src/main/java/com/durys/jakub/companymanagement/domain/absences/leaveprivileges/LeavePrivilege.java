@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
 import com.durys.jakub.companymanagement.commons.domain.ValueObject;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.vo.LeaveType;
 import lombok.Getter;
 
 import java.time.LocalDate;
@@ -8,7 +9,7 @@ import java.time.LocalDate;
 
 @Getter
 @ValueObject
-public class LeavePrivilege {
+class LeavePrivilege {
 
     private final LeaveType leaveType;
     private final LeavePrivilegesPeriod period;

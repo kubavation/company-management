@@ -2,8 +2,8 @@ package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.exception.LeavePrivilegeIsAlreadyEntitledException;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.vo.LeaveType;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
-import com.durys.jakub.companymanagement.domain.employees.model.Employable;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
 import java.time.LocalDate;
@@ -17,7 +17,7 @@ public class LeaveEntitlements {
 
     private final EmployeeId employeeId;
     private List<LeavePrivilege> leavePrivileges;
-    
+
 
     public LeaveEntitlements(EmployeeId employeeId, List<LeavePrivilege> leavePrivileges) {
         this.employeeId = employeeId;

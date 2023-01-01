@@ -4,6 +4,7 @@ import com.durys.jakub.companymanagement.application.absences.leaveprivileges.co
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.*;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.vo.LeaveType;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.RequiredArgsConstructor;
 
