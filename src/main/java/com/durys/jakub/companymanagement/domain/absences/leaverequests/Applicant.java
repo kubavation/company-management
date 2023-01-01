@@ -30,7 +30,7 @@ public class Applicant implements Employable {
         leaveRequest.setAcceptant(acceptant);
     }
 
-    void delete(LeaveRequest leaveRequest) {
+    public void delete(LeaveRequest leaveRequest) {
         leaveRequest.markAsDeleted();
     }
 
