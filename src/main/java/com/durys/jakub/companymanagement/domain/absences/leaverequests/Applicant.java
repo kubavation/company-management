@@ -18,7 +18,8 @@ public class Applicant implements Employable {
 
 
     public LeaveRequest submit(LeaveRequest.WorkInProgress leaveRequest) {
-        return leaveRequest.instance().markAsSubmitted()
+        leaveRequest.withApplicant(applicantId);
+        return leaveRequest.submit();
     }
 
     public void cancel(LeaveRequest leaveRequest) {
@@ -33,9 +34,8 @@ public class Applicant implements Employable {
         leaveRequest.markAsDeleted();
     }
 
-
     @Override
-    public EmployeeId id() {
+    public EmployeeId employeeId() {
         return applicantId;
     }
 

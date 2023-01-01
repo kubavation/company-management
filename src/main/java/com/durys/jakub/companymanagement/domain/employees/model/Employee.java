@@ -14,7 +14,7 @@ public class Employee implements Employable {
     }
 
     @Override
-    public EmployeeId id() {
+    public EmployeeId employeeId() {
         return employeeId;
     }
 

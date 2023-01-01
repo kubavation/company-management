@@ -23,6 +23,6 @@ public class HashMapEmployeeRepository implements EmployeeRepository {
 
     @Override
     public void save(Employee employee) {
-        DB.put(employee.id(), employee);
+        DB.put(employee.employeeId(), employee);
     }
 }

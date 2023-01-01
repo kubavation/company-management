@@ -13,10 +13,12 @@ import lombok.RequiredArgsConstructor;
 
 @CommandHandling
 @RequiredArgsConstructor
-public class SendLeaveRequestForAcceptiationCommandHandler implements CommandHandler<SendLeaveRequestForAcceptationCommand> {
+public class SendLeaveRequestForAcceptationCommandHandler implements CommandHandler<SendLeaveRequestForAcceptationCommand> {
 
     private final LeaveRequestRepository leaveRequestRepository;
     private final EmployeeRepository employeeRepository;
+
+    //todo acceptant repository / explore domain
 
     @Override
     public void handle(SendLeaveRequestForAcceptationCommand command) {
@@ -25,7 +27,7 @@ public class SendLeaveRequestForAcceptiationCommandHandler implements CommandHan
 
         Acceptant acceptant = employeeRepository.load(new AcceptantId(command.getAcceptantId()));
 
-        leaveRequest.getApplicant().sendToAcceptant(leaveRequest, acceptant);
+        acceptant.accept(leaveRequest);
 
         leaveRequestRepository.save(leaveRequest);
     }

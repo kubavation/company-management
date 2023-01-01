@@ -20,6 +20,10 @@ public class LeaveRequestFactory {
     }
 
     public static LeaveRequest create(LeaveRequest.WorkInProgress workInProgress) {
-        return create(workInProgress.getRequestId(), workInProgress.getRequestType(), workInProgress.getApplicantId(), workInProgress.getPeriod().from, workInProgress.getPeriod().to);
+        return create(workInProgress.getRequestId(),
+                workInProgress.getRequestType(),
+                workInProgress.getApplicantId(),
+                workInProgress.getFrom(),
+                workInProgress.getTo());
     }
 }
