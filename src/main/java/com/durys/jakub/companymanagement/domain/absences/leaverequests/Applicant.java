@@ -2,17 +2,20 @@ package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeavePrivilege;
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+
+import java.util.List;
 
 @AggregateRoot
 public class Applicant implements Employable {
     private final ApplicantId applicantId;
 
-    //todo list of leavePrivileges
+    private List<LeavePrivilege> leavePrivileges;
 
 
-    public Applicant(ApplicantId applicantId) {
+    public Applicant(ApplicantId applicantId,) {
         this.applicantId = applicantId;
     }
 

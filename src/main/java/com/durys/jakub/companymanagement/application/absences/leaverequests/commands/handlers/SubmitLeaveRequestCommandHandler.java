@@ -8,7 +8,6 @@ import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEn
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.Applicant;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestFactory;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.ApplicantId;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;

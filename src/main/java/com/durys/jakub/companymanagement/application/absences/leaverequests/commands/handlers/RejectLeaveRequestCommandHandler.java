@@ -1,10 +1,8 @@
 package com.durys.jakub.companymanagement.application.absences.leaverequests.commands.handlers;
 
-import com.durys.jakub.companymanagement.application.absences.leaverequests.commands.AcceptLeaveRequestCommand;
 import com.durys.jakub.companymanagement.application.absences.leaverequests.commands.RejectLeaveRequestCommand;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
-import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementEmployeeRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
