@@ -19,12 +19,12 @@ public class GrantLeaveRequestPrivilegesCommandHandler implements CommandHandler
     @Transactional
     public void handle(GrantLeaveRequestPrivilegesCommand command) {
 
-        LeaveEntitlements employee = leaveEntitlementsRepository.load(EmployeeId.from(command.getEmployeeId()));
+        LeaveEntitlements leaveEntitlements = leaveEntitlementsRepository.load(EmployeeId.from(command.getEmployeeId()));
 
-        employee.grantWith(LeaveType.valueOf(command.getLeaveType()),
+        leaveEntitlements.add(LeaveType.valueOf(command.getLeaveType()),
                 new LeavePrivilegesPeriod(command.getFrom(), command.getTo()),
                 new GrantedPrivileges(command.getDaysEntitled(), command.getHoursEntitled()));
 
-        leaveEntitlementsRepository.save(employee);
+        leaveEntitlementsRepository.save(leaveEntitlements);
     }
 }

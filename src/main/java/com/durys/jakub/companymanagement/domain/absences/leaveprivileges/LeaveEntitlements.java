@@ -44,7 +44,7 @@ public class LeaveEntitlements implements Employable {
     }
 
 
-    public void grantWith(LeaveType leaveType, LeavePrivilegesPeriod period, GrantedPrivileges privileges) {
+    public void add(LeaveType leaveType, LeavePrivilegesPeriod period, GrantedPrivileges privileges) {
 
         if (leavePrivilegeAlreadyEntitled(leaveType, period)) {
             throw new LeavePrivilegeIsAlreadyEntitledException();
