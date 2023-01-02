@@ -1,11 +1,13 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlements;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -84,6 +86,12 @@ public abstract class LeaveRequest {
         this.status = LeaveRequestStatus.REJECTED;
     }
 
+    void isCompatibleWith(LeaveEntitlements leaveEntitlements) {
+
+    }
+
+    abstract BigDecimal entitledAmountFrom(LeaveEntitlements leaveEntitlements);
+
     @Getter
     public static class WorkInProgress {
         private LeaveRequestId requestId;
@@ -95,19 +103,26 @@ public abstract class LeaveRequest {
         private AcceptantId acceptantId;
         private ApplicantId applicantId;
 
-        public static WorkInProgress of(LeaveRequestId requestId, LeaveRequestType requestType, LocalDateTime from, LocalDateTime to) {
-            return new WorkInProgress(requestId, requestType, from, to);
+
+        private LeaveEntitlements leaveEntitlements;
+
+
+        public static WorkInProgress of(LeaveRequestId requestId, LeaveRequestType requestType, LocalDateTime from, LocalDateTime to,
+                                        LeaveEntitlements leaveEntitlements) {
+            return new WorkInProgress(requestId, requestType, from, to, leaveEntitlements);
         }
 
-        public static WorkInProgress of(LeaveRequestType requestType, LocalDateTime from, LocalDateTime to) {
-            return new WorkInProgress(null, requestType, from, to);
+        public static WorkInProgress of(LeaveRequestType requestType, LocalDateTime from, LocalDateTime to, LeaveEntitlements leaveEntitlements) {
+            return new WorkInProgress(null, requestType, from, to, leaveEntitlements);
         }
 
-        private WorkInProgress(LeaveRequestId requestId, LeaveRequestType requestType, LocalDateTime from, LocalDateTime to) {
+        private WorkInProgress(LeaveRequestId requestId, LeaveRequestType requestType,
+                               LocalDateTime from, LocalDateTime to,  LeaveEntitlements leaveEntitlements) {
             this.requestId = requestId;
             this.requestType = requestType;
             this.from = from;
             this.to = to;
+            this.leaveEntitlements = leaveEntitlements;
         }
 
         public WorkInProgress inStatus(LeaveRequestStatus status) {
@@ -126,7 +141,8 @@ public abstract class LeaveRequest {
         }
 
         LeaveRequest submit() {
-            return LeaveRequestFactory.create(this).markAsSubmitted();
+            return LeaveRequestFactory.create(this)
+                    .markAsSubmitted();
         }
     }
 

@@ -6,6 +6,7 @@ import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.vo.Leav
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import io.vavr.control.Either;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -46,6 +47,19 @@ public class LeaveEntitlements {
     }
 
 
+    public BigDecimal daysEntitled(LeaveType leaveType,  LocalDate statusAs) {
+        return getPrivilege(leaveType, statusAs)
+                .map(privilege -> privilege.getGrantedPrivileges().getDaysEntitled())
+                .orElse(BigDecimal.ZERO);
+    }
+
+    public BigDecimal hoursEntitled(LeaveType leaveType,  LocalDate statusAs) {
+        return getPrivilege(leaveType, statusAs)
+                .map(privilege -> privilege.getGrantedPrivileges().getHoursEntitled())
+                .orElse(BigDecimal.ZERO);
+    }
+
+
     private Optional<LeavePrivilege> getPrivilege(LeaveType leaveType, LocalDate statusAs) {
         return leavePrivileges.stream()
                 .filter(privilege -> privilege.getLeaveType().equals(leaveType))
@@ -57,16 +71,6 @@ public class LeaveEntitlements {
 
        return getPrivilege(leaveType, period.getDateFrom()).isPresent()
                || getPrivilege(leaveType, period.getDateTo()).isPresent();
-    }
-
-
-    public void isCompatible(LeaveRequest leaveRequest) {
-        //todo explore domain
-        LeavePrivilege leavePrivilege = getPrivilege(
-                LeaveType.valueOf(leaveRequest.getRequestType().getName()), leaveRequest.getPeriod().getFrom().toLocalDate())
-                .orElseThrow(RuntimeException::new);
-
-        leavePrivilege.checkCompatibility(leaveRequest);
     }
 
 }
