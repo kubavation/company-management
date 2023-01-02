@@ -32,7 +32,8 @@ public class SubmitLeaveRequestCommandHandler implements CommandHandler<SubmitLe
 
         LeaveEntitlements leavePrivileges = leaveEntitlementsRepository.load(new EmployeeId(command.getApplicantId()));
 
-        LeaveRequest.WorkInProgress workInProgressLeaveRequest = LeaveRequest.WorkInProgress.of(command.getType(), command.getFrom(), command.getTo());
+        LeaveRequest.WorkInProgress workInProgressLeaveRequest = LeaveRequest.WorkInProgress.of(
+                command.getType(), command.getFrom(), command.getTo(), leavePrivileges);
 
 //        if (leavePrivileges.compliant(leaveRequest)) {
 //            //todo explore comain
