@@ -87,7 +87,7 @@ public abstract class LeaveRequest {
         this.status = LeaveRequestStatus.REJECTED;
     }
 
-    public boolean isCompatibleWith(LeaveEntitlements leaveEntitlements) {
+    LeaveRequest verifyCompatibility(LeaveEntitlements leaveEntitlements) {
 
         //todo explore domain
 
@@ -96,10 +96,10 @@ public abstract class LeaveRequest {
         BigDecimal requestedAmount = period.getQuantity();
 
         if (requestedAmount.compareTo(entitledAmount) > 0) {
-            return false;
+            throw new RequestedDaysExceedLeavePrivilegesException();
         }
 
-        return true;
+        return this;
     }
 
     abstract BigDecimal entitledAmountFrom(LeaveEntitlements leaveEntitlements);
@@ -154,6 +154,7 @@ public abstract class LeaveRequest {
 
         LeaveRequest submit() {
             return LeaveRequestFactory.create(this)
+                    .verifyCompatibility(leaveEntitlements)
                     .markAsSubmitted();
         }
     }
