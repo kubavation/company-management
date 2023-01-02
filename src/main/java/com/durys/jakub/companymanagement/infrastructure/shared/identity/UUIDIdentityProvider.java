@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.infrastructure.shared;
+package com.durys.jakub.companymanagement.infrastructure.shared.identity;
 
 import com.durys.jakub.companymanagement.commons.IdentityProvider;
 
