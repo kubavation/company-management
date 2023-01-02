@@ -40,5 +40,6 @@ public class Applicant implements Employable {
     public EmployeeId employeeId() {
         return applicantId;
     }
+    
 
 }
