@@ -5,7 +5,7 @@ import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
 import com.durys.jakub.companymanagement.infrastructure.employees.EmployeesConfiguration;
-import com.durys.jakub.companymanagement.infrastructure.shared.identityprovider.UUIDIdentityProvider;
+import com.durys.jakub.companymanagement.infrastructure.shared.identity.UUIDIdentityProvider;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
