@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.application.absences.leaverequests.com
 import com.durys.jakub.companymanagement.application.absences.leaverequests.commands.AcceptLeaveRequestCommand;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
+import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlements;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementsRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
@@ -23,10 +24,10 @@ public class AcceptLeaveRequestCommandHandler implements CommandHandler<AcceptLe
     public void handle(AcceptLeaveRequestCommand command) {
 
         Acceptant acceptant = employeeRepository.load(new AcceptantId(command.getAcceptantId()));
-
         LeaveRequest leaveRequest = leaveRequestRepository.load(new LeaveRequestId(command.getLeaveRequestId()));
+        LeaveEntitlements leaveEntitlements = leaveEntitlementsRepository.load(leaveRequest.getAcceptantId());
 
-        //todo check leavePrivileges again / explore domain
+        leaveRequest.verifyCompatibility(leaveEntitlements);
 
         acceptant.accept(leaveRequest);
 
