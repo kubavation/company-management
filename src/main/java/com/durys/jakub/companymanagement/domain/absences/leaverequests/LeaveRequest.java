@@ -4,6 +4,7 @@ import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlements;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.RequestedDaysExceedLeavePrivilegesException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
 import lombok.Getter;
 
@@ -86,8 +87,19 @@ public abstract class LeaveRequest {
         this.status = LeaveRequestStatus.REJECTED;
     }
 
-    void isCompatibleWith(LeaveEntitlements leaveEntitlements) {
+    public boolean isCompatibleWith(LeaveEntitlements leaveEntitlements) {
 
+        //todo explore domain
+
+        BigDecimal entitlementAmount = entitledAmountFrom(leaveEntitlements);
+
+        BigDecimal requestedAmount = period.getQuantity();
+
+        if (requestedAmount.compareTo(entitlementAmount) > 0) {
+            return false;
+        }
+
+        return true;
     }
 
     abstract BigDecimal entitledAmountFrom(LeaveEntitlements leaveEntitlements);
