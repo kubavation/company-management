@@ -91,11 +91,11 @@ public abstract class LeaveRequest {
 
         //todo explore domain
 
-        BigDecimal entitlementAmount = entitledAmountFrom(leaveEntitlements);
+        BigDecimal entitledAmount = entitledAmountFrom(leaveEntitlements);
 
         BigDecimal requestedAmount = period.getQuantity();
 
-        if (requestedAmount.compareTo(entitlementAmount) > 0) {
+        if (requestedAmount.compareTo(entitledAmount) > 0) {
             return false;
         }
 
