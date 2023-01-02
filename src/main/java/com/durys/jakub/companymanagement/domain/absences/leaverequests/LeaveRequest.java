@@ -88,7 +88,7 @@ public abstract class LeaveRequest {
         this.status = LeaveRequestStatus.REJECTED;
     }
 
-    LeaveRequest verifyCompatibility(LeaveEntitlements leaveEntitlements) {
+    public LeaveRequest verifyCompatibility(LeaveEntitlements leaveEntitlements) {
 
         //todo explore domain
 
