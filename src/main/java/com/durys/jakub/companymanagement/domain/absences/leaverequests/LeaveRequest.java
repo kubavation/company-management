@@ -7,6 +7,7 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -84,6 +85,12 @@ public abstract class LeaveRequest {
     void markAsRejected() {
         this.status = LeaveRequestStatus.REJECTED;
     }
+
+    void isCompatibleWith(LeaveEntitlements leaveEntitlements) {
+
+    }
+
+    abstract BigDecimal entitledAmountFrom(LeaveEntitlements leaveEntitlements);
 
     @Getter
     public static class WorkInProgress {
