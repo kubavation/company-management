@@ -5,6 +5,7 @@ import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEn
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidStatusForOperationException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.OperationUnavailableException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.RequestedDaysExceedLeavePrivilegesException;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.RequestedQuantityExceedLeavePrivilegesException;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.*;
 import lombok.Getter;
 
@@ -96,7 +97,7 @@ public abstract class LeaveRequest {
         BigDecimal requestedAmount = period.getQuantity();
 
         if (requestedAmount.compareTo(entitledAmount) > 0) {
-            throw new RequestedDaysExceedLeavePrivilegesException();
+            throw new RequestedQuantityExceedLeavePrivilegesException();
         }
 
         return this;
