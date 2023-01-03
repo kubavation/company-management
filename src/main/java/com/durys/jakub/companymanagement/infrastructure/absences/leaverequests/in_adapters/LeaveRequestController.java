@@ -1,6 +1,5 @@
 package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.in_adapters;
 
-import com.durys.jakub.companymanagement.application.absences.leaverequests.LeaveRequestsApplicationService;
 import com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.dto.LeaveRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
