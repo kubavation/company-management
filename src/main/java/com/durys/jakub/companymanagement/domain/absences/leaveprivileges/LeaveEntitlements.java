@@ -3,10 +3,8 @@ package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.exception.LeavePrivilegeIsAlreadyEntitledException;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.vo.LeaveType;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequest;
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import io.vavr.control.Either;
+
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -73,4 +71,7 @@ public class LeaveEntitlements {
                || getPrivilege(leaveType, period.getDateTo()).isPresent();
     }
 
+    public EmployeeId employee() {
+        return employeeId;
+    }
 }
