@@ -20,6 +20,8 @@ class LeavePrivilege {
     private final LeavePrivilegesPeriod period;
     private final GrantedPrivileges grantedPrivileges;
 
+    private final
+
     LeavePrivilege(LeaveType leaveType, LeavePrivilegesPeriod period, GrantedPrivileges grantedPrivileges) {
         this.leaveType = leaveType;
         this.period = period;
@@ -34,11 +36,11 @@ class LeavePrivilege {
 
         BigDecimal quantity = leaveRequest.getPeriod().getQuantity();
 
-        if (leaveRequest instanceof DailyLeaveRequest && quantity.compareTo(grantedPrivileges.getDaysEntitled()) > 0) {
+        if (leaveRequest instanceof DailyLeaveRequest && quantity.compareTo(grantedPrivileges.getDays()) > 0) {
             throw new RequestedDaysExceedLeavePrivilegesException();
         }
 
-        if (leaveRequest instanceof HourlyLeaveRequest && quantity.compareTo(grantedPrivileges.getHoursEntitled()) > 0) {
+        if (leaveRequest instanceof HourlyLeaveRequest && quantity.compareTo(grantedPrivileges.getHours()) > 0) {
             throw new RequestedDaysExceedLeavePrivilegesException();
         }
 

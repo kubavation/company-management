@@ -1,28 +1,25 @@
 package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
 import com.durys.jakub.companymanagement.commons.domain.ValueObject;
-import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.exception.InvalidLeavePrivilegesPeriodException;
 import lombok.Getter;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Objects;
 
 @ValueObject
 @Getter
 class GrantedPrivileges {
 
-    private final BigDecimal daysEntitled;
-    private final BigDecimal hoursEntitled;
+    private final BigDecimal days;
+    private final BigDecimal hours;
 
     GrantedPrivileges(BigDecimal days, BigDecimal hours) {
-        this.daysEntitled = days;
-        this.hoursEntitled = hours;
+        this.days = days;
+        this.hours = hours;
     }
 
     GrantedPrivileges(Integer days, Integer hours) {
-        this.daysEntitled = new BigDecimal(days);
-        this.hoursEntitled = new BigDecimal(hours);
+        this.days = new BigDecimal(days);
+        this.hours = new BigDecimal(hours);
     }
 
 }
