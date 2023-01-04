@@ -37,7 +37,7 @@ class EmployeesApplicationServiceTest {
         final UUID nextId = UUID.randomUUID();
         when(identityProvider.nextId()).thenReturn(nextId);
 
-        employeesApplicationService.employ("Dave", "James", "MAN");
+        employeesApplicationService.engage("Dave", "James", "MAN");
         Employee employee = employeeRepository.load(new EmployeeId(nextId));
 
         assertEquals("James Dave", employee.name());

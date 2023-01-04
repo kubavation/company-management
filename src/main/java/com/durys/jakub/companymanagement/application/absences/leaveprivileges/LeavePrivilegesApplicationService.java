@@ -8,6 +8,8 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.events.Le
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
+
 @Component
 @AllArgsConstructor
 public class LeavePrivilegesApplicationService {
@@ -15,8 +17,10 @@ public class LeavePrivilegesApplicationService {
     private final LeaveEntitlementsRepository leaveEntitlementsRepository;
 
 
+    @Transactional
     @DomainEventListener
     public void onLeaveRequestAcceptation(LeaveRequestAcceptedEvent event) {
+
        LeaveEntitlements leaveEntitlements = leaveEntitlementsRepository.load(event.getEmployeeId());
 
        leaveEntitlements = leaveEntitlements

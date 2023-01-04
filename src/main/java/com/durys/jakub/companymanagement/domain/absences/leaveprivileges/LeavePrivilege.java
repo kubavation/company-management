@@ -37,6 +37,10 @@ class LeavePrivilege {
     boolean isEntitledAtDay(LocalDate date) {
         return period.includes(date);
     }
-    
+
+
+    void recalculate(BigDecimal quantity) {
+        utilisedPrivileges = utilisedPrivileges.addDays(quantity); //todo explore domain
+    }
 
 }
