@@ -32,6 +32,11 @@ public class Contract { //todo subclasses
         this.annexes = Collections.emptyList();
     }
 
+    public static Contract prepare(EmployeeId employeeId, ContractNumber contractNumber, ContractData contractData) {
+        //todo fix contractId
+        return new Contract(new ContractId(UUID.randomUUID()), employeeId, contractNumber, contractData);
+    }
+
 
     public void markWithAnnex(ContractData contractData) {
         annexes.add(new ContractAnnex(contractData, contractId));

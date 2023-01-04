@@ -3,17 +3,37 @@ package com.durys.jakub.companymanagement.application.contracts.commands.handler
 import com.durys.jakub.companymanagement.application.contracts.commands.AssignContractCommand;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
+import com.durys.jakub.companymanagement.domain.contracts.Contract;
+import com.durys.jakub.companymanagement.domain.contracts.ContractNumber;
+import com.durys.jakub.companymanagement.domain.contracts.ContractRepository;
+import com.durys.jakub.companymanagement.domain.employees.model.Employee;
+import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
+
+import java.util.Objects;
 
 @CommandHandling
 @RequiredArgsConstructor
 public class AssignContractCommandHandler implements CommandHandler<AssignContractCommand> {
 
     private final EmployeeRepository employeeRepository;
+    private final ContractRepository contractRepository;
 
     @Override
-    public void handle(AssignContractCommand assignContractCommand) {
-        //todo
+    public void handle(AssignContractCommand command) {
+
+       Employee employee = employeeRepository.load(EmployeeId.from(command.getEmployeeId()));
+
+       if (Objects.isNull(employee)) {
+           throw new RuntimeException("todo");
+       }
+
+       Contract contract = Contract.prepare(
+               new EmployeeId(command.getEmployeeId()),
+               //todo rest
+       );
+
+       contractRepository.save(contract);
     }
 }
