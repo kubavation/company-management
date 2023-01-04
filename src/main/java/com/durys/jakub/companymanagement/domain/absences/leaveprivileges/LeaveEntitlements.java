@@ -8,7 +8,6 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -48,13 +47,13 @@ public class LeaveEntitlements {
 
     public BigDecimal daysEntitled(LeaveType leaveType,  LocalDate statusAs) {
         return getPrivilege(leaveType, statusAs)
-                .map(privilege -> privilege.getGrantedPrivileges().getDaysEntitled())
+                .map(privilege -> privilege.getGrantedPrivileges().getDays())
                 .orElse(BigDecimal.ZERO);
     }
 
     public BigDecimal hoursEntitled(LeaveType leaveType,  LocalDate statusAs) {
         return getPrivilege(leaveType, statusAs)
-                .map(privilege -> privilege.getGrantedPrivileges().getHoursEntitled())
+                .map(privilege -> privilege.getGrantedPrivileges().getHours())
                 .orElse(BigDecimal.ZERO);
     }
 
@@ -77,6 +76,11 @@ public class LeaveEntitlements {
     }
 
     public LeaveEntitlements recalculate(LeaveType leaveType, BigDecimal quantity, LocalDate statusAs) {
-        //todo
+
+        LeavePrivilege leavePrivilege = getPrivilege(leaveType, statusAs)
+                .orElseThrow(RuntimeException::new); //todo fix + explore domain (previous leave privileges)
+
+        leavePrivilege.recalculate(quantity); //todo
+        return this;
     }
 }
