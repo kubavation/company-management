@@ -21,7 +21,7 @@ class LeavePrivilege {
     private final LeavePrivilegesPeriod period;
     private final GrantedPrivileges grantedPrivileges;
 
-    private final UtilisedPrivileges utilisedPrivileges;
+    private UtilisedPrivileges utilisedPrivileges;
 
     LeavePrivilege(LeaveType leaveType, LeavePrivilegesPeriod period, GrantedPrivileges grantedPrivileges, UtilisedPrivileges utilisedPrivileges) {
         this.leaveType = leaveType;
