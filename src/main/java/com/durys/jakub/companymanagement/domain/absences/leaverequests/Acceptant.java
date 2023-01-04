@@ -25,7 +25,8 @@ public class Acceptant implements Employable {
                         new LeaveRequestAcceptedEvent(
                             leaveRequest.getApplicantId(),
                             leaveRequest.getRequestType(),
-                            leaveRequest.getPeriod().quantity())
+                            leaveRequest.getPeriod().quantity(),
+                            leaveRequest.getPeriod().getFrom(), leaveRequest.getPeriod().getTo())
                 );
     }
 

@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Getter
@@ -16,4 +18,6 @@ public class LeaveRequestAcceptedEvent implements DomainEvent {
     private final EmployeeId employeeId;
     private final LeaveRequestType leaveRequestType;
     private final BigDecimal quantity;
+    private final LocalDateTime from;
+    private final LocalDateTime to;
 }
