@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.domain.contracts;
 
+import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.AllArgsConstructor;
@@ -10,7 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
-public class Contract {
+@AggregateRoot
+public class Contract { //todo subclasses
 
     private final ContractId contractId;
 
