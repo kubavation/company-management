@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DomainServicesRegistry {
+
     public static <T> T instanceOf(Class<T> clazz) {
         return SpringDomainServicesRegistry.instanceOf(clazz);
     }
