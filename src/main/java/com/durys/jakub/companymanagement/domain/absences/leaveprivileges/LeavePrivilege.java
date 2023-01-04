@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
+import com.durys.jakub.companymanagement.commons.domain.DomainEntity;
 import com.durys.jakub.companymanagement.commons.domain.ValueObject;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.vo.LeaveType;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.DailyLeaveRequest;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 
 
 @Getter
-@ValueObject
+@DomainEntity
 class LeavePrivilege {
 
     private final LeaveType leaveType;
