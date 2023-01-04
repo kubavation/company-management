@@ -16,6 +16,6 @@ public class EmployeeController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody EmployeeDTO employeeDTO) {
-        employeesApplicationService.employ(employeeDTO.getFirstName(), employeeDTO.getLastName(), employeeDTO.getGender());
+        employeesApplicationService.engage(employeeDTO.getFirstName(), employeeDTO.getLastName(), employeeDTO.getGender());
     }
 }

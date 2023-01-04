@@ -15,7 +15,7 @@ public class EmployeesApplicationService {
 
     private final IdentityProvider identityProvider;
 
-    public void employ(String firstName, String lastName, String gender) {
+    public void engage(String firstName, String lastName, String gender) {
         Employee employee = new Employee(new EmployeeId(identityProvider.nextId()), new EmployeePersonalData(firstName, lastName, gender));
         employeeRepository.save(employee);
     }
