@@ -2,6 +2,8 @@ package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
+import com.durys.jakub.companymanagement.commons.domain.DomainServicesRegistry;
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.events.LeaveRequestAcceptedEvent;
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +16,17 @@ public class Acceptant implements Employable {
 
 
     public void accept(LeaveRequest leaveRequest) {
+
         leaveRequest.markAsAccepted();
+
+        DomainServicesRegistry
+                .instanceOf(LeaveRequestAcceptationService.class)
+                .affectPermissions(
+                        new LeaveRequestAcceptedEvent(
+                            leaveRequest.getApplicantId(),
+                            leaveRequest.getRequestType(),
+                            leaveRequest.getPeriod())
+                );
     }
 
     public void reject(LeaveRequest leaveRequest) {
