@@ -37,19 +37,6 @@ class LeavePrivilege {
     boolean isEntitledAtDay(LocalDate date) {
         return period.includes(date);
     }
-
-    public void checkCompatibility(LeaveRequest leaveRequest) {
-
-        BigDecimal quantity = leaveRequest.getPeriod().getQuantity();
-
-        if (leaveRequest instanceof DailyLeaveRequest && quantity.compareTo(grantedPrivileges.getDays()) > 0) {
-            throw new RequestedDaysExceedLeavePrivilegesException();
-        }
-
-        if (leaveRequest instanceof HourlyLeaveRequest && quantity.compareTo(grantedPrivileges.getHours()) > 0) {
-            throw new RequestedDaysExceedLeavePrivilegesException();
-        }
-
-    }
+    
 
 }
