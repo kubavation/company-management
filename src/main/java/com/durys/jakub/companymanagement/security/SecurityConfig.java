@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.security.configuration;
+package com.durys.jakub.companymanagement.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
