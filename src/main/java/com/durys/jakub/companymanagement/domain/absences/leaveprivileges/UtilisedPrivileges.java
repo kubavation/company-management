@@ -7,19 +7,26 @@ import java.math.BigDecimal;
 
 @ValueObject
 @Getter
-class GrantedPrivileges {
+class UtilisedPrivileges {
 
     private final BigDecimal days;
     private final BigDecimal hours;
 
-    GrantedPrivileges(BigDecimal days, BigDecimal hours) {
+    UtilisedPrivileges(BigDecimal days, BigDecimal hours) {
         this.days = days;
         this.hours = hours;
     }
 
-    GrantedPrivileges(Integer days, Integer hours) {
+    UtilisedPrivileges(Integer days, Integer hours) {
         this.days = new BigDecimal(days);
         this.hours = new BigDecimal(hours);
     }
 
+    UtilisedPrivileges addDays(BigDecimal quantity) {
+        return new UtilisedPrivileges(days.add(quantity), hours);
+    }
+
+    UtilisedPrivileges addHours(BigDecimal quantity) {
+        return new UtilisedPrivileges(days, hours.add(quantity));
+    }
 }
