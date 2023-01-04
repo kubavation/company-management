@@ -1,5 +1,6 @@
-package com.durys.jakub.companymanagement.application.contracts.commands;
+package com.durys.jakub.companymanagement.application.contracts.commands.handlers;
 
+import com.durys.jakub.companymanagement.application.contracts.commands.AssignContractCommand;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
