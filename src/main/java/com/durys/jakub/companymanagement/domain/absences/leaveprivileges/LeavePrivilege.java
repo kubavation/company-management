@@ -20,12 +20,17 @@ class LeavePrivilege {
     private final LeavePrivilegesPeriod period;
     private final GrantedPrivileges grantedPrivileges;
 
-    private final
+    private final UtilisedPrivileges utilisedPrivileges;
 
-    LeavePrivilege(LeaveType leaveType, LeavePrivilegesPeriod period, GrantedPrivileges grantedPrivileges) {
+    LeavePrivilege(LeaveType leaveType, LeavePrivilegesPeriod period, GrantedPrivileges grantedPrivileges, UtilisedPrivileges utilisedPrivileges) {
         this.leaveType = leaveType;
         this.period = period;
         this.grantedPrivileges = grantedPrivileges;
+        this.utilisedPrivileges = utilisedPrivileges;
+    }
+
+    LeavePrivilege(LeaveType leaveType, LeavePrivilegesPeriod period, GrantedPrivileges grantedPrivileges) {
+        this(leaveType, period, grantedPrivileges, new UtilisedPrivileges(BigDecimal.ZERO, BigDecimal.ZERO));
     }
 
     boolean isEntitledAtDay(LocalDate date) {
