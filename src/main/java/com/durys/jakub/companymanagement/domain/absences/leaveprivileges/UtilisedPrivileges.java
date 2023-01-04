@@ -22,4 +22,11 @@ class UtilisedPrivileges {
         this.hours = new BigDecimal(hours);
     }
 
+    UtilisedPrivileges addDays(BigDecimal quantity) {
+        return new UtilisedPrivileges(days.add(quantity), hours);
+    }
+
+    UtilisedPrivileges addHours(BigDecimal quantity) {
+        return new UtilisedPrivileges(days, hours.add(quantity));
+    }
 }
