@@ -19,6 +19,8 @@ public class AssignContractCommand implements Command {
     private final BigDecimal salaryCurrency;
 
     private final String billingPeriod;
-    private final String dailyHourNumber;
     private final String contractType;
+
+    private final int dailyNumberOfHours;
+    private final int dailyNumberOfMinutes;
 }
