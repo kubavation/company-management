@@ -42,4 +42,20 @@ public class Contract { //todo subclasses
         annexes.add(new ContractAnnex(contractData, contractId));
     }
 
+
+    public static class ContractBuilder {
+
+        private ContractId contractId;
+        private EmployeeId employeeId;
+
+        public static ContractBuilder from(ContractId contractId, EmployeeId employeeId) {
+            return new ContractBuilder(contractId, employeeId);
+        }
+
+        private ContractBuilder(ContractId contractId, EmployeeId employeeId) {
+            this.contractId = contractId;
+            this.employeeId = employeeId;
+        }
+    }
+
 }
