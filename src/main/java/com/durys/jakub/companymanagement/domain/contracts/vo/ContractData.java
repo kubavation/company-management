@@ -1,6 +1,5 @@
 package com.durys.jakub.companymanagement.domain.contracts.vo;
 
-import com.durys.jakub.companymanagement.crud.dictionary.position.model.Position;
 import com.durys.jakub.companymanagement.domain.contracts.ContractType;
 
 public class ContractData {
