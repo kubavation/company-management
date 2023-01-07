@@ -8,7 +8,7 @@ import com.durys.jakub.companymanagement.domain.contracts.exception.InvalidContr
 import java.time.LocalDate;
 import java.util.Objects;
 
-class ContractPeriod {
+public class ContractPeriod {
 
     private final ContractPeriodType type;
     private final LocalDate from;

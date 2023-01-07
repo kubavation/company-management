@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 
 @AllArgsConstructor
 @EqualsAndHashCode
-class ContractNumber {
+public class ContractNumber {
 
     private final String value;
 }

@@ -1,7 +1,7 @@
 package com.durys.jakub.companymanagement.domain.contracts.vo;
 
 
-class WorkingTime {
+public class WorkingTime {
 
     private final DailyHourNumber dailyHourNumber;
     private final BillingPeriod billingPeriod;
