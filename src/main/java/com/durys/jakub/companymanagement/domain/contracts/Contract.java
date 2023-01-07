@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.domain.contracts;
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import liquibase.pro.packaged.P;
 import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
@@ -48,6 +49,10 @@ public class Contract { //todo subclasses
         private ContractId contractId;
         private EmployeeId employeeId;
 
+        private ContractNumber contractNumber;
+
+        private ContractData contractData;
+
         public static ContractBuilder from(ContractId contractId, EmployeeId employeeId) {
             return new ContractBuilder(contractId, employeeId);
         }
@@ -56,6 +61,16 @@ public class Contract { //todo subclasses
             this.contractId = contractId;
             this.employeeId = employeeId;
         }
+
+        public ContractBuilder withNumber(String contractNumber) {
+            this.contractNumber = new ContractNumber(contractNumber);
+            return this;
+        }
+
+        public Contract assign() {
+            return new Contract(contractId, employeeId, contractNumber, contractData);
+        }
+
     }
 
 }
