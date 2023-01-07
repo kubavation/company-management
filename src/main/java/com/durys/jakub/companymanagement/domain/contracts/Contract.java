@@ -63,6 +63,11 @@ public class Contract { //todo subclasses
             return this;
         }
 
+        public ContractBuilder withContractData(ContractData contractData) {
+            this.contractData = contractData;
+            return this;
+        }
+
         public Contract assignTo(Employee employee) {
 
             Objects.requireNonNull(employee, "employee to assign must not be null");
