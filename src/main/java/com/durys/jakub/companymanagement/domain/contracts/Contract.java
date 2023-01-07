@@ -2,14 +2,11 @@ package com.durys.jakub.companymanagement.domain.contracts;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
+import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import liquibase.pro.packaged.P;
 import lombok.AllArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @AllArgsConstructor
 @AggregateRoot
@@ -44,31 +41,37 @@ public class Contract { //todo subclasses
     }
 
 
-    public static class ContractBuilder {
+    public static class Builder {
 
         private ContractId contractId;
-        private EmployeeId employeeId;
 
         private ContractNumber contractNumber;
 
         private ContractData contractData;
 
-        public static ContractBuilder from(ContractId contractId, EmployeeId employeeId) {
-            return new ContractBuilder(contractId, employeeId);
+        public static Builder from(ContractId contractId) {
+            return new Builder(contractId);
         }
 
-        private ContractBuilder(ContractId contractId, EmployeeId employeeId) {
+        private Builder(ContractId contractId) {
             this.contractId = contractId;
-            this.employeeId = employeeId;
         }
 
-        public ContractBuilder withNumber(String contractNumber) {
+        public Builder withNumber(String contractNumber) {
             this.contractNumber = new ContractNumber(contractNumber);
             return this;
         }
 
-        public Contract assign() {
-            return new Contract(contractId, employeeId, contractNumber, contractData);
+        public Builder withContractData(ContractData contractData) {
+            this.contractData = contractData;
+            return this;
+        }
+
+        public Contract assignTo(Employee employee) {
+
+            Objects.requireNonNull(employee, "employee to assign must not be null");
+
+            return new Contract(contractId, employee.employeeId(), contractNumber, contractData);
         }
 
     }
