@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Position {
     private final String name;
 
-    Position(String name) {
+    public Position(String name) {
         Objects.requireNonNull(name);
         this.name = name;
     }
