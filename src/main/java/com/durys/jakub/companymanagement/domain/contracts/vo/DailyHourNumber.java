@@ -3,7 +3,7 @@ package com.durys.jakub.companymanagement.domain.contracts.vo;
 import java.time.LocalTime;
 import java.time.temporal.TemporalAdjuster;
 
-class DailyHourNumber {
+public class DailyHourNumber {
     private final LocalTime value;
 
     private DailyHourNumber(LocalTime value) {
