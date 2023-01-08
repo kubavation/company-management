@@ -50,12 +50,15 @@ public abstract class Contract {
 
         private ContractPeriod contractPeriod;
 
-        public static Builder withId(ContractId contractId) {
-            return new Builder(contractId);
+        private final ContractType contractType;
+
+        public static Builder instance(ContractType contractType, ContractId contractId) {
+            return new Builder(contractType, contractId);
         }
 
-        private Builder(ContractId contractId) {
+        private Builder(ContractType contractType, ContractId contractId) {
             this.contractId = contractId;
+            this.contractType = contractType;
         }
 
         public Builder withNumber(String contractNumber) {
@@ -72,7 +75,10 @@ public abstract class Contract {
             Objects.requireNonNull(employee, "employee to assign must not be null");
             this.employeeId = employee.employeeId();
             return this;
-            //return new Contract(contractId, employee.employeeId(), contractNumber, contractData);
+        }
+
+        public Contract construct() {
+            return ContractFactory.prepare(this.contractType, this);
         }
 
     }
