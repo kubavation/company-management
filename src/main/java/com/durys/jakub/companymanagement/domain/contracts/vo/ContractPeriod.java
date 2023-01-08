@@ -24,6 +24,15 @@ public abstract class ContractPeriod {
 
     abstract void validate();
 
+
+    public LocalDate from() {
+        return from;
+    }
+
+    public LocalDate to() {
+        return to;
+    }
+
 //    private void validateContractPeriodByType(ContractPeriodType type, LocalDate from, LocalDate to) {
 //
 //        if (ContractPeriodType.FIXED_TERM.equals(type)) {
