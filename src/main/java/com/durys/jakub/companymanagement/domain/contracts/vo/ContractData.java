@@ -24,6 +24,10 @@ public class ContractData {
         private Salary salary;
         private WorkingTime workingTime;
 
+        public static Builder instance() {
+            return new Builder();
+        }
+
 
         public Builder earning(BigDecimal amount) {
             this.salary = Salary.withDefaultCurrencyOf(amount); //todo explore domain
