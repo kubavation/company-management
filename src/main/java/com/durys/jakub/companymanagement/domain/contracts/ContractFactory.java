@@ -5,7 +5,7 @@ import com.durys.jakub.companymanagement.domain.contracts.employment.trail.Trail
 public class ContractFactory {
 
 
-    Contract prepare(ContractType type, Contract.Builder builder) {
+    public static Contract prepare(ContractType type, Contract.Builder builder) {
         if (ContractType.EMPLOYMENT.equals(type)) {
             return new TrailEmployeeContract(builder);
         }
