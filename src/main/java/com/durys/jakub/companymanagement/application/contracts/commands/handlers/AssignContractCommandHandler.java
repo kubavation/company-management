@@ -10,6 +10,7 @@ import com.durys.jakub.companymanagement.domain.contracts.ContractId;
 import com.durys.jakub.companymanagement.domain.contracts.ContractRepository;
 import com.durys.jakub.companymanagement.domain.contracts.ContractType;
 import com.durys.jakub.companymanagement.domain.contracts.vo.*;
+import com.durys.jakub.companymanagement.domain.employees.exception.EmployeeNotExistsException;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
@@ -31,7 +32,7 @@ public class AssignContractCommandHandler implements CommandHandler<AssignContra
        Employee employee = employeeRepository.load(EmployeeId.from(command.getEmployeeId()));
 
        if (Objects.isNull(employee)) {
-           throw new RuntimeException("todo");
+           throw new EmployeeNotExistsException();
        }
 
 
