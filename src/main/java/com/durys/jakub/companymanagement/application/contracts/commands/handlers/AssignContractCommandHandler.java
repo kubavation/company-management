@@ -37,14 +37,13 @@ public class AssignContractCommandHandler implements CommandHandler<AssignContra
                .instance(ContractType.valueOf(command.getContractType()), new ContractId(UUID.randomUUID()))
                        .withNumber(command.getContractNumber())
                        .in(command.getFrom(), command.getTo())
-                       .withContractData(
-                           new ContractData(
-                                   new Position(command.getPosition()),
-                                   Salary.withDefaultCurrencyOf(command.getSalary()),
-                                   new WorkingTime(
-                                           DailyHourNumber.of(command.getDailyNumberOfHours(), command.getDailyNumberOfMinutes()),
-                                           BillingPeriod.valueOf(command.getBillingPeriod()))))
+                       .data()
+                            .workingAs(command.getPosition())
+                            .earning(command.getSalary())
+                            .workingTime(command.getDailyNumberOfHours(), command.getDailyNumberOfMinutes())
+                            .prepare()
                         .assignTo(employee);
+
 
        Contract contract = ContractFactory.prepare(
                ContractType.valueOf(command.getContractType()),
