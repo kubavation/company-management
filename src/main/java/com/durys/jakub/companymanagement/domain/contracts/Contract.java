@@ -23,13 +23,18 @@ public abstract class Contract {
 
     private final ContractData contractData;
 
+    private final ContractPeriod contractPeriod;
+
     private final List<ContractAnnex> annexes;
 
-    public Contract(ContractId contractId, EmployeeId employeeId, ContractNumber contractNumber, ContractData contractData) {
+    public Contract(ContractId contractId, EmployeeId employeeId,
+                    ContractNumber contractNumber, ContractData contractData,
+                    ContractPeriod contractPeriod) {
         this.contractId = contractId;
         this.employeeId = employeeId;
         this.contractNumber = contractNumber;
         this.contractData = contractData;
+        this.contractPeriod = contractPeriod;
         this.annexes = Collections.emptyList();
     }
 
@@ -48,8 +53,6 @@ public abstract class Contract {
         private ContractNumber contractNumber;
 
         private ContractData contractData;
-
-        private ContractPeriod contractPeriod;
 
         private final ContractType contractType;
 
