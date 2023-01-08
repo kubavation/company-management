@@ -71,7 +71,12 @@ public abstract class Contract {
         }
 
         public ContractData.Builder data() {
-            return ContractData.Builder.instance();
+            return ContractData.Builder.instance(this);
+        }
+
+        public Builder withContractData(ContractData contractData) {
+            this.contractData = contractData;
+            return this;
         }
 
         public Builder in(LocalDate from, LocalDate to) {
