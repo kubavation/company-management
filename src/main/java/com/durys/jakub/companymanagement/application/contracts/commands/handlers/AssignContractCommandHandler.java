@@ -42,7 +42,7 @@ public class AssignContractCommandHandler implements CommandHandler<AssignContra
                        .withContractData(
                            new ContractData(
                                    new Position(command.getPosition()),
-                                   new Salary(new Money(command.getSalary()), Currency.EURO),
+                                   Salary.withDefaultCurrencyOf(command.getSalary()),
                                    new WorkingTime(
                                            DailyHourNumber.of(command.getDailyNumberOfHours(), command.getDailyNumberOfMinutes()),
                                            BillingPeriod.valueOf(command.getBillingPeriod())),
