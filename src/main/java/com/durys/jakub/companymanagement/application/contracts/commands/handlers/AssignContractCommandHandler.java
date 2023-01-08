@@ -36,7 +36,8 @@ public class AssignContractCommandHandler implements CommandHandler<AssignContra
        }
 
 
-       Contract contract = Contract.Builder.from(new ContractId(UUID.randomUUID()))
+       Contract contract = Contract.Builder
+               .withId(new ContractId(UUID.randomUUID()))
                        .withNumber(command.getContractNumber())
                        .withContractData(
                            new ContractData(
