@@ -22,7 +22,7 @@ public abstract class ContractPeriod {
         validate();
     }
 
-    abstract void validate();
+    protected abstract void validate();
 
 
     public LocalDate from() {
