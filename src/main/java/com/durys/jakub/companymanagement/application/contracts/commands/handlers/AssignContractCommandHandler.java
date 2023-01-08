@@ -36,6 +36,7 @@ public class AssignContractCommandHandler implements CommandHandler<AssignContra
        Contract.Builder workInProgress = Contract.Builder
                .instance(ContractType.valueOf(command.getContractType()), new ContractId(UUID.randomUUID()))
                        .withNumber(command.getContractNumber())
+                       .in(command.getFrom(), command.getTo())
                        .withContractData(
                            new ContractData(
                                    new Position(command.getPosition()),

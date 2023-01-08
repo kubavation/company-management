@@ -8,6 +8,7 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @AllArgsConstructor
@@ -52,6 +53,9 @@ public abstract class Contract {
 
         private final ContractType contractType;
 
+        private LocalDate from;
+        private LocalDate to;
+
         public static Builder instance(ContractType contractType, ContractId contractId) {
             return new Builder(contractType, contractId);
         }
@@ -68,6 +72,12 @@ public abstract class Contract {
 
         public Builder withContractData(ContractData contractData) {
             this.contractData = contractData;
+            return this;
+        }
+
+        public Builder in(LocalDate from, LocalDate to) {
+            this.from = from;
+            this.to = to;
             return this;
         }
 

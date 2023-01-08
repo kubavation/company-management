@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -23,4 +24,7 @@ public class AssignContractCommand implements Command {
 
     private final int dailyNumberOfHours;
     private final int dailyNumberOfMinutes;
+
+    private final LocalDate from;
+    private final LocalDate to;
 }
