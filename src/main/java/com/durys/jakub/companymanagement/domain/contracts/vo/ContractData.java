@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.domain.contracts.vo;
 
 import com.durys.jakub.companymanagement.commons.vo.Currency;
 import com.durys.jakub.companymanagement.commons.vo.Money;
+import com.durys.jakub.companymanagement.domain.contracts.Contract;
 import com.durys.jakub.companymanagement.domain.contracts.ContractType;
 
 import java.math.BigDecimal;
@@ -10,7 +11,6 @@ public class ContractData {
     private final Position position;
     private final Salary salary;
     private final WorkingTime workingTime;
-  // private final ContractType contractType;
 
     public ContractData(Position position, Salary salary, WorkingTime workingTime) {
         this.position = position;
@@ -24,6 +24,15 @@ public class ContractData {
         private Salary salary;
         private WorkingTime workingTime;
 
+        private final Contract.Builder contractBuilder;
+
+        public static Builder instance(Contract.Builder contractBuilder) {
+            return new Builder(contractBuilder);
+        }
+
+        public Builder(Contract.Builder contractBuilder) {
+            this.contractBuilder = contractBuilder;
+        }
 
         public Builder earning(BigDecimal amount) {
             this.salary = Salary.withDefaultCurrencyOf(amount); //todo explore domain
@@ -45,8 +54,10 @@ public class ContractData {
             return this;
         }
 
-        public ContractData prepare() {
-            return new ContractData(position, salary, workingTime);
+        public Contract.Builder prepare() {
+            contractBuilder.withContractData(new ContractData(position, salary, workingTime));
+            return contractBuilder;
         }
+
     }
 }

@@ -8,6 +8,7 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @AllArgsConstructor
@@ -22,13 +23,18 @@ public abstract class Contract {
 
     private final ContractData contractData;
 
+    private final ContractPeriod contractPeriod;
+
     private final List<ContractAnnex> annexes;
 
-    public Contract(ContractId contractId, EmployeeId employeeId, ContractNumber contractNumber, ContractData contractData) {
+    public Contract(ContractId contractId, EmployeeId employeeId,
+                    ContractNumber contractNumber, ContractData contractData,
+                    ContractPeriod contractPeriod) {
         this.contractId = contractId;
         this.employeeId = employeeId;
         this.contractNumber = contractNumber;
         this.contractData = contractData;
+        this.contractPeriod = contractPeriod;
         this.annexes = Collections.emptyList();
     }
 
@@ -48,14 +54,18 @@ public abstract class Contract {
 
         private ContractData contractData;
 
-        private ContractPeriod contractPeriod;
+        private final ContractType contractType;
 
-        public static Builder withId(ContractId contractId) {
-            return new Builder(contractId);
+        private LocalDate from;
+        private LocalDate to;
+
+        public static Builder instance(ContractType contractType, ContractId contractId) {
+            return new Builder(contractType, contractId);
         }
 
-        private Builder(ContractId contractId) {
+        private Builder(ContractType contractType, ContractId contractId) {
             this.contractId = contractId;
+            this.contractType = contractType;
         }
 
         public Builder withNumber(String contractNumber) {
@@ -63,8 +73,18 @@ public abstract class Contract {
             return this;
         }
 
+        public ContractData.Builder data() {
+            return ContractData.Builder.instance(this);
+        }
+
         public Builder withContractData(ContractData contractData) {
             this.contractData = contractData;
+            return this;
+        }
+
+        public Builder in(LocalDate from, LocalDate to) {
+            this.from = from;
+            this.to = to;
             return this;
         }
 
@@ -72,7 +92,6 @@ public abstract class Contract {
             Objects.requireNonNull(employee, "employee to assign must not be null");
             this.employeeId = employee.employeeId();
             return this;
-            //return new Contract(contractId, employee.employeeId(), contractNumber, contractData);
         }
 
     }
