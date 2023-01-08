@@ -77,10 +77,6 @@ public abstract class Contract {
             return this;
         }
 
-        public Contract construct() {
-            return ContractFactory.prepare(this.contractType, this);
-        }
-
     }
 
 }
