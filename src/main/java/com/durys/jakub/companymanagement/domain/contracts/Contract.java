@@ -2,9 +2,11 @@ package com.durys.jakub.companymanagement.domain.contracts;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
+import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.*;
 
@@ -35,13 +37,18 @@ public abstract class Contract {
     }
 
 
+    @Getter
     public static class Builder {
 
         private ContractId contractId;
 
+        private EmployeeId employeeId;
+
         private ContractNumber contractNumber;
 
         private ContractData contractData;
+
+        private ContractPeriod contractPeriod;
 
         public static Builder withId(ContractId contractId) {
             return new Builder(contractId);
@@ -61,11 +68,11 @@ public abstract class Contract {
             return this;
         }
 
-        public Contract assignTo(Employee employee) {
-
+        public Builder assignTo(Employee employee) {
             Objects.requireNonNull(employee, "employee to assign must not be null");
-
-            return new Contract(contractId, employee.employeeId(), contractNumber, contractData);
+            this.employeeId = employee.employeeId();
+            return this;
+            //return new Contract(contractId, employee.employeeId(), contractNumber, contractData);
         }
 
     }
