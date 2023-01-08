@@ -10,7 +10,7 @@ import java.util.*;
 
 @AllArgsConstructor
 @AggregateRoot
-public class Contract { //todo subclasses
+public abstract class Contract {
 
     private final ContractId contractId;
 

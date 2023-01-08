@@ -10,7 +10,8 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
 public class TrailEmployeeContract extends Contract implements EmploymentContract {
 
-    public TrailEmployeeContract(ContractId contractId, EmployeeId employeeId, ContractNumber contractNumber, ContractData contractData) {
+    public TrailEmployeeContract(ContractId contractId, EmployeeId employeeId,
+                                 ContractNumber contractNumber, ContractData contractData) {
         super(contractId, employeeId, contractNumber, contractData);
     }
 
