@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.domain.contracts.vo;
 
 import com.durys.jakub.companymanagement.commons.vo.Currency;
 import com.durys.jakub.companymanagement.commons.vo.Money;
+import com.durys.jakub.companymanagement.domain.contracts.Contract;
 import com.durys.jakub.companymanagement.domain.contracts.ContractType;
 
 import java.math.BigDecimal;
@@ -10,7 +11,6 @@ public class ContractData {
     private final Position position;
     private final Salary salary;
     private final WorkingTime workingTime;
-  // private final ContractType contractType;
 
     public ContractData(Position position, Salary salary, WorkingTime workingTime) {
         this.position = position;
@@ -52,5 +52,6 @@ public class ContractData {
         public ContractData prepare() {
             return new ContractData(position, salary, workingTime);
         }
+
     }
 }
