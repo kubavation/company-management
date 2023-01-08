@@ -13,16 +13,25 @@ public abstract class ContractPeriod {
     private final LocalDate from;
     private final LocalDate to;
 
-    public ContractPeriod(LocalDate from, LocalDate to) {
+    protected ContractPeriod(LocalDate from, LocalDate to) {
 
         Objects.requireNonNull(from, "invalid date from param");
-        
+
         this.from = from;
         this.to = to;
         validate();
     }
 
-    abstract void validate();
+    protected abstract void validate();
+
+
+    public LocalDate from() {
+        return from;
+    }
+
+    public LocalDate to() {
+        return to;
+    }
 
 //    private void validateContractPeriodByType(ContractPeriodType type, LocalDate from, LocalDate to) {
 //

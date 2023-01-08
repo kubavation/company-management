@@ -2,15 +2,17 @@ package com.durys.jakub.companymanagement.domain.contracts;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
+import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.*;
 
 @AllArgsConstructor
 @AggregateRoot
-public class Contract { //todo subclasses
+public abstract class Contract {
 
     private final ContractId contractId;
 
@@ -30,24 +32,23 @@ public class Contract { //todo subclasses
         this.annexes = Collections.emptyList();
     }
 
-    public static Contract prepare(EmployeeId employeeId, ContractNumber contractNumber, ContractData contractData) {
-        //todo fix contractId
-        return new Contract(new ContractId(UUID.randomUUID()), employeeId, contractNumber, contractData);
-    }
-
-
     public void markWithAnnex(ContractData contractData) {
         annexes.add(new ContractAnnex(contractData, contractId));
     }
 
 
+    @Getter
     public static class Builder {
 
         private ContractId contractId;
 
+        private EmployeeId employeeId;
+
         private ContractNumber contractNumber;
 
         private ContractData contractData;
+
+        private ContractPeriod contractPeriod;
 
         public static Builder withId(ContractId contractId) {
             return new Builder(contractId);
@@ -67,11 +68,11 @@ public class Contract { //todo subclasses
             return this;
         }
 
-        public Contract assignTo(Employee employee) {
-
+        public Builder assignTo(Employee employee) {
             Objects.requireNonNull(employee, "employee to assign must not be null");
-
-            return new Contract(contractId, employee.employeeId(), contractNumber, contractData);
+            this.employeeId = employee.employeeId();
+            return this;
+            //return new Contract(contractId, employee.employeeId(), contractNumber, contractData);
         }
 
     }
