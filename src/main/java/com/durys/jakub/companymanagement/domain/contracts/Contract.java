@@ -49,7 +49,7 @@ public class Contract { //todo subclasses
 
         private ContractData contractData;
 
-        public static Builder from(ContractId contractId) {
+        public static Builder withId(ContractId contractId) {
             return new Builder(contractId);
         }
 

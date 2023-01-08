@@ -10,6 +10,7 @@ import com.durys.jakub.companymanagement.domain.contracts.ContractId;
 import com.durys.jakub.companymanagement.domain.contracts.ContractRepository;
 import com.durys.jakub.companymanagement.domain.contracts.ContractType;
 import com.durys.jakub.companymanagement.domain.contracts.vo.*;
+import com.durys.jakub.companymanagement.domain.employees.exception.EmployeeNotExistsException;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
@@ -31,16 +32,17 @@ public class AssignContractCommandHandler implements CommandHandler<AssignContra
        Employee employee = employeeRepository.load(EmployeeId.from(command.getEmployeeId()));
 
        if (Objects.isNull(employee)) {
-           throw new RuntimeException("todo");
+           throw new EmployeeNotExistsException();
        }
 
 
-       Contract contract = Contract.Builder.from(new ContractId(UUID.randomUUID()))
+       Contract contract = Contract.Builder
+               .withId(new ContractId(UUID.randomUUID()))
                        .withNumber(command.getContractNumber())
                        .withContractData(
                            new ContractData(
                                    new Position(command.getPosition()),
-                                   new Salary(new Money(command.getSalary()), Currency.EURO),
+                                   Salary.withDefaultCurrencyOf(command.getSalary()),
                                    new WorkingTime(
                                            DailyHourNumber.of(command.getDailyNumberOfHours(), command.getDailyNumberOfMinutes()),
                                            BillingPeriod.valueOf(command.getBillingPeriod())),
