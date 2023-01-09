@@ -8,6 +8,7 @@ public class PermanentEmployeeContract extends Contract implements EmploymentCon
 
     public PermanentEmployeeContract(Builder builder) {
         super(builder.getContractId(), builder.getEmployeeId(), builder.getContractNumber(),
-                builder.getContractData(), todo);
+                builder.getContractData(), new PermanentEmployeeContractPeriod(builder.getFrom(), builder.getTo()));
     }
+
 }
