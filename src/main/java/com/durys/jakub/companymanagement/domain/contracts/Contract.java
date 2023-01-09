@@ -27,7 +27,7 @@ public abstract class Contract {
 
     private final List<ContractAnnex> annexes;
 
-    Contract(ContractId contractId, EmployeeId employeeId,
+    protected Contract(ContractId contractId, EmployeeId employeeId,
              ContractNumber number, ContractData data,
              ContractPeriod period) {
         this.contractId = contractId;
