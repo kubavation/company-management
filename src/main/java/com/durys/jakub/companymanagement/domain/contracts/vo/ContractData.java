@@ -54,7 +54,7 @@ public class ContractData {
         }
 
         public Contract.Builder prepare() {
-            contractBuilder.withContractData(new ContractData(position, salary, workingTime));
+            contractBuilder.withData(new ContractData(position, salary, workingTime));
             return contractBuilder;
         }
 
