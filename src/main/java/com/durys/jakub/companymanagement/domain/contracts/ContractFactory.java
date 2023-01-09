@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class ContractFactory {
+class ContractFactory {
 
 
     public static Contract prepare(@NonNull ContractType type,

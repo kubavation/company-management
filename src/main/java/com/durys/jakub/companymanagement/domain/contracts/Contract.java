@@ -25,7 +25,7 @@ public abstract class Contract {
 
     private final ContractPeriod period;
 
-    private final List<ContractAnnex> annexes;
+    private final List<Annex> annexes;
 
     protected Contract(ContractId contractId, EmployeeId employeeId,
              ContractNumber number, ContractData data,
@@ -39,7 +39,7 @@ public abstract class Contract {
     }
 
     public void markWithAnnex(ContractData contractData) {
-        annexes.add(new ContractAnnex(contractData, contractId));
+        annexes.add(new Annex(contractData, contractId));
     }
 
 
