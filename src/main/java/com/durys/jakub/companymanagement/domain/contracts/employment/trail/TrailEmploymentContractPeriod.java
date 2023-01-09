@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.domain.contracts.employment.trail;
 
+import com.durys.jakub.companymanagement.domain.contracts.exception.InvalidContractPeriodException;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriodType;
 
@@ -24,6 +25,10 @@ public class TrailEmploymentContractPeriod extends ContractPeriod {
     protected void validate() {
 
         Objects.requireNonNull(to(), "date to for trail employment contract must be provided");
+
+        if (!to().isAfter(from())) {
+            throw new InvalidContractPeriodException();
+        }
 
         if (ChronoUnit.MONTHS.between(from(), to()) > 3) {
             throw new TrailEmploymentContractPeriodLongerThanThreeMonthsException();
