@@ -1,12 +1,9 @@
 package com.durys.jakub.companymanagement.application.contracts.commands.handlers;
 
 import com.durys.jakub.companymanagement.application.contracts.commands.AssignContractCommand;
-import com.durys.jakub.companymanagement.commons.vo.Currency;
-import com.durys.jakub.companymanagement.commons.vo.Money;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.contracts.*;
-import com.durys.jakub.companymanagement.domain.contracts.vo.*;
 import com.durys.jakub.companymanagement.domain.employees.exception.EmployeeNotExistsException;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
@@ -26,7 +23,7 @@ public class AssignContractCommandHandler implements CommandHandler<AssignContra
     @Override
     public void handle(AssignContractCommand command) {
 
-       Employee employee = employeeRepository.load(EmployeeId.from(command.getEmployeeId()));
+       Employee employee = employeeRepository.load(EmployeeId.from(command.employeeId()));
 
        if (Objects.isNull(employee)) {
            throw new EmployeeNotExistsException();
@@ -34,21 +31,19 @@ public class AssignContractCommandHandler implements CommandHandler<AssignContra
 
 
        Contract.Builder workInProgress = Contract.Builder
-               .instance(ContractType.valueOf(command.getContractType()), new ContractId(UUID.randomUUID()))
-                       .withNumber(command.getContractNumber())
-                       .in(command.getFrom(), command.getTo())
+               .instance(ContractType.valueOf(command.contractType()), new ContractId(UUID.randomUUID()))
+                       .withNumber(command.contractNumber())
+                       .in(command.from(), command.to())
                        .data()
-                            .workingAs(command.getPosition())
-                            .earning(command.getSalary())
-                            .workingTime(command.getDailyNumberOfHours(), command.getDailyNumberOfMinutes())
+                            .workingAs(command.position())
+                            .earning(command.salary())
+                            .workingTime(command.dailyNumberOfHours(), command.dailyNumberOfMinutes())
                             .prepare()
                         .assignTo(employee);
 
 
        Contract contract = ContractFactory.prepare(
-               ContractType.valueOf(command.getContractType()),
-               workInProgress);
-
+               ContractType.valueOf(command.contractType()), workInProgress);
 
        contractRepository.save(contract);
     }
