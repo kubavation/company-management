@@ -6,12 +6,14 @@ import com.durys.jakub.companymanagement.domain.contracts.employment.trail.Trail
 import com.durys.jakub.companymanagement.domain.contracts.mandate.MandateContract;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ContractFactory {
 
 
-    public static Contract prepare(ContractType type, Contract.Builder builder) {
+    public static Contract prepare(@NonNull ContractType type,
+                                   @NonNull Contract.Builder builder) {
 
         return switch (type) {
             case EMPLOYMENT_FIXED_TERM -> new FixedTermEmployeeContract(builder);
