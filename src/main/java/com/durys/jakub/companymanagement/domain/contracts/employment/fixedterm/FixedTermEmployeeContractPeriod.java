@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.domain.contracts.employment.fixedterm;
 
+import com.durys.jakub.companymanagement.domain.contracts.exception.InvalidContractPeriodException;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
 
 import java.time.LocalDate;
@@ -14,5 +15,9 @@ public class FixedTermEmployeeContractPeriod extends ContractPeriod {
     @Override
     protected void validate() {
         Objects.requireNonNull(super.to(), "date to for fixed term employment contract must be provided");
+
+        if (!to().isAfter(from())) {
+            throw new InvalidContractPeriodException();
+        }
     }
 }
