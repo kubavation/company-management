@@ -7,7 +7,7 @@ import com.durys.jakub.companymanagement.domain.contracts.employment.EmploymentC
 
 public class TrailEmployeeContract extends Contract implements EmploymentContract {
 
-    //todo check if trail contract already exists for employee 
+    //todo check if trail contract already exists for employee
 
     public TrailEmployeeContract(Contract.Builder builder) {
         super(builder.getContractId(), builder.getEmployeeId(), builder.getContractNumber(),

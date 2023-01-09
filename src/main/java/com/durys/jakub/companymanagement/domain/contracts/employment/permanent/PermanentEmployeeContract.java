@@ -10,4 +10,5 @@ public class PermanentEmployeeContract extends Contract implements EmploymentCon
         super(builder.getContractId(), builder.getEmployeeId(), builder.getContractNumber(),
                 builder.getContractData(), todo);
     }
+
 }
