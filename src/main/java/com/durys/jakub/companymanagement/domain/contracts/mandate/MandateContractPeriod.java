@@ -4,7 +4,6 @@ import com.durys.jakub.companymanagement.domain.contracts.exception.InvalidContr
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public class MandateContractPeriod extends ContractPeriod {
