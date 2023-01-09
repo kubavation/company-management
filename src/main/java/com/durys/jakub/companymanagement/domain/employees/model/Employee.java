@@ -6,11 +6,11 @@ import com.durys.jakub.companymanagement.domain.employees.model.vo.EmployeePerso
 @AggregateRoot
 public class Employee implements Employable {
     private final EmployeeId employeeId;
-    private final EmployeePersonalData employeePersonalData;
+    private final EmployeePersonalData personalData;
 
-    public Employee(EmployeeId employeeId, EmployeePersonalData employeePersonalData) {
+    public Employee(EmployeeId employeeId, EmployeePersonalData personalData) {
         this.employeeId = employeeId;
-        this.employeePersonalData = employeePersonalData;
+        this.personalData = personalData;
     }
 
     @Override
@@ -19,10 +19,10 @@ public class Employee implements Employable {
     }
 
     public EmployeePersonalData personalData() {
-        return employeePersonalData;
+        return personalData;
     }
 
     public String name() {
-        return String.format("%s %s", employeePersonalData.getLastName(), employeePersonalData.getFirstName());
+        return String.format("%s %s", personalData.getLastName(), personalData.getFirstName());
     }
 }

@@ -10,21 +10,9 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @Getter
-public class AssignContractCommand implements Command {
+public record AssignContractCommand(UUID employeeId, String contractNumber, String position, BigDecimal salary,
+                                    BigDecimal salaryCurrency, String billingPeriod, String contractType,
+                                    int dailyNumberOfHours, int dailyNumberOfMinutes, LocalDate from,
+                                    LocalDate to) implements Command {
 
-    private final UUID employeeId;
-    private final String contractNumber;
-    private final String position;
-
-    private final BigDecimal salary;
-    private final BigDecimal salaryCurrency;
-
-    private final String billingPeriod;
-    private final String contractType;
-
-    private final int dailyNumberOfHours;
-    private final int dailyNumberOfMinutes;
-
-    private final LocalDate from;
-    private final LocalDate to;
 }

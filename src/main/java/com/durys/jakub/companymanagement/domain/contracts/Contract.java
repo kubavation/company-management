@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.contracts;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
+import com.durys.jakub.companymanagement.commons.domain.DomainServicesRegistry;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
@@ -25,7 +26,7 @@ public abstract class Contract {
 
     private final ContractPeriod period;
 
-    private final List<ContractAnnex> annexes;
+    private final List<Annex> annexes;
 
     protected Contract(ContractId contractId, EmployeeId employeeId,
              ContractNumber number, ContractData data,
@@ -39,7 +40,13 @@ public abstract class Contract {
     }
 
     public void markWithAnnex(ContractData contractData) {
-        annexes.add(new ContractAnnex(contractData, contractId));
+        annexes.add(new Annex(contractData, contractId));
+    }
+
+    ContractNumber generateNumber(ContractType contractType) {
+       return DomainServicesRegistry
+                .instanceOf(ContractNumberProvider.class)
+                .generate(contractType);
     }
 
 
