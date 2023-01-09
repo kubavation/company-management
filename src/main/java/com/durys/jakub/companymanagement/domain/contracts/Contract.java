@@ -19,22 +19,22 @@ public abstract class Contract {
 
     private final EmployeeId employeeId;
 
-    private final ContractNumber contractNumber;
+    private final ContractNumber number;
 
-    private final ContractData contractData;
+    private final ContractData data;
 
-    private final ContractPeriod contractPeriod;
+    private final ContractPeriod period;
 
     private final List<ContractAnnex> annexes;
 
-    public Contract(ContractId contractId, EmployeeId employeeId,
-                    ContractNumber contractNumber, ContractData contractData,
-                    ContractPeriod contractPeriod) {
+    protected Contract(ContractId contractId, EmployeeId employeeId,
+             ContractNumber number, ContractData data,
+             ContractPeriod period) {
         this.contractId = contractId;
         this.employeeId = employeeId;
-        this.contractNumber = contractNumber;
-        this.contractData = contractData;
-        this.contractPeriod = contractPeriod;
+        this.number = number;
+        this.data = data;
+        this.period = period;
         this.annexes = Collections.emptyList();
     }
 
@@ -46,15 +46,15 @@ public abstract class Contract {
     @Getter
     public static class Builder {
 
-        private ContractId contractId;
+        private final ContractId contractId;
+
+        private final ContractType contractType;
 
         private EmployeeId employeeId;
 
         private ContractNumber contractNumber;
 
         private ContractData contractData;
-
-        private final ContractType contractType;
 
         private LocalDate from;
         private LocalDate to;
@@ -77,7 +77,7 @@ public abstract class Contract {
             return ContractData.Builder.instance(this);
         }
 
-        public Builder withContractData(ContractData contractData) {
+        public Builder withData(ContractData contractData) {
             this.contractData = contractData;
             return this;
         }
@@ -85,6 +85,12 @@ public abstract class Contract {
         public Builder in(LocalDate from, LocalDate to) {
             this.from = from;
             this.to = to;
+            return this;
+        }
+
+        public Builder from(LocalDate from) {
+            this.from = from;
+            this.to = null;
             return this;
         }
 

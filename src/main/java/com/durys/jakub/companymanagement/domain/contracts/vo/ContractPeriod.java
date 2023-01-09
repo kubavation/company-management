@@ -28,23 +28,4 @@ public abstract class ContractPeriod {
     public LocalDate to() {
         return to;
     }
-
-//    private void validateContractPeriodByType(ContractPeriodType type, LocalDate from, LocalDate to) {
-//
-//        if (ContractPeriodType.FIXED_TERM.equals(type)) {
-//
-//            if (Objects.isNull(to)) {
-//                throw new ContractPeriodEndDateNotDefinedException();
-//            }
-//
-//            if (!to.isAfter(from)) {
-//                throw new InvalidContractPeriodException();
-//            }
-//        }
-//
-//        if (ContractPeriodType.PERMANENT.equals(type) && Objects.nonNull(to)) {
-//            throw new ContractPeriodEndDateIncorrectlyDefined();
-//        }
-//
-//    }
 }
