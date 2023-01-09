@@ -9,6 +9,6 @@ public class FixedTermEmployeeContract extends Contract implements EmploymentCon
 
     public FixedTermEmployeeContract(Builder builder) {
         super(builder.getContractId(), builder.getEmployeeId(), builder.getContractNumber(),
-                builder.getContractData(), todo);
+                builder.getContractData(), new FixedTermEmployeeContractPeriod(builder.getFrom(), builder.getTo()));
     }
 }
