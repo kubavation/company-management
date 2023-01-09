@@ -1,6 +1,5 @@
 package com.durys.jakub.companymanagement.domain.contracts.vo;
 
-import com.durys.jakub.companymanagement.domain.contracts.exception.ContractPeriodEndDateIncorrectlyDefined;
 import com.durys.jakub.companymanagement.domain.contracts.exception.ContractPeriodEndDateNotDefinedException;
 import com.durys.jakub.companymanagement.domain.contracts.exception.InvalidContractPeriodException;
 import org.junit.jupiter.api.Test;
