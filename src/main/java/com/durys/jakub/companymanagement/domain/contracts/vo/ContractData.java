@@ -3,7 +3,6 @@ package com.durys.jakub.companymanagement.domain.contracts.vo;
 import com.durys.jakub.companymanagement.commons.vo.Currency;
 import com.durys.jakub.companymanagement.commons.vo.Money;
 import com.durys.jakub.companymanagement.domain.contracts.Contract;
-import com.durys.jakub.companymanagement.domain.contracts.ContractType;
 
 import java.math.BigDecimal;
 

@@ -2,7 +2,6 @@ package com.durys.jakub.companymanagement.domain.contracts.employment.trail;
 
 import com.durys.jakub.companymanagement.domain.contracts.exception.InvalidContractPeriodException;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
-import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriodType;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
