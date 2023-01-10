@@ -13,4 +13,5 @@ public class TrailEmployeeContract extends Contract implements EmploymentContrac
         super(builder.getContractId(), builder.getEmployeeId(), builder.getContractNumber(),
                 builder.getContractData(), new TrailEmploymentContractPeriod(builder.getFrom(), builder.getTo()));
     }
+
 }
