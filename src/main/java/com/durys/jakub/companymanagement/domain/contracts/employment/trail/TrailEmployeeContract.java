@@ -17,6 +17,7 @@ public class TrailEmployeeContract extends Contract implements EmploymentContrac
     }
 
     //employment period based on contract duration
+    @Override
     public NoticePeriod noticePeriod(Period employmentPeriod) {
         if (employmentPeriod.getMonths() == 3) {
             return NoticePeriod.TWO_WEEKS;

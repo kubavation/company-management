@@ -17,6 +17,7 @@ public class FixedTermEmployeeContract extends Contract implements EmploymentCon
     }
 
 
+    @Override
     public NoticePeriod noticePeriod(Period employmentPeriod) {
         if (employmentPeriod.getYears() >= 3) {
             return NoticePeriod.THREE_MONTHS;

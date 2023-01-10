@@ -14,6 +14,7 @@ public class PermanentEmployeeContract extends Contract implements EmploymentCon
                 builder.getContractData(), new PermanentEmployeeContractPeriod(builder.getFrom(), builder.getTo()));
     }
 
+    @Override
     public NoticePeriod noticePeriod(Period employmentPeriod) {
         if (employmentPeriod.getYears() >= 3) {
             return NoticePeriod.THREE_MONTHS;
