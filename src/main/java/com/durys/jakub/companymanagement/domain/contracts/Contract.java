@@ -28,6 +28,7 @@ public abstract class Contract {
 
     private final List<Annex> annexes;
 
+
     protected Contract(ContractId contractId, EmployeeId employeeId,
              ContractNumber number, ContractData data,
              ContractPeriod period) {
