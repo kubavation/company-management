@@ -6,8 +6,10 @@ import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.contracts.Contract;
 import com.durys.jakub.companymanagement.domain.contracts.ContractId;
 import com.durys.jakub.companymanagement.domain.contracts.ContractRepository;
+import com.durys.jakub.companymanagement.domain.contracts.EmploymentService;
 import lombok.RequiredArgsConstructor;
 
+import java.time.Period;
 import java.util.Objects;
 
 @CommandHandling
@@ -15,6 +17,7 @@ import java.util.Objects;
 public class TerminateContractCommandHandler implements CommandHandler<TerminateContractCommand> {
 
     private final ContractRepository contractRepository;
+    private final EmploymentService employmentService;
 
     @Override
     public void handle(TerminateContractCommand command) {
@@ -23,7 +26,10 @@ public class TerminateContractCommandHandler implements CommandHandler<Terminate
 
        Objects.requireNonNull(contract);
 
-       contract.terminate();
+       Period employmentPeriod = employmentService.employmentPeriod(ContractId.of(command.contractId()));
+
+       //todo
+       contract.terminate(command.terminationDate(), employmentPeriod);
 
        contractRepository.save(contract);
     }
