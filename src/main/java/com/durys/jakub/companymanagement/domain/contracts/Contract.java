@@ -18,17 +18,17 @@ import java.util.*;
 @AggregateRoot
 public abstract class Contract {
 
-    private final ContractId contractId;
+    protected final ContractId contractId;
 
-    private final EmployeeId employeeId;
+    protected final EmployeeId employeeId;
 
-    private final ContractNumber number;
+    protected final ContractNumber number;
 
-    private final ContractData data;
+    protected ContractData data;
 
-    private final ContractPeriod period;
+    protected ContractPeriod period;
 
-    private final List<Annex> annexes;
+    protected final List<Annex> annexes;
 
 
 
@@ -53,9 +53,12 @@ public abstract class Contract {
                 .generate(contractType);
     }
 
-    public void terminate() {
-
+    public void terminate(LocalDate dateOfTermination, Period employmentPeriod) {
+        LocalDate endDate = calculateEndDate(dateOfTermination, employmentPeriod);
+        period = ofPeriod(period.from(), endDate);
     }
+
+    protected abstract ContractPeriod ofPeriod(LocalDate from, LocalDate to);
 
     protected abstract LocalDate calculateEndDate(LocalDate dateOfTermination, Period employmentPeriod);
 
