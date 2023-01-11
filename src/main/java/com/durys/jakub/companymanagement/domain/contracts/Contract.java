@@ -57,9 +57,7 @@ public abstract class Contract {
 
     }
 
-
-
-    protected abstract NoticePeriod noticePeriod(Period employmentPeriod);
+    protected abstract LocalDate calculateEndDate();
 
     @Getter
     public static class Builder {
