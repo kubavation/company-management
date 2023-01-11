@@ -8,8 +8,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@RequiredArgsConstructor
-@Getter
 public record AssignContractCommand(UUID employeeId, String contractNumber, String position, BigDecimal salary,
                                     BigDecimal salaryCurrency, String billingPeriod, String contractType,
                                     int dailyNumberOfHours, int dailyNumberOfMinutes, LocalDate from,
