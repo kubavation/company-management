@@ -57,7 +57,7 @@ public abstract class Contract {
 
     }
 
-    protected abstract LocalDate calculateEndDate();
+    protected abstract LocalDate calculateEndDate(LocalDate dateOfTermination, Period employmentPeriod);
 
     @Getter
     public static class Builder {
