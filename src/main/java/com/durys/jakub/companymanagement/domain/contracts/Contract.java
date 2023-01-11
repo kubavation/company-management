@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.domain.contracts;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.commons.domain.DomainServicesRegistry;
+import com.durys.jakub.companymanagement.domain.contracts.employment.NoticePeriod;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
@@ -10,23 +11,24 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 
 @AllArgsConstructor
 @AggregateRoot
 public abstract class Contract {
 
-    private final ContractId contractId;
+    protected final ContractId contractId;
 
-    private final EmployeeId employeeId;
+    protected final EmployeeId employeeId;
 
-    private final ContractNumber number;
+    protected final ContractNumber number;
 
-    private final ContractData data;
+    protected ContractData data;
 
-    private final ContractPeriod period;
+    protected ContractPeriod period;
 
-    private final List<Annex> annexes;
+    protected final List<Annex> annexes;
 
 
 
@@ -51,6 +53,13 @@ public abstract class Contract {
                 .generate(contractType);
     }
 
+    public void terminate(LocalDate dateOfTermination, Period employmentPeriod) {
+        LocalDate endDate = calculateEndDate(dateOfTermination, employmentPeriod);
+        period = ofPeriod(period.from(), endDate);
+    }
+
+    protected abstract ContractPeriod ofPeriod(LocalDate from, LocalDate to);
+    protected abstract LocalDate calculateEndDate(LocalDate dateOfTermination, Period employmentPeriod);
 
     @Getter
     public static class Builder {

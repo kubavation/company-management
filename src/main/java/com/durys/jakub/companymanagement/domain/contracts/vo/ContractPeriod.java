@@ -28,4 +28,5 @@ public abstract class ContractPeriod {
     public LocalDate to() {
         return to;
     }
+
 }
