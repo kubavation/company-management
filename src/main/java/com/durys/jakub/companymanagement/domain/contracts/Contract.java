@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.domain.contracts;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.commons.domain.DomainServicesRegistry;
+import com.durys.jakub.companymanagement.domain.contracts.employment.NoticePeriod;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
@@ -10,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 
 @AllArgsConstructor
@@ -51,6 +53,13 @@ public abstract class Contract {
                 .generate(contractType);
     }
 
+    public void terminate() {
+
+    }
+
+
+
+    protected abstract NoticePeriod noticePeriod(Period employmentPeriod);
 
     @Getter
     public static class Builder {
