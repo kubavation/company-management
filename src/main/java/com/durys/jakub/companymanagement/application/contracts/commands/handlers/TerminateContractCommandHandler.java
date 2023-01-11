@@ -23,7 +23,8 @@ public class TerminateContractCommandHandler implements CommandHandler<Terminate
 
        Objects.requireNonNull(contract);
 
-       
+       contract.terminate();
 
+       contractRepository.save(contract);
     }
 }
