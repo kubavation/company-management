@@ -29,6 +29,7 @@ public abstract class Contract {
     private final List<Annex> annexes;
 
 
+
     protected Contract(ContractId contractId, EmployeeId employeeId,
              ContractNumber number, ContractData data,
              ContractPeriod period) {
@@ -54,8 +55,6 @@ public abstract class Contract {
     @Getter
     public static class Builder {
 
-        private final ContractId contractId;
-
         private final ContractType contractType;
 
         private EmployeeId employeeId;
@@ -67,12 +66,11 @@ public abstract class Contract {
         private LocalDate from;
         private LocalDate to;
 
-        public static Builder instance(ContractType contractType, ContractId contractId) {
-            return new Builder(contractType, contractId);
+        public static Builder instanceOf(ContractType contractType) {
+            return new Builder(contractType);
         }
 
-        private Builder(ContractType contractType, ContractId contractId) {
-            this.contractId = contractId;
+        private Builder(ContractType contractType) {
             this.contractType = contractType;
         }
 
