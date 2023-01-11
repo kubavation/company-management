@@ -11,4 +11,8 @@ import java.util.UUID;
 @EqualsAndHashCode
 public class ContractId implements Serializable {
     private final UUID value;
+
+    public static ContractId of(UUID value) {
+        return new ContractId(value);
+    }
 }

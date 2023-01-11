@@ -9,4 +9,8 @@ public class Position {
         Objects.requireNonNull(name);
         this.name = name;
     }
+
+    public String name() {
+        return name;
+    }
 }

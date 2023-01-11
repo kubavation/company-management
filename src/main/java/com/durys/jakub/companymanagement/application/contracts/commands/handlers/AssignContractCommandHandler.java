@@ -29,9 +29,8 @@ public class AssignContractCommandHandler implements CommandHandler<AssignContra
            throw new EmployeeNotExistsException();
        }
 
-
        Contract.Builder workInProgress = Contract.Builder
-               .instance(ContractType.valueOf(command.contractType()), new ContractId(UUID.randomUUID()))
+               .instanceOf(ContractType.valueOf(command.contractType()))
                        .withNumber(command.contractNumber())
                        .in(command.from(), command.to())
                        .data()
@@ -42,8 +41,7 @@ public class AssignContractCommandHandler implements CommandHandler<AssignContra
                         .assignTo(employee);
 
 
-       Contract contract = ContractFactory.prepare(
-               ContractType.valueOf(command.contractType()), workInProgress);
+       Contract contract = ContractFactory.prepare(ContractType.valueOf(command.contractType()), workInProgress);
 
        contractRepository.save(contract);
     }
