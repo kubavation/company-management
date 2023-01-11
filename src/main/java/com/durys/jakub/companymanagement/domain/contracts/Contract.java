@@ -59,7 +59,6 @@ public abstract class Contract {
     }
 
     protected abstract ContractPeriod ofPeriod(LocalDate from, LocalDate to);
-
     protected abstract LocalDate calculateEndDate(LocalDate dateOfTermination, Period employmentPeriod);
 
     @Getter

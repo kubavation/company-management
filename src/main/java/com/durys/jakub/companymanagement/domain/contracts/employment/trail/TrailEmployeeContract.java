@@ -4,7 +4,9 @@ import com.durys.jakub.companymanagement.domain.contracts.Contract;
 import com.durys.jakub.companymanagement.domain.contracts.ContractId;
 import com.durys.jakub.companymanagement.domain.contracts.employment.EmploymentContract;
 import com.durys.jakub.companymanagement.domain.contracts.employment.NoticePeriod;
+import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
 
+import java.time.LocalDate;
 import java.time.Period;
 import java.util.UUID;
 
@@ -30,4 +32,14 @@ public class TrailEmployeeContract extends Contract implements EmploymentContrac
         return NoticePeriod.THREE_DAYS;
     }
 
+    @Override
+    protected ContractPeriod ofPeriod(LocalDate from, LocalDate to) {
+        return new TrailEmploymentContractPeriod(from, to);
+    }
+
+    @Override
+    protected LocalDate calculateEndDate(LocalDate dateOfTermination, Period employmentPeriod) {
+        NoticePeriod noticePeriod = noticePeriod(employmentPeriod);
+        return dateOfTermination.plus(noticePeriod.getNumber(), noticePeriod.getUnit());
+    }
 }
