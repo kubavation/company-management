@@ -41,8 +41,7 @@ public class AssignContractCommandHandler implements CommandHandler<AssignContra
                         .assignTo(employee);
 
 
-       Contract contract = ContractFactory.prepare(
-               ContractType.valueOf(command.contractType()), workInProgress);
+       Contract contract = ContractFactory.prepare(ContractType.valueOf(command.contractType()), workInProgress);
 
        contractRepository.save(contract);
     }
