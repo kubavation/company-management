@@ -15,6 +15,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
+import java.util.function.Consumer;
 
 @AllArgsConstructor
 @AggregateRoot
@@ -53,11 +54,20 @@ public abstract class Contract {
             return data.position();
         }
 
-        return fromAnnex(LocalDate.now());
+        return fromAnnex(LocalDate.now(), null);
     }
 
-    private Position fromAnnex(LocalDate statusAt) {
+    private <T> T fromAnnex(LocalDate statusAt, Consumer<T> dataConsumer) {
+//        return annexes.stream()
+//                .
         return null;
+    }
+
+
+    private Optional<Annex> lastAnnex() {
+        return annexes.stream()
+                .filter(Annex::isClosed)
+                .findFirst();
     }
 
 
