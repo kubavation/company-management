@@ -11,14 +11,8 @@ class Annex {
     private final ContractData contractData;
     private final LocalDate dateFrom;
 
-    Annex(AnnexId annexId, ContractData contractData, LocalDate dateFrom) {
+    Annex(AnnexId annexId,  LocalDate dateFrom, ContractData contractData) {
         this.annexId = annexId;
-        this.contractData = contractData;
-        this.dateFrom = dateFrom;
-    }
-
-     Annex(ContractData contractData, LocalDate dateFrom) {
-        this.annexId = new AnnexId(UUID.randomUUID());
         this.contractData = contractData;
         this.dateFrom = dateFrom;
     }
