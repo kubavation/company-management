@@ -18,4 +18,8 @@ class Annex {
         this.contractData = contractData;
         this.dateFrom = dateFrom;
     }
+
+    void markAsClosedWith(LocalDate dateTo) {
+        this.dateTo = dateTo;
+    }
 }
