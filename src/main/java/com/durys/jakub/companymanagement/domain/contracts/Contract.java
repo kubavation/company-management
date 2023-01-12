@@ -46,7 +46,12 @@ public abstract class Contract {
     }
 
     public void markWithAnnex(LocalDate from, ContractData contractData) {
-        annexes.add(new Annex(new AnnexId(UUID.randomUUID()), from, contractData));
+
+        lastAnnex()
+            .ifPresent(annex -> annex.markAsClosedWith(from));
+        
+        Annex annex = new Annex(new AnnexId(UUID.randomUUID()), from, contractData);
+        annexes.add(annex);
     }
 
     public Position position() {

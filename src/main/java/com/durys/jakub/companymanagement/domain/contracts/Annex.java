@@ -4,6 +4,7 @@ import com.durys.jakub.companymanagement.commons.domain.DomainEntity;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @DomainEntity
 class Annex {
@@ -21,5 +22,9 @@ class Annex {
 
     void markAsClosedWith(LocalDate dateTo) {
         this.dateTo = dateTo;
+    }
+
+    boolean isClosed() {
+        return Objects.isNull(dateTo);
     }
 }
