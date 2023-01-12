@@ -43,8 +43,8 @@ public abstract class Contract {
         this.annexes = Collections.emptyList();
     }
 
-    public void markWithAnnex(ContractData contractData) {
-        annexes.add(new Annex(contractData, contractId));
+    public void markWithAnnex(LocalDate from, ContractData contractData) {
+        annexes.add(new Annex(new AnnexId(UUID.randomUUID()), from, contractData));
     }
 
     ContractNumber generateNumber(ContractType contractType) {
