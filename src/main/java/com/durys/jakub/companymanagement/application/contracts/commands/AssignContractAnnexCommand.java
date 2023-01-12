@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
-//todo
-public record AssignContractAnnexCommand(UUID contractId, LocalDate from, BigDecimal salary) implements Command {
+public record AssignContractAnnexCommand(UUID contractId, LocalDate from, BigDecimal salary,
+                                         String position, int dailyNumberOfHours, int dailyNumberOfMinutes) implements Command {
 
 }
