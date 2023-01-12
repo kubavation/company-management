@@ -1,10 +1,11 @@
 package com.durys.jakub.companymanagement.domain.contracts;
 
+import com.durys.jakub.companymanagement.commons.domain.DomainEntity;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
+@DomainEntity
 class Annex {
 
     private final AnnexId annexId;
