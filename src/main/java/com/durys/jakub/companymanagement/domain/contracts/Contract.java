@@ -5,10 +5,12 @@ import com.durys.jakub.companymanagement.commons.domain.DomainServicesRegistry;
 import com.durys.jakub.companymanagement.domain.contracts.employment.NoticePeriod;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
+import com.durys.jakub.companymanagement.domain.contracts.vo.Position;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -33,8 +35,7 @@ public abstract class Contract {
 
 
     protected Contract(ContractId contractId, EmployeeId employeeId,
-             ContractNumber number, ContractData data,
-             ContractPeriod period) {
+             ContractNumber number, ContractData data, ContractPeriod period) {
         this.contractId = contractId;
         this.employeeId = employeeId;
         this.number = number;
@@ -46,6 +47,19 @@ public abstract class Contract {
     public void markWithAnnex(LocalDate from, ContractData contractData) {
         annexes.add(new Annex(new AnnexId(UUID.randomUUID()), from, contractData));
     }
+
+    public Position position() {
+        if (CollectionUtils.isEmpty(annexes)) {
+            return data.position();
+        }
+
+        return fromAnnex(LocalDate.now());
+    }
+
+    private Position fromAnnex(LocalDate statusAt) {
+        return null;
+    }
+
 
     ContractNumber generateNumber(ContractType contractType) {
        return DomainServicesRegistry
