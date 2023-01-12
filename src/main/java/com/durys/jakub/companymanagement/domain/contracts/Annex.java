@@ -4,6 +4,7 @@ import com.durys.jakub.companymanagement.commons.domain.DomainEntity;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Objects;
 
 @DomainEntity
@@ -27,4 +28,9 @@ class Annex {
     boolean isClosed() {
         return Objects.isNull(dateTo);
     }
+
+    boolean applicableOn(LocalDate date) {
+        return !dateFrom.isAfter(date) && !date.isAfter(Objects.requireNonNullElse(dateTo, date));
+    }
+
 }
