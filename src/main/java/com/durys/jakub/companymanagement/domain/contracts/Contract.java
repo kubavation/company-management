@@ -3,10 +3,7 @@ package com.durys.jakub.companymanagement.domain.contracts;
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.commons.domain.DomainServicesRegistry;
 import com.durys.jakub.companymanagement.domain.contracts.employment.NoticePeriod;
-import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
-import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
-import com.durys.jakub.companymanagement.domain.contracts.vo.Position;
-import com.durys.jakub.companymanagement.domain.contracts.vo.Salary;
+import com.durys.jakub.companymanagement.domain.contracts.vo.*;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.AllArgsConstructor;
@@ -70,6 +67,14 @@ public abstract class Contract {
         }
 
         return fromAnnex(LocalDate.now(), annex -> annex.data().salary());
+    }
+
+    public WorkingTime workingTime() {
+        if (CollectionUtils.isEmpty(annexes)) {
+            return data.workingTime();
+        }
+
+        return fromAnnex(LocalDate.now(), annex -> annex.data().workingTime());
     }
 
     private <T> T fromAnnex(LocalDate statusAt, Function<Annex, T> fun) {
