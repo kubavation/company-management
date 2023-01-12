@@ -6,6 +6,7 @@ import com.durys.jakub.companymanagement.domain.contracts.employment.NoticePerio
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
 import com.durys.jakub.companymanagement.domain.contracts.vo.Position;
+import com.durys.jakub.companymanagement.domain.contracts.vo.Salary;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.AllArgsConstructor;
@@ -61,6 +62,14 @@ public abstract class Contract {
         }
 
         return fromAnnex(LocalDate.now(), annex -> annex.data().position());
+    }
+
+    public Salary salary() {
+        if (CollectionUtils.isEmpty(annexes)) {
+            return data.salary();
+        }
+
+        return fromAnnex(LocalDate.now(), annex -> annex.data().salary());
     }
 
     private <T> T fromAnnex(LocalDate statusAt, Function<Annex, T> fun) {
