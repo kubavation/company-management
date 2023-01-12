@@ -10,6 +10,7 @@ class Annex {
     private final AnnexId annexId;
     private final ContractData contractData;
     private final LocalDate dateFrom;
+    private LocalDate dateTo;
 
     Annex(AnnexId annexId,  LocalDate dateFrom, ContractData contractData) {
         this.annexId = annexId;
