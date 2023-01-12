@@ -33,4 +33,8 @@ class Annex {
         return !dateFrom.isAfter(date) && !date.isAfter(Objects.requireNonNullElse(dateTo, date));
     }
 
+    ContractData data() {
+        return contractData;
+    }
+
 }

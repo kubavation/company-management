@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 @AllArgsConstructor
 @AggregateRoot
@@ -49,7 +50,7 @@ public abstract class Contract {
 
         lastAnnex()
             .ifPresent(annex -> annex.markAsClosedWith(from));
-        
+
         Annex annex = new Annex(new AnnexId(UUID.randomUUID()), from, contractData);
         annexes.add(annex);
     }
@@ -59,13 +60,15 @@ public abstract class Contract {
             return data.position();
         }
 
-        return fromAnnex(LocalDate.now(), null);
+        return fromAnnex(LocalDate.now(), annex -> annex.data().position());
     }
 
-    private <T> T fromAnnex(LocalDate statusAt, Consumer<T> dataConsumer) {
-//        return annexes.stream()
-//                .
-        return null;
+    private <T> T fromAnnex(LocalDate statusAt, Function<Annex, T> fun) {
+        return annexes.stream()
+                .filter(annex -> annex.applicableOn(statusAt))
+                .map(fun)
+                .findFirst()
+                .orElseThrow(RuntimeException::new);
     }
 
 
