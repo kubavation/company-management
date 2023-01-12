@@ -23,6 +23,18 @@ public class ContractData {
         this.workingTime = new WorkingTime(DailyHourNumber.of(hours, days), BillingPeriod.ONE_MONTH); //todo
     }
 
+    public Position position() {
+        return position;
+    }
+
+    public Salary salary() {
+        return salary;
+    }
+
+    public WorkingTime workingTime() {
+        return workingTime;
+    }
+
     public static class Builder {
 
         private Position position;
