@@ -24,7 +24,10 @@ public class AssignContractAnnexCommandHandler implements CommandHandler<AssignC
        Objects.requireNonNull(contract);
 
        contract.markWithAnnex(command.from(),
-               new ContractData(command.position(), command.salary(), command.dailyNumberOfHours(), command.dailyNumberOfMinutes()));
+               new ContractData(
+                       command.position(),
+                       command.salary(),
+                       command.dailyNumberOfHours(), command.dailyNumberOfMinutes()));
 
        contractRepository.save(contract);
     }
