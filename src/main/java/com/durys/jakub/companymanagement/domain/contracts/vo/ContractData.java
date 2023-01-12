@@ -17,6 +17,12 @@ public class ContractData {
         this.workingTime = workingTime;
     }
 
+    public ContractData(String position, BigDecimal salary, int hours, int days) {
+        this.position = new Position(position);
+        this.salary = Salary.withDefaultCurrencyOf(salary);
+        this.workingTime = new WorkingTime(DailyHourNumber.of(hours, days), BillingPeriod.ONE_MONTH); //todo
+    }
+
     public static class Builder {
 
         private Position position;
@@ -29,12 +35,12 @@ public class ContractData {
             return new Builder(contractBuilder);
         }
 
-        public Builder(Contract.Builder contractBuilder) {
+        private Builder(Contract.Builder contractBuilder) {
             this.contractBuilder = contractBuilder;
         }
 
         public Builder earning(BigDecimal amount) {
-            this.salary = Salary.withDefaultCurrencyOf(amount); //todo explore domain
+            this.salary = Salary.withDefaultCurrencyOf(amount);
             return this;
         }
 
@@ -49,7 +55,7 @@ public class ContractData {
         }
 
         public Builder workingTime(int hours, int minutes) {
-            this.workingTime = new WorkingTime(DailyHourNumber.of(hours, minutes), BillingPeriod.ONE_MONTH); //todo explore domain
+            this.workingTime = new WorkingTime(DailyHourNumber.of(hours, minutes), BillingPeriod.ONE_MONTH);
             return this;
         }
 

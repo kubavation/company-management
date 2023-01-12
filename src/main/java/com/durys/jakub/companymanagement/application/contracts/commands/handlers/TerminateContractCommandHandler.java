@@ -28,7 +28,6 @@ public class TerminateContractCommandHandler implements CommandHandler<Terminate
 
        Period employmentPeriod = employmentService.employmentPeriod(ContractId.of(command.contractId()));
 
-       //todo
        contract.terminate(command.terminationDate(), employmentPeriod);
 
        contractRepository.save(contract);
