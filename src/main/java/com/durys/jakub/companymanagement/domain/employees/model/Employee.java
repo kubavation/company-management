@@ -2,19 +2,19 @@ package com.durys.jakub.companymanagement.domain.employees.model;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.employees.model.vo.PersonalData;
-import com.durys.jakub.companymanagement.domain.employees.model.vo.Structure;
+import com.durys.jakub.companymanagement.domain.employees.model.vo.Department;
 
 @AggregateRoot
 public class Employee implements Employable {
 
     private final EmployeeId employeeId;
     private final PersonalData personalData;
-    private Structure structure;
+    private Department department;
 
-    public Employee(EmployeeId employeeId, PersonalData personalData, Structure structure) {
+    public Employee(EmployeeId employeeId, PersonalData personalData, Department department) {
         this.employeeId = employeeId;
         this.personalData = personalData;
-        this.structure = structure;
+        this.department = department;
     }
 
     @Override
