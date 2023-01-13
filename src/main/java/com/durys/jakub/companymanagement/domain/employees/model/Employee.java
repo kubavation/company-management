@@ -2,7 +2,7 @@ package com.durys.jakub.companymanagement.domain.employees.model;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.employees.model.vo.PersonalData;
-import com.durys.jakub.companymanagement.domain.employees.model.vo.Department;
+import com.durys.jakub.companymanagement.domain.sharedkernel.departments.Department;
 
 @AggregateRoot
 public class Employee implements Employable {
