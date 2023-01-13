@@ -9,7 +9,6 @@ import lombok.*;
 class FirstName {
     private final String value;
 
-
     @Override
     public String toString() {
         return value;
