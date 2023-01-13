@@ -4,10 +4,9 @@ import com.durys.jakub.companymanagement.domain.employees.model.vo.DepartmentId;
 import com.durys.jakub.companymanagement.domain.sharedkernel.departments.Department;
 import com.durys.jakub.companymanagement.domain.sharedkernel.departments.DepartmentProvider;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
-@Component
+
 @RequiredArgsConstructor
 public class RestDepartmentProvider implements DepartmentProvider {
 
