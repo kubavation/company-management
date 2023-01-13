@@ -8,7 +8,7 @@ import com.durys.jakub.companymanagement.domain.employees.model.vo.Department;
 public class Employee implements Employable {
 
     private final EmployeeId employeeId;
-    private final PersonalData personalData;
+    private PersonalData personalData;
     private Department department;
 
     public Employee(EmployeeId employeeId, PersonalData personalData, Department department) {
