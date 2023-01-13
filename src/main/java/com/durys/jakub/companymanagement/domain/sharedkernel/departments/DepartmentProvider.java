@@ -4,5 +4,5 @@ import com.durys.jakub.companymanagement.domain.employees.model.vo.DepartmentId;
 
 public interface DepartmentProvider {
 
-    Department findById(DepartmentId departmentId);
+    Department find(DepartmentId departmentId);
 }
