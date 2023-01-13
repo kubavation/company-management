@@ -20,7 +20,7 @@ public class EngageEmployeeCommandHandler implements CommandHandler<EngageEmploy
     public void handle(EngageEmployeeCommand command) {
 
         Employee employee = new Employee(identityProvider.nextId(), new PersonalData(
-            command.firstName(), command.lastName(), command.gender()
+            command.firstName(), command.lastName(), command.gender(), command.birthdayDate()
         ));
 
         employeeRepository.save(employee);
