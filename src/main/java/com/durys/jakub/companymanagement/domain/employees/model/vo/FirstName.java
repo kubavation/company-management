@@ -7,6 +7,7 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 @EqualsAndHashCode
 class FirstName {
+
     private final String value;
 
     @Override
