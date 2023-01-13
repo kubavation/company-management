@@ -1,6 +1,5 @@
 package com.durys.jakub.companymanagement.infrastructure.employees;
 
-import com.durys.jakub.companymanagement.application.employees.EmployeesApplicationService;
 import com.durys.jakub.companymanagement.commons.IdentityProvider;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
