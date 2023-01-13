@@ -2,7 +2,7 @@ package com.durys.jakub.companymanagement.domain.sharedkernel.departments;
 
 import com.durys.jakub.companymanagement.domain.employees.model.vo.DepartmentId;
 
-public interface DepartmentService {
+public interface DepartmentProvider {
 
     Department findById(DepartmentId departmentId);
 }
