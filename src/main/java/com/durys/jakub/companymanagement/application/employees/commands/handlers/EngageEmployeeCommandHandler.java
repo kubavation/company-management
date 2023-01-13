@@ -6,7 +6,7 @@ import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
-import com.durys.jakub.companymanagement.domain.employees.model.vo.EmployeePersonalData;
+import com.durys.jakub.companymanagement.domain.employees.model.vo.PersonalData;
 import lombok.RequiredArgsConstructor;
 
 @CommandHandling
@@ -19,7 +19,7 @@ public class EngageEmployeeCommandHandler implements CommandHandler<EngageEmploy
     @Override
     public void handle(EngageEmployeeCommand command) {
 
-        Employee employee = new Employee(identityProvider.nextId(), new EmployeePersonalData(
+        Employee employee = new Employee(identityProvider.nextId(), new PersonalData(
             command.firstName(), command.lastName(), command.gender()
         ));
 

@@ -1,14 +1,14 @@
 package com.durys.jakub.companymanagement.domain.employees.model;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
-import com.durys.jakub.companymanagement.domain.employees.model.vo.EmployeePersonalData;
+import com.durys.jakub.companymanagement.domain.employees.model.vo.PersonalData;
 
 @AggregateRoot
 public class Employee implements Employable {
     private final EmployeeId employeeId;
-    private final EmployeePersonalData personalData;
+    private final PersonalData personalData;
 
-    public Employee(EmployeeId employeeId, EmployeePersonalData personalData) {
+    public Employee(EmployeeId employeeId, PersonalData personalData) {
         this.employeeId = employeeId;
         this.personalData = personalData;
     }
@@ -18,7 +18,7 @@ public class Employee implements Employable {
         return employeeId;
     }
 
-    public EmployeePersonalData personalData() {
+    public PersonalData personalData() {
         return personalData;
     }
 
