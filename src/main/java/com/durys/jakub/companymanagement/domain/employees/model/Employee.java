@@ -5,6 +5,7 @@ import com.durys.jakub.companymanagement.domain.employees.model.vo.PersonalData;
 
 @AggregateRoot
 public class Employee implements Employable {
+
     private final EmployeeId employeeId;
     private final PersonalData personalData;
 
