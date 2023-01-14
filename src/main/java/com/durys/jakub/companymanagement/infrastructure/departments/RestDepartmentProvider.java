@@ -27,7 +27,7 @@ public class RestDepartmentProvider implements DepartmentProvider {
 
         return webClient
                 .get()
-                .uri("/" + departmentId.value())
+                .uri("/%s".formatted(departmentId.value()))
                 .retrieve()
                 .toEntity(StructureEntry.class)
                 .block().getBody()
