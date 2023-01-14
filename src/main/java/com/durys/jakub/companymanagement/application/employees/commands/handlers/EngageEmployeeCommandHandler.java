@@ -5,11 +5,14 @@ import com.durys.jakub.companymanagement.commons.IdentityProvider;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
+import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
 import com.durys.jakub.companymanagement.domain.employees.model.vo.PersonalData;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @CommandHandling
+@Slf4j
 @RequiredArgsConstructor
 public class EngageEmployeeCommandHandler implements CommandHandler<EngageEmployeeCommand> {
 
@@ -19,8 +22,11 @@ public class EngageEmployeeCommandHandler implements CommandHandler<EngageEmploy
     @Override
     public void handle(EngageEmployeeCommand command) {
 
-        Employee employee = new Employee(identityProvider.nextId(), new PersonalData(
-            command.firstName(), command.lastName(), command.gender(), command.birthdayDate()), null); //todo
+        log.info("handling engage employee command");
+
+        Employee employee = new Employee(new EmployeeId(identityProvider.nextId()),
+                new PersonalData(command.firstName(), command.lastName(),
+                        command.gender(), command.birthdayDate()), null); //todo
 
         employeeRepository.save(employee);
     }

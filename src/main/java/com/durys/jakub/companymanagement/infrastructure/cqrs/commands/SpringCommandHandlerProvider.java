@@ -46,8 +46,8 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
         Type[] handlerInterfaces = handlerClass.getGenericInterfaces();
 
         for (Type type: handlerInterfaces) {
-            if (type instanceof CommandHandler) {
-                return (Class<? extends Command>) ((ParameterizedType) type).getActualTypeArguments()[0].getClass();
+            if (type instanceof ParameterizedType parameterizedType) {
+                return (Class<? extends Command>) parameterizedType.getActualTypeArguments()[0];
             }
         }
 
@@ -55,6 +55,9 @@ public class SpringCommandHandlerProvider implements CommandHandlerProvider {
     }
 
     private <T extends Command> CommandHandler<T> commandHandlerOf(Class<T> commandType) {
+
+        log.info(commandType.getSimpleName());
+
         return configurableListableBeanFactory.getBean(handlers.get(commandType), CommandHandler.class);
     }
 
