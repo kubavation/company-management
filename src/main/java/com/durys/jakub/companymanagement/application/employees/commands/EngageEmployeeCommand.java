@@ -5,5 +5,5 @@ import com.durys.jakub.companymanagement.cqrs.commands.Command;
 import java.time.LocalDate;
 
 public record EngageEmployeeCommand(String firstName, String lastName, String gender,
-                                    LocalDate birthdayDate, String structureId) implements Command {
+                                    LocalDate birthdayDate, String departmentId) implements Command {
 }
