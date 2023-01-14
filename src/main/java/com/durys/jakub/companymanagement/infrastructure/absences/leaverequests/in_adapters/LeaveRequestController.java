@@ -10,8 +10,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 class LeaveRequestController {
 
-    private final LeaveRequestsApplicationService leaveRequestsApplicationService;
-
     @GetMapping("/employees/{employeeId}/leave-requestes/{leaveRequestId}")
     LeaveRequestDTO findLeaveRequest(@PathVariable Long employeeId, @PathVariable UUID leaveRequestId) {
        // return leaveRequestsApplicationService.loadLeaveRequest(new LeaveRequestId(leaveRequestId));

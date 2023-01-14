@@ -10,11 +10,5 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class EmployeeController {
 
-    private final EmployeesApplicationService employeesApplicationService;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody EmployeeDTO employeeDTO) {
-        employeesApplicationService.engage(employeeDTO.getFirstName(), employeeDTO.getLastName(), employeeDTO.getGender());
-    }
 }

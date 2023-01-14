@@ -23,8 +23,4 @@ public class EmployeesConfiguration {
         return new JdbcEmployeeRepository(jdbcTemplate);
     }
 
-    @Bean
-    public EmployeesApplicationService employeesApplicationService(EmployeeRepository employeeRepository, IdentityProvider identityProvider) {
-        return new EmployeesApplicationService(employeeRepository, identityProvider);
-    }
 }
