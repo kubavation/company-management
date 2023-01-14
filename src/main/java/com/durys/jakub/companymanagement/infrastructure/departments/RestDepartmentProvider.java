@@ -14,7 +14,12 @@ public class RestDepartmentProvider implements DepartmentProvider {
 
     private final WebClient webClient;
 
-    //todo converter
+    private record StructureEntry(String structureId, String name, String shortcut, String path) {
+        Department toDepartment() {
+            return new Department(new DepartmentId(structureId), name, shortcut, path);
+        }
+    }
+
 
     @Override
     public Department find(DepartmentId departmentId) {
@@ -24,7 +29,9 @@ public class RestDepartmentProvider implements DepartmentProvider {
                 .get()
                 .uri("/" + departmentId.value())
                 .retrieve()
-                .toEntity(Department.class)
-                .block().getBody();
+                .toEntity(StructureEntry.class)
+                .block().getBody()
+                .toDepartment();
     }
+
 }
