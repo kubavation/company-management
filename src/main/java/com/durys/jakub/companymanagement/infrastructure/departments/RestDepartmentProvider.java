@@ -19,6 +19,12 @@ public class RestDepartmentProvider implements DepartmentProvider {
     @Override
     public Department find(DepartmentId departmentId) {
         log.info("calling external resource with {}", departmentId);
-        return webClient.get().retrieve().toEntity(Department.class).block().getBody(); //todo
+
+        return webClient
+                .get()
+                .uri("/" + departmentId.value())
+                .retrieve()
+                .toEntity(Department.class)
+                .block().getBody();
     }
 }

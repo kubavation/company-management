@@ -14,5 +14,5 @@ public class EmployeeDTO {
     private String lastName;
     private String gender;
     private LocalDate birthdayDate;
-    private String structureId;
+    private String departmentId;
 }
