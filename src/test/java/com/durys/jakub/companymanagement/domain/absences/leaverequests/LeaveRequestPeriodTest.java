@@ -60,7 +60,7 @@ class LeaveRequestPeriodTest {
     }
 
 
-    
+
     private static LocalDateTime ofTime(int hour, int minute) {
         return LocalDate.now().atTime(LocalTime.of(hour, minute));
     }
