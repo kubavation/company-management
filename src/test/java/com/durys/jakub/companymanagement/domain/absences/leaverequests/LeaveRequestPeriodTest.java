@@ -45,18 +45,24 @@ class LeaveRequestPeriodTest {
 
     @Test
     void getLeaveRequestDailyPeriodNumberOfDays_shouldReturn1Day() {
-        LocalDate date1 = LocalDate.now();
-        LocalDate date2 = LocalDate.now();
-        LeaveRequestPeriod leaveRequestPeriod = LeaveRequestDailyPeriod.of(date1, date2);
+        LocalDate from = LocalDate.now();
+        LocalDate to = LocalDate.now();
+        LeaveRequestPeriod leaveRequestPeriod = LeaveRequestDailyPeriod.of(from, to);
         assertEquals(BigDecimal.ONE, leaveRequestPeriod.quantity());
     }
 
     @Test
     void getLeaveRequestHourlyPeriodNumberOfHours_shouldReturn2Hour() {
-        LocalDateTime date1 = LocalDate.now().atTime(LocalTime.of(8,0));
-        LocalDateTime date2 = LocalDate.now().atTime(LocalTime.of(10,0));
-        LeaveRequestPeriod leaveRequestPeriod = LeaveRequestHourlyPeriod.of(date1, date2);
+        LocalDateTime from = ofTime(8, 0);
+        LocalDateTime to = ofTime(10, 0);
+        LeaveRequestPeriod leaveRequestPeriod = LeaveRequestHourlyPeriod.of(from, to);
         assertEquals(BigDecimal.valueOf(2), leaveRequestPeriod.quantity());
+    }
+
+
+    
+    private static LocalDateTime ofTime(int hour, int minute) {
+        return LocalDate.now().atTime(LocalTime.of(hour, minute));
     }
 
 }
