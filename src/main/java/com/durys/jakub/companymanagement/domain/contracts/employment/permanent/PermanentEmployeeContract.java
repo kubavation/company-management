@@ -1,9 +1,11 @@
 package com.durys.jakub.companymanagement.domain.contracts.employment.permanent;
 
+import com.durys.jakub.companymanagement.commons.events.DomainEvents;
 import com.durys.jakub.companymanagement.domain.contracts.Contract;
 import com.durys.jakub.companymanagement.domain.contracts.ContractId;
 import com.durys.jakub.companymanagement.domain.contracts.employment.EmploymentContract;
 import com.durys.jakub.companymanagement.domain.contracts.employment.NoticePeriod;
+import com.durys.jakub.companymanagement.domain.contracts.event.EmploymentContractCreatedEvent;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
 
 import java.time.LocalDate;
@@ -16,6 +18,10 @@ public class PermanentEmployeeContract extends Contract implements EmploymentCon
     public PermanentEmployeeContract(Builder builder) {
         super(new ContractId(UUID.randomUUID()), builder.getEmployeeId(), builder.getContractNumber(),
                 builder.getContractData(), new PermanentEmployeeContractPeriod(builder.getFrom(), builder.getTo()));
+
+        DomainEvents
+                .instance()
+                .publish(new EmploymentContractCreatedEvent(builder.getEmployeeId())); //todo
     }
 
     @Override
