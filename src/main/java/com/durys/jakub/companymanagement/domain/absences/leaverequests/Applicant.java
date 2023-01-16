@@ -20,8 +20,9 @@ public class Applicant implements Employable {
 
 
     public LeaveRequest submit(LeaveRequest.WorkInProgress leaveRequest) {
-        leaveRequest.withApplicant(applicantId);
-        return leaveRequest.submit();
+       return leaveRequest
+                .withApplicant(applicantId)
+                .submit();
     }
 
     public void cancel(LeaveRequest leaveRequest) {

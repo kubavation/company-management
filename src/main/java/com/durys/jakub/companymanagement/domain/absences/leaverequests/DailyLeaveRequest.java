@@ -7,6 +7,7 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveR
 import java.math.BigDecimal;
 
 public class DailyLeaveRequest extends LeaveRequest {
+
     public DailyLeaveRequest(LeaveRequestId leaveRequestId, LeaveRequestType requestType, LeaveRequestDailyPeriod period, ApplicantId applicantId) {
         super(leaveRequestId, requestType, period, applicantId);
     }

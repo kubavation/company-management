@@ -138,16 +138,6 @@ public abstract class LeaveRequest {
             this.leaveEntitlements = leaveEntitlements;
         }
 
-        public WorkInProgress inStatus(LeaveRequestStatus status) {
-           this.status = status;
-           return this;
-        }
-
-        public WorkInProgress withAcceptant(AcceptantId acceptantId) {
-            this.acceptantId = acceptantId;
-            return this;
-        }
-
         public WorkInProgress withApplicant(ApplicantId applicantId) {
             this.applicantId = applicantId;
             return this;

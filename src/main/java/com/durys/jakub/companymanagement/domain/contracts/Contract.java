@@ -21,17 +21,12 @@ import java.util.function.Function;
 public abstract class Contract {
 
     protected final ContractId contractId;
-
     protected final EmployeeId employeeId;
-
     protected final ContractNumber number;
-
     protected ContractData data;
-
     protected ContractPeriod period;
 
     protected final List<Annex> annexes;
-
 
 
     protected Contract(ContractId contractId, EmployeeId employeeId,

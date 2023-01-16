@@ -23,8 +23,10 @@ public class GrantLeaveRequestPrivilegesCommandHandler implements CommandHandler
         LeaveEntitlements leaveEntitlements = leaveEntitlementsRepository.load(EmployeeId.from(command.getEmployeeId()));
 
         leaveEntitlements.add(
-                LeaveType.valueOf(command.getLeaveType()), command.getFrom(), command.getTo(),
-                command.getDaysEntitled(), command.getHoursEntitled());
+                LeaveType.valueOf(command.getLeaveType()),
+                command.getFrom(), command.getTo(),
+                command.getDaysEntitled(),
+                command.getHoursEntitled());
 
         leaveEntitlementsRepository.save(leaveEntitlements);
     }

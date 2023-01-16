@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.domain.employees.model;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.employees.model.vo.PersonalData;
+import com.durys.jakub.companymanagement.domain.sharedkernel.TenantId;
 import com.durys.jakub.companymanagement.domain.sharedkernel.departments.Department;
 
 @AggregateRoot
@@ -9,7 +10,9 @@ public class Employee implements Employable {
 
     private final EmployeeId employeeId;
     private PersonalData personalData;
+
     private Department department;
+    private TenantId tenantId;
 
     public Employee(EmployeeId employeeId, PersonalData personalData, Department department) {
         this.employeeId = employeeId;
