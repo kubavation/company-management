@@ -14,6 +14,8 @@ import com.durys.jakub.companymanagement.domain.sharedkernel.departments.Departm
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Collections;
+
 @CommandHandling
 @Slf4j
 @RequiredArgsConstructor
@@ -30,9 +32,11 @@ public class EngageEmployeeCommandHandler implements CommandHandler<EngageEmploy
 
         Department department = departmentProvider.find(new DepartmentId(command.departmentId()));
 
-        Employee employee = new Employee(new EmployeeId(identityProvider.nextId()),
+        Employee employee = new Employee(
+                new EmployeeId(identityProvider.nextId()),
                 new PersonalData(command.firstName(), command.lastName(), command.gender(), command.birthdayDate()),
-                department);
+                department,
+                Collections.emptyList());
 
         employeeRepository.save(employee);
     }
