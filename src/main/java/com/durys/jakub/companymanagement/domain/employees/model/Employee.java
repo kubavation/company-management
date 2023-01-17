@@ -5,19 +5,23 @@ import com.durys.jakub.companymanagement.domain.employees.model.vo.PersonalData;
 import com.durys.jakub.companymanagement.domain.sharedkernel.TenantId;
 import com.durys.jakub.companymanagement.domain.sharedkernel.departments.Department;
 
+import java.util.List;
+
 @AggregateRoot
 public class Employee implements Employable {
 
     private final EmployeeId employeeId;
     private PersonalData personalData;
+    private List<Graduation> graduations;
 
     private Department department;
     private TenantId tenantId;
 
-    public Employee(EmployeeId employeeId, PersonalData personalData, Department department) {
+    public Employee(EmployeeId employeeId, PersonalData personalData, Department department, List<Graduation> graduations) {
         this.employeeId = employeeId;
         this.personalData = personalData;
         this.department = department;
+        this.graduations = graduations;
     }
 
     @Override
