@@ -33,6 +33,11 @@ public class Employee implements Employable {
         return personalData;
     }
 
+    public void graduate(Graduation graduation) {
+        graduations.add(graduation);
+    }
+
+
     public String name() {
         return String.format("%s %s", personalData.getLastName(), personalData.getFirstName());
     }

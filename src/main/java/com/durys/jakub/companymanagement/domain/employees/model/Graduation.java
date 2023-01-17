@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import java.time.LocalDate;
 
 @AllArgsConstructor
-class Graduation {
+public class Graduation {
 
     public enum Type {
         PRIMARY,
