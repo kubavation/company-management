@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.time.LocalDate;
 
 @ValueObject
-@Getter(AccessLevel.PUBLIC)
+@Getter
 public class PersonalData {
     private final FirstName firstName;
     private final LastName lastName;
