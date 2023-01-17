@@ -17,7 +17,7 @@ public class EmploymentContractCreatedListener {
 
     @Transactional
     @DomainEventListener
-    public void onLeaveRequestAcceptation(EmploymentContractCreatedEvent event) {
+    public void onEmploymentContractAssigned(EmploymentContractCreatedEvent event) {
 
         LeaveEntitlements leaveEntitlements = leaveEntitlementsRepository.load(event.employeeId());
         //todo
