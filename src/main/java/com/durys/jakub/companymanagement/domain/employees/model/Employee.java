@@ -12,7 +12,7 @@ public class Employee implements Employable {
 
     private final EmployeeId employeeId;
     private PersonalData personalData;
-    private List<Graduation> graduations;
+    private final List<Graduation> graduations;
 
     private Department department;
     private TenantId tenantId;

@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 
 @Component
 @RequiredArgsConstructor
-public class EmploymentContractCreatedListener {
+public class EmploymentContractAssignedListener {
 
     private final LeaveEntitlementsRepository leaveEntitlementsRepository;
 
