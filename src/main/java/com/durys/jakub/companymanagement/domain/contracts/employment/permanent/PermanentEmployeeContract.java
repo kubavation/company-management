@@ -21,7 +21,7 @@ public class PermanentEmployeeContract extends Contract implements EmploymentCon
 
         DomainEvents
                 .instance()
-                .publish(new EmploymentContractAssignedEvent(builder.getEmployeeId())); //todo
+                .publish(new EmploymentContractAssignedEvent(builder.getEmployeeId()));
     }
 
     @Override
