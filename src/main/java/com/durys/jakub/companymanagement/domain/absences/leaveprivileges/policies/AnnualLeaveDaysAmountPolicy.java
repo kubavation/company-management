@@ -1,10 +1,15 @@
 package com.durys.jakub.companymanagement.domain.absences.leaveprivileges.policies;
 
-public class AnnualLeaveDaysAmountPolicy {
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-    /*
-        Method for calculating number of days of annual leave based on employment length
-     */
+/*
+   Policy for calculating number of days of annual leave based on employment length
+*/
+
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class AnnualLeaveDaysAmountPolicy {
 
     public Integer calculate(int yearsOfEmployment) {
         if (yearsOfEmployment < 10) {
