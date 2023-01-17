@@ -1,6 +1,8 @@
 package com.durys.jakub.companymanagement.domain.employees.model;
 
 
+import com.durys.jakub.companymanagement.domain.sharedkernel.util.DateRangeValidator;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -20,9 +22,9 @@ public class Graduation {
     public Graduation(String schoolName, LocalDate from, LocalDate to, Type type) {
 
         Objects.requireNonNull(schoolName, "schoolName must be provided");
-        Objects.requireNonNull(from, "date from must be provided");
-        Objects.requireNonNull(to, "date to must be provided");
         Objects.requireNonNull(type, "type must be provided");
+
+        DateRangeValidator.of(from, to).validate();
 
         this.schoolName = schoolName;
         this.from = from;
