@@ -3,7 +3,7 @@ package com.durys.jakub.companymanagement.application.absences.leaveprivileges.l
 import com.durys.jakub.companymanagement.commons.events.DomainEventListener;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlements;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementsRepository;
-import com.durys.jakub.companymanagement.domain.contracts.event.EmploymentContractCreatedEvent;
+import com.durys.jakub.companymanagement.domain.contracts.event.EmploymentContractAssignedEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,7 @@ public class EmploymentContractCreatedListener {
 
     @Transactional
     @DomainEventListener
-    public void onLeaveRequestAcceptation(EmploymentContractCreatedEvent event) {
+    public void onEmploymentContractAssigned(EmploymentContractAssignedEvent event) {
 
         LeaveEntitlements leaveEntitlements = leaveEntitlementsRepository.load(event.employeeId());
         //todo
