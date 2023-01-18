@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +16,6 @@ public class EmployeeDTO {
     private String gender;
     private LocalDate birthdayDate;
     private String departmentId;
+
+    private List<GraduationDTO> graduations;
 }
