@@ -75,7 +75,7 @@ class EmploymentPeriodServiceTest {
                                 .withData(contractData())
                                 .assignTo(employee)),
                 new PermanentEmployeeContract(
-                        Contract.Builder.instanceOf(ContractType.EMPLOYMENT_FIXED_TERM)
+                        Contract.Builder.instanceOf(ContractType.EMPLOYMENT_PERMANENT)
                                 .from(LocalDate.of(2022, 2, 1))
                                 .withData(contractData())
                                 .assignTo(employee))
