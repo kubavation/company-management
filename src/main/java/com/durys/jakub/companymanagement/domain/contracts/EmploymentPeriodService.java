@@ -6,20 +6,16 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
 @DomainService
 @AllArgsConstructor
-public class EmploymentService {
+public class EmploymentPeriodService {
 
     private final ContractRepository contractRepository;
 
