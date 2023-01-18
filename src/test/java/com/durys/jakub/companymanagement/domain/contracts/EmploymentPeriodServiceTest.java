@@ -1,26 +1,20 @@
 package com.durys.jakub.companymanagement.domain.contracts;
 
-import com.durys.jakub.companymanagement.commons.events.DomainEvents;
 import com.durys.jakub.companymanagement.domain.contracts.employment.fixedterm.FixedTermEmployeeContract;
 import com.durys.jakub.companymanagement.domain.contracts.employment.permanent.PermanentEmployeeContract;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
-import com.durys.jakub.companymanagement.domain.contracts.vo.Position;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.employees.model.vo.DepartmentId;
 import com.durys.jakub.companymanagement.domain.employees.model.vo.PersonalData;
-import com.durys.jakub.companymanagement.domain.sharedkernel.TenantId;
 import com.durys.jakub.companymanagement.domain.sharedkernel.departments.Department;
 import com.durys.jakub.companymanagement.infrastructure.contracts.out.JdbcContractRepository;
-import com.durys.jakub.companymanagement.infrastructure.shared.registry.SpringContext;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.Set;
@@ -81,7 +75,7 @@ class EmploymentPeriodServiceTest {
                                 .withData(contractData())
                                 .assignTo(employee)),
                 new PermanentEmployeeContract(
-                        Contract.Builder.instanceOf(ContractType.EMPLOYMENT_FIXED_TERM)
+                        Contract.Builder.instanceOf(ContractType.EMPLOYMENT_PERMANENT)
                                 .from(LocalDate.of(2022, 2, 1))
                                 .withData(contractData())
                                 .assignTo(employee))

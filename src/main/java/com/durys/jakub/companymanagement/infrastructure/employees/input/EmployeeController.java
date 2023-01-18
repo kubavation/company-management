@@ -25,7 +25,8 @@ class EmployeeController {
         commandGateway.dispatch(
                 new EngageEmployeeCommand(
                         employee.getFirstName(), employee.getLastName(),
-                        employee.getGender(), employee.getBirthdayDate(), employee.getDepartmentId()));
+                        employee.getGender(), employee.getBirthdayDate(),
+                        employee.getDepartmentId()));
     }
 
 }
