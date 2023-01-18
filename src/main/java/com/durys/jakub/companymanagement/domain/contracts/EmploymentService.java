@@ -8,7 +8,9 @@ import lombok.AllArgsConstructor;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.Set;
 
 @DomainService
@@ -22,8 +24,14 @@ public class EmploymentService {
         return contracts.stream()
                 .filter(contract -> contract instanceof EmploymentContract)
                 .sorted(Comparator.comparing(contract -> contract.period.from()))
-                .map(contract -> Period.between(contract.period.from(), contract.period.to()).getDays())
+                .map(this::toDays)
                 .reduce(0, Integer::sum)
                 .intValue();
+    }
+
+    private int toDays(Contract contract) {
+        return Period.between(
+                contract.period.from(),
+                Objects.requireNonNullElse(contract.period.to(), LocalDate.now())).getDays();
     }
 }
