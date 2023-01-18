@@ -9,7 +9,7 @@ public class Money {
     private final BigDecimal amount;
     public Money(BigDecimal amount) {
 
-        if (BigDecimal.ZERO.compareTo(amount) <= 0) {
+        if (BigDecimal.ZERO.compareTo(amount) >= 0) {
             throw new IllegalArgumentException();
         }
 

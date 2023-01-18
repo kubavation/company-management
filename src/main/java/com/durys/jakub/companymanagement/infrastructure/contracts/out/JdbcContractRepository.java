@@ -6,6 +6,7 @@ import com.durys.jakub.companymanagement.domain.contracts.ContractRepository;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 public class JdbcContractRepository implements ContractRepository {
 
@@ -13,6 +14,11 @@ public class JdbcContractRepository implements ContractRepository {
 
     @Override
     public Contract load(ContractId contractId) {
+        return null;
+    }
+
+    @Override
+    public Set<Contract> loadBy(EmployeeId employeeId) {
         return null;
     }
 
