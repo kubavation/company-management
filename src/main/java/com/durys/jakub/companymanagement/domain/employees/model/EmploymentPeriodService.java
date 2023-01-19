@@ -1,6 +1,8 @@
-package com.durys.jakub.companymanagement.domain.contracts;
+package com.durys.jakub.companymanagement.domain.employees.model;
 
 import com.durys.jakub.companymanagement.commons.domain.DomainService;
+import com.durys.jakub.companymanagement.domain.contracts.Contract;
+import com.durys.jakub.companymanagement.domain.contracts.ContractRepository;
 import com.durys.jakub.companymanagement.domain.contracts.employment.EmploymentContract;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.AllArgsConstructor;
@@ -21,7 +23,7 @@ public class EmploymentPeriodService {
     private final ContractRepository contractRepository;
 
     @RequiredArgsConstructor
-    public enum EmploymentPeriodMeasure {
+    enum EmploymentPeriodMeasure {
         MONTHS(days -> days / 30), //todo fix
         YEARS(days -> days / 365); //todo fix
 
@@ -44,14 +46,14 @@ public class EmploymentPeriodService {
         return contractRepository.loadBy(employeeId)
                 .stream()
                 .filter(EmploymentContract.class::isInstance)
-                .sorted(Comparator.comparing(contract -> contract.period.from()))
+                .sorted(Comparator.comparing(Contract::validFrom))
                 .map(this::toDays);
     }
 
     private long toDays(Contract contract) {
         return ChronoUnit.DAYS.between(
-                contract.period.from(),
-                Objects.requireNonNullElse(contract.period.to(), LocalDate.now())) + 1; //inclusive now
+                contract.validFrom(),
+                Objects.requireNonNullElse(contract.validTo(), LocalDate.now())) + 1; //inclusive now
     }
 
 }
