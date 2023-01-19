@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.domain.contracts;
 import com.durys.jakub.companymanagement.domain.contracts.employment.fixedterm.FixedTermEmployeeContract;
 import com.durys.jakub.companymanagement.domain.contracts.employment.permanent.PermanentEmployeeContract;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
+import com.durys.jakub.companymanagement.domain.employees.model.EmploymentPeriodService;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.employees.model.vo.DepartmentId;
