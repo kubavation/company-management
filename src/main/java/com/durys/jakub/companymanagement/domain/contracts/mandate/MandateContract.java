@@ -4,6 +4,7 @@ import com.durys.jakub.companymanagement.domain.contracts.Contract;
 import com.durys.jakub.companymanagement.domain.contracts.ContractId;
 import com.durys.jakub.companymanagement.domain.contracts.employment.permanent.PermanentEmployeeContractPeriod;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
+import com.durys.jakub.companymanagement.domain.employees.model.EmploymentPeriodService;
 
 
 import java.time.LocalDate;
@@ -23,7 +24,7 @@ public class MandateContract extends Contract {
     }
 
     @Override
-    protected LocalDate calculateEndDate(LocalDate dateOfTermination, Period employmentPeriod) {
+    protected LocalDate calculateEndDate(LocalDate dateOfTermination, EmploymentPeriodService.EmploymentPeriod employmentPeriod) {
         //todo explore domain logic
         return dateOfTermination;
     }

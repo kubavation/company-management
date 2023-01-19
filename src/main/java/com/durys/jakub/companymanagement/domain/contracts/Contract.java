@@ -96,8 +96,7 @@ public abstract class Contract {
     }
 
     public void terminate(LocalDate dateOfTermination, EmploymentPeriodService.EmploymentPeriod employmentPeriod) {
-        LocalDate endDate = calculateEndDate(dateOfTermination, employmentPeriod);
-        period = ofPeriod(period.from(), endDate);
+        period = ofPeriod(period.from(), calculateEndDate(dateOfTermination, employmentPeriod));
     }
 
     public EmployeeId employee() {
