@@ -1,5 +1,8 @@
-package com.durys.jakub.companymanagement.domain.contracts;
+package com.durys.jakub.companymanagement.employee;
 
+import com.durys.jakub.companymanagement.domain.contracts.Contract;
+import com.durys.jakub.companymanagement.domain.contracts.ContractRepository;
+import com.durys.jakub.companymanagement.domain.contracts.ContractType;
 import com.durys.jakub.companymanagement.domain.contracts.employment.fixedterm.FixedTermEmployeeContract;
 import com.durys.jakub.companymanagement.domain.contracts.employment.permanent.PermanentEmployeeContract;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractData;
@@ -36,15 +39,12 @@ class EmploymentPeriodServiceTest {
 
         EmployeeId employeeId = new EmployeeId(UUID.randomUUID());
         Employee employee = employee(employeeId);
-        long expectedDays = ChronoUnit.DAYS.between(
-                LocalDate.of(2022, 1, 1),
-                LocalDate.of(2022, 2, 25)) + 1;
-        long expectedMonths = ChronoUnit.MONTHS.between(
-                LocalDate.of(2022, 1, 1),
-                LocalDate.of(2022, 2, 25));
-        long expectedYears = ChronoUnit.YEARS.between(
-                LocalDate.of(2022, 1, 1),
-                LocalDate.of(2022, 2, 25));
+        LocalDate from = LocalDate.of(2022, 1, 1);
+        LocalDate to = LocalDate.of(2022, 2, 25);
+
+        long expectedDays = ChronoUnit.DAYS.between(from, to) + 1;
+        long expectedMonths = ChronoUnit.MONTHS.between(from, to);
+        long expectedYears = ChronoUnit.YEARS.between(from, to);
 
         Set<Contract> contracts = Set.of(
             new FixedTermEmployeeContract(
@@ -73,15 +73,13 @@ class EmploymentPeriodServiceTest {
 
         EmployeeId employeeId = new EmployeeId(UUID.randomUUID());
         Employee employee = employee(employeeId);
-        long expectedDays = ChronoUnit.DAYS.between(
-                LocalDate.of(2022, 1, 1),
-                LocalDate.now()) + 1;
-        long expectedMonths = ChronoUnit.MONTHS.between(
-                LocalDate.of(2022, 1, 1),
-                LocalDate.now());
-        long expectedYears = ChronoUnit.YEARS.between(
-                LocalDate.of(2022, 1, 1),
-                LocalDate.now());
+        LocalDate from = LocalDate.of(2022, 1, 1);
+        LocalDate to = LocalDate.now();
+
+
+        long expectedDays = ChronoUnit.DAYS.between(from, to) + 1;
+        long expectedMonths = ChronoUnit.MONTHS.between(from, to);
+        long expectedYears = ChronoUnit.YEARS.between(from, to);
 
         Set<Contract> contracts = Set.of(
                 new FixedTermEmployeeContract(
