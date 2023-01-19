@@ -94,13 +94,25 @@ public abstract class Contract {
                 .generate(contractType);
     }
 
-    public void terminate(LocalDate dateOfTermination, Period employmentPeriod) {
-        LocalDate endDate = calculateEndDate(dateOfTermination, employmentPeriod);
+    public void terminate(LocalDate dateOfTermination, Long daysOfEmployment) {
+        LocalDate endDate = calculateEndDate(dateOfTermination, daysOfEmployment);
         period = ofPeriod(period.from(), endDate);
     }
 
+    public EmployeeId employee() {
+        return employeeId;
+    }
+
+    public LocalDate validFrom() {
+        return period.from();
+    }
+
+    public LocalDate validTo() {
+        return period.to();
+    }
+
     protected abstract ContractPeriod ofPeriod(LocalDate from, LocalDate to);
-    protected abstract LocalDate calculateEndDate(LocalDate dateOfTermination, Period employmentPeriod);
+    protected abstract LocalDate calculateEndDate(LocalDate dateOfTermination, Long daysOfEmployment);
 
     @Getter
     public static class Builder {
