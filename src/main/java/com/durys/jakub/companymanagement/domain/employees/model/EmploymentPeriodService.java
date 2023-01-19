@@ -25,7 +25,7 @@ public class EmploymentPeriodService {
 
 
     @Getter
-    static class EmploymentPeriod {
+    public static class EmploymentPeriod {
         final long days;
         final long months;
         final long years;
@@ -36,7 +36,7 @@ public class EmploymentPeriodService {
             this.years = years;
         }
 
-        static EmploymentPeriod from(long days) {
+        private static EmploymentPeriod from(long days) {
             return new EmploymentPeriod(days,
                 EmploymentPeriodMeasure.MONTHS.extractor.apply(days),
                 EmploymentPeriodMeasure.YEARS.extractor.apply(days)
