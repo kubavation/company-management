@@ -103,6 +103,14 @@ public abstract class Contract {
         return employeeId;
     }
 
+    public LocalDate validFrom() {
+        return period.from();
+    }
+
+    public LocalDate validTo() {
+        return period.to();
+    }
+
     protected abstract ContractPeriod ofPeriod(LocalDate from, LocalDate to);
     protected abstract LocalDate calculateEndDate(LocalDate dateOfTermination, Long daysOfEmployment);
 
