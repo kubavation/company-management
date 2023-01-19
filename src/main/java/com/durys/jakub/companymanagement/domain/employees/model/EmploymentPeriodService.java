@@ -6,6 +6,7 @@ import com.durys.jakub.companymanagement.domain.contracts.ContractRepository;
 import com.durys.jakub.companymanagement.domain.contracts.employment.EmploymentContract;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
@@ -20,9 +21,29 @@ import java.util.stream.Stream;
 @AllArgsConstructor
 public class EmploymentPeriodService {
 
-
-
     private final ContractRepository contractRepository;
+
+
+    @Getter
+    static class EmploymentPeriod {
+        final long days;
+        final long months;
+        final long years;
+
+        private EmploymentPeriod(long days, long months, long years) {
+            this.days = days;
+            this.months = months;
+            this.years = years;
+        }
+
+        static EmploymentPeriod from(long days) {
+            return new EmploymentPeriod(days,
+                EmploymentPeriodMeasure.MONTHS.extractor.apply(days),
+                EmploymentPeriodMeasure.YEARS.extractor.apply(days)
+            );
+        }
+
+    }
 
     @RequiredArgsConstructor
     enum EmploymentPeriodMeasure {
@@ -32,15 +53,10 @@ public class EmploymentPeriodService {
         private final Function<Long, Long> extractor;
     }
 
-    public Long employmentPeriod(EmployeeId employeeId) {
-        return loadContractDaysPeriod(employeeId)
-                .reduce(0L, Long::sum);
-    }
-
-    public Long employmentPeriod(EmployeeId employeeId, EmploymentPeriodMeasure measure) {
-        return loadContractDaysPeriod(employeeId)
-                .map(measure.extractor)
-                .reduce(0L, Long::sum);
+    public EmploymentPeriod employmentPeriod(EmployeeId employeeId) {
+        return EmploymentPeriod.from(
+                    loadContractDaysPeriod(employeeId)
+                        .reduce(0L, Long::sum));
     }
 
 
