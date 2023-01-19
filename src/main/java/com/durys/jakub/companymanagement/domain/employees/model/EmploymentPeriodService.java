@@ -20,12 +20,14 @@ import java.util.stream.Stream;
 @AllArgsConstructor
 public class EmploymentPeriodService {
 
+
+
     private final ContractRepository contractRepository;
 
     @RequiredArgsConstructor
     enum EmploymentPeriodMeasure {
-        MONTHS(days -> days / 30), //todo fix
-        YEARS(days -> days / 365); //todo fix
+        MONTHS(days -> days / 30),
+        YEARS(days -> days / 365);
 
         private final Function<Long, Long> extractor;
     }
