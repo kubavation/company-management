@@ -6,6 +6,7 @@ import com.durys.jakub.companymanagement.domain.contracts.employment.NoticePerio
 import com.durys.jakub.companymanagement.domain.contracts.vo.*;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.model.EmploymentPeriodService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.apache.commons.collections4.CollectionUtils;
@@ -94,8 +95,8 @@ public abstract class Contract {
                 .generate(contractType);
     }
 
-    public void terminate(LocalDate dateOfTermination, Long daysOfEmployment) {
-        LocalDate endDate = calculateEndDate(dateOfTermination, daysOfEmployment);
+    public void terminate(LocalDate dateOfTermination, EmploymentPeriodService.EmploymentPeriod employmentPeriod) {
+        LocalDate endDate = calculateEndDate(dateOfTermination, employmentPeriod);
         period = ofPeriod(period.from(), endDate);
     }
 
@@ -112,7 +113,8 @@ public abstract class Contract {
     }
 
     protected abstract ContractPeriod ofPeriod(LocalDate from, LocalDate to);
-    protected abstract LocalDate calculateEndDate(LocalDate dateOfTermination, Long daysOfEmployment);
+    protected abstract LocalDate calculateEndDate(LocalDate dateOfTermination,
+                                                  EmploymentPeriodService.EmploymentPeriod employmentPeriod);
 
     @Getter
     public static class Builder {
