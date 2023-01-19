@@ -36,9 +36,15 @@ class EmploymentPeriodServiceTest {
 
         EmployeeId employeeId = new EmployeeId(UUID.randomUUID());
         Employee employee = employee(employeeId);
-        long expected = ChronoUnit.DAYS.between(
+        long expectedDays = ChronoUnit.DAYS.between(
                 LocalDate.of(2022, 1, 1),
                 LocalDate.of(2022, 2, 25)) + 1;
+        long expectedMonths = ChronoUnit.MONTHS.between(
+                LocalDate.of(2022, 1, 1),
+                LocalDate.of(2022, 2, 25));
+        long expectedYears = ChronoUnit.YEARS.between(
+                LocalDate.of(2022, 1, 1),
+                LocalDate.of(2022, 2, 25));
 
         Set<Contract> contracts = Set.of(
             new FixedTermEmployeeContract(
@@ -56,8 +62,10 @@ class EmploymentPeriodServiceTest {
 
         Mockito.when(contractRepository.loadBy(employeeId)).thenReturn(contracts);
 
-        Long result = employmentPeriodService.employmentPeriod(employeeId);
-        assertEquals(expected, result);
+        EmploymentPeriodService.EmploymentPeriod result = employmentPeriodService.employmentPeriod(employeeId);
+        assertEquals(expectedDays, result.getDays());
+        assertEquals(expectedMonths, result.getMonths());
+        assertEquals(expectedYears, result.getYears());
     }
 
     @Test
@@ -65,9 +73,15 @@ class EmploymentPeriodServiceTest {
 
         EmployeeId employeeId = new EmployeeId(UUID.randomUUID());
         Employee employee = employee(employeeId);
-        long expected = ChronoUnit.DAYS.between(
+        long expectedDays = ChronoUnit.DAYS.between(
                 LocalDate.of(2022, 1, 1),
                 LocalDate.now()) + 1;
+        long expectedMonths = ChronoUnit.MONTHS.between(
+                LocalDate.of(2022, 1, 1),
+                LocalDate.now());
+        long expectedYears = ChronoUnit.YEARS.between(
+                LocalDate.of(2022, 1, 1),
+                LocalDate.now());
 
         Set<Contract> contracts = Set.of(
                 new FixedTermEmployeeContract(
@@ -85,8 +99,10 @@ class EmploymentPeriodServiceTest {
 
         Mockito.when(contractRepository.loadBy(employeeId)).thenReturn(contracts);
 
-        Long result = employmentPeriodService.employmentPeriod(employeeId);
-        assertEquals(expected, result);
+        EmploymentPeriodService.EmploymentPeriod result = employmentPeriodService.employmentPeriod(employeeId);
+        assertEquals(expectedDays, result.getDays());
+        assertEquals(expectedMonths, result.getMonths());
+        assertEquals(expectedYears, result.getYears());
     }
 
     private ContractData contractData() {
