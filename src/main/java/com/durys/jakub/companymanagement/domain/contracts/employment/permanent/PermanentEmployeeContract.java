@@ -7,6 +7,7 @@ import com.durys.jakub.companymanagement.domain.contracts.employment.EmploymentC
 import com.durys.jakub.companymanagement.domain.contracts.employment.NoticePeriod;
 import com.durys.jakub.companymanagement.domain.contracts.event.EmploymentContractAssignedEvent;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
+import com.durys.jakub.companymanagement.domain.employees.model.EmploymentPeriodService;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -25,7 +26,7 @@ public class PermanentEmployeeContract extends Contract implements EmploymentCon
     }
 
     @Override
-    public NoticePeriod noticePeriod(Period employmentPeriod) {
+    public NoticePeriod noticePeriod(EmploymentPeriodService.EmploymentPeriod employmentPeriod) {
         if (employmentPeriod.getYears() >= 3) {
             return NoticePeriod.THREE_MONTHS;
         }
@@ -41,7 +42,7 @@ public class PermanentEmployeeContract extends Contract implements EmploymentCon
     }
 
     @Override
-    protected LocalDate calculateEndDate(LocalDate dateOfTermination, Period employmentPeriod) {
+    protected LocalDate calculateEndDate(LocalDate dateOfTermination, EmploymentPeriodService.EmploymentPeriod employmentPeriod) {
         NoticePeriod noticePeriod = noticePeriod(employmentPeriod);
         return dateOfTermination.plus(noticePeriod.getNumber(), noticePeriod.getUnit());
     }

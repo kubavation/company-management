@@ -1,7 +1,8 @@
 package com.durys.jakub.companymanagement.domain.contracts.employment;
 
-import java.time.Period;
+import com.durys.jakub.companymanagement.domain.employees.model.EmploymentPeriodService;
+
 
 public interface EmploymentContract {
-    NoticePeriod noticePeriod(Period employmentPeriod);
+    NoticePeriod noticePeriod(EmploymentPeriodService.EmploymentPeriod employmentPeriod);
 }

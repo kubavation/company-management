@@ -6,10 +6,9 @@ import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.contracts.Contract;
 import com.durys.jakub.companymanagement.domain.contracts.ContractId;
 import com.durys.jakub.companymanagement.domain.contracts.ContractRepository;
-import com.durys.jakub.companymanagement.domain.contracts.EmploymentPeriodService;
+import com.durys.jakub.companymanagement.domain.employees.model.EmploymentPeriodService;
 import lombok.RequiredArgsConstructor;
 
-import java.time.Period;
 import java.util.Objects;
 
 @CommandHandling
@@ -26,7 +25,8 @@ public class TerminateContractCommandHandler implements CommandHandler<Terminate
 
        Objects.requireNonNull(contract);
 
-       Period employmentPeriod = employmentPeriodService.employmentPeriod(ContractId.of(command.contractId()));
+       EmploymentPeriodService.EmploymentPeriod employmentPeriod
+               = employmentPeriodService.employmentPeriod(contract.employee());
 
        contract.terminate(command.terminationDate(), employmentPeriod);
 
