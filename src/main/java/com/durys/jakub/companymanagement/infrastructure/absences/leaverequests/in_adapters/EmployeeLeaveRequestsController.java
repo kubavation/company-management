@@ -28,9 +28,10 @@ class EmployeeLeaveRequestsController {
     @PostMapping
     void submitLeaveRequest(@PathVariable UUID employeeId,
                             @RequestBody LeaveRequestDTO dto) {
+
         commandGateway.dispatch(
                 new SubmitLeaveRequestCommand(
-                        employeeId, dto.getRequestType(), dto.getDateFrom(), dto.getDateTo()));
+                        employeeId, dto.getRequestType(), dto.getFrom(), dto.getTo()));
     }
 
 }

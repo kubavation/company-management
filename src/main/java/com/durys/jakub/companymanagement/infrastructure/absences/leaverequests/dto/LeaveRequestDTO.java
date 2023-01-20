@@ -12,6 +12,6 @@ import java.time.LocalDateTime;
 @Data
 public class LeaveRequestDTO {
     private LeaveRequestType requestType;
-    private LocalDateTime dateFrom;
-    private LocalDateTime dateTo;
+    private LocalDateTime from;
+    private LocalDateTime to;
 }
