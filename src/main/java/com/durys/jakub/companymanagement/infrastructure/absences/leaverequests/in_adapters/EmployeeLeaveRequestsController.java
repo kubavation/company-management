@@ -4,6 +4,7 @@ import com.durys.jakub.companymanagement.application.absences.leaverequests.comm
 import com.durys.jakub.companymanagement.cqrs.commands.CommandGateway;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.dto.LeaveRequestDTO;
 import com.durys.jakub.companymanagement.readmodel.leaverequests.EmployeeLeaveRequest;
 import com.durys.jakub.companymanagement.readmodel.leaverequests.EmployeeLeaveRequestFinder;
 import lombok.RequiredArgsConstructor;
@@ -28,11 +29,10 @@ class EmployeeLeaveRequestsController {
     }
 
     @PostMapping
-    void submitLeaveRequest(@PathVariable UUID employeeId, @RequestBody Object todo) {
-        //todo
+    void submitLeaveRequest(@PathVariable UUID employeeId, @RequestBody LeaveRequestDTO dto) {
         commandGateway.dispatch(
                 new SubmitLeaveRequestCommand(
-                        employeeId, LeaveRequestType.AL, LocalDateTime.now(), LocalDateTime.now()));
+                        employeeId, dto.getRequestType(), dto.getDateFrom(), dto.getDateTo()));
     }
 
 }
