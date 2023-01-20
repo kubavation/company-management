@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.dto;
 
+import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 public class LeaveRequestDTO {
-    private Long employeeId;
-    private String requestType;
-    private LocalDateTime dateFrom;
-    private LocalDateTime dateTo;
+    private LeaveRequestType requestType;
+    private LocalDateTime from;
+    private LocalDateTime to;
 }

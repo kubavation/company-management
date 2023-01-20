@@ -14,8 +14,6 @@ import java.util.UUID;
 
 public class TrailEmployeeContract extends Contract implements EmploymentContract {
 
-    //todo check if trail contract already exists for employee
-
     public TrailEmployeeContract(Contract.Builder builder) {
         super(new ContractId(UUID.randomUUID()), builder.getEmployeeId(), builder.getContractNumber(),
                 builder.getContractData(), new TrailEmploymentContractPeriod(builder.getFrom(), builder.getTo()));
