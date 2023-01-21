@@ -1,5 +1,7 @@
 package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.in_adapters;
 
+import com.durys.jakub.companymanagement.application.absences.leaverequests.commands.CancelLeaveRequestCommand;
+import com.durys.jakub.companymanagement.application.absences.leaverequests.commands.SendLeaveRequestForAcceptationCommand;
 import com.durys.jakub.companymanagement.application.absences.leaverequests.commands.SubmitLeaveRequestCommand;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandGateway;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
@@ -32,6 +34,21 @@ class EmployeeLeaveRequestsController {
         commandGateway.dispatch(
                 new SubmitLeaveRequestCommand(
                         employeeId, dto.getRequestType(), dto.getFrom(), dto.getTo()));
+    }
+
+    //todo acceptantId in path
+    @PatchMapping("/{leaveRequestId}")
+    void sendToAcceptant(@PathVariable UUID leaveRequestId, @PathVariable UUID acceptantId) {
+
+        commandGateway.dispatch(
+                new SendLeaveRequestForAcceptationCommand(leaveRequestId, acceptantId));
+    }
+
+    @PatchMapping("/{leaveRequestId}")
+    void cancel(@PathVariable UUID employeeId, @PathVariable UUID leaveRequestId) {
+
+        commandGateway.dispatch(
+                new CancelLeaveRequestCommand(leaveRequestId, employeeId));
     }
 
 }
