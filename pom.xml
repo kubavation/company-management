@@ -137,6 +137,14 @@
 			<version>2.7.5</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.durys.jakub</groupId>
+			<artifactId>notification-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>C:/Users/48533/projects/notification-service/api/build/libs/api-0.0.1-SNAPSHOT-plain.jar</systemPath>
+		</dependency>
+
 
 	</dependencies>
 
