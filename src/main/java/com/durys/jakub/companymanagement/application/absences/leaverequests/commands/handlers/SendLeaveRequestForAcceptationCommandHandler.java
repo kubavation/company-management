@@ -5,6 +5,8 @@ import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
+import com.durys.jakub.notificationservice.client.api.NotificationApiClient;
+import com.durys.jakub.notificationservice.client.model.NotificationDTO;
 import lombok.RequiredArgsConstructor;
 
 @CommandHandling
@@ -13,6 +15,7 @@ public class SendLeaveRequestForAcceptationCommandHandler implements CommandHand
 
     private final LeaveRequestRepository leaveRequestRepository;
     private final EmployeeRepository employeeRepository;
+    private final NotificationApiClient notificationClient;
 
     //todo acceptant repository / explore domain
 
@@ -28,5 +31,9 @@ public class SendLeaveRequestForAcceptationCommandHandler implements CommandHand
         applicant.sendToAcceptant(leaveRequest, acceptant);
 
         leaveRequestRepository.save(leaveRequest);
+
+        //todo
+       // notificationClient.publish(new NotificationDTO());
+
     }
 }
