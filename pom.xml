@@ -142,7 +142,7 @@
 			<artifactId>notification-service-api</artifactId>
 			<version>1.0.0</version>
 			<scope>system</scope>
-			<systemPath>C:/Users/48533/projects/notification-service/api/build/libs/api-0.0.1-SNAPSHOT-plain.jar</systemPath>
+			<systemPath>C:/Users/48533/projects/notification-service/api/build/libs/api-1.0.0-plain.jar</systemPath>
 		</dependency>
 
 
