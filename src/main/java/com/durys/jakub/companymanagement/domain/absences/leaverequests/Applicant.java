@@ -5,16 +5,19 @@ import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlements;
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.sharedkernel.TenantId;
 
 
 @AggregateRoot
 public class Applicant implements Employable {
     private final ApplicantId applicantId;
+    private final TenantId tenantId;
     private final LeaveEntitlements leaveEntitlements;
 
 
-    public Applicant(ApplicantId applicantId, LeaveEntitlements leaveEntitlements) {
+    public Applicant(ApplicantId applicantId, TenantId tenantId, LeaveEntitlements leaveEntitlements) {
         this.applicantId = applicantId;
+        this.tenantId = tenantId;
         this.leaveEntitlements = leaveEntitlements;
     }
 
@@ -41,6 +44,9 @@ public class Applicant implements Employable {
     public EmployeeId employeeId() {
         return applicantId;
     }
-    
 
+    @Override
+    public TenantId tenantId() {
+        return tenantId;
+    }
 }

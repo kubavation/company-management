@@ -6,6 +6,7 @@ import com.durys.jakub.companymanagement.commons.domain.DomainServicesRegistry;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.events.LeaveRequestAcceptedEvent;
 import com.durys.jakub.companymanagement.domain.employees.model.Employable;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.sharedkernel.TenantId;
 import lombok.RequiredArgsConstructor;
 
 @AggregateRoot
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 public class Acceptant implements Employable {
 
     private final AcceptantId acceptantId;
+    private final TenantId tenantId;
 
 
     public void accept(LeaveRequest leaveRequest) {
@@ -42,5 +44,9 @@ public class Acceptant implements Employable {
 
     public AcceptantId id() {
         return acceptantId;
+    }
+
+    public TenantId tenantId() {
+        return tenantId;
     }
 }
