@@ -11,7 +11,6 @@ import com.durys.jakub.notificationservice.client.model.NotificationType;
 import com.durys.jakub.notificationservice.client.model.TenantId;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Collections;
 import java.util.List;
 
 @CommandHandling
@@ -21,8 +20,6 @@ public class SendLeaveRequestForAcceptationCommandHandler implements CommandHand
     private final LeaveRequestRepository leaveRequestRepository;
     private final EmployeeRepository employeeRepository;
     private final NotificationApiClient notificationClient;
-
-    //todo acceptant repository / explore domain
 
     @Override
     public void handle(SendLeaveRequestForAcceptationCommand command) {
@@ -38,7 +35,8 @@ public class SendLeaveRequestForAcceptationCommandHandler implements CommandHand
         notificationClient.publish(
                 new NotificationDTO(new TenantId(acceptant.tenantId().val()),
                         "Leave request for acceptation",
-                        "Leave request for acceptation", List.of(NotificationType.APP))
+                        "Leave request for acceptation",
+                        List.of(NotificationType.APP))
             );
 
     }
