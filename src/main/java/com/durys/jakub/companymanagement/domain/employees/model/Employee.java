@@ -37,6 +37,10 @@ public class Employee implements Employable {
         graduations.add(graduation);
     }
 
+    @Override
+    public TenantId tenantId() {
+        return tenantId;
+    }
 
     public String name() {
         return String.format("%s %s", personalData.getLastName(), personalData.getFirstName());
