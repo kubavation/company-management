@@ -4,6 +4,7 @@ import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.exception.LeavePrivilegeIsAlreadyEntitledException;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.vo.LeaveType;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import lombok.NonNull;
 
 
 import java.math.BigDecimal;
@@ -20,7 +21,10 @@ public class LeaveEntitlements {
     private List<LeavePrivilege> leavePrivileges;
 
 
-    public LeaveEntitlements(EmployeeId employeeId, List<LeavePrivilege> leavePrivileges) {
+    public LeaveEntitlements(@NonNull EmployeeId employeeId, List<LeavePrivilege> leavePrivileges) {
+
+        Objects.requireNonNull(employeeId, "employeeId must be provided");
+
         this.employeeId = employeeId;
         this.leavePrivileges = leavePrivileges;
 
@@ -29,7 +33,10 @@ public class LeaveEntitlements {
         }
     }
 
-    public LeaveEntitlements(EmployeeId employeeId) {
+    public LeaveEntitlements(@NonNull EmployeeId employeeId) {
+
+        Objects.requireNonNull(employeeId, "employeeId must be provided");
+
         this.employeeId = employeeId;
         this.leavePrivileges = Collections.emptyList();
     }
