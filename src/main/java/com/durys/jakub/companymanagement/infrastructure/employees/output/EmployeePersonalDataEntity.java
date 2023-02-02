@@ -1,21 +1,19 @@
 package com.durys.jakub.companymanagement.infrastructure.employees.output;
 
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
-import com.durys.jakub.companymanagement.shared.enums.Status;
+import com.durys.jakub.companymanagement.shared.enums.CmStatus;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Table(name = "CM_EMPLOYEE")
+@Table(name = "CM_EMPLOYEE_PERSONAL_DATA")
 @Entity
-@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeEntity {
+public class EmployeePersonalDataEntity {
 
     @Id
     private Long id;
@@ -27,13 +25,5 @@ public class EmployeeEntity {
     private String gender;
 
     @Convert(converter = StatusConverter.class)
-    private Status status;
-
-    public EmployeeEntity(Long id, String firstName, String lastName, String gender) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.status = Status.ACTIVE;
-    }
+    private CmStatus cmStatus;
 }
