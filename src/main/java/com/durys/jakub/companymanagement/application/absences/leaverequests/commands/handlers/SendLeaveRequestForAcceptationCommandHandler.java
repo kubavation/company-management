@@ -19,7 +19,8 @@ public class SendLeaveRequestForAcceptationCommandHandler implements CommandHand
 
     private final LeaveRequestRepository leaveRequestRepository;
     private final EmployeeRepository employeeRepository;
-    private final NotificationApiClient notificationClient;
+    //todo fix
+    //private final NotificationApiClient notificationClient;
 
     @Override
     public void handle(SendLeaveRequestForAcceptationCommand command) {
@@ -32,12 +33,13 @@ public class SendLeaveRequestForAcceptationCommandHandler implements CommandHand
 
         leaveRequestRepository.save(leaveRequest);
 
-        notificationClient.publish(
-                new NotificationDTO(new TenantId(acceptant.tenantId().val()),
-                        "Leave request for acceptation",
-                        "Leave request for acceptation",
-                        List.of(NotificationType.APP))
-            );
+        //todo fix
+//        notificationClient.publish(
+//                new NotificationDTO(new TenantId(acceptant.tenantId().val()),
+//                        "Leave request for acceptation",
+//                        "Leave request for acceptation",
+//                        List.of(NotificationType.APP))
+//            );
 
     }
 }

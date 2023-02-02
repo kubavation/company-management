@@ -16,13 +16,12 @@ class AcceptantLeaveRequestsController {
     private final CommandGateway commandGateway;
 
 
-    @PatchMapping("/{leaveRequestId}")
+    @PatchMapping("/{leaveRequestId}/accepted")
     public void accept(@PathVariable UUID acceptantId, @PathVariable UUID leaveRequestId) {
         commandGateway.dispatch(new AcceptLeaveRequestCommand(leaveRequestId, acceptantId));
     }
 
-    //todo
-    @PatchMapping("/{leaveRequestId}")
+    @PatchMapping("/{leaveRequestId}/rejected")
     public void reject(@PathVariable UUID acceptantId, @PathVariable UUID leaveRequestId) {
         commandGateway.dispatch(new RejectLeaveRequestCommand(leaveRequestId, acceptantId));
     }
