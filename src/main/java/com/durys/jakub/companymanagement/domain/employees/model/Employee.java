@@ -37,6 +37,10 @@ public class Employee implements Employable {
         graduations.add(graduation);
     }
 
+    public void changePersonalData(PersonalData personalData) {
+        this.personalData = personalData;
+    }
+
     @Override
     public TenantId tenantId() {
         return tenantId;
