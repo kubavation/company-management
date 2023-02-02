@@ -11,7 +11,6 @@ import javax.persistence.*;
 
 @Table(name = "CM_EMPLOYEE")
 @Entity
-@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,20 +19,9 @@ public class EmployeeEntity {
     @Id
     private Long id;
 
-    @Column(name = "FIRST_NAME")
-    private String firstName;
-    @Column(name = "LAST_NAME")
-    private String lastName;
-    private String gender;
+    @OneToOne(mappedBy = "employee_id")
+    private EmployeePersonalDataEntity personalData;
 
     @Convert(converter = StatusConverter.class)
-    private CmStatus cmStatus;
-
-    public EmployeeEntity(Long id, String firstName, String lastName, String gender) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.cmStatus = CmStatus.ACTIVE;
-    }
+    private CmStatus cmStatus = CmStatus.ACTIVE;
 }
