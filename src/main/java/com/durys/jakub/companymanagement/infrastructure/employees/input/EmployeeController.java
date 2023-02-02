@@ -5,6 +5,10 @@ import com.durys.jakub.companymanagement.application.employees.commands.EngageEm
 import com.durys.jakub.companymanagement.cqrs.commands.CommandGateway;
 import com.durys.jakub.companymanagement.infrastructure.employees.input.model.EmployeeDTO;
 import com.durys.jakub.companymanagement.infrastructure.employees.input.model.EmployeePersonalDataDTO;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -14,15 +18,20 @@ import java.util.UUID;
 
 @RestController
 @Slf4j
-@RequestMapping("/employees")
 @RequiredArgsConstructor
+@RequestMapping("/employees")
+@ApiOperation("Employee API")
 class EmployeeController {
 
     private final CommandGateway commandGateway;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void engageEmployee(@RequestBody EmployeeDTO employee) {
+    @ApiOperation(value = "Engage employee")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Employee successfully engaged")
+    })
+    public void engageEmployee(@ApiParam("Employee") @RequestBody EmployeeDTO employee) {
 
         log.info("calling engage employee");
 
@@ -37,7 +46,12 @@ class EmployeeController {
 
     @PutMapping("/{employeeId}/personal-data")
     @ResponseStatus(HttpStatus.OK)
-    public void changePersonalData(@PathVariable UUID employeeId, @RequestBody EmployeePersonalDataDTO personalData) {
+    @ApiOperation(value = "Change employee personal data")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Personal data successfully changed")
+    })
+    public void changePersonalData(@ApiParam("Id of employee") @PathVariable UUID employeeId,
+               @ApiParam("Personal data") @RequestBody EmployeePersonalDataDTO personalData) {
 
         log.info("change personal data for employeeId: {}", employeeId);
 
