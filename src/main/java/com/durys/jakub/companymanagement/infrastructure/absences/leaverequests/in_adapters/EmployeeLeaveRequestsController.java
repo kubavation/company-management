@@ -36,15 +36,14 @@ class EmployeeLeaveRequestsController {
                         employeeId, dto.getRequestType(), dto.getFrom(), dto.getTo()));
     }
 
-    //todo acceptantId in path
-    @PatchMapping("/{leaveRequestId}")
+    @PatchMapping("/{leaveRequestId}/acceptants/{acceptantId}")
     void sendToAcceptant(@PathVariable UUID leaveRequestId, @PathVariable UUID acceptantId) {
 
         commandGateway.dispatch(
                 new SendLeaveRequestForAcceptationCommand(leaveRequestId, acceptantId));
     }
 
-    @PatchMapping("/{leaveRequestId}")
+    @PatchMapping("/{leaveRequestId}/cancelled")
     void cancel(@PathVariable UUID employeeId, @PathVariable UUID leaveRequestId) {
 
         commandGateway.dispatch(
