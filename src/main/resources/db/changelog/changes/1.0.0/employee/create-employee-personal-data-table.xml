@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="jdurys" id="1.0.0-employees-create-employee-personal-data-table">
+        <createTable tableName="CM_EMPLOYEE_PERSONAL_DATA">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="employee_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gender" type="number(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cm_status" type="VARCHAR(5)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="CM_EMPLOYEE_PERSONAL_DATA"
+                baseColumnNames="employee_id"
+                constraintName="employee_pd_employee_fk"
+                referencedTableName="CM_EMPLOYEE"
+                referencedColumnNames="id" />
+
+    </changeSet>
+</databaseChangeLog>
