@@ -1,7 +1,7 @@
 package com.durys.jakub.companymanagement.infrastructure.employees.output;
 
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
-import com.durys.jakub.companymanagement.shared.enums.Status;
+import com.durys.jakub.companymanagement.shared.enums.CmStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,13 +27,13 @@ public class EmployeeEntity {
     private String gender;
 
     @Convert(converter = StatusConverter.class)
-    private Status status;
+    private CmStatus cmStatus;
 
     public EmployeeEntity(Long id, String firstName, String lastName, String gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
-        this.status = Status.ACTIVE;
+        this.cmStatus = CmStatus.ACTIVE;
     }
 }
