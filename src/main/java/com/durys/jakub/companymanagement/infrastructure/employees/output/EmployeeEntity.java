@@ -18,6 +18,9 @@ public class EmployeeEntity {
     @Id
     private Long id;
 
+    @Column(name = "DOMAIN_ID")
+    private String domainId;
+
     @Column(name = "TENANT_ID")
     private String tenantId;
 

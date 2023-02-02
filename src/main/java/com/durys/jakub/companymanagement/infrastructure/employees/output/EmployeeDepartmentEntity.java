@@ -33,7 +33,7 @@ public class EmployeeDepartmentEntity {
 
     @OneToMany(mappedBy = "department")
     private List<EmployeeEntity> employees;
-    
+
     @Convert(converter = StatusConverter.class)
     @Column(name = "CM_STATUS")
     private CmStatus cmStatus = CmStatus.ACTIVE;

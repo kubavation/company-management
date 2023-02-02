@@ -7,5 +7,7 @@
       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
       http://www.liquibase.org/xml/ns/pro
       http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
-    <include file="changes/1.0.0/changes-1.0.0.xml"  relativeToChangelogFile="true" />
+    <include file="employee/create-employee-table.xml"  relativeToChangelogFile="true" />
+    <include file="employee/create-employee-personal-data-table.xml"  relativeToChangelogFile="true" />
+    <include file="employee/create-employee-department-table.xml"  relativeToChangelogFile="true" />
 </databaseChangeLog>
