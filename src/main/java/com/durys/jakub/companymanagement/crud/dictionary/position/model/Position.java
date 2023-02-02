@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.crud.dictionary.position.model;
 
 import com.durys.jakub.companymanagement.crud.dictionary.general.model.CmDictionary;
+import com.durys.jakub.companymanagement.shared.enums.CmStatus;
 import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
 import lombok.*;
 
@@ -20,4 +21,14 @@ public class Position extends CmDictionary implements CmEntity<Long> {
 
     private String name;
     private String description;
+
+    @Override
+    public CmStatus getStatus() {
+        return null;
+    }
+
+    @Override
+    public void setStatus(CmStatus cmStatus) {
+
+    }
 }

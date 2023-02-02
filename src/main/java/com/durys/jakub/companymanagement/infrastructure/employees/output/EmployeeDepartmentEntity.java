@@ -7,27 +7,33 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Table(name = "CM_EMPLOYEE")
+@Table(name = "CM_EMPLOYEE_DEPARTMENT")
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeEntity {
+public class EmployeeDepartmentEntity {
 
     @Id
     private Long id;
 
-    @Column(name = "TENANT_ID")
-    private String tenantId;
+    @Column(name = "DEPARTMENT_ID")
+    private String departmentId;
 
-    @OneToOne(mappedBy = "employee")
-    private EmployeePersonalDataEntity personalData;
+    @Column(name = "DEPARTMENT_NAME")
+    private String departmentName;
 
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private EmployeeDepartmentEntity department;
+    @Column(name = "DEPARTMENT_SHORTCUT")
+    private String departmentShortcut;
 
+    @Column(name = "DEPARTMENT_PATH")
+    private String departmentPath;
+
+    @OneToMany(mappedBy = "department")
+    private List<EmployeeEntity> employees;
+    
     @Convert(converter = StatusConverter.class)
     @Column(name = "CM_STATUS")
     private CmStatus cmStatus = CmStatus.ACTIVE;

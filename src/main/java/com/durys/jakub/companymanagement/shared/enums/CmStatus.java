@@ -2,14 +2,14 @@ package com.durys.jakub.companymanagement.shared.enums;
 
 import java.util.stream.Stream;
 
-public enum Status {
+public enum CmStatus {
 
     ACTIVE("A"),
     DELETED("X");
 
     private final String shortcut;
 
-    Status(String shortcut) {
+    CmStatus(String shortcut) {
         this.shortcut = shortcut;
     }
 
@@ -17,8 +17,8 @@ public enum Status {
         return shortcut;
     }
 
-    public static Status of(String shortcut) {
-        return Stream.of(Status.values())
+    public static CmStatus of(String shortcut) {
+        return Stream.of(CmStatus.values())
                 .filter(s -> s.getShortcut().equals(shortcut))
                 .findFirst()
                 .orElseThrow(RuntimeException::new);

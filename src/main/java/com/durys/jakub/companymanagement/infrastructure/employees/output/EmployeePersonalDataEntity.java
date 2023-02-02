@@ -8,27 +8,27 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Table(name = "CM_EMPLOYEE")
+@Table(name = "CM_EMPLOYEE_PERSONAL_DATA")
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeEntity {
+public class EmployeePersonalDataEntity {
 
     @Id
     private Long id;
 
-    @Column(name = "TENANT_ID")
-    private String tenantId;
+    @OneToOne
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    private EmployeeEntity employee;
 
-    @OneToOne(mappedBy = "employee")
-    private EmployeePersonalDataEntity personalData;
-
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private EmployeeDepartmentEntity department;
+    @Column(name = "FIRST_NAME")
+    private String firstName;
+    @Column(name = "LAST_NAME")
+    private String lastName;
+    private String gender;
 
     @Convert(converter = StatusConverter.class)
     @Column(name = "CM_STATUS")
-    private CmStatus cmStatus = CmStatus.ACTIVE;
+    private CmStatus cmStatus;
 }

@@ -2,7 +2,7 @@ package com.durys.jakub.companymanagement.crud.configuration.model.entity;
 
 import com.durys.jakub.companymanagement.crud.configuration.model.enums.group.ConfigurationGroupName;
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
-import com.durys.jakub.companymanagement.shared.enums.Status;
+import com.durys.jakub.companymanagement.shared.enums.CmStatus;
 import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,5 +32,15 @@ public class ConfigurationValue implements CmEntity<Long> {
     private String value;
 
     @Convert(converter = StatusConverter.class)
-    private Status status;
+    private CmStatus cmStatus;
+
+    @Override
+    public CmStatus getStatus() {
+        return null;
+    }
+
+    @Override
+    public void setStatus(CmStatus cmStatus) {
+
+    }
 }

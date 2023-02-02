@@ -3,7 +3,7 @@ package com.durys.jakub.companymanagement.crud.personal_request.service.dict;
 import com.durys.jakub.companymanagement.crud.personal_request.model.dto.creational.CreatePersonalRequestTypeRequest;
 import com.durys.jakub.companymanagement.crud.personal_request.model.entity.dict.PersonalRequestType;
 import com.durys.jakub.companymanagement.crud.personal_request.repository.PersonalRequestTypeRepository;
-import com.durys.jakub.companymanagement.shared.enums.Status;
+import com.durys.jakub.companymanagement.shared.enums.CmStatus;
 import com.durys.jakub.companymanagement.shared.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class PersonalRequestTypeService {
         PersonalRequestType entity = PersonalRequestType.builder()
                 .name(request.getName())
                 .description(request.getDesc())
-                .status(Status.ACTIVE)
+                .cmStatus(CmStatus.ACTIVE)
                 .build();
         return personalRequestTypeRepository.save(entity);
     }
