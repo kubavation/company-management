@@ -1,4 +1,7 @@
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   jpa:
     show-sql: true
   datasource:
@@ -21,7 +24,7 @@ spring:
         jwt:
           issuer-uri: http://localhost:8080/realms/am-realm
 server:
-  port: 0
+  port: 61209
 eureka:
   client:
     serviceUrl:
