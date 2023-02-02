@@ -18,6 +18,10 @@ public class EmployeePersonalDataEntity {
     @Id
     private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    private EmployeeEntity employee;
+
     @Column(name = "FIRST_NAME")
     private String firstName;
     @Column(name = "LAST_NAME")
