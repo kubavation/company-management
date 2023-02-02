@@ -25,5 +25,6 @@ public class EmployeeEntity {
     private EmployeePersonalDataEntity personalData;
 
     @Convert(converter = StatusConverter.class)
+    @Column(name = "CM_STATUS")
     private CmStatus cmStatus = CmStatus.ACTIVE;
 }

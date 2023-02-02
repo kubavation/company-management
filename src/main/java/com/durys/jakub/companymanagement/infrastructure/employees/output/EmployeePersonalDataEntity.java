@@ -29,5 +29,6 @@ public class EmployeePersonalDataEntity {
     private String gender;
 
     @Convert(converter = StatusConverter.class)
+    @Column(name = "CM_STATUS")
     private CmStatus cmStatus;
 }
