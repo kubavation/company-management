@@ -21,7 +21,7 @@ public class EmployeeEntity {
     @Column(name = "TENANT_ID")
     private String tenantId;
 
-    @OneToOne(mappedBy = "employee_id")
+    @OneToOne(mappedBy = "employee")
     private EmployeePersonalDataEntity personalData;
 
     @Convert(converter = StatusConverter.class)
