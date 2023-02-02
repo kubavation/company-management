@@ -39,4 +39,14 @@ public class PersonalRequestFieldType implements CmEntity<Long> {
 
     @OneToMany(mappedBy = "fieldType", fetch = FetchType.LAZY)
     private List<PersonalRequestFieldTypeSettings> settings;
+
+    @Override
+    public CmStatus getStatus() {
+        return null;
+    }
+
+    @Override
+    public void setStatus(CmStatus cmStatus) {
+
+    }
 }

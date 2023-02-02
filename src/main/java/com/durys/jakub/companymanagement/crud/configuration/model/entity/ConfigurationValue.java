@@ -33,4 +33,14 @@ public class ConfigurationValue implements CmEntity<Long> {
 
     @Convert(converter = StatusConverter.class)
     private CmStatus cmStatus;
+
+    @Override
+    public CmStatus getStatus() {
+        return null;
+    }
+
+    @Override
+    public void setStatus(CmStatus cmStatus) {
+
+    }
 }

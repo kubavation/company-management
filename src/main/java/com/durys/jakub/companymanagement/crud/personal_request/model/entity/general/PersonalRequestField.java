@@ -33,4 +33,14 @@ public class PersonalRequestField implements CmEntity<Long> {
     @ManyToOne
     @JoinColumn(name = "REQUEST_FIELD_TYPE_ID", referencedColumnName = "ID")
     private PersonalRequestFieldType requestFieldType;
+
+    @Override
+    public CmStatus getStatus() {
+        return null;
+    }
+
+    @Override
+    public void setStatus(CmStatus cmStatus) {
+
+    }
 }

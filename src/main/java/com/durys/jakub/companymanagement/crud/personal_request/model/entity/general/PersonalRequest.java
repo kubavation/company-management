@@ -36,4 +36,13 @@ public class PersonalRequest implements CmEntity<Long> {
     @OneToMany(mappedBy = "personalRequest", cascade = CascadeType.PERSIST)
     private List<PersonalRequestField> fields;
 
+    @Override
+    public CmStatus getStatus() {
+        return null;
+    }
+
+    @Override
+    public void setStatus(CmStatus cmStatus) {
+
+    }
 }

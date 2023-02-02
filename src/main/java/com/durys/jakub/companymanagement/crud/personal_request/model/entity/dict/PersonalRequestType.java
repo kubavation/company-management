@@ -31,4 +31,13 @@ public class PersonalRequestType implements CmEntity<Long> {
     @OneToMany(mappedBy = "requestType", fetch = FetchType.EAGER)
     private List<PersonalRequestFieldType> requestFieldTypes;
 
+    @Override
+    public CmStatus getStatus() {
+        return null;
+    }
+
+    @Override
+    public void setStatus(CmStatus cmStatus) {
+
+    }
 }
