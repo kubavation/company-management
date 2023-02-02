@@ -1,7 +1,7 @@
 package com.durys.jakub.companymanagement.crud.personal_request.model.entity.dict;
 
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
-import com.durys.jakub.companymanagement.shared.enums.Status;
+import com.durys.jakub.companymanagement.shared.enums.CmStatus;
 import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
 import lombok.*;
 
@@ -26,7 +26,7 @@ public class PersonalRequestType implements CmEntity<Long> {
     private String description;
 
     @Convert(converter = StatusConverter.class)
-    private Status status;
+    private CmStatus cmStatus;
 
     @OneToMany(mappedBy = "requestType", fetch = FetchType.EAGER)
     private List<PersonalRequestFieldType> requestFieldTypes;

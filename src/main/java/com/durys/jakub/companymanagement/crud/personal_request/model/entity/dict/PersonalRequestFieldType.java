@@ -2,7 +2,7 @@ package com.durys.jakub.companymanagement.crud.personal_request.model.entity.dic
 
 import com.durys.jakub.companymanagement.crud.personal_request.model.enums.FieldType;
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
-import com.durys.jakub.companymanagement.shared.enums.Status;
+import com.durys.jakub.companymanagement.shared.enums.CmStatus;
 import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
 import lombok.*;
 
@@ -27,7 +27,7 @@ public class PersonalRequestFieldType implements CmEntity<Long> {
     private FieldType type;
 
     @Convert(converter = StatusConverter.class)
-    private Status status;
+    private CmStatus cmStatus;
     private Integer lp;
 
     @Column(name = "LIST_QUERY")

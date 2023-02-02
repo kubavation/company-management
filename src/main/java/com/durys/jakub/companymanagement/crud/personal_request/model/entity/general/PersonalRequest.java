@@ -2,7 +2,7 @@ package com.durys.jakub.companymanagement.crud.personal_request.model.entity.gen
 
 import com.durys.jakub.companymanagement.crud.personal_request.model.entity.dict.PersonalRequestType;
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
-import com.durys.jakub.companymanagement.shared.enums.Status;
+import com.durys.jakub.companymanagement.shared.enums.CmStatus;
 import com.durys.jakub.companymanagement.shared.interfaces.CmEntity;
 import lombok.*;
 
@@ -23,7 +23,7 @@ public class PersonalRequest implements CmEntity<Long> {
     private Long id;
 
     @Convert(converter = StatusConverter.class)
-    private Status status;
+    private CmStatus cmStatus;
 
     @ManyToOne
     @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "ID")

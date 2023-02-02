@@ -1,7 +1,7 @@
 package com.durys.jakub.companymanagement.crud.dictionary.general.model;
 
 import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
-import com.durys.jakub.companymanagement.shared.enums.Status;
+import com.durys.jakub.companymanagement.shared.enums.CmStatus;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -23,5 +23,5 @@ public class CmDictionary {
     private LocalDateTime dateTo;
 
     @Convert(converter = StatusConverter.class)
-    private Status status;
+    private CmStatus cmStatus;
 }
