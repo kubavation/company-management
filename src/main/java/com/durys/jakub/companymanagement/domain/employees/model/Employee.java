@@ -17,7 +17,8 @@ public class Employee implements Employable {
     private Department department;
     private TenantId tenantId;
 
-    public Employee(EmployeeId employeeId, PersonalData personalData, Department department, List<Graduation> graduations) {
+    public Employee(EmployeeId employeeId, PersonalData personalData,
+                    Department department, List<Graduation> graduations) {
         this.employeeId = employeeId;
         this.personalData = personalData;
         this.department = department;
@@ -37,6 +38,10 @@ public class Employee implements Employable {
         graduations.add(graduation);
     }
 
+    public void changePersonalData(PersonalData personalData) {
+        this.personalData = personalData;
+    }
+
     @Override
     public TenantId tenantId() {
         return tenantId;
@@ -45,4 +50,8 @@ public class Employee implements Employable {
     public String name() {
         return String.format("%s %s", personalData.getLastName(), personalData.getFirstName());
     }
+
+
+
+
 }

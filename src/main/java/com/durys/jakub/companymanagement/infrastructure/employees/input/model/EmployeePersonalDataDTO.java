@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class EmployeeDTO {
-
-    private String departmentId;
-    private EmployeePersonalDataDTO personalData;
-    private List<GraduationDTO> graduations;
+public class EmployeePersonalDataDTO {
+    private String firstName;
+    private String lastName;
+    private String gender;
+    private LocalDate birthdayDate;
 }
