@@ -48,7 +48,7 @@ class ChangeEmployeePersonalDataCommandHandlerTest {
 
         commandHandler.handle(command);
         Employee employee = employeeRepository.load(new EmployeeId(employeeId));
-        assertEquals("John NoDoe", employee.name());
+        assertEquals("NoDoe John", employee.name());
     }
 
 }
