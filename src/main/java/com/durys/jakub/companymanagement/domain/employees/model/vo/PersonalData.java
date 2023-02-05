@@ -25,4 +25,8 @@ public class PersonalData {
         this(new FirstName(firstName), new LastName(lastName), Gender.valueOf(gender), birthdayDate);
     }
 
+    public String name() {
+        return "%s %s".formatted(lastName.value(), firstName.value());
+    }
+
 }

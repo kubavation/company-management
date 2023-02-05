@@ -48,7 +48,7 @@ public class Employee implements Employable {
     }
 
     public String name() {
-        return String.format("%s %s", personalData.getLastName(), personalData.getFirstName());
+        return personalData.name();
     }
 
 
