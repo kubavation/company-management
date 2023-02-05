@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -46,5 +47,20 @@ class EngageEmployeeCommandHandlerTest {
          Employee engagedEmployee = employeeRepository.load(new EmployeeId(expectedId));
          assertEquals(expectedId, engagedEmployee.employeeId().value());
      }
+
+
+    @Test
+    void engageEmployee_withInvalidDepartmentId_shouldThrowException() {
+
+        UUID expectedId = UUID.randomUUID();
+        EngageEmployeeCommand command = new EngageEmployeeCommand("John", "Doe", "MAN", LocalDate.now(), "123");
+
+        when(departmentProvider.find(new DepartmentId("123")))
+                .thenReturn(null);
+        when(identityProvider.nextId()).thenReturn(expectedId);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> commandHandler.handle(command));
+        assertEquals("Invalid departmentId", exception.getMessage());
+    }
 
 }

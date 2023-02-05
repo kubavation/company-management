@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collections;
+import java.util.Objects;
 
 @CommandHandling
 @Slf4j
@@ -31,6 +32,8 @@ public class EngageEmployeeCommandHandler implements CommandHandler<EngageEmploy
         log.info("handling engage employee command");
 
         Department department = departmentProvider.find(new DepartmentId(command.departmentId()));
+
+        Objects.requireNonNull(department, "Invalid departmentId");
 
         Employee employee = new Employee(
                 new EmployeeId(identityProvider.nextId()),
