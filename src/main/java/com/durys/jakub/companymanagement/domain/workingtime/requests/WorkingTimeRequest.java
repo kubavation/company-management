@@ -9,4 +9,5 @@ public class WorkingTimeRequest {
     private final WorkingTimeRequestId requestId;
     private final LocalDate atDay;
     private final WorkingTimeRequestPeriod period;
+    private final WorkingTimeRequestType type;
 }
