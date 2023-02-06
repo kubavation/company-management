@@ -39,7 +39,7 @@ class ChangeEmployeePersonalDataCommandHandlerTest {
     }
 
     @Test
-    void changeEmployeePersonalData_shouldSuccessfullyChangeDate() {
+    void changeEmployeePersonalData_shouldSuccessfullyChangeData() {
 
         UUID employeeId = UUID.fromString("47db3704-a571-11ed-b9df-0242ac120003");
         ChangeEmployeePersonalDataCommand command = new ChangeEmployeePersonalDataCommand(
