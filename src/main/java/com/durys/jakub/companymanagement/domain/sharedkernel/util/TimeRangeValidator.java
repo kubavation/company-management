@@ -6,9 +6,9 @@ import java.time.LocalTime;
 
 public class TimeRangeValidator {
 
-    public class InvalidDateRangeException extends RuntimeException {
+    public class InvalidTimeRangeException extends RuntimeException {
 
-        public InvalidDateRangeException(LocalTime from, LocalTime to) {
+        public InvalidTimeRangeException(LocalTime from, LocalTime to) {
             super("Invalid time range. %s cannot be later than %s".formatted(from, to));
         }
     }
@@ -27,7 +27,7 @@ public class TimeRangeValidator {
 
     public void validate() {
         if (from.isAfter(to)) {
-            throw new InvalidDateRangeException(from, to);
+            throw new InvalidTimeRangeException(from, to);
         }
     }
 }
