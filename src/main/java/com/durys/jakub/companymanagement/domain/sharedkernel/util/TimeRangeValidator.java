@@ -4,7 +4,7 @@ import lombok.NonNull;
 
 import java.time.LocalTime;
 
-public class TimeRangeValidator {
+public class TimeRangeValidator implements RangeValidator {
 
     public class InvalidTimeRangeException extends RuntimeException {
 
@@ -25,6 +25,7 @@ public class TimeRangeValidator {
         return new TimeRangeValidator(from, to);
     }
 
+    @Override
     public void validate() {
         if (from.isAfter(to)) {
             throw new InvalidTimeRangeException(from, to);

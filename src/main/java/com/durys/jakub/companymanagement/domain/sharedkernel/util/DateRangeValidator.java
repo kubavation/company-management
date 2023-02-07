@@ -3,7 +3,7 @@ package com.durys.jakub.companymanagement.domain.sharedkernel.util;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class DateRangeValidator {
+public class DateRangeValidator implements RangeValidator {
 
     public class InvalidDateRangeException extends RuntimeException {
 
@@ -28,6 +28,7 @@ public class DateRangeValidator {
         return new DateRangeValidator(from, to);
     }
 
+    @Override
     public void validate() {
         if (from.isAfter(to)) {
             throw new InvalidDateRangeException(from, to);
