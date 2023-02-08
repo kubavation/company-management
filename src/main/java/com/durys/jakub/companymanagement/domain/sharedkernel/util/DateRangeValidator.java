@@ -1,9 +1,12 @@
 package com.durys.jakub.companymanagement.domain.sharedkernel.util;
 
-import java.time.LocalDate;
-import java.util.Objects;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-public class DateRangeValidator {
+import java.time.LocalDate;
+
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+class DateRangeValidator implements RangeValidator<LocalDate> {
 
     public class InvalidDateRangeException extends RuntimeException {
 
@@ -12,25 +15,11 @@ public class DateRangeValidator {
         }
     }
 
-    private final LocalDate from;
-    private final LocalDate to;
-
-    private DateRangeValidator(LocalDate from, LocalDate to) {
-
-        Objects.requireNonNull(from, "date from must be provided");
-        Objects.requireNonNull(to, "data to must be provided");
-
-        this.from = from;
-        this.to = to;
-    }
-
-    public static DateRangeValidator of(LocalDate from, LocalDate to) {
-        return new DateRangeValidator(from, to);
-    }
-
-    public void validate() {
+    @Override
+    public void validate(LocalDate from, LocalDate to) {
         if (from.isAfter(to)) {
             throw new InvalidDateRangeException(from, to);
         }
     }
+
 }

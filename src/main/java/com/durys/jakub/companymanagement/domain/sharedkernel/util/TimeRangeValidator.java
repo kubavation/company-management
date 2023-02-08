@@ -1,10 +1,12 @@
 package com.durys.jakub.companymanagement.domain.sharedkernel.util;
 
-import lombok.NonNull;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalTime;
 
-public class TimeRangeValidator {
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+class TimeRangeValidator implements RangeValidator<LocalTime> {
 
     public class InvalidTimeRangeException extends RuntimeException {
 
@@ -13,19 +15,8 @@ public class TimeRangeValidator {
         }
     }
 
-    private final LocalTime from;
-    private final LocalTime to;
-
-    private TimeRangeValidator(@NonNull LocalTime from, @NonNull LocalTime to) {
-        this.from = from;
-        this.to = to;
-    }
-
-    public static TimeRangeValidator of(LocalTime from, LocalTime to) {
-        return new TimeRangeValidator(from, to);
-    }
-
-    public void validate() {
+    @Override
+    public void validate(LocalTime from, LocalTime to) {
         if (from.isAfter(to)) {
             throw new InvalidTimeRangeException(from, to);
         }
