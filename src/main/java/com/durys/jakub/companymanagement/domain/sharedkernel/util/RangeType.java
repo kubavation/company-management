@@ -1,17 +1,16 @@
 package com.durys.jakub.companymanagement.domain.sharedkernel.util;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.temporal.Temporal;
+import java.util.function.Supplier;
+
 
 @AllArgsConstructor
+@Getter
 public enum RangeType {
-    TIME(LocalTime.class),
-    DATE(LocalDate.class),
-    DATETIME(LocalDateTime.class);
+    TIME(TimeRangeValidator::new),
+    DATE(DateRangeValidator::new);
 
-    private final Class<? extends Temporal> clazz;
+    private final Supplier<RangeValidator<?>> instance;
 }
