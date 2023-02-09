@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
-class DateRangeValidator implements RangeValidator<LocalDate> {
+class DateRangeValidator implements RangeValidationStrategy<LocalDate> {
 
     public class InvalidDateRangeException extends RuntimeException {
 

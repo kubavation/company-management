@@ -1,9 +1,9 @@
 package com.durys.jakub.companymanagement.domain.employees.model;
 
-
-import com.durys.jakub.companymanagement.domain.sharedkernel.util.DateRangeValidator;
+import com.durys.jakub.companymanagement.domain.sharedkernel.util.RangeValidators;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Graduation {
@@ -19,12 +19,14 @@ public class Graduation {
     private final LocalDate to;
     private final Type type;
 
+
     public Graduation(String schoolName, LocalDate from, LocalDate to, Type type) {
 
         Objects.requireNonNull(schoolName, "schoolName must be provided");
         Objects.requireNonNull(type, "type must be provided");
 
-        DateRangeValidator.of(from, to).validate();
+        RangeValidators.comparing(LocalDate.class)
+                .validate(from, to);
 
         this.schoolName = schoolName;
         this.from = from;
