@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import java.time.LocalDate;
 
 @AllArgsConstructor
-public class WorkingTimeRequest {
+public abstract class WorkingTimeRequest {
     private final WorkingTimeRequestId requestId;
     private final EmployeeId authorId;
     private final LocalDate atDay;
