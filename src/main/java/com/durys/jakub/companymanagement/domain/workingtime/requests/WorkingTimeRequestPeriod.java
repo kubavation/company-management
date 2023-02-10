@@ -5,7 +5,7 @@ import lombok.NonNull;
 
 import java.time.LocalTime;
 
-class WorkingTimeRequestPeriod {
+public class WorkingTimeRequestPeriod {
 
     private final LocalTime from;
     private final LocalTime to;
