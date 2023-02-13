@@ -11,5 +11,4 @@ public abstract class WorkingTimeRequest {
     private final EmployeeId authorId;
     private final LocalDate atDay;
     private final WorkingTimeRequestPeriod period;
-    private final WorkingTimeRequestType type;
 }
