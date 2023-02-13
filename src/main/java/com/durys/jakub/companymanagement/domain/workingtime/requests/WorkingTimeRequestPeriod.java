@@ -5,12 +5,10 @@ import lombok.NonNull;
 
 import java.time.LocalTime;
 
-public class WorkingTimeRequestPeriod {
-
-    private final LocalTime from;
-    private final LocalTime to;
+public record WorkingTimeRequestPeriod(LocalTime from, LocalTime to) {
 
     public WorkingTimeRequestPeriod(@NonNull LocalTime from, @NonNull LocalTime to) {
+
         RangeValidators
                 .comparing(LocalTime.class)
                 .validate(from, to);
