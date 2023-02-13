@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.domain.workingtime;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,5 +18,9 @@ public class WorkDay {
         this.employeeId = employeeId;
         this.day = day;
         this.events = Collections.emptyList();
+    }
+
+    public void addPrivateExit(LocalTime from, LocalTime to) {
+        events.add(new WorkDayEvent(from, to, WorkDayEventType.PRIVATE_EXIT));
     }
 }
