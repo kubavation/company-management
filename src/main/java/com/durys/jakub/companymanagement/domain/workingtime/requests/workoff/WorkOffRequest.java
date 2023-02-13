@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 public class WorkOffRequest extends WorkingTimeRequest {
 
-    private PrivateExitRequest privateExitRequest;
+    private final PrivateExitRequest privateExitRequest;
 
     public WorkOffRequest(WorkingTimeRequestId requestId, EmployeeId authorId, LocalDate atDay,
                           WorkingTimeRequestPeriod period, PrivateExitRequest privateExitRequest) {
