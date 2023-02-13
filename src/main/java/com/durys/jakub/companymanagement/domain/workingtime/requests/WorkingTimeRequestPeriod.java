@@ -4,6 +4,7 @@ import com.durys.jakub.companymanagement.domain.sharedkernel.util.RangeValidator
 import lombok.NonNull;
 
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 public record WorkingTimeRequestPeriod(LocalTime from, LocalTime to) {
 
@@ -15,6 +16,10 @@ public record WorkingTimeRequestPeriod(LocalTime from, LocalTime to) {
 
         this.from = from;
         this.to = to;
+    }
+
+    public Long minutes() {
+        return ChronoUnit.MINUTES.between(from, to);
     }
 
 }
