@@ -1,11 +1,11 @@
-package com.durys.jakub.companymanagement.domain.workingtime.requests.workoff;
+package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequest;
 import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequestId;
 import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequestPeriod;
 import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequestStatus;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.privateexit.PrivateExitRequest;
+import com.durys.jakub.companymanagement.domain.workingtime.requests.PrivateExitRequest;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.domain.workingtime.requests.privateexit;
+package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequest;
@@ -13,5 +13,10 @@ public class PrivateExitRequest extends WorkingTimeRequest {
     public PrivateExitRequest(WorkingTimeRequestId requestId, EmployeeId authorId, LocalDate atDay,
                               WorkingTimeRequestPeriod period, WorkingTimeRequestStatus status) {
         super(requestId, authorId, atDay, period, status);
+    }
+
+    @Override
+    public WorkingTimeRequest submit(WorkingTimeRequest.Submittable workInProgress) {
+        return null;
     }
 }
