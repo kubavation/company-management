@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -105,6 +106,22 @@ public abstract class WorkingTimeRequest {
         @Override
         public WorkInProgress get() {
             return this;
+        }
+
+        WorkingTimeRequestId getRequestId() {
+            return requestId;
+        }
+
+        EmployeeId getEmployeeId() {
+            return employeeId;
+        }
+
+        LocalDate getAtDay() {
+            return atDay;
+        }
+
+        WorkingTimeRequestPeriod getPeriod() {
+            return period;
         }
     }
 
