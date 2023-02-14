@@ -11,6 +11,7 @@ public abstract class WorkingTimeRequest {
     private final LocalDate atDay;
     private final WorkingTimeRequestPeriod period;
     private WorkingTimeRequestStatus status;
+    private EmployeeId acceptantId;
 
     protected WorkingTimeRequest(WorkingTimeRequestId requestId, EmployeeId authorId, LocalDate atDay,
                               WorkingTimeRequestPeriod period, WorkingTimeRequestStatus status) {
@@ -35,6 +36,29 @@ public abstract class WorkingTimeRequest {
         }
 
         this.status = WorkingTimeRequestStatus.CANCELLED;
+    }
+
+    public void sendToAcceptant(EmployeeId acceptantId) {
+
+        if (!WorkingTimeRequestStatus.SUBMITTED.equals(status)) {
+            throw new IllegalArgumentException();
+        }
+
+        this.acceptantId = acceptantId;
+        this.status = WorkingTimeRequestStatus.ACCEPTED;
+    }
+
+    public void markAsRejected() {
+
+        if (WorkingTimeRequestStatus.ACCEPTED.equals(status)) {
+            throw new IllegalArgumentException();
+        }
+
+        this.status = WorkingTimeRequestStatus.REJECTED;
+    }
+
+    public void markAsAccepted() {
+        this.status = WorkingTimeRequestStatus.ACCEPTED;
     }
 
     public static class WorkInProgress implements WithId, WithAuthor, WithDay,
