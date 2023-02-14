@@ -20,7 +20,7 @@ public class WorkDay {
         this.events = Collections.emptyList();
     }
 
-    public void addPrivateExit(LocalTime from, LocalTime to) {
+    public void assignPrivateExit(LocalTime from, LocalTime to) {
         events.add(new WorkDayEvent(from, to, WorkDayEventType.PRIVATE_EXIT));
     }
 }
