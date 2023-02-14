@@ -1,11 +1,6 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequest;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequestId;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequestPeriod;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequestStatus;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.PrivateExitRequest;
 
 import java.time.LocalDate;
 
@@ -17,5 +12,15 @@ public class WorkOffRequest extends WorkingTimeRequest {
                           WorkingTimeRequestPeriod period, WorkingTimeRequestStatus status, PrivateExitRequest privateExitRequest) {
         super(requestId, authorId, atDay, period, status);
         this.privateExitRequest = privateExitRequest;
+    }
+
+    @Override
+    public WorkingTimeRequest submit(Submittable submittable) {
+        return new WorkOffRequest(
+                submittable.get().getRequestId(),
+                submittable.get().get().getEmployeeId(),
+                submittable.get().getAtDay(),
+                submittable.get().getPeriod(),
+                WorkingTimeRequestStatus.SUBMITTED, null); //todo
     }
 }
