@@ -12,7 +12,7 @@ public abstract class WorkingTimeRequest {
     private final WorkingTimeRequestPeriod period;
     private WorkingTimeRequestStatus status;
 
-    public WorkingTimeRequest(WorkingTimeRequestId requestId, EmployeeId authorId, LocalDate atDay,
+    WorkingTimeRequest(WorkingTimeRequestId requestId, EmployeeId authorId, LocalDate atDay,
                               WorkingTimeRequestPeriod period, WorkingTimeRequestStatus status) {
         this.requestId = requestId;
         this.authorId = authorId;
@@ -21,23 +21,79 @@ public abstract class WorkingTimeRequest {
         this.status = status;
     }
 
-
-    public static class WorkInProgress {
+    public static WithAuthor builder() {
+        return new WorkInProgress();
     }
 
-    interface WithAuthor {
+
+    public static class WorkInProgress implements WithId, WithAuthor, WithDay,
+            WithPeriodFrom, WithPeriodTo, Submittable {
+
+        private WorkingTimeRequestId requestId;
+        private EmployeeId employeeId;
+        private LocalDate atDay;
+        private LocalTime periodFrom;
+        private LocalTime periodTo;
+        private WorkingTimeRequestPeriod period;
+
+        @Override
+        public WithAuthor id(WorkingTimeRequestId requestId) {
+            this.requestId = requestId;
+            return this;
+        }
+
+        @Override
+        public WorkInProgress author(EmployeeId employeeId) {
+            this.employeeId = employeeId;
+            return this;
+        }
+
+        @Override
+        public WorkInProgress at(LocalDate atDay) {
+            this.atDay = atDay;
+            return this;
+        }
+
+        @Override
+        public WorkInProgress from(LocalTime time) {
+            this.periodFrom = time;
+            return this;
+        }
+
+        @Override
+        public Submittable to(LocalTime time) {
+            this.periodTo = time;
+            this.period = new WorkingTimeRequestPeriod(this.periodFrom, this.periodTo);
+            return this;
+        }
+
+        @Override
+        public WorkInProgress get() {
+            return this;
+        }
+    }
+
+    public interface WithId {
+        WithAuthor id(WorkingTimeRequestId requestId);
+    }
+
+    public interface WithAuthor {
         WithDay author(EmployeeId employeeId);
     }
 
-    interface WithDay {
+    public interface WithDay {
         WithPeriodFrom at(LocalDate atDay);
     }
 
-    interface WithPeriodFrom {
+    public interface WithPeriodFrom {
         WithPeriodTo from(LocalTime time);
     }
 
-    interface WithPeriodTo {
-        WorkInProgress to(LocalTime time);
+    public interface WithPeriodTo {
+        Submittable to(LocalTime time);
+    }
+
+    interface Submittable {
+        WorkInProgress get();
     }
 }
