@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.domain.workingtime.requests;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public abstract class WorkingTimeRequest {
     private final WorkingTimeRequestId requestId;
@@ -18,5 +19,25 @@ public abstract class WorkingTimeRequest {
         this.atDay = atDay;
         this.period = period;
         this.status = status;
+    }
+
+
+    public static class WorkInProgress {
+    }
+
+    interface WithAuthor {
+        WithDay author(EmployeeId employeeId);
+    }
+
+    interface WithDay {
+        WithPeriodFrom at(LocalDate atDay);
+    }
+
+    interface WithPeriodFrom {
+        WithPeriodTo from(LocalTime time);
+    }
+
+    interface WithPeriodTo {
+        WorkInProgress to(LocalTime time);
     }
 }
