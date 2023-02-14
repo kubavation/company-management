@@ -12,7 +12,7 @@ public abstract class WorkingTimeRequest {
     private final WorkingTimeRequestPeriod period;
     private WorkingTimeRequestStatus status;
 
-    WorkingTimeRequest(WorkingTimeRequestId requestId, EmployeeId authorId, LocalDate atDay,
+    protected WorkingTimeRequest(WorkingTimeRequestId requestId, EmployeeId authorId, LocalDate atDay,
                               WorkingTimeRequestPeriod period, WorkingTimeRequestStatus status) {
         this.requestId = requestId;
         this.authorId = authorId;
@@ -25,6 +25,17 @@ public abstract class WorkingTimeRequest {
         return new WorkInProgress();
     }
 
+    public abstract WorkingTimeRequest submit(Submittable workInProgress);
+
+
+    public void markAsCancelled() {
+
+        if (WorkingTimeRequestStatus.ACCEPTED.equals(status)) {
+            throw new IllegalArgumentException();
+        }
+
+        this.status = WorkingTimeRequestStatus.CANCELLED;
+    }
 
     public static class WorkInProgress implements WithId, WithAuthor, WithDay,
             WithPeriodFrom, WithPeriodTo, Submittable {
