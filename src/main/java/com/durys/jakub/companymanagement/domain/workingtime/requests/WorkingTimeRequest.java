@@ -46,7 +46,7 @@ public abstract class WorkingTimeRequest {
         }
 
         this.acceptantId = acceptantId;
-        this.status = WorkingTimeRequestStatus.ACCEPTED;
+        this.status = WorkingTimeRequestStatus.SENT_FOR_ACCEPTATION;
     }
 
     public void markAsRejected() {
