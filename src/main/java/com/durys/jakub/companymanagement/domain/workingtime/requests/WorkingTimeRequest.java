@@ -1,7 +1,6 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -145,7 +144,7 @@ public abstract class WorkingTimeRequest {
         Submittable to(LocalTime time);
     }
 
-    interface Submittable {
+    public interface Submittable {
         WorkInProgress get();
     }
 }
