@@ -12,7 +12,7 @@ public class WorkingTimeRequestAcceptedListener {
 
     @Transactional
     @DomainEventListener
-    public void onWorkingTimeRequesAcceptation(Object event) {
+    public void onWorkingTimeRequestAcceptation(Object event) {
         //todo
     }
 }
