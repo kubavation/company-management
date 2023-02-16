@@ -11,12 +11,14 @@ public class WorkDay {
     private final WorkDayId id;
     private final EmployeeId employeeId;
     private final LocalDate day;
+    private final WorkDayType type;
     private List<WorkDayEvent> events;
 
-    public WorkDay(WorkDayId id, EmployeeId employeeId, LocalDate day) {
+    public WorkDay(WorkDayId id, EmployeeId employeeId, LocalDate day, WorkDayType type) {
         this.id = id;
         this.employeeId = employeeId;
         this.day = day;
+        this.type = type;
         this.events = Collections.emptyList();
     }
 
