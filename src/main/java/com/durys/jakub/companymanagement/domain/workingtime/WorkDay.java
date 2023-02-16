@@ -11,16 +11,40 @@ public class WorkDay {
     private final WorkDayId id;
     private final EmployeeId employeeId;
     private final LocalDate day;
+    private final WorkDayType type;
     private List<WorkDayEvent> events;
 
-    public WorkDay(WorkDayId id, EmployeeId employeeId, LocalDate day) {
+    public WorkDay(WorkDayId id, EmployeeId employeeId, LocalDate day, WorkDayType type) {
         this.id = id;
         this.employeeId = employeeId;
         this.day = day;
+        this.type = type;
         this.events = Collections.emptyList();
     }
 
     public void assignPrivateExit(LocalTime from, LocalTime to) {
+
+        if (dayOff()) {
+            throw new IllegalArgumentException();
+        }
+
         events.add(new WorkDayEvent(from, to, WorkDayEventType.PRIVATE_EXIT));
     }
+
+
+
+    private boolean dayOff() {
+        return WorkDayType.DAY_OFF.equals(type);
+    }
+
+    private void validateDuration(LocalTime from, LocalTime to) {
+       boolean overlap = events.stream()
+                .filter(event -> !event.getType().equals(WorkDayEventType.SCHEDULE_REALIZATION))
+                //.filter(event -> event) //todo check if dates dont overlap
+                .findFirst().isPresent();
+       if (overlap) {
+           throw new IllegalArgumentException();
+       }
+    }
+
 }
