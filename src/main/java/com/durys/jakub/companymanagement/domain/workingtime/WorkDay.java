@@ -23,6 +23,18 @@ public class WorkDay {
     }
 
     public void assignPrivateExit(LocalTime from, LocalTime to) {
+
+        if (dayOff()) {
+            throw new IllegalArgumentException();
+        }
+
         events.add(new WorkDayEvent(from, to, WorkDayEventType.PRIVATE_EXIT));
     }
+
+
+
+    private boolean dayOff() {
+        return WorkDayType.DAY_OFF.equals(type);
+    }
+
 }
