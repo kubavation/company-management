@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.workingtime;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.sharedkernel.util.RangeValidators;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -24,6 +25,10 @@ public class WorkDay {
 
     public void assignPrivateExit(LocalTime from, LocalTime to) {
 
+        RangeValidators
+                .comparing(LocalTime.class)
+                .validate(from, to);
+
         if (dayOff()) {
             throw new IllegalArgumentException();
         }
@@ -38,11 +43,13 @@ public class WorkDay {
     }
 
     private void validateDuration(LocalTime from, LocalTime to) {
-       boolean overlap = events.stream()
+
+        boolean overlaps = events.stream()
                 .filter(event -> !event.getType().equals(WorkDayEventType.SCHEDULE_REALIZATION))
-                //.filter(event -> event) //todo check if dates dont overlap
+                .filter(event -> from.isBefore(event.getTo()) && event.getFrom().isBefore(to))
                 .findFirst().isPresent();
-       if (overlap) {
+
+       if (overlaps) {
            throw new IllegalArgumentException();
        }
     }
