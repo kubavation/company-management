@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.workingtime;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.sharedkernel.util.RangeValidators;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,6 +24,10 @@ public class WorkDay {
     }
 
     public void assignPrivateExit(LocalTime from, LocalTime to) {
+
+        RangeValidators
+                .comparing(LocalTime.class)
+                .validate(from, to);
 
         if (dayOff()) {
             throw new IllegalArgumentException();
