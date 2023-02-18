@@ -38,11 +38,13 @@ public class WorkDay {
     }
 
     private void validateDuration(LocalTime from, LocalTime to) {
-       boolean overlap = events.stream()
+
+        boolean overlaps = events.stream()
                 .filter(event -> !event.getType().equals(WorkDayEventType.SCHEDULE_REALIZATION))
-                //.filter(event -> event) //todo check if dates dont overlap
+                .filter(event -> from.isBefore(event.getTo()) && event.getFrom().isBefore(to))
                 .findFirst().isPresent();
-       if (overlap) {
+
+       if (overlaps) {
            throw new IllegalArgumentException();
        }
     }
