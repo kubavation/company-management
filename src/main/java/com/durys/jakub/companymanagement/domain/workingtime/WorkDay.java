@@ -6,6 +6,7 @@ import com.durys.jakub.companymanagement.domain.workingtime.exception.InvalidWor
 import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEventAlreadyAssignedInPeriodException;
 import lombok.NonNull;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Collections;
@@ -36,6 +37,8 @@ public class WorkDay {
             throw new InvalidWorkDayEventException("Private exit cannot be assigned in day off");
         }
 
+        validateDuration(from, to);
+
         events.add(new WorkDayEvent(from, to, WorkDayEventType.PRIVATE_EXIT));
     }
 
@@ -49,8 +52,7 @@ public class WorkDay {
 
         boolean overlaps = events.stream()
                 .filter(event -> !event.getType().equals(WorkDayEventType.SCHEDULE_REALIZATION))
-                .filter(event -> from.isBefore(event.getTo()) && event.getFrom().isBefore(to))
-                .findFirst().isPresent();
+                .anyMatch(event -> from.isBefore(event.getTo()) && event.getFrom().isBefore(to));
 
        if (overlaps) {
            throw new WorkDayEventAlreadyAssignedInPeriodException();
