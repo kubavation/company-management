@@ -32,10 +32,6 @@ public class WorkDay {
                 .comparing(LocalTime.class)
                 .validate(from, to);
 
-        if (dayOff()) {
-            throw new InvalidWorkDayEventException("Private exit cannot be assigned in day off");
-        }
-
         validateEventPeriod(from, to);
 
         events.add(new WorkDayEvent(from, to, WorkDayEventType.PRIVATE_EXIT));
@@ -48,6 +44,10 @@ public class WorkDay {
     }
 
     private void validateEventPeriod(LocalTime from, LocalTime to) {
+
+        if (dayOff()) {
+            throw new InvalidWorkDayEventException("Private exit cannot be assigned in day off");
+        }
 
        if (isPeriodOverlappingAnotherEvent(from, to)) {
            throw new WorkDayEventAlreadyAssignedInPeriodException();
