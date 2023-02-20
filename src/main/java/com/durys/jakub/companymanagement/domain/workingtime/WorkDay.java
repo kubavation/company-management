@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.domain.workingtime;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.sharedkernel.util.RangeValidators;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.InvalidWorkDayEventException;
+import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEventAlreadyAssignedInPeriodException;
 import lombok.NonNull;
 
 import java.time.LocalDate;
@@ -35,6 +36,8 @@ public class WorkDay {
             throw new InvalidWorkDayEventException("Private exit cannot be assigned in day off");
         }
 
+        validateEventPeriod(from, to);
+
         events.add(new WorkDayEvent(from, to, WorkDayEventType.PRIVATE_EXIT));
     }
 
@@ -44,16 +47,18 @@ public class WorkDay {
         return WorkDayType.DAY_OFF.equals(type);
     }
 
-    private void validateDuration(LocalTime from, LocalTime to) {
+    private void validateEventPeriod(LocalTime from, LocalTime to) {
 
-        boolean overlaps = events.stream()
-                .filter(event -> !event.getType().equals(WorkDayEventType.SCHEDULE_REALIZATION))
-                .filter(event -> from.isBefore(event.getTo()) && event.getFrom().isBefore(to))
-                .findFirst().isPresent();
-
-       if (overlaps) {
-           throw new IllegalArgumentException();
+       if (isPeriodOverlappingAnotherEvent(from, to)) {
+           throw new WorkDayEventAlreadyAssignedInPeriodException();
        }
+
+    }
+
+    private boolean isPeriodOverlappingAnotherEvent(LocalTime from, LocalTime to) {
+       return events.stream()
+                .filter(event -> !event.getType().equals(WorkDayEventType.SCHEDULE_REALIZATION))
+                .anyMatch(event -> from.isBefore(event.getTo()) && event.getFrom().isBefore(to));
     }
 
 }
