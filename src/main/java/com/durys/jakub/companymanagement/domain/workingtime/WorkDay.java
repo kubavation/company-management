@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.domain.workingtime;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.sharedkernel.util.RangeValidators;
+import com.durys.jakub.companymanagement.domain.workingtime.exception.InvalidWorkDayEventException;
 import lombok.NonNull;
 
 import java.time.LocalDate;
@@ -31,7 +32,7 @@ public class WorkDay {
                 .validate(from, to);
 
         if (dayOff()) {
-            throw new IllegalArgumentException();
+            throw new InvalidWorkDayEventException("Private exit cannot be assigned in day off");
         }
 
         events.add(new WorkDayEvent(from, to, WorkDayEventType.PRIVATE_EXIT));
