@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.domain.workingtime;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.sharedkernel.util.RangeValidators;
+import lombok.NonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,7 +24,7 @@ public class WorkDay {
         this.events = Collections.emptyList();
     }
 
-    public void assignPrivateExit(LocalTime from, LocalTime to) {
+    public void assignPrivateExit(@NonNull LocalTime from, @NonNull LocalTime to) {
 
         RangeValidators
                 .comparing(LocalTime.class)
