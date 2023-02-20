@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.domain.workingtime;
 
+import com.durys.jakub.companymanagement.domain.sharedkernel.util.RangeValidators;
 import lombok.AccessLevel;
 import lombok.Getter;
 
@@ -12,6 +13,11 @@ class WorkDayEvent {
     private final WorkDayEventType type;
 
     public WorkDayEvent(LocalTime from, LocalTime to, WorkDayEventType type) {
+
+        RangeValidators
+                .comparing(LocalTime.class)
+                .validate(from, to);
+        
         this.from = from;
         this.to = to;
         this.type = type;

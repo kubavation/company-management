@@ -28,15 +28,11 @@ public class WorkDay {
 
     public void assignPrivateExit(@NonNull LocalTime from, @NonNull LocalTime to) {
 
-        RangeValidators
-                .comparing(LocalTime.class)
-                .validate(from, to);
+        validateEventPeriod(from, to);
 
         if (dayOff()) {
             throw new InvalidWorkDayEventException("Private exit cannot be assigned in day off");
         }
-
-        validateEventPeriod(from, to);
 
         events.add(new WorkDayEvent(from, to, WorkDayEventType.PRIVATE_EXIT));
     }
