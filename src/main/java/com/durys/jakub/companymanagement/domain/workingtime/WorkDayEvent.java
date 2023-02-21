@@ -17,7 +17,7 @@ class WorkDayEvent {
         RangeValidators
                 .comparing(LocalTime.class)
                 .validate(from, to);
-        
+
         this.from = from;
         this.to = to;
         this.type = type;
