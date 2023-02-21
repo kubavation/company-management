@@ -26,6 +26,14 @@ public class WorkDay {
         this.events = Collections.emptyList();
     }
 
+    public WorkDay(WorkDayId id, EmployeeId employeeId, LocalDate day, WorkDayType type, List<WorkDayEvent> events) {
+        this.id = id;
+        this.employeeId = employeeId;
+        this.day = day;
+        this.type = type;
+        this.events = events;
+    }
+
     public void assignPrivateExit(@NonNull LocalTime from, @NonNull LocalTime to) {
 
         validateEventPeriod(from, to);
@@ -41,6 +49,10 @@ public class WorkDay {
 
     private boolean dayOff() {
         return WorkDayType.DAY_OFF.equals(type);
+    }
+
+    private boolean workingDay() {
+        return !dayOff();
     }
 
     private void validateEventPeriod(LocalTime from, LocalTime to) {
