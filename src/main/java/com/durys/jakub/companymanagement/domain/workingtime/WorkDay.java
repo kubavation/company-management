@@ -30,6 +30,12 @@ public class WorkDay {
         this.events = events;
     }
 
+    public void assignOvertime(@NonNull LocalTime from, @NonNull LocalTime to) {
+
+        validateEventPeriod(from, to);
+        events.add(new WorkDayEvent(from, to, WorkDayEventType.OVERTIME));
+    }
+
     public void assignPrivateExit(@NonNull LocalTime from, @NonNull LocalTime to) {
 
         validateEventPeriod(from, to);
@@ -40,7 +46,6 @@ public class WorkDay {
 
         events.add(new WorkDayEvent(from, to, WorkDayEventType.PRIVATE_EXIT));
     }
-
 
 
     private boolean dayOff() {
