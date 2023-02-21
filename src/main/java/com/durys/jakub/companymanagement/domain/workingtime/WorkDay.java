@@ -1,7 +1,6 @@
 package com.durys.jakub.companymanagement.domain.workingtime;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import com.durys.jakub.companymanagement.domain.sharedkernel.util.RangeValidators;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.InvalidWorkDayEventException;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEventAlreadyAssignedInPeriodException;
 import lombok.NonNull;
@@ -18,25 +17,26 @@ public class WorkDay {
     private final WorkDayType type;
     private List<WorkDayEvent> events;
 
-    public WorkDay(WorkDayId id, EmployeeId employeeId, LocalDate day, WorkDayType type) {
+    public WorkDay(@NonNull WorkDayId id, @NonNull EmployeeId employeeId, @NonNull LocalDate day, @NonNull WorkDayType type) {
+        this(id, employeeId, day, type, Collections.emptyList());
+    }
+
+    public WorkDay(@NonNull WorkDayId id, @NonNull EmployeeId employeeId,
+                   @NonNull LocalDate day, @NonNull WorkDayType type, @NonNull List<WorkDayEvent> events) {
         this.id = id;
         this.employeeId = employeeId;
         this.day = day;
         this.type = type;
-        this.events = Collections.emptyList();
+        this.events = events;
     }
 
     public void assignPrivateExit(@NonNull LocalTime from, @NonNull LocalTime to) {
 
-        RangeValidators
-                .comparing(LocalTime.class)
-                .validate(from, to);
+        validateEventPeriod(from, to);
 
         if (dayOff()) {
             throw new InvalidWorkDayEventException("Private exit cannot be assigned in day off");
         }
-
-        validateEventPeriod(from, to);
 
         events.add(new WorkDayEvent(from, to, WorkDayEventType.PRIVATE_EXIT));
     }
@@ -45,6 +45,10 @@ public class WorkDay {
 
     private boolean dayOff() {
         return WorkDayType.DAY_OFF.equals(type);
+    }
+
+    private boolean workingDay() {
+        return !dayOff();
     }
 
     private void validateEventPeriod(LocalTime from, LocalTime to) {
