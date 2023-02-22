@@ -36,7 +36,7 @@ public class WorkDay {
 
         validateEventPeriod(from, to);
 
-        if (dayOff()) {
+        if (schedule.dayOff()) {
             throw new InvalidWorkDayEventException("Private exit cannot be assigned in day off");
         }
 
@@ -44,13 +44,6 @@ public class WorkDay {
     }
 
 
-    private boolean dayOff() {
-        return WorkDayType.DAY_OFF.equals(type);
-    }
-
-    private boolean workingDay() {
-        return !dayOff();
-    }
 
     private void validateEventPeriod(LocalTime from, LocalTime to) {
 
