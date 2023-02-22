@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.domain.workingschedule;
+package com.durys.jakub.companymanagement.domain.workingtime.schedule;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 

@@ -33,6 +33,7 @@ public class WorkDay {
     public void assignOvertime(@NonNull LocalTime from, @NonNull LocalTime to) {
 
         validateEventPeriod(from, to);
+
         events.add(new WorkDayEvent(from, to, WorkDayEventType.OVERTIME));
     }
 
