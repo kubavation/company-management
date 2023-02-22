@@ -4,28 +4,25 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.InvalidWorkDayEventException;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEventAlreadyAssignedInPeriodException;
 import com.durys.jakub.companymanagement.domain.workingtime.schedule.WorkDayType;
+import com.durys.jakub.companymanagement.domain.workingtime.schedule.WorkingSchedule;
 import lombok.NonNull;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 
 public class WorkDay {
     private final WorkDayId id;
-    private final EmployeeId employeeId;
-    private final LocalDate day;
+    private final WorkingSchedule schedule;
     private List<WorkDayEvent> events;
 
-    public WorkDay(@NonNull WorkDayId id, @NonNull EmployeeId employeeId, @NonNull LocalDate day, @NonNull WorkDayType type) {
-        this(id, employeeId, day, Collections.emptyList());
+    public WorkDay(@NonNull WorkDayId id, @NonNull WorkingSchedule schedule) {
+        this(id, schedule, Collections.emptyList());
     }
 
-    public WorkDay(@NonNull WorkDayId id, @NonNull EmployeeId employeeId,
-                   @NonNull LocalDate day, @NonNull List<WorkDayEvent> events) {
+    public WorkDay(@NonNull WorkDayId id, @NonNull WorkingSchedule schedule, @NonNull List<WorkDayEvent> events) {
         this.id = id;
-        this.employeeId = employeeId;
-        this.day = day;
+        this.schedule = schedule;
         this.events = events;
     }
 
