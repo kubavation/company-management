@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.domain.workingtime;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.InvalidWorkDayEventException;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEventAlreadyAssignedInPeriodException;
+import com.durys.jakub.companymanagement.domain.workingtime.schedule.WorkDayType;
 import lombok.NonNull;
 
 import java.time.LocalDate;
@@ -14,25 +15,24 @@ public class WorkDay {
     private final WorkDayId id;
     private final EmployeeId employeeId;
     private final LocalDate day;
-    private final WorkDayType type;
     private List<WorkDayEvent> events;
 
     public WorkDay(@NonNull WorkDayId id, @NonNull EmployeeId employeeId, @NonNull LocalDate day, @NonNull WorkDayType type) {
-        this(id, employeeId, day, type, Collections.emptyList());
+        this(id, employeeId, day, Collections.emptyList());
     }
 
     public WorkDay(@NonNull WorkDayId id, @NonNull EmployeeId employeeId,
-                   @NonNull LocalDate day, @NonNull WorkDayType type, @NonNull List<WorkDayEvent> events) {
+                   @NonNull LocalDate day, @NonNull List<WorkDayEvent> events) {
         this.id = id;
         this.employeeId = employeeId;
         this.day = day;
-        this.type = type;
         this.events = events;
     }
 
     public void assignOvertime(@NonNull LocalTime from, @NonNull LocalTime to) {
 
         validateEventPeriod(from, to);
+
         events.add(new WorkDayEvent(from, to, WorkDayEventType.OVERTIME));
     }
 
