@@ -31,4 +31,13 @@ public class WorkingSchedule {
         return new WorkingSchedule(workingScheduleId, employeeId, WorkDayType.SCHEDULE, day, from, to);
     }
 
+
+    public boolean dayOff() {
+        return WorkDayType.DAY_OFF.equals(dayType);
+    }
+
+    public boolean workingDay() {
+        return !dayOff();
+    }
+
 }
