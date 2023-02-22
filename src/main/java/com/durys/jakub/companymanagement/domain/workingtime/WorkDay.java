@@ -2,7 +2,6 @@ package com.durys.jakub.companymanagement.domain.workingtime;
 
 import com.durys.jakub.companymanagement.domain.workingtime.exception.InvalidWorkDayEventException;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEventAlreadyAssignedInPeriodException;
-import com.durys.jakub.companymanagement.domain.workingtime.schedule.WorkDayType;
 import com.durys.jakub.companymanagement.domain.workingtime.schedule.WorkingSchedule;
 import lombok.NonNull;
 
@@ -25,12 +24,6 @@ public class WorkDay {
         this.events = events;
     }
 
-    public void assignOvertime(@NonNull LocalTime from, @NonNull LocalTime to) {
-
-        validateEventPeriod(from, to);
-
-        events.add(new WorkDayEvent(from, to, WorkDayEventType.OVERTIME));
-    }
 
     public void assignPrivateExit(@NonNull LocalTime from, @NonNull LocalTime to) {
 
@@ -44,6 +37,12 @@ public class WorkDay {
     }
 
 
+    public void assignOvertime(@NonNull LocalTime from, @NonNull LocalTime to) {
+
+        validateEventPeriod(from, to);
+
+        events.add(new WorkDayEvent(from, to, WorkDayEventType.OVERTIME));
+    }
 
     private void validateEventPeriod(LocalTime from, LocalTime to) {
 
