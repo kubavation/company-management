@@ -21,4 +21,12 @@ public class WorkingSchedule {
         this.to = to;
     }
 
+    public static WorkingSchedule dayOff(WorkingScheduleId workingScheduleId, EmployeeId employeeId, LocalDate day) {
+        return new WorkingSchedule(workingScheduleId, employeeId, day, null, null);
+    }
+
+    public static WorkingSchedule workingDay(WorkingScheduleId workingScheduleId, EmployeeId employeeId, LocalDate day, LocalTime from, LocalTime to) {
+        return new WorkingSchedule(workingScheduleId, employeeId, day, from, to);
+    }
+
 }
