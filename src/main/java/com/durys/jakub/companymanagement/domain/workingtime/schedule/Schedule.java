@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.domain.workingtime.schedule;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import lombok.NonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,7 +15,8 @@ public class Schedule {
     private final LocalTime to;
     private final WorkDayType dayType;
 
-    public Schedule(ScheduleId scheduleId, EmployeeId employeeId, WorkDayType dayType, LocalDate day, LocalTime from, LocalTime to) {
+    public Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId, @NonNull WorkDayType dayType,
+                    @NonNull LocalDate day, LocalTime from, LocalTime to) {
         this.scheduleId = scheduleId;
         this.employeeId = employeeId;
         this.dayType = dayType;
