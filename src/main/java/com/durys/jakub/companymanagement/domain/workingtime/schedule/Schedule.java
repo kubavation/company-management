@@ -5,7 +5,7 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class WorkingSchedule {
+public class Schedule {
 
     private final WorkingScheduleId workingScheduleId;
     private final EmployeeId employeeId;
@@ -14,7 +14,7 @@ public class WorkingSchedule {
     private final LocalTime to;
     private final WorkDayType dayType;
 
-    public WorkingSchedule(WorkingScheduleId workingScheduleId, EmployeeId employeeId, WorkDayType dayType, LocalDate day, LocalTime from, LocalTime to) {
+    public Schedule(WorkingScheduleId workingScheduleId, EmployeeId employeeId, WorkDayType dayType, LocalDate day, LocalTime from, LocalTime to) {
         this.workingScheduleId = workingScheduleId;
         this.employeeId = employeeId;
         this.dayType = dayType;
@@ -23,12 +23,12 @@ public class WorkingSchedule {
         this.to = to;
     }
 
-    public static WorkingSchedule dayOff(WorkingScheduleId workingScheduleId, EmployeeId employeeId, LocalDate day) {
-        return new WorkingSchedule(workingScheduleId, employeeId, WorkDayType.DAY_OFF, day, null, null);
+    public static Schedule dayOff(WorkingScheduleId workingScheduleId, EmployeeId employeeId, LocalDate day) {
+        return new Schedule(workingScheduleId, employeeId, WorkDayType.DAY_OFF, day, null, null);
     }
 
-    public static WorkingSchedule workingDay(WorkingScheduleId workingScheduleId, EmployeeId employeeId, LocalDate day, LocalTime from, LocalTime to) {
-        return new WorkingSchedule(workingScheduleId, employeeId, WorkDayType.SCHEDULE, day, from, to);
+    public static Schedule workingDay(WorkingScheduleId workingScheduleId, EmployeeId employeeId, LocalDate day, LocalTime from, LocalTime to) {
+        return new Schedule(workingScheduleId, employeeId, WorkDayType.SCHEDULE, day, from, to);
     }
 
 
