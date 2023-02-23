@@ -12,7 +12,7 @@ import java.util.List;
 public class WorkDay {
     private final WorkDayId id;
     private final Schedule schedule;
-    private List<WorkDayEvent> events;
+    private final List<WorkDayEvent> events;
 
     public WorkDay(@NonNull Schedule schedule) {
         this(schedule, Collections.emptyList());
@@ -58,4 +58,7 @@ public class WorkDay {
                 .anyMatch(event -> from.isBefore(event.getTo()) && event.getFrom().isBefore(to));
     }
 
+    public WorkDayId getId() {
+        return id;
+    }
 }
