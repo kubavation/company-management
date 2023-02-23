@@ -12,7 +12,7 @@ import java.util.List;
 public class WorkDay {
     private final WorkDayId id;
     private final Schedule schedule;
-    private List<WorkDayEvent> events;
+    private final List<WorkDayEvent> events;
 
     public WorkDay(@NonNull Schedule schedule) {
         this(schedule, Collections.emptyList());
@@ -33,7 +33,7 @@ public class WorkDay {
             throw new InvalidWorkDayEventException("Private exit cannot be assigned in day off");
         }
 
-        events.add(new WorkDayEvent(from, to, WorkDayEventType.PRIVATE_EXIT));
+        events.add(new WorkDayEvent(new WorkDayEventPeriod(from, to), WorkDayEventType.PRIVATE_EXIT));
     }
 
 
@@ -41,7 +41,7 @@ public class WorkDay {
 
         validateEventPeriod(from, to);
 
-        events.add(new WorkDayEvent(from, to, WorkDayEventType.OVERTIME));
+        events.add(new WorkDayEvent(new WorkDayEventPeriod(from, to), WorkDayEventType.OVERTIME));
     }
 
     private void validateEventPeriod(LocalTime from, LocalTime to) {
@@ -55,7 +55,10 @@ public class WorkDay {
     private boolean isPeriodOverlappingAnotherEvent(LocalTime from, LocalTime to) {
        return events.stream()
                 .filter(event -> !event.getType().equals(WorkDayEventType.SCHEDULE_REALIZATION))
-                .anyMatch(event -> from.isBefore(event.getTo()) && event.getFrom().isBefore(to));
+                .anyMatch(event -> from.isBefore(event.to()) && event.from().isBefore(to));
     }
 
+    public WorkDayId getId() {
+        return id;
+    }
 }

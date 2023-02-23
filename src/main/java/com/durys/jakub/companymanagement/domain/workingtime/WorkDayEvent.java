@@ -1,25 +1,27 @@
 package com.durys.jakub.companymanagement.domain.workingtime;
 
-import com.durys.jakub.companymanagement.domain.sharedkernel.util.RangeValidators;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NonNull;
 
 import java.time.LocalTime;
 
 @Getter(AccessLevel.PACKAGE)
 class WorkDayEvent {
-    private final LocalTime from;
-    private final LocalTime to;
+    private final WorkDayEventPeriod period;
     private final WorkDayEventType type;
 
-    public WorkDayEvent(LocalTime from, LocalTime to, WorkDayEventType type) {
-
-        RangeValidators
-                .comparing(LocalTime.class)
-                .validate(from, to);
-
-        this.from = from;
-        this.to = to;
+    public WorkDayEvent(@NonNull WorkDayEventPeriod period, @NonNull WorkDayEventType type) {
+        this.period = period;
         this.type = type;
     }
+
+    public LocalTime from() {
+        return period.from();
+    }
+
+    public LocalTime to() {
+        return period.to();
+    }
+
 }
