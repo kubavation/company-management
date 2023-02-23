@@ -14,12 +14,12 @@ public class WorkDay {
     private final Schedule schedule;
     private List<WorkDayEvent> events;
 
-    public WorkDay(@NonNull WorkDayId id, @NonNull Schedule schedule) {
-        this(id, schedule, Collections.emptyList());
+    public WorkDay(@NonNull Schedule schedule) {
+        this(schedule, Collections.emptyList());
     }
 
-    public WorkDay(@NonNull WorkDayId id, @NonNull Schedule schedule, @NonNull List<WorkDayEvent> events) {
-        this.id = id;
+    public WorkDay(@NonNull Schedule schedule, @NonNull List<WorkDayEvent> events) {
+        this.id = new WorkDayId(schedule.id().value());
         this.schedule = schedule;
         this.events = events;
     }

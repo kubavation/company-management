@@ -40,4 +40,8 @@ public class Schedule {
         return !dayOff();
     }
 
+    public ScheduleId id() {
+        return scheduleId;
+    }
+
 }
