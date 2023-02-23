@@ -7,15 +7,15 @@ import java.time.LocalTime;
 
 public class Schedule {
 
-    private final WorkingScheduleId workingScheduleId;
+    private final ScheduleId scheduleId;
     private final EmployeeId employeeId;
     private final LocalDate day;
     private final LocalTime from;
     private final LocalTime to;
     private final WorkDayType dayType;
 
-    public Schedule(WorkingScheduleId workingScheduleId, EmployeeId employeeId, WorkDayType dayType, LocalDate day, LocalTime from, LocalTime to) {
-        this.workingScheduleId = workingScheduleId;
+    public Schedule(ScheduleId scheduleId, EmployeeId employeeId, WorkDayType dayType, LocalDate day, LocalTime from, LocalTime to) {
+        this.scheduleId = scheduleId;
         this.employeeId = employeeId;
         this.dayType = dayType;
         this.day = day;
@@ -23,12 +23,12 @@ public class Schedule {
         this.to = to;
     }
 
-    public static Schedule dayOff(WorkingScheduleId workingScheduleId, EmployeeId employeeId, LocalDate day) {
-        return new Schedule(workingScheduleId, employeeId, WorkDayType.DAY_OFF, day, null, null);
+    public static Schedule dayOff(ScheduleId scheduleId, EmployeeId employeeId, LocalDate day) {
+        return new Schedule(scheduleId, employeeId, WorkDayType.DAY_OFF, day, null, null);
     }
 
-    public static Schedule workingDay(WorkingScheduleId workingScheduleId, EmployeeId employeeId, LocalDate day, LocalTime from, LocalTime to) {
-        return new Schedule(workingScheduleId, employeeId, WorkDayType.SCHEDULE, day, from, to);
+    public static Schedule workingDay(ScheduleId scheduleId, EmployeeId employeeId, LocalDate day, LocalTime from, LocalTime to) {
+        return new Schedule(scheduleId, employeeId, WorkDayType.SCHEDULE, day, from, to);
     }
 
 
