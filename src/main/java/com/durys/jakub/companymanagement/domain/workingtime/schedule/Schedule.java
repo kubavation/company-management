@@ -11,18 +11,16 @@ public class Schedule {
     private final ScheduleId scheduleId;
     private final EmployeeId employeeId;
     private final LocalDate day;
-    private final LocalTime from;
-    private final LocalTime to;
+    private final SchedulePeriod period;
     private final WorkDayType dayType;
 
-    public Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId, @NonNull WorkDayType dayType,
+    private Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId, @NonNull WorkDayType dayType,
                     @NonNull LocalDate day, LocalTime from, LocalTime to) {
         this.scheduleId = scheduleId;
         this.employeeId = employeeId;
         this.dayType = dayType;
         this.day = day;
-        this.from = from;
-        this.to = to;
+        this.period = new SchedulePeriod(from, to);
     }
 
     public static Schedule dayOff(ScheduleId scheduleId, EmployeeId employeeId, LocalDate day) {

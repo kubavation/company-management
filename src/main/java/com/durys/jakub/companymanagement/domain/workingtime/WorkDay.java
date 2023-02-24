@@ -5,7 +5,6 @@ import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEve
 import com.durys.jakub.companymanagement.domain.workingtime.schedule.Schedule;
 import lombok.NonNull;
 
-import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,37 +24,37 @@ public class WorkDay {
     }
 
 
-    public void assignPrivateExit(@NonNull LocalTime from, @NonNull LocalTime to) {
+    public void assignPrivateExit(@NonNull WorkDayEventPeriod eventPeriod) {
 
-        validateEventPeriod(from, to);
+        validateEventPeriod(eventPeriod);
 
         if (schedule.dayOff()) {
             throw new InvalidWorkDayEventException("Private exit cannot be assigned in day off");
         }
 
-        events.add(new WorkDayEvent(new WorkDayEventPeriod(from, to), WorkDayEventType.PRIVATE_EXIT));
+        events.add(new WorkDayEvent(eventPeriod, WorkDayEventType.PRIVATE_EXIT));
     }
 
 
-    public void assignOvertime(@NonNull LocalTime from, @NonNull LocalTime to) {
+    public void assignOvertime(@NonNull WorkDayEventPeriod eventPeriod) {
 
-        validateEventPeriod(from, to);
+        validateEventPeriod(eventPeriod);
 
-        events.add(new WorkDayEvent(new WorkDayEventPeriod(from, to), WorkDayEventType.OVERTIME));
+        events.add(new WorkDayEvent(eventPeriod, WorkDayEventType.OVERTIME));
     }
 
-    private void validateEventPeriod(LocalTime from, LocalTime to) {
+    private void validateEventPeriod(WorkDayEventPeriod eventPeriod) {
 
-       if (isPeriodOverlappingAnotherEvent(from, to)) {
+       if (isPeriodOverlappingAnotherEvent(eventPeriod)) {
            throw new WorkDayEventAlreadyAssignedInPeriodException();
        }
 
     }
 
-    private boolean isPeriodOverlappingAnotherEvent(LocalTime from, LocalTime to) {
+    private boolean isPeriodOverlappingAnotherEvent(WorkDayEventPeriod eventPeriod) {
        return events.stream()
                 .filter(event -> !event.getType().equals(WorkDayEventType.SCHEDULE_REALIZATION))
-                .anyMatch(event -> from.isBefore(event.to()) && event.from().isBefore(to));
+                .anyMatch(event -> eventPeriod.from().isBefore(event.to()) && event.from().isBefore(eventPeriod.to()));
     }
 
     public WorkDayId getId() {
