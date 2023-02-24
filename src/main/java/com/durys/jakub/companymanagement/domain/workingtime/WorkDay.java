@@ -5,7 +5,6 @@ import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEve
 import com.durys.jakub.companymanagement.domain.workingtime.schedule.Schedule;
 import lombok.NonNull;
 
-import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 
