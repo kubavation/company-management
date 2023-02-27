@@ -1,7 +1,6 @@
 package com.durys.jakub.companymanagement.domain.workingtime;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import com.durys.jakub.companymanagement.domain.workingtime.exception.InvalidWorkDayEventException;
 import lombok.NonNull;
 
 import java.time.LocalDate;
