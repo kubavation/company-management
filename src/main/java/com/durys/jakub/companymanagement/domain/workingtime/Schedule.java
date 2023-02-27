@@ -51,10 +51,13 @@ public abstract sealed class Schedule
 
     public void assignOvertime(@NonNull WorkDayEventPeriod eventPeriod) {
         validateEventPeriod(eventPeriod);
-        events.add(new WorkDayEvent(eventPeriod, WorkDayEventType.OVERTIME));
+        appendEvent(eventPeriod, WorkDayEventType.OVERTIME);
     }
 
 
+    protected void appendEvent(@NonNull WorkDayEventPeriod period, @NonNull WorkDayEventType type) {
+        events.add(new WorkDayEvent(period, type));
+    }
 
     protected void validateEventPeriod(WorkDayEventPeriod eventPeriod) {
 
