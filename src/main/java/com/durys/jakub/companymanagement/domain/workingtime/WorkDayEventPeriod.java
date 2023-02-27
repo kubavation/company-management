@@ -5,9 +5,7 @@ import lombok.NonNull;
 
 import java.time.LocalTime;
 
-public class WorkDayEventPeriod {
-    private final LocalTime from;
-    private final LocalTime to;
+public record WorkDayEventPeriod(LocalTime from, LocalTime to) {
 
     public WorkDayEventPeriod(@NonNull LocalTime from, @NonNull LocalTime to) {
 
@@ -16,13 +14,5 @@ public class WorkDayEventPeriod {
 
         this.from = from;
         this.to = to;
-    }
-
-    public LocalTime from() {
-        return from;
-    }
-
-    public LocalTime to() {
-        return to;
     }
 }
