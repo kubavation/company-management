@@ -6,7 +6,7 @@ import lombok.NonNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public abstract sealed class Schedule permits WorkDay {
+public abstract sealed class Schedule permits WorkDay, DayOff {
 
     private final ScheduleId scheduleId;
     private final EmployeeId employeeId;
@@ -30,16 +30,6 @@ public abstract sealed class Schedule permits WorkDay {
         this.day = day;
         this.period = null;
     }
-
-
-    public static Schedule dayOff(ScheduleId scheduleId, EmployeeId employeeId, LocalDate day) {
-        return new Schedule(scheduleId, employeeId, WorkDayType.DAY_OFF, day);
-    }
-
-    public static Schedule workingDay(ScheduleId scheduleId, EmployeeId employeeId, LocalDate day, LocalTime from, LocalTime to) {
-        return new Schedule(scheduleId, employeeId, WorkDayType.SCHEDULE, day, from, to);
-    }
-
 
     public boolean dayOff() {
         return WorkDayType.DAY_OFF.equals(dayType);

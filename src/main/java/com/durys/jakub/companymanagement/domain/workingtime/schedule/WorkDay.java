@@ -9,7 +9,7 @@ import java.time.LocalTime;
 public final class WorkDay extends Schedule {
 
     public WorkDay(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId,
-                   @NonNull WorkDayType dayType, @NonNull LocalDate day, @NonNull LocalTime from, @NonNull LocalTime to) {
-        super(scheduleId, employeeId, dayType, day, from, to);
+                   @NonNull LocalDate day, @NonNull LocalTime from, @NonNull LocalTime to) {
+        super(scheduleId, employeeId, WorkDayType.SCHEDULE, day, from, to);
     }
 }
