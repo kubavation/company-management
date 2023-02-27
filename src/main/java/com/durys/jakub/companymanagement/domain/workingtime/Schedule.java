@@ -10,7 +10,8 @@ import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 
-public abstract sealed class Schedule permits DayOff, WorkDay {
+public abstract sealed class Schedule
+        permits DayOff, WorkDay {
 
     private final ScheduleId scheduleId;
     private final EmployeeId employeeId;
