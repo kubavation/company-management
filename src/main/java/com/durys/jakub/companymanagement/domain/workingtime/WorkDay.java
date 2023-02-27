@@ -15,7 +15,7 @@ public final class WorkDay extends Schedule {
     }
 
     public void assignPrivateExit(@NonNull WorkDayEventPeriod period) {
-        validateEventPeriod(period);
+        validate(period);
         appendEvent(period, WorkDayEventType.PRIVATE_EXIT);
     }
 }

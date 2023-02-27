@@ -40,9 +40,9 @@ public abstract sealed class Schedule
         return scheduleId;
     }
 
-    public void assignOvertime(@NonNull WorkDayEventPeriod eventPeriod) {
-        validateEventPeriod(eventPeriod);
-        appendEvent(eventPeriod, WorkDayEventType.OVERTIME);
+    public void assignOvertime(@NonNull WorkDayEventPeriod period) {
+        validate(period);
+        appendEvent(period, WorkDayEventType.OVERTIME);
     }
 
 
@@ -50,7 +50,7 @@ public abstract sealed class Schedule
         events.add(new WorkDayEvent(period, type));
     }
 
-    protected void validateEventPeriod(WorkDayEventPeriod eventPeriod) {
+    protected void validate(WorkDayEventPeriod eventPeriod) {
 
         if (isPeriodOverlappingAnotherEvent(eventPeriod)) {
             throw new WorkDayEventAlreadyAssignedInPeriodException();
