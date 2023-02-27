@@ -7,7 +7,6 @@ import lombok.NonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Collections;
 import java.util.List;
 
 public abstract sealed class Schedule
@@ -17,21 +16,25 @@ public abstract sealed class Schedule
     private final EmployeeId employeeId;
     private final LocalDate day;
     private final SchedulePeriod period;
-    private final List<WorkDayEvent> events = Collections.emptyList();
+    private final List<WorkDayEvent> events;
 
     protected Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId,
-                       @NonNull LocalDate day, @NonNull LocalTime from, @NonNull LocalTime to) {
+                       @NonNull LocalDate day, @NonNull LocalTime from, @NonNull LocalTime to,
+                       @NonNull List<WorkDayEvent> events) {
         this.scheduleId = scheduleId;
         this.employeeId = employeeId;
         this.day = day;
         this.period = new SchedulePeriod(from, to);
+        this.events = events;
     }
 
-    protected Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId, @NonNull LocalDate day) {
+    protected Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId, @NonNull LocalDate day,
+                       @NonNull List<WorkDayEvent> events) {
         this.scheduleId = scheduleId;
         this.employeeId = employeeId;
         this.day = day;
         this.period = null;
+        this.events = events;
     }
 
     public boolean dayOff() {
