@@ -3,12 +3,10 @@ package com.durys.jakub.companymanagement.domain.workingtime.schedule;
 import com.durys.jakub.companymanagement.domain.sharedkernel.util.RangeValidators;
 import lombok.NonNull;
 
+import java.time.Duration;
 import java.time.LocalTime;
 
-public class SchedulePeriod {
-
-    private final LocalTime from;
-    private final LocalTime to;
+public record SchedulePeriod(LocalTime from, LocalTime to) {
 
     public SchedulePeriod(@NonNull LocalTime from, @NonNull LocalTime to) {
 
@@ -19,12 +17,8 @@ public class SchedulePeriod {
         this.to = to;
     }
 
-    public LocalTime from() {
-        return from;
-    }
-
-    public LocalTime to() {
-        return to;
+    public Duration duration() {
+        return Duration.between(from, to);
     }
 
 
