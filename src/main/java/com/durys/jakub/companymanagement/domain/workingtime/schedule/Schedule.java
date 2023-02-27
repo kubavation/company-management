@@ -6,7 +6,7 @@ import lombok.NonNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Schedule {
+public abstract sealed class Schedule permits WorkDay {
 
     private final ScheduleId scheduleId;
     private final EmployeeId employeeId;
@@ -14,7 +14,7 @@ public class Schedule {
     private final SchedulePeriod period;
     private final WorkDayType dayType;
 
-    private Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId, @NonNull WorkDayType dayType,
+    protected Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId, @NonNull WorkDayType dayType,
                     @NonNull LocalDate day, @NonNull LocalTime from, @NonNull LocalTime to) {
         this.scheduleId = scheduleId;
         this.employeeId = employeeId;
@@ -23,13 +23,14 @@ public class Schedule {
         this.period = new SchedulePeriod(from, to);
     }
 
-    private Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId, @NonNull WorkDayType dayType, @NonNull LocalDate day) {
+    protected Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId, @NonNull WorkDayType dayType, @NonNull LocalDate day) {
         this.scheduleId = scheduleId;
         this.employeeId = employeeId;
         this.dayType = dayType;
         this.day = day;
         this.period = null;
     }
+
 
     public static Schedule dayOff(ScheduleId scheduleId, EmployeeId employeeId, LocalDate day) {
         return new Schedule(scheduleId, employeeId, WorkDayType.DAY_OFF, day);
