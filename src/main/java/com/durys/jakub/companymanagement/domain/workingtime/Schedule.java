@@ -40,6 +40,11 @@ public abstract sealed class Schedule
         return scheduleId;
     }
 
+    public void assignWorkOff(@NonNull WorkDayEventPeriod period) {
+        validate(period);
+        appendEvent(period, WorkDayEventType.WORK_OFF);
+    }
+
     public void assignOvertime(@NonNull WorkDayEventPeriod period) {
         validate(period);
         appendEvent(period, WorkDayEventType.OVERTIME);
