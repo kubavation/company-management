@@ -17,23 +17,19 @@ public abstract sealed class Schedule
     private final EmployeeId employeeId;
     private final LocalDate day;
     private final SchedulePeriod period;
-    private final WorkDayType dayType;
     private final List<WorkDayEvent> events = Collections.emptyList();
 
-    protected Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId, @NonNull WorkDayType dayType,
-                    @NonNull LocalDate day, @NonNull LocalTime from, @NonNull LocalTime to) {
+    protected Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId,
+                       @NonNull LocalDate day, @NonNull LocalTime from, @NonNull LocalTime to) {
         this.scheduleId = scheduleId;
         this.employeeId = employeeId;
-        this.dayType = dayType;
         this.day = day;
         this.period = new SchedulePeriod(from, to);
     }
 
-    protected Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId,
-                       @NonNull WorkDayType dayType, @NonNull LocalDate day) {
+    protected Schedule(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId, @NonNull LocalDate day) {
         this.scheduleId = scheduleId;
         this.employeeId = employeeId;
-        this.dayType = dayType;
         this.day = day;
         this.period = null;
     }

@@ -10,6 +10,6 @@ public final class WorkDay extends Schedule {
 
     public WorkDay(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId,
                    @NonNull LocalDate day, @NonNull LocalTime from, @NonNull LocalTime to) {
-        super(scheduleId, employeeId, WorkDayType.SCHEDULE, day, from, to);
+        super(scheduleId, employeeId, day, from, to);
     }
 }

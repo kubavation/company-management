@@ -8,6 +8,6 @@ import java.time.LocalDate;
 public final class DayOff extends Schedule {
 
     public DayOff(@NonNull ScheduleId scheduleId, @NonNull EmployeeId employeeId, @NonNull LocalDate day) {
-        super(scheduleId, employeeId, WorkDayType.DAY_OFF, day);
+        super(scheduleId, employeeId, day);
     }
 }
