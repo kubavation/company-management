@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.domain.workingtime.schedule;
+package com.durys.jakub.companymanagement.domain.workingtime;
 
 import com.durys.jakub.companymanagement.domain.sharedkernel.util.RangeValidators;
 import lombok.NonNull;
