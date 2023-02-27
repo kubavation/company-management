@@ -38,42 +38,29 @@ public abstract sealed class Schedule
     }
 
     public boolean dayOff() {
-        return this instanceof WorkDay;
+        return this instanceof DayOff;
     }
 
     public boolean workingDay() {
-        return !dayOff();
+        return this instanceof WorkDay;
     }
 
     public ScheduleId id() {
         return scheduleId;
     }
 
-    public void assignPrivateExit(@NonNull WorkDayEventPeriod eventPeriod) {
-
-        validateEventPeriod(eventPeriod);
-
-        if (dayOff()) {
-            throw new InvalidWorkDayEventException("Private exit cannot be assigned in day off");
-        }
-
-        events.add(new WorkDayEvent(eventPeriod, WorkDayEventType.PRIVATE_EXIT));
-    }
-
-
     public void assignOvertime(@NonNull WorkDayEventPeriod eventPeriod) {
-
         validateEventPeriod(eventPeriod);
-
         events.add(new WorkDayEvent(eventPeriod, WorkDayEventType.OVERTIME));
     }
 
-    private void validateEventPeriod(WorkDayEventPeriod eventPeriod) {
+
+
+    protected void validateEventPeriod(WorkDayEventPeriod eventPeriod) {
 
         if (isPeriodOverlappingAnotherEvent(eventPeriod)) {
             throw new WorkDayEventAlreadyAssignedInPeriodException();
         }
-
     }
 
     private boolean isPeriodOverlappingAnotherEvent(WorkDayEventPeriod eventPeriod) {
