@@ -37,14 +37,6 @@ public abstract sealed class Schedule
         this.events = events;
     }
 
-    public boolean dayOff() {
-        return this instanceof DayOff;
-    }
-
-    public boolean workingDay() {
-        return this instanceof WorkDay;
-    }
-
     public ScheduleId id() {
         return scheduleId;
     }
