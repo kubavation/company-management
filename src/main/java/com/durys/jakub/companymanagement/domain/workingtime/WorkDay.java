@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.domain.workingtime;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.NonNull;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -22,5 +23,9 @@ public final class WorkDay extends Schedule {
     public void assignBusinessExit(@NonNull WorkDayEventPeriod period) {
         validate(period);
         appendEvent(period, WorkDayEventType.BUSINESS_EXIT);
+    }
+
+    public Duration duration() {
+        return period().duration();
     }
 }

@@ -36,9 +36,6 @@ public abstract sealed class Schedule
         this.events = events;
     }
 
-    public ScheduleId id() {
-        return scheduleId;
-    }
 
     public void assignWorkOff(@NonNull WorkDayEventPeriod period) {
         validate(period);
@@ -73,6 +70,12 @@ public abstract sealed class Schedule
                 .anyMatch(event -> eventPeriod.from().isBefore(event.to()) && event.from().isBefore(eventPeriod.to()));
     }
 
+    public ScheduleId id() {
+        return scheduleId;
+    }
 
+    protected SchedulePeriod period() {
+        return period;
+    }
 
 }
