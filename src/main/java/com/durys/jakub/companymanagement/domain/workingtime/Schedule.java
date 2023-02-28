@@ -38,22 +38,20 @@ public abstract sealed class Schedule
 
 
     public void assignWorkOff(@NonNull WorkDayEventPeriod period) {
-        validate(period);
         appendEvent(period, WorkDayEventType.WORK_OFF);
     }
 
     public void assignOvertime(@NonNull WorkDayEventPeriod period) {
-        validate(period);
         appendEvent(period, WorkDayEventType.OVERTIME);
     }
 
     public void assignOvertimeTaken(@NonNull WorkDayEventPeriod period) {
-        validate(period);
         appendEvent(period, WorkDayEventType.OVERTIME_TAKEN);
     }
 
 
     protected void appendEvent(@NonNull WorkDayEventPeriod period, @NonNull WorkDayEventType type) {
+        validate(period);
         events.add(new WorkDayEvent(period, type));
     }
 
