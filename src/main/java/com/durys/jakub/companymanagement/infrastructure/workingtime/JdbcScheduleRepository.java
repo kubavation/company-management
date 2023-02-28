@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.infrastructure.workingtime.output;
+package com.durys.jakub.companymanagement.infrastructure.workingtime;
 
 import com.durys.jakub.companymanagement.domain.workingtime.Schedule;
 import com.durys.jakub.companymanagement.domain.workingtime.ScheduleId;
