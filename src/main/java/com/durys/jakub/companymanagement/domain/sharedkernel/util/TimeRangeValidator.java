@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalTime;
 
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
-class TimeRangeValidator implements RangeValidator<LocalTime> {
+public class TimeRangeValidator implements RangeValidationStrategy<LocalTime> {
 
     public class InvalidTimeRangeException extends RuntimeException {
 
