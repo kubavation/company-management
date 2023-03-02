@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
@@ -30,10 +31,10 @@ public class ScheduleService {
     private record Period(LocalDate from, LocalDate to) {}
 
     private Period periodFromBillingPeriod(LocalDate atDay, BillingPeriod billingPeriod) {
-        return switch (billingPeriod) { //TODO
+        return switch (billingPeriod) {
             case THREE_MONTHS -> periodFromThreeMonthsBillingPeriod(atDay);
             case ONE_MONTH -> new Period(atDay.with(TemporalAdjusters.firstDayOfMonth()), atDay.with(TemporalAdjusters.lastDayOfMonth()));
-            default -> throw new IllegalStateException("Unexpected value: " + billingPeriod);
+            case FOUR_MONTHS -> periodFromFourMonthsBillingPeriod(atDay);
         };
     }
 
@@ -41,6 +42,20 @@ public class ScheduleService {
         LocalDate from = atDay.with(atDay.getMonth().firstMonthOfQuarter()).with(TemporalAdjusters.firstDayOfMonth());
         LocalDate to = from.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
         return new Period(from, to);
+    }
+
+    private Period periodFromFourMonthsBillingPeriod(LocalDate atDay) {
+        if (atDay.getMonth().getValue() < Month.MAY.getValue()) {
+            return new Period(atDay.withMonth(Month.JANUARY.getValue()).with(TemporalAdjusters.firstDayOfMonth()),
+                    atDay.withMonth(Month.APRIL.getValue()).with(TemporalAdjusters.lastDayOfMonth()));
+        } else if (atDay.getMonth().getValue() < Month.JULY.getValue()) {
+            return new Period(atDay.withMonth(Month.MAY.getValue()).with(TemporalAdjusters.firstDayOfMonth()),
+                    atDay.withMonth(Month.JUNE.getValue()).with(TemporalAdjusters.lastDayOfMonth()));
+        } else {
+            return new Period(atDay.withMonth(Month.SEPTEMBER.getValue()).with(TemporalAdjusters.firstDayOfMonth()),
+                    atDay.withMonth(Month.DECEMBER.getValue()).with(TemporalAdjusters.lastDayOfMonth()));
+        }
+
     }
 
 }
