@@ -4,6 +4,7 @@ import com.durys.jakub.companymanagement.commons.domain.DomainService;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.billingperiod.BillingPeriod;
 import com.durys.jakub.companymanagement.domain.workingtime.billingperiod.BillingPeriodPolicy;
+import com.durys.jakub.companymanagement.domain.workingtime.billingperiod.Period;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -38,8 +39,6 @@ public class ScheduleService {
 
         return scheduleRepository.durationOfWorkDayEventInPeriod(eventType, employeeId, period.from, period.to);
     }
-
-    private record Period(LocalDate from, LocalDate to) {}
 
     private Period periodFromBillingPeriod(LocalDate atDay, BillingPeriod billingPeriod) {
         return switch (billingPeriod) {
