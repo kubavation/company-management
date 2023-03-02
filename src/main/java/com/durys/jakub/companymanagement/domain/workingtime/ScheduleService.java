@@ -23,7 +23,10 @@ public class ScheduleService {
         return durationOfPrivateExits.compareTo(durationOfWorkOff) >= 0;
     }
 
-
+    public boolean isOvertimeTakenApplicable(@NonNull EmployeeId employeeId, @NonNull LocalDate atDay, @NonNull Duration durationOfOvertimeTaken) {
+        Duration durationOfOvertimes = durationOfWorkDayEventInBillingPeriod(employeeId, WorkDayEventType.OVERTIME, atDay);
+        return durationOfOvertimes.compareTo(durationOfOvertimeTaken) >= 0;
+    }
 
     public Duration durationOfWorkDayEventInBillingPeriod(@NonNull EmployeeId employeeId, @NonNull WorkDayEventType eventType, @NonNull LocalDate atDay) {
 
