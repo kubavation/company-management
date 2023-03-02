@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 
 @DomainService
 @RequiredArgsConstructor
@@ -29,7 +31,11 @@ public class ScheduleService {
 
     private Period periodFromBillingPeriod(LocalDate atDay, BillingPeriod billingPeriod) {
         return switch (billingPeriod) { //TODO
-            case THREE_MONTHS -> new Period(LocalDate.now(), LocalDate.now());
+            case THREE_MONTHS -> {
+                LocalDate from = atDay.with(atDay.getMonth().firstMonthOfQuarter()).with(TemporalAdjusters.firstDayOfMonth());
+                LocalDate to = from.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
+                yield new Period(from, to);
+            }
             default -> throw new IllegalStateException("Unexpected value: " + billingPeriod);
         };
     }
