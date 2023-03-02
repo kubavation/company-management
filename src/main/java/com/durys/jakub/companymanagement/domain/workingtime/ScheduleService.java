@@ -31,13 +31,15 @@ public class ScheduleService {
 
     private Period periodFromBillingPeriod(LocalDate atDay, BillingPeriod billingPeriod) {
         return switch (billingPeriod) { //TODO
-            case THREE_MONTHS -> {
-                LocalDate from = atDay.with(atDay.getMonth().firstMonthOfQuarter()).with(TemporalAdjusters.firstDayOfMonth());
-                LocalDate to = from.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
-                yield new Period(from, to);
-            }
+            case THREE_MONTHS -> periodFromThreeMonthsBillingPeriod(atDay);
             default -> throw new IllegalStateException("Unexpected value: " + billingPeriod);
         };
+    }
+
+    private Period periodFromThreeMonthsBillingPeriod(LocalDate atDay) {
+        LocalDate from = atDay.with(atDay.getMonth().firstMonthOfQuarter()).with(TemporalAdjusters.firstDayOfMonth());
+        LocalDate to = from.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
+        return new Period(from, to);
     }
 
 }
