@@ -2,6 +2,8 @@ package com.durys.jakub.companymanagement.domain.workingtime;
 
 import com.durys.jakub.companymanagement.commons.domain.DomainService;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.workingtime.billingperiod.BillingPeriod;
+import com.durys.jakub.companymanagement.domain.workingtime.billingperiod.BillingPeriodPolicy;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 

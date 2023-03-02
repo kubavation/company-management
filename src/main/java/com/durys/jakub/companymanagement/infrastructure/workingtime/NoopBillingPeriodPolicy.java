@@ -1,7 +1,7 @@
 package com.durys.jakub.companymanagement.infrastructure.workingtime;
 
-import com.durys.jakub.companymanagement.domain.workingtime.BillingPeriod;
-import com.durys.jakub.companymanagement.domain.workingtime.BillingPeriodPolicy;
+import com.durys.jakub.companymanagement.domain.workingtime.billingperiod.BillingPeriod;
+import com.durys.jakub.companymanagement.domain.workingtime.billingperiod.BillingPeriodPolicy;
 
 public class NoopBillingPeriodPolicy implements BillingPeriodPolicy {
 
