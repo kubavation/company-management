@@ -18,7 +18,7 @@ public class ScheduleService {
     private final BillingPeriodPolicy billingPeriodPolicy;
 
 
-    Duration durationOfWorkDayEventInBillingPeriod(@NonNull EmployeeId employeeId, @NonNull WorkDayEventType eventType, @NonNull LocalDate atDay) {
+    public Duration durationOfWorkDayEventInBillingPeriod(@NonNull EmployeeId employeeId, @NonNull WorkDayEventType eventType, @NonNull LocalDate atDay) {
 
         BillingPeriod billingPeriod = billingPeriodPolicy.billingPeriod();
 
