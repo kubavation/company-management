@@ -32,6 +32,7 @@ public class ScheduleService {
     private Period periodFromBillingPeriod(LocalDate atDay, BillingPeriod billingPeriod) {
         return switch (billingPeriod) { //TODO
             case THREE_MONTHS -> periodFromThreeMonthsBillingPeriod(atDay);
+            case ONE_MONTH -> new Period(atDay.with(TemporalAdjusters.firstDayOfMonth()), atDay.with(TemporalAdjusters.lastDayOfMonth()));
             default -> throw new IllegalStateException("Unexpected value: " + billingPeriod);
         };
     }
