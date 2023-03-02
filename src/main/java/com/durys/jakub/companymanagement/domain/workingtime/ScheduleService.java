@@ -18,6 +18,13 @@ public class ScheduleService {
     private final BillingPeriodPolicy billingPeriodPolicy;
 
 
+    public boolean isWorkOffApplicable(@NonNull EmployeeId employeeId, @NonNull WorkDayEventType eventType,
+                                       @NonNull LocalDate atDay, @NonNull Duration durationOfWorkOff) {
+        Duration durationOfPrivateExits = durationOfWorkDayEventInBillingPeriod(employeeId, eventType, atDay);
+        return durationOfPrivateExits.compareTo(durationOfWorkOff) >= 0;
+    }
+
+
     public Duration durationOfWorkDayEventInBillingPeriod(@NonNull EmployeeId employeeId, @NonNull WorkDayEventType eventType, @NonNull LocalDate atDay) {
 
         BillingPeriod billingPeriod = billingPeriodPolicy.billingPeriod();
