@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.domain.workingtime;
+package com.durys.jakub.companymanagement.domain.workingtime.billingperiod;
 
 public enum BillingPeriod {
     ONE_MONTH,
