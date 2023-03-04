@@ -1,5 +1,7 @@
 package com.durys.jakub.companymanagement.domain.workingtime;
 
-import java.util.UUID;
+import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
-public record ScheduleId(UUID value) {}
+import java.time.LocalDate;
+
+public record ScheduleId(EmployeeId employeeId, LocalDate day) {}
