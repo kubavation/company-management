@@ -35,7 +35,7 @@ public class ScheduleService {
 
         Period period = periodFromBillingPeriod(atDay, billingPeriod);
 
-        return scheduleRepository.durationOfWorkDayEventInPeriod(eventType, employeeId, period.from, period.to);
+        return scheduleRepository.durationOfWorkDayEventInPeriod(eventType, employeeId, period.from(), period.to());
     }
 
     private Period periodFromBillingPeriod(LocalDate atDay, BillingPeriod billingPeriod) {
