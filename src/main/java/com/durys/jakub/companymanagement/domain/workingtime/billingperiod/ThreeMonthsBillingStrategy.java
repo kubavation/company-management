@@ -3,7 +3,7 @@ package com.durys.jakub.companymanagement.domain.workingtime.billingperiod;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 
-public class ThreeMonthsBillingStrategy implements BillingPeriodStrategy {
+public final class ThreeMonthsBillingStrategy implements BillingPeriodStrategy {
 
     @Override
     public Period periodFrom(LocalDate day, BillingPeriod billingPeriod) {
