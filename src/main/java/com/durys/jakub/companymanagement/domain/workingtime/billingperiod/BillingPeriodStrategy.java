@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.domain.workingtime.billingperiod;
 
 import java.time.LocalDate;
 
-public interface BillingPeriodStrategy {
-    Period periodFrom(LocalDate day, BillingPeriod billingPeriod);
+public sealed interface BillingPeriodStrategy
+        permits FourMonthsBillingStrategy, OneMonthsBillingStrategy, ThreeMonthsBillingStrategy {
+    Period periodFrom(LocalDate day);
 }
