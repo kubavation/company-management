@@ -1,6 +1,5 @@
 package com.durys.jakub.companymanagement.domain.workingtime;
 
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.NonNull;
 
 import java.util.List;
