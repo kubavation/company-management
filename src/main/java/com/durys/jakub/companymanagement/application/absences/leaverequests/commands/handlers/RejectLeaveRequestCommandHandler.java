@@ -20,9 +20,9 @@ public class RejectLeaveRequestCommandHandler implements CommandHandler<RejectLe
     @Transactional
     public void handle(RejectLeaveRequestCommand command) {
 
-        Acceptant acceptant = employeeRepository.load(new AcceptantId(command.getAcceptantId()));
+        Acceptant acceptant = employeeRepository.load(new AcceptantId(command.acceptantId()));
 
-        LeaveRequest leaveRequest = leaveRequestRepository.load(new LeaveRequestId(command.getLeaveRequestId()));
+        LeaveRequest leaveRequest = leaveRequestRepository.load(new LeaveRequestId(command.leaveRequestId()));
 
         acceptant.reject(leaveRequest);
 

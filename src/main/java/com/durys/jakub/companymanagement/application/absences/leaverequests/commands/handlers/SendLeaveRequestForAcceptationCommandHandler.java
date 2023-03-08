@@ -5,13 +5,7 @@ import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
-import com.durys.jakub.notificationservice.client.api.NotificationApiClient;
-import com.durys.jakub.notificationservice.client.model.NotificationDTO;
-import com.durys.jakub.notificationservice.client.model.NotificationType;
-import com.durys.jakub.notificationservice.client.model.TenantId;
 import lombok.RequiredArgsConstructor;
-
-import java.util.List;
 
 @CommandHandling
 @RequiredArgsConstructor
@@ -25,9 +19,9 @@ public class SendLeaveRequestForAcceptationCommandHandler implements CommandHand
     @Override
     public void handle(SendLeaveRequestForAcceptationCommand command) {
 
-        LeaveRequest leaveRequest = leaveRequestRepository.load(new LeaveRequestId(command.getLeaveRequestId()));
+        LeaveRequest leaveRequest = leaveRequestRepository.load(new LeaveRequestId(command.leaveRequestId()));
         Applicant applicant = employeeRepository.load(leaveRequest.getApplicantId());
-        Acceptant acceptant = employeeRepository.load(new AcceptantId(command.getAcceptantId()));
+        Acceptant acceptant = employeeRepository.load(new AcceptantId(command.acceptantId()));
 
         applicant.sendToAcceptant(leaveRequest, acceptant);
 

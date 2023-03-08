@@ -23,8 +23,8 @@ public class AcceptLeaveRequestCommandHandler implements CommandHandler<AcceptLe
     @Transactional
     public void handle(AcceptLeaveRequestCommand command) {
 
-        Acceptant acceptant = employeeRepository.load(new AcceptantId(command.getAcceptantId()));
-        LeaveRequest leaveRequest = leaveRequestRepository.load(new LeaveRequestId(command.getLeaveRequestId()));
+        Acceptant acceptant = employeeRepository.load(new AcceptantId(command.acceptantId()));
+        LeaveRequest leaveRequest = leaveRequestRepository.load(new LeaveRequestId(command.leaveRequestId()));
         LeaveEntitlements leaveEntitlements = leaveEntitlementsRepository.load(leaveRequest.getAcceptantId());
 
         leaveRequest.verifyCompatibility(leaveEntitlements);
