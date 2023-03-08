@@ -28,12 +28,12 @@ public class SubmitLeaveRequestCommandHandler implements CommandHandler<SubmitLe
     @Transactional
     public void handle(SubmitLeaveRequestCommand command) {
 
-        Applicant applicant = employeeRepository.load(new ApplicantId(command.getApplicantId()));
+        Applicant applicant = employeeRepository.load(new ApplicantId(command.applicantId()));
 
-        LeaveEntitlements leavePrivileges = leaveEntitlementsRepository.load(new EmployeeId(command.getApplicantId()));
+        LeaveEntitlements leavePrivileges = leaveEntitlementsRepository.load(new EmployeeId(command.applicantId()));
 
         LeaveRequest.WorkInProgress workInProgressLeaveRequest = LeaveRequest.WorkInProgress.of(
-                command.getType(), command.getFrom(), command.getTo(), leavePrivileges);
+                command.type(), command.from(), command.to(), leavePrivileges);
 
 
         LeaveRequest leaveRequest = applicant.submit(workInProgressLeaveRequest);

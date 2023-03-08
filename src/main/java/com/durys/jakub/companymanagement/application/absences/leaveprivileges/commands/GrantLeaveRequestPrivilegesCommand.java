@@ -10,11 +10,6 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @Getter
-public class GrantLeaveRequestPrivilegesCommand implements Command {
-    private final String leaveType;
-    private final UUID employeeId;
-    private final LocalDate from;
-    private final LocalDate to;
-    private final BigDecimal daysEntitled;
-    private final BigDecimal hoursEntitled;
+public record GrantLeaveRequestPrivilegesCommand(String leaveType, UUID employeeId, LocalDate from, LocalDate to,
+                                                 BigDecimal daysEntitled, BigDecimal hoursEntitled) implements Command {
 }

@@ -10,9 +10,6 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @Getter
-public class SubmitLeaveRequestCommand implements Command {
-    private final UUID applicantId;
-    private final LeaveRequestType type;
-    private final LocalDateTime from;
-    private final LocalDateTime to;
+public record SubmitLeaveRequestCommand(UUID applicantId, LeaveRequestType type, LocalDateTime from,
+                                        LocalDateTime to) implements Command {
 }

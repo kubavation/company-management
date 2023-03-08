@@ -20,9 +20,9 @@ public class CancelLeaveRequestCommandHandler implements CommandHandler<CancelLe
     @Transactional
     public void handle(CancelLeaveRequestCommand command) {
 
-        Applicant applicant = employeeRepository.load(new AcceptantId(command.getApplicantId()));
+        Applicant applicant = employeeRepository.load(new AcceptantId(command.applicantId()));
 
-        LeaveRequest leaveRequest = leaveRequestRepository.load(new LeaveRequestId(command.getLeaveRequestId()));
+        LeaveRequest leaveRequest = leaveRequestRepository.load(new LeaveRequestId(command.leaveRequestId()));
 
         applicant.cancel(leaveRequest);
 

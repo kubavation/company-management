@@ -8,7 +8,5 @@ import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
-public class SendLeaveRequestForAcceptationCommand implements Command {
-    private final UUID leaveRequestId;
-    private final UUID acceptantId;
+public record SendLeaveRequestForAcceptationCommand(UUID leaveRequestId, UUID acceptantId) implements Command {
 }
