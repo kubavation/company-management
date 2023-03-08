@@ -1,6 +1,6 @@
 package com.durys.jakub.companymanagement.application.workingtime.requests;
 
-import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestId;
+import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequestId;
 
-public record CancelWorkingTimeRequestCommand(LeaveRequestId leaveRequestId) {
+public record CancelWorkingTimeRequestCommand(WorkingTimeRequestId leaveRequestId) {
 }
