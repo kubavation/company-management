@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
+import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
 import java.time.LocalDate;
@@ -38,13 +39,13 @@ public abstract class WorkingTimeRequest {
         this.status = WorkingTimeRequestStatus.CANCELLED;
     }
 
-    public void sendToAcceptant(EmployeeId acceptantId) {
+    public void sendTo(Employee acceptant) {
 
         if (!WorkingTimeRequestStatus.SUBMITTED.equals(status)) {
             throw new IllegalArgumentException();
         }
 
-        this.acceptantId = acceptantId;
+        this.acceptantId = acceptant.employeeId();
         this.status = WorkingTimeRequestStatus.SENT_FOR_ACCEPTATION;
     }
 
