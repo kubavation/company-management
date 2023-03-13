@@ -10,13 +10,4 @@ public class PrivateExitRequest extends WorkingTimeRequest {
         super(requestId, authorId, atDay, period, status);
     }
 
-    @Override
-    public WorkingTimeRequest submit(WorkingTimeRequest.Submittable submittable) {
-        return new PrivateExitRequest(
-                submittable.get().getRequestId(),
-                submittable.get().get().getEmployeeId(),
-                submittable.get().getAtDay(),
-                submittable.get().getPeriod(),
-                WorkingTimeRequestStatus.SUBMITTED);
-    }
 }
