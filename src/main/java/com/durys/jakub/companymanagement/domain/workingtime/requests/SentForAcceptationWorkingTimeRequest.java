@@ -13,6 +13,10 @@ public class SentForAcceptationWorkingTimeRequest implements RequestInWorkflow {
         this.acceptantId = acceptantId;
     }
 
+    public AcceptedWorkingTimeRequest accept() {
+        return new AcceptedWorkingTimeRequest(request);
+    }
+
     @Override
     public WorkingTimeRequest request() {
         return request;
