@@ -11,6 +11,6 @@ public class WorkingTimeRequestFactory {
             case CANCELLED -> new CancelledWorkingTimeRequest(request);
             case REJECTED -> new RejectedWorkingTimeRequest(request);
             case SENT_FOR_ACCEPTATION -> new SentForAcceptationWorkingTimeRequest(request);
-        }
+        };
     }
 }
