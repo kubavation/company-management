@@ -14,13 +14,4 @@ public class WorkOffRequest extends WorkingTimeRequest {
         this.privateExitRequest = privateExitRequest;
     }
 
-    @Override
-    public WorkingTimeRequest submit(Submittable submittable) {
-        return new WorkOffRequest(
-                submittable.get().getRequestId(),
-                submittable.get().get().getEmployeeId(),
-                submittable.get().getAtDay(),
-                submittable.get().getPeriod(),
-                WorkingTimeRequestStatus.SUBMITTED, null); //todo
-    }
 }

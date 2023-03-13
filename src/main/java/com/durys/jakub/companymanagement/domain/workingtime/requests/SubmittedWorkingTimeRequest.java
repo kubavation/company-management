@@ -22,6 +22,6 @@ public class SubmittedWorkingTimeRequest implements RequestInWorkflow {
 
     @Override
     public WorkingTimeRequest request() {
-        return null;
+        return request;
     }
 }
