@@ -15,4 +15,9 @@ public class SubmittedWorkingTimeRequest {
         return new SentForAcceptationWorkingTimeRequest(request, acceptant.employeeId());
     }
 
+    public CancelledWorkingTimeRequest cancel() {
+        return new CancelledWorkingTimeRequest(request);
+    }
+
+
 }
