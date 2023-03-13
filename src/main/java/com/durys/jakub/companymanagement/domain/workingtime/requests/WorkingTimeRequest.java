@@ -12,7 +12,6 @@ public abstract class WorkingTimeRequest {
     private final LocalDate atDay;
     private final WorkingTimeRequestPeriod period;
     private WorkingTimeRequestStatus status;
-    private EmployeeId acceptantId;
 
     protected WorkingTimeRequest(WorkingTimeRequestId requestId, EmployeeId authorId, LocalDate atDay,
                               WorkingTimeRequestPeriod period, WorkingTimeRequestStatus status) {
@@ -45,7 +44,6 @@ public abstract class WorkingTimeRequest {
             throw new IllegalArgumentException();
         }
 
-        this.acceptantId = acceptant.employeeId();
         this.status = WorkingTimeRequestStatus.SENT_FOR_ACCEPTATION;
     }
 
