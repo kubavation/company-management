@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public abstract class WorkingTimeRequest {
+
     private final WorkingTimeRequestId requestId;
     private final EmployeeId authorId;
     private final LocalDate atDay;
@@ -26,8 +27,9 @@ public abstract class WorkingTimeRequest {
         return new WorkInProgress();
     }
 
-    public abstract WorkingTimeRequest submit(Submittable workInProgress);
-
+    public SubmittedWorkingTimeRequest submit() {
+        return new SubmittedWorkingTimeRequest(this);
+    }
 
     public void markAsCancelled() {
 
@@ -59,6 +61,8 @@ public abstract class WorkingTimeRequest {
     public void markAsAccepted() {
         this.status = WorkingTimeRequestStatus.ACCEPTED;
     }
+
+
 
     public static class WorkInProgress implements WithId, WithAuthor, WithDay,
             WithPeriodFrom, WithPeriodTo, Submittable {
