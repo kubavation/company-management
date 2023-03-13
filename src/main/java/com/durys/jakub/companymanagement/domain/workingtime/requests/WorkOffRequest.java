@@ -13,5 +13,5 @@ public class WorkOffRequest extends WorkingTimeRequest {
         super(requestId, authorId, atDay, period, status);
         this.privateExitRequest = privateExitRequest;
     }
-    
+
 }
