@@ -29,4 +29,5 @@ public class SentForAcceptationWorkingTimeRequest implements RequestInWorkflow {
     public WorkingTimeRequest request() {
         return request;
     }
+
 }
