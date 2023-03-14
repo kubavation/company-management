@@ -1,7 +1,10 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class WorkingTimeRequestFactory {
 
     public static RequestInWorkflow instanceFrom(@NonNull WorkingTimeRequest request, @NonNull WorkingTimeRequestStatus status) {
