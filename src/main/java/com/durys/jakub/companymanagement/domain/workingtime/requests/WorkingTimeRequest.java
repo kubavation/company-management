@@ -31,38 +31,6 @@ public abstract class WorkingTimeRequest {
         return new SubmittedWorkingTimeRequest(this);
     }
 
-    public void markAsCancelled() {
-
-        if (WorkingTimeRequestStatus.ACCEPTED.equals(status)) {
-            throw new IllegalArgumentException();
-        }
-
-        this.status = WorkingTimeRequestStatus.CANCELLED;
-    }
-
-    public void sendTo(Employee acceptant) {
-
-        if (!WorkingTimeRequestStatus.SUBMITTED.equals(status)) {
-            throw new IllegalArgumentException();
-        }
-
-        this.status = WorkingTimeRequestStatus.SENT_FOR_ACCEPTATION;
-    }
-
-    public void markAsRejected() {
-
-        if (WorkingTimeRequestStatus.ACCEPTED.equals(status)) {
-            throw new IllegalArgumentException();
-        }
-
-        this.status = WorkingTimeRequestStatus.REJECTED;
-    }
-
-    public void markAsAccepted() {
-        this.status = WorkingTimeRequestStatus.ACCEPTED;
-    }
-
-
 
     public static class WorkInProgress implements WithId, WithAuthor, WithDay,
             WithPeriodFrom, WithPeriodTo, Submittable {
