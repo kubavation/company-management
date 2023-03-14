@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class WorkOffRequest extends WorkingTimeRequest {
 
     public WorkOffRequest(WorkingTimeRequestId requestId, EmployeeId authorId, LocalDate atDay,
-                          WorkingTimeRequestPeriod period, WorkingTimeRequestStatus status, PrivateExitRequest privateExitRequest) {
+                          WorkingTimeRequestPeriod period, WorkingTimeRequestStatus status) {
         super(requestId, authorId, atDay, period, status);
     }
 
