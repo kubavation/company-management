@@ -24,11 +24,6 @@ public abstract class WorkingTimeRequest {
         return new WorkInProgress();
     }
 
-    public SubmittedWorkingTimeRequest submit() {
-        return new SubmittedWorkingTimeRequest(this);
-    }
-
-
     public static class WorkInProgress implements WithId, OfType, WithAuthor, WithDay,
             WithPeriodFrom, WithPeriodTo, Submittable {
 
@@ -79,7 +74,7 @@ public abstract class WorkingTimeRequest {
 
         @Override
         public SubmittedWorkingTimeRequest submit() {
-           return new SubmittedWorkingTimeRequest(WorkingTimeRequestFactory.from());
+           return new SubmittedWorkingTimeRequest(WorkingTimeRequestFactory.fromWorkInProgress(this));
         }
 
         WorkingTimeRequestId getRequestId() {
@@ -96,6 +91,10 @@ public abstract class WorkingTimeRequest {
 
         WorkingTimeRequestPeriod getPeriod() {
             return period;
+        }
+
+        public WorkingTimeRequestType getType() {
+            return type;
         }
     }
 
