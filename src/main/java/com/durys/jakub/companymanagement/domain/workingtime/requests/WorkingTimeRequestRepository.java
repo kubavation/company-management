@@ -2,6 +2,6 @@ package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
 
 public interface WorkingTimeRequestRepository {
-    WorkingTimeRequest load(WorkingTimeRequestId id);
+    RequestInWorkflow load(WorkingTimeRequestId id);
     void save(RequestInWorkflow request);
 }
