@@ -20,7 +20,7 @@ public abstract class WorkingTimeRequest {
         this.period = period;
     }
 
-    public static WithAuthor builder() {
+    public static WithId builder() {
         return new WorkInProgress();
     }
 
