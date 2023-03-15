@@ -11,15 +11,13 @@ public abstract class WorkingTimeRequest {
     private final EmployeeId authorId;
     private final LocalDate atDay;
     private final WorkingTimeRequestPeriod period;
-    private WorkingTimeRequestStatus status;
 
     protected WorkingTimeRequest(WorkingTimeRequestId requestId, EmployeeId authorId, LocalDate atDay,
-                              WorkingTimeRequestPeriod period, WorkingTimeRequestStatus status) {
+                              WorkingTimeRequestPeriod period) {
         this.requestId = requestId;
         this.authorId = authorId;
         this.atDay = atDay;
         this.period = period;
-        this.status = status;
     }
 
     public static WithAuthor builder() {
@@ -73,8 +71,8 @@ public abstract class WorkingTimeRequest {
         }
 
         @Override
-        public WorkInProgress get() {
-            return this;
+        public SubmittedWorkingTimeRequest submit() {
+           return null;
         }
 
         WorkingTimeRequestId getRequestId() {
@@ -115,6 +113,6 @@ public abstract class WorkingTimeRequest {
     }
 
     public interface Submittable {
-        WorkInProgress get();
+        SubmittedWorkingTimeRequest submit();
     }
 }
