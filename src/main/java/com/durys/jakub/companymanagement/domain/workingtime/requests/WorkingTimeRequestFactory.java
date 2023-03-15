@@ -16,4 +16,12 @@ public class WorkingTimeRequestFactory {
             case SENT_FOR_ACCEPTATION -> new SentForAcceptationWorkingTimeRequest(request);
         };
     }
+
+    public static WorkingTimeRequest from(WorkingTimeRequest.WorkInProgress wip, WorkingTimeRequestType type) {
+        return switch (type) {
+            case PRIVATE_EXIT -> new PrivateExitRequest(wip.getRequestId(), wip.getEmployeeId(), wip.getAtDay(), wip.getPeriod());
+            case WORK_OFF -> new WorkOffRequest(wip.getRequestId(), wip.getEmployeeId(), wip.getAtDay(), wip.getPeriod());
+        };
+    }
+
 }
