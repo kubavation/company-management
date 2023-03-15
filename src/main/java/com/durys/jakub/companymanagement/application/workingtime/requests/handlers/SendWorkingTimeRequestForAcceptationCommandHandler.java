@@ -5,8 +5,7 @@ import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequest;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequestRepository;
+import com.durys.jakub.companymanagement.domain.workingtime.requests.*;
 import lombok.RequiredArgsConstructor;
 
 @CommandHandling
@@ -19,11 +18,15 @@ public class SendWorkingTimeRequestForAcceptationCommandHandler implements Comma
     @Override
     public void handle(SendWorkingTimeRequestForAcceptationCommand command) {
 
-        WorkingTimeRequest request = workingTimeRequestRepository.load(command.requestId());
+        RequestInWorkflow request = workingTimeRequestRepository.load(command.requestId());
+
+        if (!(request instanceof SubmittedWorkingTimeRequest submittedWorkingTimeRequest)) {
+            throw new UnsupportedOperationException();
+        }
+
         Employee acceptant = employeeRepository.load(command.acceptantId());
 
-        request.sendTo(acceptant);
-
-        workingTimeRequestRepository.save(request);
+        SentForAcceptationWorkingTimeRequest sentRequest = submittedWorkingTimeRequest.sendTo(acceptant);
+        workingTimeRequestRepository.save(sentRequest);
     }
 }
