@@ -1,6 +1,5 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
-import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
 import java.time.LocalDate;
