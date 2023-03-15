@@ -29,7 +29,7 @@ public abstract class WorkingTimeRequest {
     }
 
 
-    public static class WorkInProgress implements WithId, WithAuthor, WithDay,
+    public static class WorkInProgress implements WithId, OfType, WithAuthor, WithDay,
             WithPeriodFrom, WithPeriodTo, Submittable {
 
         private WorkingTimeRequestId requestId;
@@ -38,10 +38,17 @@ public abstract class WorkingTimeRequest {
         private LocalTime periodFrom;
         private LocalTime periodTo;
         private WorkingTimeRequestPeriod period;
+        private WorkingTimeRequestType type;
 
         @Override
-        public WithAuthor id(WorkingTimeRequestId requestId) {
+        public OfType id(WorkingTimeRequestId requestId) {
             this.requestId = requestId;
+            return this;
+        }
+
+        @Override
+        public WithAuthor ofType(WorkingTimeRequestType type) {
+            this.type = type;
             return this;
         }
 
@@ -72,7 +79,7 @@ public abstract class WorkingTimeRequest {
 
         @Override
         public SubmittedWorkingTimeRequest submit() {
-           return null;
+           return new SubmittedWorkingTimeRequest(WorkingTimeRequestFactory.from());
         }
 
         WorkingTimeRequestId getRequestId() {
@@ -93,7 +100,11 @@ public abstract class WorkingTimeRequest {
     }
 
     public interface WithId {
-        WithAuthor id(WorkingTimeRequestId requestId);
+        OfType id(WorkingTimeRequestId requestId);
+    }
+
+    public interface OfType {
+        WithAuthor ofType(WorkingTimeRequestType type);
     }
 
     public interface WithAuthor {
