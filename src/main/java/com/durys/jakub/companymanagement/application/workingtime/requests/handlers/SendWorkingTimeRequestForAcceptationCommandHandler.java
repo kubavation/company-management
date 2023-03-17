@@ -20,13 +20,13 @@ public class SendWorkingTimeRequestForAcceptationCommandHandler implements Comma
 
         RequestInWorkflow request = workingTimeRequestRepository.load(command.requestId());
 
-        if (!(request instanceof SubmittedWorkingTimeRequest submittedWorkingTimeRequest)) {
+        if (!(request instanceof SubmittedWorkingTimeRequest workingTimeRequest)) {
             throw new UnsupportedOperationException();
         }
 
         Employee acceptant = employeeRepository.load(command.acceptantId());
 
-        SentForAcceptationWorkingTimeRequest sentRequest = submittedWorkingTimeRequest.sendTo(acceptant);
+        SentForAcceptationWorkingTimeRequest sentRequest = workingTimeRequest.sendTo(acceptant);
         workingTimeRequestRepository.save(sentRequest);
     }
 }
