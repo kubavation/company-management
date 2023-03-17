@@ -16,11 +16,11 @@ public class RejectWorkingTimeRequestCommandHandler implements CommandHandler<Re
     public void handle(RejectWorkingTimeRequestCommand command) {
         RequestInWorkflow request = workingTimeRequestRepository.load(command.requestId());
 
-        if (!(request instanceof SentForAcceptationWorkingTimeRequest sentRequest)) {
+        if (!(request instanceof SentForAcceptationWorkingTimeRequest workingTimeRequest)) {
             throw new UnsupportedOperationException();
         }
 
-        RejectedWorkingTimeRequest rejectedRequest = sentRequest.reject();
+        RejectedWorkingTimeRequest rejectedRequest = workingTimeRequest.reject();
         workingTimeRequestRepository.save(rejectedRequest);
     }
 }
