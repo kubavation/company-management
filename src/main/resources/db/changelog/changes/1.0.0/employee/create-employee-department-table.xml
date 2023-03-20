@@ -23,7 +23,7 @@
             <column name="department_path" type="varchar2(1000)">
                 <constraints nullable="false"/>
             </column>
-            <column name="cm_status" type="VARCHAR(5)">
+            <column name="status" type="VARCHAR(5)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
