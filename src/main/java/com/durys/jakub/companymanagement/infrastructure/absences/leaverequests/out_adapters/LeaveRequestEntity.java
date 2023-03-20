@@ -1,8 +1,12 @@
 package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.out_adapters;
 
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestStatus;
-import com.durys.jakub.companymanagement.shared.enums.CmStatus;
-import lombok.*;
+import com.durys.jakub.companymanagement.infrastructure.shared.status.Status;
+import com.durys.jakub.companymanagement.infrastructure.shared.status.StatusDBConverter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -42,5 +46,6 @@ public class LeaveRequestEntity {
     @Column(name = "ACCEPTING_ID")
     private UUID acceptingId;
 
-    private CmStatus cmStatus;
+    @Convert(converter = StatusDBConverter.class)
+    private Status status;
 }
