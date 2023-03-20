@@ -47,5 +47,5 @@ public class LeaveRequestEntity {
     private UUID acceptingId;
 
     @Convert(converter = StatusDBConverter.class)
-    private Status status;
+    private Status status = Status.ACTIVE;
 }

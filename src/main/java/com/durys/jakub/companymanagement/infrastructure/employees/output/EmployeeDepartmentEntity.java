@@ -1,6 +1,7 @@
 package com.durys.jakub.companymanagement.infrastructure.employees.output;
 
 import com.durys.jakub.companymanagement.infrastructure.shared.status.Status;
+import com.durys.jakub.companymanagement.infrastructure.shared.status.StatusDBConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,7 +34,7 @@ public class EmployeeDepartmentEntity {
     @OneToMany(mappedBy = "department")
     private List<EmployeeEntity> employees;
 
-    @Convert(converter = Status.class)
+    @Convert(converter = StatusDBConverter.class)
     @Column(name = "STATUS")
-    private Status cmStatus = Status.ACTIVE;
+    private Status status = Status.ACTIVE;
 }
