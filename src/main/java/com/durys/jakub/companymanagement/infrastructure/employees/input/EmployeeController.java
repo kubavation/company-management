@@ -31,7 +31,7 @@ class EmployeeController {
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Employee successfully engaged")
     })
-    public void engageEmployee(@ApiParam("Employee") @RequestBody EmployeeDTO employee) {
+    void engageEmployee(@ApiParam("Employee") @RequestBody EmployeeDTO employee) {
 
         log.info("calling engage employee");
 
@@ -50,7 +50,7 @@ class EmployeeController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Personal data successfully changed")
     })
-    public void changePersonalData(@ApiParam("Id of employee") @PathVariable UUID employeeId,
+    void changePersonalData(@ApiParam("Id of employee") @PathVariable UUID employeeId,
                @ApiParam("Personal data") @RequestBody EmployeePersonalDataDTO personalData) {
 
         log.info("change personal data for employeeId: {}", employeeId);
