@@ -10,7 +10,7 @@ public enum Status {
         this.shortcut = shortcut;
     }
 
-    public String getShortcut() {
+    public String shortcut() {
         return shortcut;
     }
 }
