@@ -16,7 +16,7 @@
             </column>
             <column name="tenant_id" type="VARCHAR(500)"/>
             <column name="department_id" type="number(10)"/>
-            <column name="cm_status" type="VARCHAR(5)">
+            <column name="status" type="VARCHAR(5)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
