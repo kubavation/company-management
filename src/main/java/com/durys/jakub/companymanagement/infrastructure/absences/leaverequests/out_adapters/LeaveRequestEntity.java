@@ -3,8 +3,10 @@ package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestStatus;
 import com.durys.jakub.companymanagement.infrastructure.shared.status.Status;
 import com.durys.jakub.companymanagement.infrastructure.shared.status.StatusDBConverter;
-import com.durys.jakub.companymanagement.shared.enums.CmStatus;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
