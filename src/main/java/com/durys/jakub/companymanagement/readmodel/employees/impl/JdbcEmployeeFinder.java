@@ -35,7 +35,7 @@ public class JdbcEmployeeFinder implements EmployeeFinder {
 
         @Override
         public EmployeeWithPersonalData mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return null; //todo
+            return null; //TODO IMPL
         }
     }
 }
