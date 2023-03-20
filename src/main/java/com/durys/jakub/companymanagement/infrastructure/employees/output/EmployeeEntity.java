@@ -1,11 +1,10 @@
 package com.durys.jakub.companymanagement.infrastructure.employees.output;
 
-import com.durys.jakub.companymanagement.shared.converters.StatusConverter;
-import com.durys.jakub.companymanagement.shared.enums.CmStatus;
+import com.durys.jakub.companymanagement.infrastructure.shared.status.Status;
+import com.durys.jakub.companymanagement.infrastructure.shared.status.StatusDBConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Table(name = "CM_EMPLOYEE")
@@ -31,7 +30,7 @@ public class EmployeeEntity {
     @JoinColumn(name = "department_id")
     private EmployeeDepartmentEntity department;
 
-    @Convert(converter = StatusConverter.class)
-    @Column(name = "CM_STATUS")
-    private CmStatus cmStatus = CmStatus.ACTIVE;
+    @Convert(converter = StatusDBConverter.class)
+    @Column(name = "STATUS")
+    private Status status = Status.ACTIVE;
 }
