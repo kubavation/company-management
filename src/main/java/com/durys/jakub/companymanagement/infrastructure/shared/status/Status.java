@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.infrastructure.shared.model;
+package com.durys.jakub.companymanagement.infrastructure.shared.status;
 
 public enum Status {
     ACTIVE("A"),
