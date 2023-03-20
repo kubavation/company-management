@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.readmodel.employees.impl;
 import com.durys.jakub.companymanagement.readmodel.employees.EmployeeFinder;
 import com.durys.jakub.companymanagement.readmodel.employees.EmployeeWithPersonalData;
 import com.durys.jakub.companymanagement.readmodel.shared.SearchCriteria;
+import com.durys.jakub.companymanagement.readmodel.shared.SearchCriteriaBuilderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -28,7 +29,7 @@ public class JdbcEmployeeFinder implements EmployeeFinder {
                 " INNER JOIN CM_EMPLOYEE_PERSONAL_DATA pd on pd.employee_id = e.id " +
                 " LEFT JOIN CM_EMPLOYEE_DEPARTMENT d on d.id = e.department_id ";
 
-       return jdbcTemplate.query(sql, new EmployeeWithPersonalDataRowMapper());
+       return jdbcTemplate.query(SearchCriteriaBuilderService.appendCriteria(sql, criteria), new EmployeeWithPersonalDataRowMapper());
     }
 
     private class EmployeeWithPersonalDataRowMapper implements RowMapper<EmployeeWithPersonalData> {
