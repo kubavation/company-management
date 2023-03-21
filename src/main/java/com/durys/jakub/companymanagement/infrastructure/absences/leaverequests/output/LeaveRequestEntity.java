@@ -1,5 +1,7 @@
 package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.output;
 
+import com.durys.jakub.companymanagement.domain.employees.model.Employee;
+import com.durys.jakub.companymanagement.infrastructure.employees.output.EmployeeEntity;
 import com.durys.jakub.companymanagement.infrastructure.shared.status.Status;
 import com.durys.jakub.companymanagement.infrastructure.shared.status.StatusDBConverter;
 import lombok.AllArgsConstructor;
@@ -36,8 +38,9 @@ public class LeaveRequestEntity {
     private BigDecimal days;
     private BigDecimal hours;
 
-    @Column(name = "EMPLOYEE_ID")
-    private UUID employeeId;
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private EmployeeEntity employee;
 
     @Convert(converter = StatusDBConverter.class)
     private Status status = Status.ACTIVE;
