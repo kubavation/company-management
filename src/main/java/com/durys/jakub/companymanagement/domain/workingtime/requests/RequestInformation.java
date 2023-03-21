@@ -13,4 +13,16 @@ public class RequestInformation {
         this.atDay = atDay;
         this.period = new WorkingTimeRequestPeriod(from, to);
     }
+
+    public LocalTime from() {
+        return period.from();
+    }
+
+    public LocalTime to() {
+        return period.to();
+    }
+
+    public LocalDate atDay() {
+        return atDay;
+    }
 }
