@@ -33,7 +33,7 @@ public class JdbcEmployeeFinder implements EmployeeFinder {
        return jdbcTemplate.query(SearchCriteriaBuilderService.appendCriteria(sql, criteria), new EmployeeWithPersonalDataRowMapper());
     }
 
-    private class EmployeeWithPersonalDataRowMapper implements RowMapper<EmployeeWithPersonalData> {
+    private static class EmployeeWithPersonalDataRowMapper implements RowMapper<EmployeeWithPersonalData> {
 
         @Override
         public EmployeeWithPersonalData mapRow(ResultSet rs, int rowNum) throws SQLException {
