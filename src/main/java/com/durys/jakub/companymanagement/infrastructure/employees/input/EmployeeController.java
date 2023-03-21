@@ -7,6 +7,7 @@ import com.durys.jakub.companymanagement.infrastructure.employees.input.model.Em
 import com.durys.jakub.companymanagement.infrastructure.employees.input.model.EmployeePersonalDataDTO;
 import com.durys.jakub.companymanagement.readmodel.employees.EmployeeFinder;
 import com.durys.jakub.companymanagement.readmodel.employees.EmployeeWithPersonalData;
+import com.durys.jakub.companymanagement.readmodel.shared.SearchCriteria;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -68,15 +69,15 @@ class EmployeeController {
         );
     }
 
-    
+
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Employees with personal data")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Personal data successfully changed")
     })
-    ResponseEntity<Collection<EmployeeWithPersonalData>> employeesWithPersonalData() {
-        return ResponseEntity.ok(employeeFinder.findEmployeesWithPersonalData(null));
+    ResponseEntity<Collection<EmployeeWithPersonalData>> employeesWithPersonalData(SearchCriteria searchCriteria) {
+        return ResponseEntity.ok(employeeFinder.findEmployeesWithPersonalData(searchCriteria));
     }
 
 }
