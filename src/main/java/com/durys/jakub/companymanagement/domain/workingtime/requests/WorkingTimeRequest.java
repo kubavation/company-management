@@ -5,33 +5,39 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public abstract class WorkingTimeRequest {
 
-    private final WorkingTimeRequestId requestId;
-    private final EmployeeId authorId;
-    private final LocalDate atDay;
-    private final WorkingTimeRequestPeriod period;
+public interface WorkingTimeRequest {
+    WorkingTimeRequestId id();
+    EmployeeId authorId();
+    RequestInformation information();
+}
+// abstract class WorkingTimeRequest {
+//
+//     private final WorkingTimeRequestId requestId;
+//     private final EmployeeId authorId;
+//     private final LocalDate atDay;
+//     private final WorkingTimeRequestPeriod period;
+//
+//     protected WorkingTimeRequest(WorkingTimeRequestId requestId, EmployeeId authorId, LocalDate atDay,
+//                                  WorkingTimeRequestPeriod period) {
+//         this.requestId = requestId;
+//         this.authorId = authorId;
+//         this.atDay = atDay;
+//         this.period = period;
+//     }
+//     public static WithId builder() {
+//         return new WorkInProgress();
+//     }
+//
+// }
 
-    protected WorkingTimeRequest(WorkingTimeRequestId requestId, EmployeeId authorId, LocalDate atDay,
-                              WorkingTimeRequestPeriod period) {
-        this.requestId = requestId;
-        this.authorId = authorId;
-        this.atDay = atDay;
-        this.period = period;
-    }
-
-    public static WithId builder() {
-        return new WorkInProgress();
-    }
-
-    public static class WorkInProgress implements WithId, OfType, WithAuthor, WithDay,
+ public class WorkInProgress implements WithId, OfType, WithAuthor, WithDay,
             WithPeriodFrom, WithPeriodTo, Submittable {
 
         private WorkingTimeRequestId requestId;
         private EmployeeId employeeId;
         private LocalDate atDay;
         private LocalTime periodFrom;
-        private LocalTime periodTo;
         private WorkingTimeRequestPeriod period;
         private WorkingTimeRequestType type;
 
@@ -67,8 +73,7 @@ public abstract class WorkingTimeRequest {
 
         @Override
         public Submittable to(LocalTime time) {
-            this.periodTo = time;
-            this.period = new WorkingTimeRequestPeriod(this.periodFrom, this.periodTo);
+            this.period = new WorkingTimeRequestPeriod(this.periodFrom, time);
             return this;
         }
 
@@ -98,31 +103,31 @@ public abstract class WorkingTimeRequest {
         }
     }
 
-    public interface WithId {
+     interface WithId {
         OfType id(WorkingTimeRequestId requestId);
     }
 
-    public interface OfType {
+     interface OfType {
         WithAuthor ofType(WorkingTimeRequestType type);
     }
 
-    public interface WithAuthor {
+     interface WithAuthor {
         WithDay author(EmployeeId employeeId);
     }
 
-    public interface WithDay {
+     interface WithDay {
         WithPeriodFrom at(LocalDate atDay);
     }
 
-    public interface WithPeriodFrom {
+     interface WithPeriodFrom {
         WithPeriodTo from(LocalTime time);
     }
 
-    public interface WithPeriodTo {
+     interface WithPeriodTo {
         Submittable to(LocalTime time);
     }
 
-    public interface Submittable {
+     interface Submittable {
         SubmittedWorkingTimeRequest submit();
     }
 }
