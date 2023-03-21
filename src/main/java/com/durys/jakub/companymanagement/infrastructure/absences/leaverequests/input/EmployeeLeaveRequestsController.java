@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.in_adapters;
+package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.input;
 
 import com.durys.jakub.companymanagement.application.absences.leaverequests.commands.CancelLeaveRequestCommand;
 import com.durys.jakub.companymanagement.application.absences.leaverequests.commands.SendLeaveRequestForAcceptationCommand;
