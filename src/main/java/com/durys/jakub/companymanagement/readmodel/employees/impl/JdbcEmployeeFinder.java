@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 public class JdbcEmployeeFinder implements EmployeeFinder {
@@ -21,10 +22,10 @@ public class JdbcEmployeeFinder implements EmployeeFinder {
     @Override
     public List<EmployeeWithPersonalData> findEmployeesWithPersonalData(SearchCriteria criteria) {
 
-        String sql = "SELECT e.id employeeId, pd.first_name firstName, pd.last_name lastName," +
-                "pd.gender gender, pd.birthday_date birthdayDate," +
-                "d.department_id departmentId, d.department_name departmentName," +
-                "d.department_shortcut departmentShortcut, d.department_path departmentPath" +
+        String sql = "SELECT e.id, pd.first_name, pd.last_name," +
+                "pd.gender, pd.birthday_date," +
+                "d.department_id, d.department_name," +
+                "d.department_shortcut, d.department_path" +
                 " FROM CM_EMPLOYEE e" +
                 " INNER JOIN CM_EMPLOYEE_PERSONAL_DATA pd on pd.employee_id = e.id " +
                 " LEFT JOIN CM_EMPLOYEE_DEPARTMENT d on d.id = e.department_id ";
@@ -36,7 +37,17 @@ public class JdbcEmployeeFinder implements EmployeeFinder {
 
         @Override
         public EmployeeWithPersonalData mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return null; //TODO IMPL
+            return EmployeeWithPersonalData.builder()
+                    .employeeId(UUID.fromString(rs.getString("id")))
+                    .firstName(rs.getString("first_name"))
+                    .lastName(rs.getString("last_name"))
+                    .gender(rs.getString("gender"))
+                    .birthdayDate(rs.getDate("birthday_date").toLocalDate())
+                    .departmentId(rs.getString("department_id"))
+                    .departmentName(rs.getString("department_name"))
+                    .departmentShortcut(rs.getString("department_shortcut"))
+                    .departmentPath(rs.getString("department_path"))
+                    .build();
         }
     }
 }
