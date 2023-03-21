@@ -76,7 +76,7 @@ class EmployeeController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Personal data successfully changed")
     })
-    ResponseEntity<Collection<EmployeeWithPersonalData>> employeesWithPersonalData(SearchCriteria searchCriteria) {
+    ResponseEntity<Collection<EmployeeWithPersonalData>> employeesWithPersonalData(@ApiParam("Search criteria") SearchCriteria searchCriteria) {
         return ResponseEntity.ok(employeeFinder.findEmployeesWithPersonalData(searchCriteria));
     }
 
