@@ -1,10 +1,10 @@
 package com.durys.jakub.companymanagement.readmodel.shared;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class SearchCriteria {
