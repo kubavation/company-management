@@ -16,4 +16,6 @@ public class EmployeeLeaveRequest {
     private LocalDate to;
     private BigDecimal hours;
     private BigDecimal minutes;
+    private String status;
+    private String statusDescription;
 }
