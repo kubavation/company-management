@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SearchCriteria {
-    private Integer pageNumber;
-    private Integer itemsPerPage;
+    private Integer pageNumber = 1;
+    private Integer itemsPerPage = 20;
     private String orderBy;
     private boolean ascending;
 }
