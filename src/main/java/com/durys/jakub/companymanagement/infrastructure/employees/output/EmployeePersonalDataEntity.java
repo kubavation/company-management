@@ -29,6 +29,5 @@ public class EmployeePersonalDataEntity {
     private String gender;
 
     @Convert(converter = StatusDBConverter.class)
-    @Column(name = "STATUS")
     private Status status = Status.ACTIVE;
 }

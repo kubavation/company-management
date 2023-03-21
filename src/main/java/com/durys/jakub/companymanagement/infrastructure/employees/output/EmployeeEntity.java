@@ -31,6 +31,5 @@ public class EmployeeEntity {
     private EmployeeDepartmentEntity department;
 
     @Convert(converter = StatusDBConverter.class)
-    @Column(name = "STATUS")
     private Status status = Status.ACTIVE;
 }
