@@ -2,7 +2,7 @@ package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.commons.AggregateAssembler;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
-import com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.out_adapters.LeaveRequestEntity;
+import com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.output.LeaveRequestEntity;
 import org.springframework.stereotype.Component;
 
 @Component

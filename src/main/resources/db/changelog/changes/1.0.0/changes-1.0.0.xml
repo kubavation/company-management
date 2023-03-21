@@ -10,4 +10,5 @@
     <include file="employee/create-employee-table.xml"  relativeToChangelogFile="true" />
     <include file="employee/create-employee-personal-data-table.xml"  relativeToChangelogFile="true" />
     <include file="employee/create-employee-department-table.xml"  relativeToChangelogFile="true" />
+    <include file="leaverequest/create-leave-request-table.xml"  relativeToChangelogFile="true" />
 </databaseChangeLog>
