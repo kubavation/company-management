@@ -5,8 +5,7 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class WorkInProgress implements WithId, OfType, WithAuthor, WithDay,
-        WithPeriodFrom, WithPeriodTo, Submittable {
+public class WorkInProgress implements WithId, OfType, WithAuthor, WithDay, WithPeriodFrom, WithPeriodTo, Submittable {
 
     private WorkingTimeRequestId requestId;
     private EmployeeId employeeId;
@@ -53,9 +52,7 @@ public class WorkInProgress implements WithId, OfType, WithAuthor, WithDay,
 
     @Override
     public SubmittedWorkingTimeRequest submit() {
-        //todo
-        return null;
-      //  return new SubmittedWorkingTimeRequest(WorkingTimeRequestFactory.fromWorkInProgress(this));
+        return new SubmittedWorkingTimeRequest(WorkingTimeRequestFactory.fromWorkInProgress(this));
     }
 
     WorkingTimeRequestId getRequestId() {
