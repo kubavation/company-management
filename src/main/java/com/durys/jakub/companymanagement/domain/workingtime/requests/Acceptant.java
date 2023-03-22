@@ -10,4 +10,14 @@ import java.util.UUID;
 public class Acceptant {
     private final UUID acceptantId;
     private final String name;
+
+    public AcceptedWorkingTimeRequest accept(SentForAcceptationWorkingTimeRequest request) {
+        return new AcceptedWorkingTimeRequest(request);
+    }
+
+    public RejectedWorkingTimeRequest reject(SentForAcceptationWorkingTimeRequest request) {
+        return new RejectedWorkingTimeRequest(request);
+    }
+
+
 }
