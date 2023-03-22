@@ -2,12 +2,30 @@ package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 
-import java.time.LocalDate;
+public class WorkOffRequest implements WorkingTimeRequest {
 
-public class WorkOffRequest extends WorkingTimeRequest {
+    private final WorkingTimeRequestId id;
+    private final EmployeeId authorId;
+    private final RequestInformation information;
 
-    public WorkOffRequest(WorkingTimeRequestId requestId, EmployeeId authorId, LocalDate atDay, WorkingTimeRequestPeriod period) {
-        super(requestId, authorId, atDay, period);
+    public WorkOffRequest(WorkingTimeRequestId id, EmployeeId authorId, RequestInformation information) {
+        this.id = id;
+        this.authorId = authorId;
+        this.information = information;
     }
 
+    @Override
+    public WorkingTimeRequestId id() {
+        return id;
+    }
+
+    @Override
+    public EmployeeId authorId() {
+        return authorId;
+    }
+
+    @Override
+    public RequestInformation information() {
+        return information;
+    }
 }

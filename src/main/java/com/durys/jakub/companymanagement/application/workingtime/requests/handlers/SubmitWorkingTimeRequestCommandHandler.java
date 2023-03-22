@@ -20,8 +20,8 @@ public class SubmitWorkingTimeRequestCommandHandler implements CommandHandler<Su
     @Override
     public void handle(SubmitWorkingTimeRequestCommand command) {
 
-        SubmittedWorkingTimeRequest request = WorkingTimeRequest.builder()
-                    .id(new WorkingTimeRequestId(UUID.randomUUID()))
+        SubmittedWorkingTimeRequest request = WorkingTimeRequest
+                .builder(new WorkingTimeRequestId(UUID.randomUUID()))
                     .ofType(command.type())
                     .author(command.employeeId())
                     .at(command.day())

@@ -5,7 +5,8 @@ import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class WorkInProgress implements WithId, OfType, WithAuthor, WithDay, WithPeriodFrom, WithPeriodTo, Submittable {
+public class WorkInProgress implements WorkingTimeRequest.WithId, WorkingTimeRequest.OfType, WorkingTimeRequest.WithAuthor,
+        WorkingTimeRequest.WithDay, WorkingTimeRequest.WithPeriodFrom, WorkingTimeRequest.WithPeriodTo, WorkingTimeRequest.Submittable {
 
     private WorkingTimeRequestId requestId;
     private EmployeeId employeeId;
@@ -14,14 +15,18 @@ public class WorkInProgress implements WithId, OfType, WithAuthor, WithDay, With
     private WorkingTimeRequestPeriod period;
     private WorkingTimeRequestType type;
 
+    public static WorkingTimeRequest.OfType builder(WorkingTimeRequestId requestId) {
+        return new WorkInProgress().id(requestId);
+    }
+
     @Override
-    public OfType id(WorkingTimeRequestId requestId) {
+    public WorkingTimeRequest.OfType id(WorkingTimeRequestId requestId) {
         this.requestId = requestId;
         return this;
     }
 
     @Override
-    public WithAuthor ofType(WorkingTimeRequestType type) {
+    public WorkingTimeRequest.WithAuthor ofType(WorkingTimeRequestType type) {
         this.type = type;
         return this;
     }
@@ -45,7 +50,7 @@ public class WorkInProgress implements WithId, OfType, WithAuthor, WithDay, With
     }
 
     @Override
-    public Submittable to(LocalTime time) {
+    public WorkingTimeRequest.Submittable to(LocalTime time) {
         this.period = new WorkingTimeRequestPeriod(this.periodFrom, time);
         return this;
     }
@@ -74,32 +79,6 @@ public class WorkInProgress implements WithId, OfType, WithAuthor, WithDay, With
     public WorkingTimeRequestType getType() {
         return type;
     }
+
 }
 
-interface WithId {
-    OfType id(WorkingTimeRequestId requestId);
-}
-
-interface OfType {
-    WithAuthor ofType(WorkingTimeRequestType type);
-}
-
-interface WithAuthor {
-    WithDay author(EmployeeId employeeId);
-}
-
-interface WithDay {
-    WithPeriodFrom at(LocalDate atDay);
-}
-
-interface WithPeriodFrom {
-    WithPeriodTo from(LocalTime time);
-}
-
-interface WithPeriodTo {
-    Submittable to(LocalTime time);
-}
-
-interface Submittable {
-    SubmittedWorkingTimeRequest submit();
-}
