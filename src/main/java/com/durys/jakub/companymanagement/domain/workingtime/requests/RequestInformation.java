@@ -14,6 +14,11 @@ public class RequestInformation {
         this.period = new WorkingTimeRequestPeriod(from, to);
     }
 
+    public RequestInformation(@NonNull LocalDate atDay, @NonNull WorkingTimeRequestPeriod period) {
+        this.atDay = atDay;
+        this.period = period;
+    }
+
     public LocalTime from() {
         return period.from();
     }
