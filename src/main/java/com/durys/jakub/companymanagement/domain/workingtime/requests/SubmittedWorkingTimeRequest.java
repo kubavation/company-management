@@ -1,5 +1,7 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 
@@ -29,6 +31,7 @@ public record SubmittedWorkingTimeRequest(WorkingTimeRequest request) implements
     }
 
 
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public class WithAcceptant {
 
         public SentForAcceptationWorkingTimeRequest to(Acceptant acceptant) {
