@@ -21,7 +21,7 @@ public class SentForAcceptationWorkingTimeRequest implements RequestInWorkflow, 
         return new AcceptedWorkingTimeRequest(request);
     }
 
-    public RejectedWorkingTimeRequest reject() {
+    RejectedWorkingTimeRequest markAsRejected() {
         return new RejectedWorkingTimeRequest(request);
     }
 
