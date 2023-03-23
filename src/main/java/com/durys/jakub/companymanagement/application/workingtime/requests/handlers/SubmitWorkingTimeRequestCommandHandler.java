@@ -3,10 +3,9 @@ package com.durys.jakub.companymanagement.application.workingtime.requests.handl
 import com.durys.jakub.companymanagement.application.workingtime.requests.SubmitWorkingTimeRequestCommand;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.SubmittedWorkingTimeRequest;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequest;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequestId;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequestRepository;
+import com.durys.jakub.companymanagement.domain.employees.model.Employee;
+import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
+import com.durys.jakub.companymanagement.domain.workingtime.requests.*;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
@@ -16,19 +15,24 @@ import java.util.UUID;
 public class SubmitWorkingTimeRequestCommandHandler implements CommandHandler<SubmitWorkingTimeRequestCommand> {
 
     private final WorkingTimeRequestRepository workingTimeRequestRepository;
+    private final EmployeeRepository employeeRepository;
 
     @Override
     public void handle(SubmitWorkingTimeRequestCommand command) {
 
-        SubmittedWorkingTimeRequest request = WorkingTimeRequest
+        Author author = Author.from(employeeRepository.load(command.employeeId()));
+
+        WorkInProgress workInProgress = WorkingTimeRequest
                 .builder(new WorkingTimeRequestId(UUID.randomUUID()))
                     .ofType(command.type())
                     .author(command.employeeId())
                     .at(command.day())
                         .from(command.from())
                         .to(command.to())
-                    .submit();
+                    .save();
 
-        workingTimeRequestRepository.save(request);
+        SubmittedWorkingTimeRequest submittedRequest = author.submit(workInProgress);
+
+        workingTimeRequestRepository.save(submittedRequest);
     }
 }

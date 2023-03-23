@@ -24,9 +24,12 @@ public class SendWorkingTimeRequestForAcceptationCommandHandler implements Comma
             throw new UnsupportedOperationException();
         }
 
-        Employee acceptant = employeeRepository.load(command.acceptantId());
+        Author author = workingTimeRequest.author();
 
-        SentForAcceptationWorkingTimeRequest sentRequest = workingTimeRequest.sendTo(acceptant);
+        Acceptant acceptant = Acceptant.from(employeeRepository.load(command.acceptantId()));
+
+        SentForAcceptationWorkingTimeRequest sentRequest = author.send(workingTimeRequest).to(acceptant);
+
         workingTimeRequestRepository.save(sentRequest);
     }
 }
