@@ -44,4 +44,8 @@ public class SentForAcceptationWorkingTimeRequest implements RequestInWorkflow, 
     public RequestInformation information() {
         return request.information();
     }
+
+    public EmployeeId acceptantId() {
+        return this.acceptantId;
+    }
 }
