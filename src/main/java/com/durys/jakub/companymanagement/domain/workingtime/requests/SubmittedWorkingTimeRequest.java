@@ -24,7 +24,7 @@ public record SubmittedWorkingTimeRequest(WorkingTimeRequest request) implements
     }
 
     @Override
-    public EmployeeId author() {
+    public Author author() {
         return request.author();
     }
 
