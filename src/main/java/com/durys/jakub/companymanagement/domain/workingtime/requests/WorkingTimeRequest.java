@@ -7,7 +7,7 @@ import java.time.LocalTime;
 
 public interface WorkingTimeRequest {
     WorkingTimeRequestId id();
-    EmployeeId authorId();
+    Author author();
     RequestInformation information();
 
     static OfType builder(WorkingTimeRequestId requestId) {
