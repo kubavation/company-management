@@ -39,6 +39,6 @@ public interface WorkingTimeRequest {
     }
 
     interface Submittable {
-        SubmittedWorkingTimeRequest submit();
+        WorkInProgress save();
     }
 }
