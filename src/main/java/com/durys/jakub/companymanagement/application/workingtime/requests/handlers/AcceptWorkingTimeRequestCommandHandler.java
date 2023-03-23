@@ -3,10 +3,7 @@ package com.durys.jakub.companymanagement.application.workingtime.requests.handl
 import com.durys.jakub.companymanagement.application.workingtime.requests.AcceptWorkingTimeRequestCommand;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.AcceptedWorkingTimeRequest;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.RequestInWorkflow;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.SentForAcceptationWorkingTimeRequest;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequestRepository;
+import com.durys.jakub.companymanagement.domain.workingtime.requests.*;
 import lombok.RequiredArgsConstructor;
 
 @CommandHandling
@@ -24,7 +21,10 @@ public class AcceptWorkingTimeRequestCommandHandler implements CommandHandler<Ac
             throw new UnsupportedOperationException();
         }
 
-        AcceptedWorkingTimeRequest rejectedRequest = workingTimeRequest.accept();
-        workingTimeRequestRepository.save(rejectedRequest);
+        Acceptant acceptant = workingTimeRequest.acceptant();
+
+        AcceptedWorkingTimeRequest acceptedRequest = acceptant.accept(workingTimeRequest);
+
+        workingTimeRequestRepository.save(acceptedRequest);
     }
 }
