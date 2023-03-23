@@ -19,8 +19,8 @@ public record Author(UUID authorId) {
         return new CancelledWorkingTimeRequest(requestInWorkflow.request());
     }
 
-    public SubmittedWorkingTimeRequest.WithAcceptant send(SubmittedWorkingTimeRequest request) {
-        return request.send();
+    public SubmittedWorkingTimeRequest.NeedsAcceptant send(SubmittedWorkingTimeRequest request) {
+        return request.needsAcceptant();
     }
 
     public static Author from(Employee employee) {

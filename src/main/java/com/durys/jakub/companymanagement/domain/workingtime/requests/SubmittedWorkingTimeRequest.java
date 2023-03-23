@@ -11,8 +11,8 @@ public record SubmittedWorkingTimeRequest(WorkingTimeRequest request) implements
         this.request = request;
     }
 
-    WithAcceptant send() {
-        return new WithAcceptant();
+    NeedsAcceptant needsAcceptant() {
+        return new NeedsAcceptant();
     }
 
     @Override
@@ -32,7 +32,7 @@ public record SubmittedWorkingTimeRequest(WorkingTimeRequest request) implements
 
 
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
-    public class WithAcceptant {
+    public class NeedsAcceptant {
 
         public SentForAcceptationWorkingTimeRequest to(Acceptant acceptant) {
             return new SentForAcceptationWorkingTimeRequest(request, acceptant);
