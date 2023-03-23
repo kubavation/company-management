@@ -16,7 +16,7 @@ public class Acceptant {
     }
 
     public RejectedWorkingTimeRequest reject(SentForAcceptationWorkingTimeRequest request) {
-        return request.markAsRejected();
+        return new RejectedWorkingTimeRequest(request);
     }
 
 
