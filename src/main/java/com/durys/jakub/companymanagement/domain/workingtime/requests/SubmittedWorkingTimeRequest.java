@@ -12,10 +12,6 @@ public record SubmittedWorkingTimeRequest(WorkingTimeRequest request) implements
         return new SentForAcceptationWorkingTimeRequest(request, acceptant);
     }
 
-    public CancelledWorkingTimeRequest cancel() {
-        return new CancelledWorkingTimeRequest(request);
-    }
-
     @Override
     public WorkingTimeRequestId id() {
         return request.id();
