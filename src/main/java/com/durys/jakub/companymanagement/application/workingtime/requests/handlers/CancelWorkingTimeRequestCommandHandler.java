@@ -14,13 +14,13 @@ public class CancelWorkingTimeRequestCommandHandler implements CommandHandler<Ca
 
     @Override
     public void handle(CancelWorkingTimeRequestCommand command) {
+
         RequestInWorkflow request = workingTimeRequestRepository.load(command.requestId());
+        
+        Author author = request.author();
 
-        if (!(request instanceof SubmittedWorkingTimeRequest workingTimeRequest)) {
-            throw new UnsupportedOperationException();
-        }
+        CancelledWorkingTimeRequest canceledRequest = author.cancel(request);
 
-        CancelledWorkingTimeRequest rejectedRequest = workingTimeRequest.cancel();
-        workingTimeRequestRepository.save(rejectedRequest);
+        workingTimeRequestRepository.save(canceledRequest);
     }
 }
