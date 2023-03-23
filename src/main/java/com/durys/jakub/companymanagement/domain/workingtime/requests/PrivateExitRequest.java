@@ -1,17 +1,14 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import java.time.LocalDate;
-
 public class PrivateExitRequest implements WorkingTimeRequest {
 
     private final WorkingTimeRequestId id;
-    private final EmployeeId authorId;
+    private final Author author;
     private final RequestInformation information;
 
-    public PrivateExitRequest(WorkingTimeRequestId id, EmployeeId authorId, RequestInformation information) {
+    public PrivateExitRequest(WorkingTimeRequestId id, Author author, RequestInformation information) {
         this.id = id;
-        this.authorId = authorId;
+        this.author = author;
         this.information = information;
     }
 
@@ -21,8 +18,8 @@ public class PrivateExitRequest implements WorkingTimeRequest {
     }
 
     @Override
-    public EmployeeId authorId() {
-        return authorId;
+    public Author author() {
+        return author;
     }
 
     @Override

@@ -56,8 +56,8 @@ public class WorkInProgress implements WorkingTimeRequest.WithId, WorkingTimeReq
     }
 
     @Override
-    public SubmittedWorkingTimeRequest submit() {
-        return new SubmittedWorkingTimeRequest(WorkingTimeRequestFactory.fromWorkInProgress(this));
+    public WorkInProgress save() {
+        return this;
     }
 
     WorkingTimeRequestId getRequestId() {

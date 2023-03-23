@@ -1,7 +1,5 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
-import com.durys.jakub.companymanagement.domain.employees.model.Employee;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import lombok.NonNull;
 
 public record SubmittedWorkingTimeRequest(WorkingTimeRequest request) implements RequestInWorkflow, WorkingTimeRequest {
@@ -10,8 +8,8 @@ public record SubmittedWorkingTimeRequest(WorkingTimeRequest request) implements
         this.request = request;
     }
 
-    public SentForAcceptationWorkingTimeRequest sendTo(Employee acceptant) {
-        return new SentForAcceptationWorkingTimeRequest(request, acceptant.employeeId());
+    public SentForAcceptationWorkingTimeRequest sendTo(Acceptant acceptant) {
+        return new SentForAcceptationWorkingTimeRequest(request, acceptant);
     }
 
     public CancelledWorkingTimeRequest cancel() {
@@ -24,8 +22,8 @@ public record SubmittedWorkingTimeRequest(WorkingTimeRequest request) implements
     }
 
     @Override
-    public EmployeeId authorId() {
-        return request.authorId();
+    public Author author() {
+        return request.author();
     }
 
     @Override

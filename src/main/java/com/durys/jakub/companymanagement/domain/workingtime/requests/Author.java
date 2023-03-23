@@ -1,14 +1,22 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
 import java.util.UUID;
 
-@RequiredArgsConstructor
-@Getter
-public class Author {
-    private final UUID authorId;
+public record Author(UUID authorId) {
+
+
+    public SubmittedWorkingTimeRequest submit(WorkInProgress submittable) {
+        return new SubmittedWorkingTimeRequest(WorkingTimeRequestFactory.fromWorkInProgress(submittable));
+    }
+
+    public CancelledWorkingTimeRequest cancel(RequestInWorkflow requestInWorkflow) {
+
+        if (requestInWorkflow instanceof AcceptedWorkingTimeRequest) {
+            throw new UnsupportedOperationException();
+        }
+
+        return new CancelledWorkingTimeRequest(requestInWorkflow.request());
+    }
 
 
 }
