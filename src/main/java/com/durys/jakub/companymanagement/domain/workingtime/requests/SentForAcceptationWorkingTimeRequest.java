@@ -6,11 +6,11 @@ import lombok.NonNull;
 public class SentForAcceptationWorkingTimeRequest implements RequestInWorkflow, WorkingTimeRequest {
 
     private final WorkingTimeRequest request;
-    private EmployeeId acceptantId;
+    private Acceptant acceptant;
 
-    public SentForAcceptationWorkingTimeRequest(@NonNull WorkingTimeRequest request, @NonNull EmployeeId acceptantId) {
+    public SentForAcceptationWorkingTimeRequest(@NonNull WorkingTimeRequest request, @NonNull Acceptant acceptant) {
         this.request = request;
-        this.acceptantId = acceptantId;
+        this.acceptant = acceptant;
     }
 
     public SentForAcceptationWorkingTimeRequest(@NonNull WorkingTimeRequest request) {
@@ -21,7 +21,7 @@ public class SentForAcceptationWorkingTimeRequest implements RequestInWorkflow, 
         return new AcceptedWorkingTimeRequest(request);
     }
 
-    public RejectedWorkingTimeRequest reject() {
+    RejectedWorkingTimeRequest markAsRejected() {
         return new RejectedWorkingTimeRequest(request);
     }
 
@@ -43,5 +43,9 @@ public class SentForAcceptationWorkingTimeRequest implements RequestInWorkflow, 
     @Override
     public RequestInformation information() {
         return request.information();
+    }
+
+    public Acceptant acceptant() {
+        return acceptant;
     }
 }
