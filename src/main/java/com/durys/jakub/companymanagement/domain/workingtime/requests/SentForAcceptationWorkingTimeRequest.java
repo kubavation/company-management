@@ -36,8 +36,8 @@ public class SentForAcceptationWorkingTimeRequest implements RequestInWorkflow, 
     }
 
     @Override
-    public EmployeeId authorId() {
-        return request.authorId();
+    public EmployeeId author() {
+        return request.author();
     }
 
     @Override

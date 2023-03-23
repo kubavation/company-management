@@ -1,16 +1,14 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-
 public class WorkOffRequest implements WorkingTimeRequest {
 
     private final WorkingTimeRequestId id;
-    private final EmployeeId authorId;
     private final RequestInformation information;
+    private final Author author;
 
-    public WorkOffRequest(WorkingTimeRequestId id, EmployeeId authorId, RequestInformation information) {
+    public WorkOffRequest(WorkingTimeRequestId id, Author author, RequestInformation information) {
         this.id = id;
-        this.authorId = authorId;
+        this.author = author;
         this.information = information;
     }
 
@@ -20,8 +18,8 @@ public class WorkOffRequest implements WorkingTimeRequest {
     }
 
     @Override
-    public EmployeeId authorId() {
-        return authorId;
+    public Author author() {
+        return author;
     }
 
     @Override
