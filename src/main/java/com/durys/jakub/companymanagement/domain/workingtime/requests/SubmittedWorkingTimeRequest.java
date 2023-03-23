@@ -2,14 +2,15 @@ package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
 import lombok.NonNull;
 
+
 public record SubmittedWorkingTimeRequest(WorkingTimeRequest request) implements RequestInWorkflow, WorkingTimeRequest {
 
     public SubmittedWorkingTimeRequest(@NonNull WorkingTimeRequest request) {
         this.request = request;
     }
 
-    public SentForAcceptationWorkingTimeRequest sendTo(Acceptant acceptant) {
-        return new SentForAcceptationWorkingTimeRequest(request, acceptant);
+    WithAcceptant send() {
+        return new WithAcceptant();
     }
 
     @Override
@@ -25,5 +26,13 @@ public record SubmittedWorkingTimeRequest(WorkingTimeRequest request) implements
     @Override
     public RequestInformation information() {
         return request.information();
+    }
+
+
+    public class WithAcceptant {
+
+        public SentForAcceptationWorkingTimeRequest to(Acceptant acceptant) {
+            return new SentForAcceptationWorkingTimeRequest(request, acceptant);
+        }
     }
 }
