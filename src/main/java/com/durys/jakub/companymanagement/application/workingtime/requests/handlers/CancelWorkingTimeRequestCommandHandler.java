@@ -16,7 +16,7 @@ public class CancelWorkingTimeRequestCommandHandler implements CommandHandler<Ca
     public void handle(CancelWorkingTimeRequestCommand command) {
 
         RequestInWorkflow request = workingTimeRequestRepository.load(command.requestId());
-        
+
         Author author = request.author();
 
         CancelledWorkingTimeRequest canceledRequest = author.cancel(request);

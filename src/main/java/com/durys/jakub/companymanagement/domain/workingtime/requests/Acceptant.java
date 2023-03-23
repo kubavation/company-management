@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
+import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -19,5 +20,8 @@ public class Acceptant {
         return new RejectedWorkingTimeRequest(request);
     }
 
+    public static Acceptant from(Employee employee) {
+        return new Acceptant(employee.employeeId().value(), employee.name());
+    }
 
 }
