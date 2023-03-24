@@ -19,8 +19,10 @@ public class WorkingTimeRequestFactory {
 
     public static WorkingTimeRequest fromWorkInProgress(WorkInProgress wip) {
         return switch (wip.getType()) {
-            case PRIVATE_EXIT -> new PrivateExitRequest(wip.getRequestId(), wip.getEmployeeId(), new RequestInformation(wip.getAtDay(), wip.getPeriod()));
-            case WORK_OFF -> new WorkOffRequest(wip.getRequestId(), wip.getEmployeeId(), new RequestInformation(wip.getAtDay(), wip.getPeriod()));
+            case PRIVATE_EXIT -> new PrivateExitRequest(wip.getRequestId(),
+                    new Author(wip.getEmployeeId().value()), new RequestInformation(wip.getAtDay(), wip.getPeriod()));
+            case WORK_OFF -> new WorkOffRequest(wip.getRequestId(),
+                    new Author(wip.getEmployeeId().value()), new RequestInformation(wip.getAtDay(), wip.getPeriod()));
         };
     }
 
