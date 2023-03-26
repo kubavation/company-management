@@ -9,8 +9,6 @@ public class WorkingTimeRequestService {
 
     private final WorkingTimeRequestRepository requestRepository;
 
-    public RequestInWorkflow load(WorkingTimeRequestId requestId, WorkingTimeRequestStatus status) {
-        return WorkingTimeRequestFactory.instanceFrom(requestRepository.load(requestId), status);
-    }
+
 
 }
