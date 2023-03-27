@@ -32,7 +32,7 @@ public class WorkingTimeRequestAcceptedListener {
 
     private static Consumer<Schedule> handlerFrom(WorkingTimeRequestAcceptedEvent event) {
 
-        WorkDayEventPeriod period = new WorkDayEventPeriod(event.period().from(), event.period().to());
+        WorkDayEventPeriod period = new WorkDayEventPeriod(event.from(), event.to());
 
         return switch (event.type()) {
             case PRIVATE_EXIT -> (schedule -> {
