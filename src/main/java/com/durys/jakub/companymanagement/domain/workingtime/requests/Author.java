@@ -12,11 +12,9 @@ public record Author(UUID authorId) {
 
     public CancelledWorkingTimeRequest cancel(RequestInWorkflow requestInWorkflow) {
 
-        if (requestInWorkflow instanceof AcceptedWorkingTimeRequest) {
-            throw new UnsupportedOperationException();
-        }
+        RequestInWorkflow cancelable = WorkingTimeRequestService.asCancelable(requestInWorkflow);
 
-        return new CancelledWorkingTimeRequest(requestInWorkflow.request());
+        return new CancelledWorkingTimeRequest(cancelable.request());
     }
 
     public SubmittedWorkingTimeRequest.NeedsAcceptant send(SubmittedWorkingTimeRequest request) {
