@@ -1,10 +1,21 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
 import com.durys.jakub.companymanagement.commons.domain.DomainService;
+import com.durys.jakub.companymanagement.commons.events.publisher.DomainEventPublisher;
+import com.durys.jakub.companymanagement.domain.workingtime.event.WorkingTimeRequestAcceptedEvent;
 import com.durys.jakub.companymanagement.domain.workingtime.requests.exception.InvalidActionOnWorkingTimeRequestException;
+import lombok.RequiredArgsConstructor;
 
 @DomainService
+@RequiredArgsConstructor
 public class WorkingTimeRequestService {
+
+    private final DomainEventPublisher eventPublisher;
+
+
+    public void affectWorkingTimeSchedule(WorkingTimeRequestAcceptedEvent event) {
+        eventPublisher.publish(event);
+    }
 
 
     public static SubmittedWorkingTimeRequest asSendable(RequestInWorkflow request) {
