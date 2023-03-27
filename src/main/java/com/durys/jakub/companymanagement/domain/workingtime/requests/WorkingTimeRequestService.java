@@ -14,4 +14,13 @@ public class WorkingTimeRequestService {
         return sentRequest;
     }
 
+    public static SentForAcceptationWorkingTimeRequest asRejectable(RequestInWorkflow request) {
+
+        if (!(request instanceof SentForAcceptationWorkingTimeRequest rejectableRequest)) {
+            throw new UnsupportedOperationException();
+        }
+
+        return rejectableRequest;
+    }
+
 }
