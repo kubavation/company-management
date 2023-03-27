@@ -24,7 +24,7 @@ public class Acceptant {
                 .instanceOf(WorkingTimeRequestService.class)
                 .affectWorkingTimeSchedule(
                         new WorkingTimeRequestAcceptedEvent(
-                            new ScheduleId(new EmployeeId(sentRequest.author().authorId()), sentRequest.information().atDay()),
+                            ScheduleId.from(new EmployeeId(sentRequest.author().authorId()), sentRequest.information().atDay()),
                             WorkingTimeRequestType.from(sentRequest.request().getClass()),
                             sentRequest.information().period())
                 );

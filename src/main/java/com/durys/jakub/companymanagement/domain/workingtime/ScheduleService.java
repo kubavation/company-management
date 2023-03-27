@@ -3,11 +3,13 @@ package com.durys.jakub.companymanagement.domain.workingtime;
 import com.durys.jakub.companymanagement.commons.domain.DomainService;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.billingperiod.*;
+import com.durys.jakub.companymanagement.domain.workingtime.event.WorkingTimeRequestAcceptedEvent;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.function.Consumer;
 
 @DomainService
 @RequiredArgsConstructor
@@ -41,6 +43,30 @@ public class ScheduleService {
             case THREE_MONTHS -> new ThreeMonthsBillingStrategy().periodFrom(atDay);
             case ONE_MONTH -> new OneMonthsBillingStrategy().periodFrom(atDay);
             case FOUR_MONTHS -> new FourMonthsBillingStrategy().periodFrom(atDay);
+        };
+    }
+
+
+    public Consumer<Schedule> handlerFrom(WorkingTimeRequestAcceptedEvent event) {
+
+        WorkDayEventPeriod period = new WorkDayEventPeriod(event.from(), event.to());
+
+        return switch (event.type()) {
+            case PRIVATE_EXIT -> (schedule -> {
+
+                if (!(schedule instanceof WorkDay workDay)) {
+                    throw new UnsupportedOperationException();
+                }
+
+                workDay.assignPrivateExit(period);
+            });
+            case WORK_OFF -> (schedule -> {
+                if (!isWorkOffApplicable(event.employeeId(), event.atDay(), Duration.ofMinutes(event.period().minutes()))) {
+                    throw new RuntimeException(); //todo
+                }
+
+                schedule.assignWorkOff(period);
+            });
         };
     }
 
