@@ -33,4 +33,12 @@ public class WorkingTimeRequestService {
         return rejectableRequest;
     }
 
+    public static RequestInWorkflow asCancelable(RequestInWorkflow request) {
+        if (request instanceof AcceptedWorkingTimeRequest) {
+            throw new UnsupportedOperationException();
+        }
+
+        return request;
+    }
+
 }
