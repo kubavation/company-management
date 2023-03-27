@@ -15,15 +15,11 @@ public class AcceptWorkingTimeRequestCommandHandler implements CommandHandler<Ac
     @Override
     public void handle(AcceptWorkingTimeRequestCommand command) {
 
-        RequestInWorkflow request = workingTimeRequestRepository.load(command.requestId());
+        SentForAcceptationWorkingTimeRequest request
+                = WorkingTimeRequestService.asAcceptable(workingTimeRequestRepository.load(command.requestId()));
 
-        if (!(request instanceof SentForAcceptationWorkingTimeRequest workingTimeRequest)) {
-            throw new UnsupportedOperationException();
-        }
-
-        Acceptant acceptant = workingTimeRequest.acceptant();
-
-        AcceptedWorkingTimeRequest acceptedRequest = acceptant.accept(workingTimeRequest);
+        Acceptant acceptant = request.acceptant();
+        AcceptedWorkingTimeRequest acceptedRequest = acceptant.accept(request);
 
         workingTimeRequestRepository.save(acceptedRequest);
     }

@@ -10,5 +10,13 @@ public class WorkingTimeRequestService {
     private final WorkingTimeRequestRepository requestRepository;
 
 
+    public static SentForAcceptationWorkingTimeRequest asAcceptable(RequestInWorkflow request) {
+
+        if (!(request instanceof SentForAcceptationWorkingTimeRequest sentRequest)) {
+            throw new UnsupportedOperationException();
+        }
+
+        return sentRequest;
+    }
 
 }
