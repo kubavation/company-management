@@ -17,16 +17,16 @@ public class Acceptant {
     private final UUID acceptantId;
     private final String name;
 
-    public AcceptedWorkingTimeRequest accept(SentForAcceptationWorkingTimeRequest request) {
-        AcceptedWorkingTimeRequest accepted = new AcceptedWorkingTimeRequest(request);
+    public AcceptedWorkingTimeRequest accept(SentForAcceptationWorkingTimeRequest sentRequest) {
+        AcceptedWorkingTimeRequest accepted = new AcceptedWorkingTimeRequest(sentRequest);
 
         DomainServicesRegistry
                 .instanceOf(WorkingTimeRequestService.class)
                 .affectWorkingTimeSchedule(
                         new WorkingTimeRequestAcceptedEvent(
-                            new ScheduleId(new EmployeeId(request.author().authorId()), request.information().atDay()),
-                            WorkingTimeRequestType.PRIVATE_EXIT, //todo
-                            request.information().period())
+                            new ScheduleId(new EmployeeId(sentRequest.author().authorId()), sentRequest.information().atDay()),
+                            WorkingTimeRequestType.from(sentRequest.request().getClass()),
+                            sentRequest.information().period())
                 );
 
         return accepted;
