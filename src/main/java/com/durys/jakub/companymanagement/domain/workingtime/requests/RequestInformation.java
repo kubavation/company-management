@@ -19,6 +19,10 @@ public class RequestInformation {
         this.period = period;
     }
 
+    public WorkingTimeRequestPeriod period() {
+        return period;
+    }
+
     public LocalTime from() {
         return period.from();
     }
