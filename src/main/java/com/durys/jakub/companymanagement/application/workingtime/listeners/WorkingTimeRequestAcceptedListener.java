@@ -17,6 +17,7 @@ import java.util.function.Function;
 public class WorkingTimeRequestAcceptedListener {
 
     private final ScheduleRepository scheduleRepository;
+    private final ScheduleService scheduleService;
 
     @Transactional
     @DomainEventListener
@@ -24,26 +25,10 @@ public class WorkingTimeRequestAcceptedListener {
 
         Schedule schedule = scheduleRepository.load(event.scheduleId());
 
-        var handler = handlerFrom(event);
+        var handler = scheduleService.handlerFrom(event);
         handler.accept(schedule);
 
         scheduleRepository.save(schedule);
     }
 
-    private static Consumer<Schedule> handlerFrom(WorkingTimeRequestAcceptedEvent event) {
-
-        WorkDayEventPeriod period = new WorkDayEventPeriod(event.from(), event.to());
-
-        return switch (event.type()) {
-            case PRIVATE_EXIT -> (schedule -> {
-
-                if (!(schedule instanceof WorkDay workDay)) {
-                    throw new UnsupportedOperationException();
-                }
-
-                workDay.assignPrivateExit(period);
-            });
-            case WORK_OFF -> (schedule -> schedule.assignWorkOff(period));
-        };
-    }
 }
