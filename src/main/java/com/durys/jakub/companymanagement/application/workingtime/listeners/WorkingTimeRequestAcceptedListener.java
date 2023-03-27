@@ -26,6 +26,8 @@ public class WorkingTimeRequestAcceptedListener {
 
         var handler = handlerFrom(event);
         handler.accept(schedule);
+
+        scheduleRepository.save(schedule);
     }
 
     private static Consumer<Schedule> handlerFrom(WorkingTimeRequestAcceptedEvent event) {
