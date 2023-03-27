@@ -5,6 +5,16 @@ import com.durys.jakub.companymanagement.commons.domain.DomainService;
 @DomainService
 public class WorkingTimeRequestService {
 
+
+    public static SubmittedWorkingTimeRequest asSendable(RequestInWorkflow request) {
+
+        if (!(request instanceof SubmittedWorkingTimeRequest submittedRequest)) {
+            throw new UnsupportedOperationException();
+        }
+
+        return submittedRequest;
+    }
+
     public static SentForAcceptationWorkingTimeRequest asAcceptable(RequestInWorkflow request) {
 
         if (!(request instanceof SentForAcceptationWorkingTimeRequest sentRequest)) {

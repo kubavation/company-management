@@ -17,17 +17,13 @@ public class SendWorkingTimeRequestForAcceptationCommandHandler implements Comma
     @Override
     public void handle(SendWorkingTimeRequestForAcceptationCommand command) {
 
-        RequestInWorkflow request = workingTimeRequestRepository.load(command.requestId());
+        SubmittedWorkingTimeRequest request = WorkingTimeRequestService.asSendable(workingTimeRequestRepository.load(command.requestId()));
 
-        if (!(request instanceof SubmittedWorkingTimeRequest workingTimeRequest)) {
-            throw new UnsupportedOperationException();
-        }
-
-        Author author = workingTimeRequest.author();
+        Author author = request.author();
 
         Acceptant acceptant = Acceptant.from(employeeRepository.load(command.acceptantId()));
 
-        SentForAcceptationWorkingTimeRequest sentRequest = author.send(workingTimeRequest).to(acceptant);
+        SentForAcceptationWorkingTimeRequest sentRequest = author.send(request).to(acceptant);
 
         workingTimeRequestRepository.save(sentRequest);
     }
