@@ -24,12 +24,8 @@ public class WorkingTimeRequestAcceptedListener {
 
         Schedule schedule = scheduleRepository.load(event.scheduleId());
 
-        if (!(schedule instanceof WorkDay workDay)) {
-          throw new UnsupportedOperationException();
-        }
-
         var handler = handlerFrom(event);
-        handler.accept(workDay);
+        handler.accept(schedule);
     }
 
     private static Consumer<Schedule> handlerFrom(WorkingTimeRequestAcceptedEvent event) {
@@ -37,7 +33,14 @@ public class WorkingTimeRequestAcceptedListener {
         WorkDayEventPeriod period = new WorkDayEventPeriod(event.period().from(), event.period().to());
 
         return switch (event.type()) {
-            case PRIVATE_EXIT -> (schedule -> ((WorkDay)schedule).assignPrivateExit(period));
+            case PRIVATE_EXIT -> (schedule -> {
+
+                if (!(schedule instanceof WorkDay workDay)) {
+                    throw new UnsupportedOperationException();
+                }
+
+                workDay.assignPrivateExit(period);
+            });
             case WORK_OFF -> (schedule -> schedule.assignWorkOff(period));
         };
     }
