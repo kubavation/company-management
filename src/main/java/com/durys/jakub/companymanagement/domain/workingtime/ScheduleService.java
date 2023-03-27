@@ -60,7 +60,13 @@ public class ScheduleService {
 
                 workDay.assignPrivateExit(period);
             });
-            case WORK_OFF -> (schedule -> schedule.assignWorkOff(period));
+            case WORK_OFF -> (schedule -> {
+                if (!isWorkOffApplicable(event.employeeId(), event.atDay(), Duration.ofMinutes(event.period().minutes()))) {
+                    throw new RuntimeException(); //todo
+                }
+
+                schedule.assignWorkOff(period);
+            });
         };
     }
 
