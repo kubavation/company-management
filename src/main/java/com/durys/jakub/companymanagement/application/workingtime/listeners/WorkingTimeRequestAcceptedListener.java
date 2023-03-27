@@ -29,16 +29,16 @@ public class WorkingTimeRequestAcceptedListener {
         }
 
         var handler = handlerFrom(event);
-        handler.accept(workDay, event.type());
+        handler.accept(workDay);
     }
 
-    private static BiConsumer<Schedule, WorkingTimeRequestType> handlerFrom(WorkingTimeRequestAcceptedEvent event) {
+    private static Consumer<Schedule> handlerFrom(WorkingTimeRequestAcceptedEvent event) {
 
         WorkDayEventPeriod period = new WorkDayEventPeriod(event.period().from(), event.period().to());
 
         return switch (event.type()) {
-            case PRIVATE_EXIT -> ((schedule, type) -> ((WorkDay)schedule).assignPrivateExit(period));
-            case WORK_OFF -> ((schedule, type) -> schedule.assignWorkOff(period));
+            case PRIVATE_EXIT -> (schedule -> ((WorkDay)schedule).assignPrivateExit(period));
+            case WORK_OFF -> (schedule -> schedule.assignWorkOff(period));
         };
     }
 }
