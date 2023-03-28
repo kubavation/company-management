@@ -49,26 +49,31 @@ public class ScheduleService {
 
     public Consumer<Schedule> handlerFrom(WorkingTimeRequestAcceptedEvent event) {
 
-        WorkDayEventPeriod period = new WorkDayEventPeriod(event.from(), event.to());
-
         return switch (event.type()) {
-            case PRIVATE_EXIT -> (schedule -> {
-
-                if (!(schedule instanceof WorkDay workDay)) {
-                    throw new UnsupportedOperationException();
-                }
-
-                workDay.assignPrivateExit(period);
-            });
-            case WORK_OFF -> (schedule -> {
-                if (!isWorkOffApplicable(event.employeeId(), event.atDay(), Duration.ofMinutes(event.period().minutes()))) {
-                    throw new RuntimeException(); //todo
-                }
-
-                schedule.assignWorkOff(period);
-            });
+            case PRIVATE_EXIT -> privateExitEventHandler(event);
+            case WORK_OFF -> workOffEventHandler(event);
         };
     }
 
+
+    private Consumer<Schedule> privateExitEventHandler(WorkingTimeRequestAcceptedEvent event) {
+
+        return schedule -> {
+            if (!(schedule instanceof WorkDay workDay)) {
+                throw new UnsupportedOperationException();
+            }
+            workDay.assignPrivateExit(new WorkDayEventPeriod(event.from(), event.to()));
+        };
+    }
+
+
+    private Consumer<Schedule> workOffEventHandler(WorkingTimeRequestAcceptedEvent event) {
+        return schedule -> {
+            if (!isWorkOffApplicable(event.employeeId(), event.atDay(), Duration.ofMinutes(event.period().minutes()))) {
+                throw new RuntimeException(); //todo
+            }
+            schedule.assignWorkOff(new WorkDayEventPeriod(event.from(), event.to()));
+        };
+    }
 
 }
