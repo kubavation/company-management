@@ -65,16 +65,14 @@ public class ScheduleService {
 
 
     private Consumer<Schedule> privateExitEventHandler(WorkingTimeRequestAcceptedEvent event) {
-
-        WorkDayEventPeriod period = new WorkDayEventPeriod(event.from(), event.to());
-
+        
         return schedule -> {
 
             if (!(schedule instanceof WorkDay workDay)) {
                 throw new UnsupportedOperationException();
             }
 
-            workDay.assignPrivateExit(period);
+            workDay.assignPrivateExit(new WorkDayEventPeriod(event.from(), event.to()));
         };
     }
 
