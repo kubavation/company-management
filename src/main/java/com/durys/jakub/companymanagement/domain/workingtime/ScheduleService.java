@@ -49,7 +49,7 @@ public class ScheduleService {
     }
 
 
-    public Consumer<Schedule> handlerFrom(WorkingTimeRequestAcceptedEvent event) {
+    public Consumer<Schedule> handler(WorkingTimeRequestAcceptedEvent event) {
         return switch (event.type()) {
             case PRIVATE_EXIT -> privateExitEventHandler(event);
             case WORK_OFF -> workOffEventHandler(event);
