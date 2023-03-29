@@ -3,13 +3,13 @@ package com.durys.jakub.companymanagement.domain.workingtime.requests;
 import com.durys.jakub.companymanagement.domain.workingtime.requests.vo.RequestInformation;
 import com.durys.jakub.companymanagement.domain.workingtime.requests.vo.WorkingTimeRequestId;
 
-public class PrivateExitRequest implements WorkingTimeRequest {
+public class OvertimeTakenRequest implements WorkingTimeRequest {
 
     private final WorkingTimeRequestId id;
-    private final Author author;
     private final RequestInformation information;
+    private final Author author;
 
-    public PrivateExitRequest(WorkingTimeRequestId id, Author author, RequestInformation information) {
+    public OvertimeTakenRequest(WorkingTimeRequestId id, Author author, RequestInformation information) {
         this.id = id;
         this.author = author;
         this.information = information;
