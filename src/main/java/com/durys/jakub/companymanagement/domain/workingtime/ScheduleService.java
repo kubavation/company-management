@@ -54,6 +54,14 @@ public class ScheduleService {
             case PRIVATE_EXIT -> privateExitEventHandler(event);
             case WORK_OFF -> workOffEventHandler(event);
             case OVERTIME -> overtimeEventHandler(event);
+            case OVERTIME_TAKEN -> overtimeTakenEventHandler(event);
+        };
+    }
+
+    private Consumer<Schedule> overtimeTakenEventHandler(WorkingTimeRequestAcceptedEvent event) {
+        return schedule -> {
+            //todo validation
+            schedule.assignOvertimeTaken(new WorkDayEventPeriod(event.from(), event.to()));
         };
     }
 
