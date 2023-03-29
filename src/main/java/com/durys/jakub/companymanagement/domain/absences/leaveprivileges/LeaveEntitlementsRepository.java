@@ -1,6 +1,6 @@
 package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 
 
 public interface LeaveEntitlementsRepository {

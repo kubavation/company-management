@@ -5,13 +5,12 @@ import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.contracts.*;
 import com.durys.jakub.companymanagement.domain.employees.exception.EmployeeNotExistsException;
-import com.durys.jakub.companymanagement.domain.employees.model.Employee;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
+import com.durys.jakub.companymanagement.domain.employees.Employee;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Objects;
-import java.util.UUID;
 
 @CommandHandling
 @RequiredArgsConstructor

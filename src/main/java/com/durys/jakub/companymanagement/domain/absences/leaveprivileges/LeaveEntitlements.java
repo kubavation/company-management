@@ -3,7 +3,7 @@ package com.durys.jakub.companymanagement.domain.absences.leaveprivileges;
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.exception.LeavePrivilegeIsAlreadyEntitledException;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.vo.LeaveType;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 import lombok.NonNull;
 
 

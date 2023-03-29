@@ -3,7 +3,7 @@ package com.durys.jakub.companymanagement.infrastructure.contracts.out;
 import com.durys.jakub.companymanagement.domain.contracts.Contract;
 import com.durys.jakub.companymanagement.domain.contracts.ContractId;
 import com.durys.jakub.companymanagement.domain.contracts.ContractRepository;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 
 import java.time.LocalDate;
 import java.util.Set;

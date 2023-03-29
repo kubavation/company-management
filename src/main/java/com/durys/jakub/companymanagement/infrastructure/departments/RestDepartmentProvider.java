@@ -1,6 +1,6 @@
 package com.durys.jakub.companymanagement.infrastructure.departments;
 
-import com.durys.jakub.companymanagement.domain.employees.model.vo.DepartmentId;
+import com.durys.jakub.companymanagement.domain.employees.vo.DepartmentId;
 import com.durys.jakub.companymanagement.domain.sharedkernel.departments.Department;
 import com.durys.jakub.companymanagement.domain.sharedkernel.departments.DepartmentProvider;
 import lombok.RequiredArgsConstructor;

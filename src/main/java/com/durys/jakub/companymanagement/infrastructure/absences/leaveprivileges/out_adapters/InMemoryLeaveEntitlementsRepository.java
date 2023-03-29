@@ -2,7 +2,7 @@ package com.durys.jakub.companymanagement.infrastructure.absences.leaveprivilege
 
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlements;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementsRepository;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 
 import java.util.HashMap;
 import java.util.Map;

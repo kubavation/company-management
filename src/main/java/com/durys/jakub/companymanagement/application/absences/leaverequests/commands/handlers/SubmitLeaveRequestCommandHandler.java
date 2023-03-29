@@ -9,8 +9,8 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequ
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.Applicant;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.ApplicantId;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 
 import javax.transaction.Transactional;

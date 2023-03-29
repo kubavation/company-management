@@ -3,8 +3,8 @@ package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlements;
-import com.durys.jakub.companymanagement.domain.employees.model.Employable;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.Employable;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 import com.durys.jakub.companymanagement.domain.sharedkernel.TenantId;
 
 

@@ -1,6 +1,5 @@
 package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.output;
 
-import com.durys.jakub.companymanagement.domain.employees.model.Employee;
 import com.durys.jakub.companymanagement.infrastructure.employees.output.EmployeeEntity;
 import com.durys.jakub.companymanagement.infrastructure.shared.status.Status;
 import com.durys.jakub.companymanagement.infrastructure.shared.status.StatusDBConverter;
