@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
+import com.durys.jakub.companymanagement.domain.workingtime.requests.vo.RequestInformation;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

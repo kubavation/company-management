@@ -1,4 +1,4 @@
-package com.durys.jakub.companymanagement.domain.workingtime.requests;
+package com.durys.jakub.companymanagement.domain.workingtime.requests.vo;
 
 import java.util.UUID;
 
