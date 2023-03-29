@@ -1,9 +1,9 @@
 package com.durys.jakub.companymanagement.infrastructure.employees;
 
-import com.durys.jakub.companymanagement.domain.employees.model.Employable;
-import com.durys.jakub.companymanagement.domain.employees.model.Employee;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
+import com.durys.jakub.companymanagement.domain.employees.Employable;
+import com.durys.jakub.companymanagement.domain.employees.Employee;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeRepository;
 
 import java.util.HashMap;
 

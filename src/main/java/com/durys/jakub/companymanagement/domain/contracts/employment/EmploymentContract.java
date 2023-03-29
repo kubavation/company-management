@@ -1,6 +1,6 @@
 package com.durys.jakub.companymanagement.domain.contracts.employment;
 
-import com.durys.jakub.companymanagement.domain.employees.model.EmploymentPeriodService;
+import com.durys.jakub.companymanagement.domain.employees.EmploymentPeriodService;
 
 
 public interface EmploymentContract {

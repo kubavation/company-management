@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.domain.employees.model;
 
+import com.durys.jakub.companymanagement.domain.employees.Graduation;
 import com.durys.jakub.companymanagement.domain.sharedkernel.util.DateRangeValidator;
 import org.junit.jupiter.api.Test;
 

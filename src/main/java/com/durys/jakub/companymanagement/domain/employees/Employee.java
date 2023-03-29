@@ -1,7 +1,7 @@
-package com.durys.jakub.companymanagement.domain.employees.model;
+package com.durys.jakub.companymanagement.domain.employees;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
-import com.durys.jakub.companymanagement.domain.employees.model.vo.PersonalData;
+import com.durys.jakub.companymanagement.domain.employees.vo.PersonalData;
 import com.durys.jakub.companymanagement.domain.sharedkernel.TenantId;
 import com.durys.jakub.companymanagement.domain.sharedkernel.departments.Department;
 

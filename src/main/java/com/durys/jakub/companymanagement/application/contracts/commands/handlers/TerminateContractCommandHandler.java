@@ -6,7 +6,7 @@ import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.contracts.Contract;
 import com.durys.jakub.companymanagement.domain.contracts.ContractId;
 import com.durys.jakub.companymanagement.domain.contracts.ContractRepository;
-import com.durys.jakub.companymanagement.domain.employees.model.EmploymentPeriodService;
+import com.durys.jakub.companymanagement.domain.employees.EmploymentPeriodService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Objects;

@@ -1,7 +1,7 @@
 package com.durys.jakub.companymanagement.domain.workingtime.event;
 
 import com.durys.jakub.companymanagement.commons.events.DomainEvent;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.ScheduleId;
 import com.durys.jakub.companymanagement.domain.workingtime.requests.vo.WorkingTimeRequestPeriod;
 import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequestType;

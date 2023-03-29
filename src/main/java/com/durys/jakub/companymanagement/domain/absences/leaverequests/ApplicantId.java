@@ -1,10 +1,8 @@
 package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import lombok.AllArgsConstructor;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.UUID;
 
 

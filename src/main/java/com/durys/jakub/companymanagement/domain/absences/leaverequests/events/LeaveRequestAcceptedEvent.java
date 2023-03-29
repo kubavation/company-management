@@ -2,12 +2,11 @@ package com.durys.jakub.companymanagement.domain.absences.leaverequests.events;
 
 import com.durys.jakub.companymanagement.commons.events.DomainEvent;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.vo.LeaveRequestType;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 

@@ -2,19 +2,16 @@ package com.durys.jakub.companymanagement.domain.contracts;
 
 import com.durys.jakub.companymanagement.commons.domain.AggregateRoot;
 import com.durys.jakub.companymanagement.commons.domain.DomainServicesRegistry;
-import com.durys.jakub.companymanagement.domain.contracts.employment.NoticePeriod;
 import com.durys.jakub.companymanagement.domain.contracts.vo.*;
-import com.durys.jakub.companymanagement.domain.employees.model.Employee;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import com.durys.jakub.companymanagement.domain.employees.model.EmploymentPeriodService;
+import com.durys.jakub.companymanagement.domain.employees.Employee;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmploymentPeriodService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 @AllArgsConstructor

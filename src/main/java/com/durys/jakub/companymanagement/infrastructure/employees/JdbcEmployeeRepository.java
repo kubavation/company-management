@@ -1,13 +1,11 @@
 package com.durys.jakub.companymanagement.infrastructure.employees;
 
-import com.durys.jakub.companymanagement.domain.employees.model.Employable;
-import com.durys.jakub.companymanagement.domain.employees.model.Employee;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
+import com.durys.jakub.companymanagement.domain.employees.Employable;
+import com.durys.jakub.companymanagement.domain.employees.Employee;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import java.util.UUID;
 
 @AllArgsConstructor
 public class JdbcEmployeeRepository implements EmployeeRepository {
@@ -16,6 +14,7 @@ public class JdbcEmployeeRepository implements EmployeeRepository {
 
     @Override
     public <T extends Employable> T load(EmployeeId employeeId) {
+       // jdbcTemplate.queryForObject("SELECT * FROM EM", EmployeeEntity.class);
         return null;
     }
 

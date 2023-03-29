@@ -1,14 +1,13 @@
 package com.durys.jakub.companymanagement.application.employees.commands.handlers;
 
 import com.durys.jakub.companymanagement.application.employees.commands.ChangeEmployeePersonalDataCommand;
-import com.durys.jakub.companymanagement.domain.employees.model.Employee;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
-import com.durys.jakub.companymanagement.domain.employees.model.vo.DepartmentId;
-import com.durys.jakub.companymanagement.domain.employees.model.vo.PersonalData;
+import com.durys.jakub.companymanagement.domain.employees.Employee;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeRepository;
+import com.durys.jakub.companymanagement.domain.employees.vo.DepartmentId;
+import com.durys.jakub.companymanagement.domain.employees.vo.PersonalData;
 import com.durys.jakub.companymanagement.domain.sharedkernel.departments.Department;
 import com.durys.jakub.companymanagement.infrastructure.employees.HashMapEmployeeRepository;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

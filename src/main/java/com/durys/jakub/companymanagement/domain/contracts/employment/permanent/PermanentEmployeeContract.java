@@ -7,10 +7,9 @@ import com.durys.jakub.companymanagement.domain.contracts.employment.EmploymentC
 import com.durys.jakub.companymanagement.domain.contracts.employment.NoticePeriod;
 import com.durys.jakub.companymanagement.domain.contracts.event.EmploymentContractAssignedEvent;
 import com.durys.jakub.companymanagement.domain.contracts.vo.ContractPeriod;
-import com.durys.jakub.companymanagement.domain.employees.model.EmploymentPeriodService;
+import com.durys.jakub.companymanagement.domain.employees.EmploymentPeriodService;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.UUID;
 
 

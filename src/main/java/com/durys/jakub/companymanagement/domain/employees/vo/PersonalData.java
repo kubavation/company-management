@@ -1,7 +1,6 @@
-package com.durys.jakub.companymanagement.domain.employees.model.vo;
+package com.durys.jakub.companymanagement.domain.employees.vo;
 
 import com.durys.jakub.companymanagement.commons.domain.ValueObject;
-import lombok.AccessLevel;
 import lombok.Getter;
 
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
 package com.durys.jakub.companymanagement.infrastructure.workingtime;
 
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.Schedule;
 import com.durys.jakub.companymanagement.domain.workingtime.ScheduleId;
 import com.durys.jakub.companymanagement.domain.workingtime.ScheduleRepository;

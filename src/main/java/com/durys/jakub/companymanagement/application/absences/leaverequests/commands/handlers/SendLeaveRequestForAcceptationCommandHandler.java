@@ -4,7 +4,7 @@ import com.durys.jakub.companymanagement.application.absences.leaverequests.comm
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 
 @CommandHandling

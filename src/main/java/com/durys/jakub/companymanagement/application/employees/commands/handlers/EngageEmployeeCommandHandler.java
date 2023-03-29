@@ -4,11 +4,11 @@ import com.durys.jakub.companymanagement.application.employees.commands.EngageEm
 import com.durys.jakub.companymanagement.commons.IdentityProvider;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandler;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
-import com.durys.jakub.companymanagement.domain.employees.model.Employee;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeRepository;
-import com.durys.jakub.companymanagement.domain.employees.model.vo.DepartmentId;
-import com.durys.jakub.companymanagement.domain.employees.model.vo.PersonalData;
+import com.durys.jakub.companymanagement.domain.employees.Employee;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeRepository;
+import com.durys.jakub.companymanagement.domain.employees.vo.DepartmentId;
+import com.durys.jakub.companymanagement.domain.employees.vo.PersonalData;
 import com.durys.jakub.companymanagement.domain.sharedkernel.departments.Department;
 import com.durys.jakub.companymanagement.domain.sharedkernel.departments.DepartmentProvider;
 import lombok.RequiredArgsConstructor;

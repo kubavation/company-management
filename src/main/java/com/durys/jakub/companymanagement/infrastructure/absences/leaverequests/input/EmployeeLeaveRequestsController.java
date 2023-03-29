@@ -4,7 +4,7 @@ import com.durys.jakub.companymanagement.application.absences.leaverequests.comm
 import com.durys.jakub.companymanagement.application.absences.leaverequests.commands.SendLeaveRequestForAcceptationCommand;
 import com.durys.jakub.companymanagement.application.absences.leaverequests.commands.SubmitLeaveRequestCommand;
 import com.durys.jakub.companymanagement.cqrs.commands.CommandGateway;
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 import com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.dto.LeaveRequestDTO;
 import com.durys.jakub.companymanagement.readmodel.leaverequests.EmployeeLeaveRequest;
 import com.durys.jakub.companymanagement.readmodel.leaverequests.EmployeeLeaveRequestFinder;

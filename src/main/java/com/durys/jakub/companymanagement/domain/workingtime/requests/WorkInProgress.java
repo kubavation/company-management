@@ -1,6 +1,6 @@
 package com.durys.jakub.companymanagement.domain.workingtime.requests;
 
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.requests.vo.WorkingTimeRequestId;
 import com.durys.jakub.companymanagement.domain.workingtime.requests.vo.WorkingTimeRequestPeriod;
 

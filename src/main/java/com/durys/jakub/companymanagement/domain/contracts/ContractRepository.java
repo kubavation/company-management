@@ -1,9 +1,8 @@
 package com.durys.jakub.companymanagement.domain.contracts;
 
-import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
+import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 public interface ContractRepository {
