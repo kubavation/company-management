@@ -6,7 +6,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum WorkingTimeRequestType {
     PRIVATE_EXIT(PrivateExitRequest.class),
-    WORK_OFF(WorkOffRequest.class);
+    WORK_OFF(WorkOffRequest.class),
+    OVERTIME(OvertimeRequest.class);
 
     private final Class<? extends WorkingTimeRequest> requestClass;
 
