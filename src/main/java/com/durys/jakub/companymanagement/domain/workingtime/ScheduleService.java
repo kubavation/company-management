@@ -4,6 +4,7 @@ import com.durys.jakub.companymanagement.commons.domain.DomainService;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.billingperiod.*;
 import com.durys.jakub.companymanagement.domain.workingtime.event.WorkingTimeRequestAcceptedEvent;
+import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEventNotApplicableInDayOffException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -60,7 +61,7 @@ public class ScheduleService {
 
         return schedule -> {
             if (!(schedule instanceof WorkDay workDay)) {
-                throw new UnsupportedOperationException();
+                throw new WorkDayEventNotApplicableInDayOffException();
             }
             workDay.assignPrivateExit(new WorkDayEventPeriod(event.from(), event.to()));
         };
