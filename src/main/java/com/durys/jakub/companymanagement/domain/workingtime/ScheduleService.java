@@ -4,6 +4,8 @@ import com.durys.jakub.companymanagement.commons.domain.DomainService;
 import com.durys.jakub.companymanagement.domain.employees.model.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.billingperiod.*;
 import com.durys.jakub.companymanagement.domain.workingtime.event.WorkingTimeRequestAcceptedEvent;
+import com.durys.jakub.companymanagement.domain.workingtime.exception.InvalidDurationOfWorkOffEventException;
+import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEventNotApplicableInDayOffException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -47,8 +49,7 @@ public class ScheduleService {
     }
 
 
-    public Consumer<Schedule> handlerFrom(WorkingTimeRequestAcceptedEvent event) {
-
+    public Consumer<Schedule> handler(WorkingTimeRequestAcceptedEvent event) {
         return switch (event.type()) {
             case PRIVATE_EXIT -> privateExitEventHandler(event);
             case WORK_OFF -> workOffEventHandler(event);
@@ -57,10 +58,9 @@ public class ScheduleService {
 
 
     private Consumer<Schedule> privateExitEventHandler(WorkingTimeRequestAcceptedEvent event) {
-
         return schedule -> {
             if (!(schedule instanceof WorkDay workDay)) {
-                throw new UnsupportedOperationException();
+                throw new WorkDayEventNotApplicableInDayOffException();
             }
             workDay.assignPrivateExit(new WorkDayEventPeriod(event.from(), event.to()));
         };
@@ -70,7 +70,7 @@ public class ScheduleService {
     private Consumer<Schedule> workOffEventHandler(WorkingTimeRequestAcceptedEvent event) {
         return schedule -> {
             if (!isWorkOffApplicable(event.employeeId(), event.atDay(), Duration.ofMinutes(event.period().minutes()))) {
-                throw new RuntimeException(); //todo
+                throw new InvalidDurationOfWorkOffEventException();
             }
             schedule.assignWorkOff(new WorkDayEventPeriod(event.from(), event.to()));
         };

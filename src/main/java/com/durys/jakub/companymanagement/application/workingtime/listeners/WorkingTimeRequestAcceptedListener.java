@@ -23,7 +23,7 @@ public class WorkingTimeRequestAcceptedListener {
 
         Schedule schedule = scheduleRepository.load(event.scheduleId());
 
-        scheduleService.handlerFrom(event)
+        scheduleService.handler(event)
                 .accept(schedule);
 
         scheduleRepository.save(schedule);
