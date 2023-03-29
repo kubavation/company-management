@@ -50,7 +50,6 @@ public class ScheduleService {
 
 
     public Consumer<Schedule> handlerFrom(WorkingTimeRequestAcceptedEvent event) {
-
         return switch (event.type()) {
             case PRIVATE_EXIT -> privateExitEventHandler(event);
             case WORK_OFF -> workOffEventHandler(event);
@@ -59,7 +58,6 @@ public class ScheduleService {
 
 
     private Consumer<Schedule> privateExitEventHandler(WorkingTimeRequestAcceptedEvent event) {
-
         return schedule -> {
             if (!(schedule instanceof WorkDay workDay)) {
                 throw new WorkDayEventNotApplicableInDayOffException();
