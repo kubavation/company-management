@@ -17,6 +17,7 @@ public record SentForAcceptationWorkingTimeRequest(WorkingTimeRequest request,
         return request.id();
     }
 
+
     @Override
     public Author author() {
         return request.author();
