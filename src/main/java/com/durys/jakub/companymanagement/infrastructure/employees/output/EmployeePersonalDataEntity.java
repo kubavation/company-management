@@ -24,8 +24,11 @@ public class EmployeePersonalDataEntity {
 
     @Column(name = "FIRST_NAME")
     private String firstName;
+
     @Column(name = "LAST_NAME")
+
     private String lastName;
+
     private String gender;
 
     @Convert(converter = StatusDBConverter.class)

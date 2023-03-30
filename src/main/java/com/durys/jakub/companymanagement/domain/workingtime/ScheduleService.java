@@ -60,14 +60,20 @@ public class ScheduleService {
 
     private Consumer<Schedule> overtimeTakenEventHandler(WorkingTimeRequestAcceptedEvent event) {
         return schedule -> {
-            //todo validation
+
+            if (isOvertimeTakenApplicable(event.employeeId(), event.atDay(), Duration.ofMinutes(event.period().minutes()))) {
+                throw new RuntimeException();
+            }
+            
             schedule.assignOvertimeTaken(new WorkDayEventPeriod(event.from(), event.to()));
         };
     }
 
     private Consumer<Schedule> overtimeEventHandler(WorkingTimeRequestAcceptedEvent event) {
         return schedule -> {
-            //todo validation
+
+
+
             schedule.assignOvertime(new WorkDayEventPeriod(event.from(), event.to()));
         };
     }
