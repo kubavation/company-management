@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.domain.absences.leaverequests;
 
 import com.durys.jakub.companymanagement.commons.domain.ValueObject;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.exception.InvalidLeaveRequestPeriodException;
+import lombok.NonNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -13,10 +14,7 @@ import java.util.Objects;
 public class LeaveRequestHourlyPeriod extends LeaveRequestPeriod {
 
 
-    public static LeaveRequestHourlyPeriod of(LocalDateTime from, LocalDateTime to) {
-        Objects.requireNonNull(from, "Date from value not provided");
-        Objects.requireNonNull(to, "Date from value not provided");
-
+    public static LeaveRequestHourlyPeriod of(@NonNull LocalDateTime from, @NonNull LocalDateTime to) {
         return new LeaveRequestHourlyPeriod(from, to);
     }
 
