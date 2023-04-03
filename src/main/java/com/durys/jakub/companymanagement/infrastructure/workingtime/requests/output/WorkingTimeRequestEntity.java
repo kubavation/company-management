@@ -28,4 +28,7 @@ public class WorkingTimeRequestEntity {
 
     private LocalTime from;
     private LocalTime to;
+
+    @Enumerated(EnumType.STRING)
+    private WorkingTimeRequestStatus status;
 }
