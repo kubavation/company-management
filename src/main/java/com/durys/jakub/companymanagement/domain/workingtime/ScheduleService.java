@@ -7,14 +7,11 @@ import com.durys.jakub.companymanagement.domain.workingtime.event.WorkingTimeReq
 import com.durys.jakub.companymanagement.domain.workingtime.exception.DurationOfWorkOffEventExceedPrivateExitDurationException;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.OvertimeEventNotApplicableException;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEventNotApplicableInDayOffException;
-import com.durys.jakub.companymanagement.domain.workingtime.requests.vo.WorkingTimeRequestPeriod;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.jdbc.Work;
 
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.function.Consumer;
 
