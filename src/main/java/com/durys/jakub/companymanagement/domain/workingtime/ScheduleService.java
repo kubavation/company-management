@@ -62,7 +62,7 @@ public class ScheduleService {
         return schedule -> {
 
             if (isOvertimeTakenApplicable(event.employeeId(), event.atDay(), Duration.ofMinutes(event.period().minutes()))) {
-                throw new RuntimeException();
+                throw new DurationOfWorkOffEventExceedPrivateExitDurationException();
             }
 
             schedule.assignOvertimeTaken(new WorkDayEventPeriod(event.from(), event.to()));
