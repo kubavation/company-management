@@ -4,7 +4,7 @@ import com.durys.jakub.companymanagement.commons.domain.DomainService;
 import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.billingperiod.*;
 import com.durys.jakub.companymanagement.domain.workingtime.event.WorkingTimeRequestAcceptedEvent;
-import com.durys.jakub.companymanagement.domain.workingtime.exception.InvalidDurationOfWorkOffEventException;
+import com.durys.jakub.companymanagement.domain.workingtime.exception.DurationOfWorkOffEventExceedPrivateExitDurationException;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEventNotApplicableInDayOffException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -64,7 +64,7 @@ public class ScheduleService {
             if (isOvertimeTakenApplicable(event.employeeId(), event.atDay(), Duration.ofMinutes(event.period().minutes()))) {
                 throw new RuntimeException();
             }
-            
+
             schedule.assignOvertimeTaken(new WorkDayEventPeriod(event.from(), event.to()));
         };
     }
@@ -92,7 +92,7 @@ public class ScheduleService {
     private Consumer<Schedule> workOffEventHandler(WorkingTimeRequestAcceptedEvent event) {
         return schedule -> {
             if (!isWorkOffApplicable(event.employeeId(), event.atDay(), Duration.ofMinutes(event.period().minutes()))) {
-                throw new InvalidDurationOfWorkOffEventException();
+                throw new DurationOfWorkOffEventExceedPrivateExitDurationException();
             }
             schedule.assignWorkOff(new WorkDayEventPeriod(event.from(), event.to()));
         };
