@@ -5,12 +5,17 @@ import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.billingperiod.*;
 import com.durys.jakub.companymanagement.domain.workingtime.event.WorkingTimeRequestAcceptedEvent;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.DurationOfWorkOffEventExceedPrivateExitDurationException;
+import com.durys.jakub.companymanagement.domain.workingtime.exception.OvertimeEventNotApplicableException;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEventNotApplicableInDayOffException;
+import com.durys.jakub.companymanagement.domain.workingtime.requests.vo.WorkingTimeRequestPeriod;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.jdbc.Work;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.function.Consumer;
 
 @DomainService
@@ -29,6 +34,22 @@ public class ScheduleService {
     public boolean isOvertimeTakenApplicable(@NonNull EmployeeId employeeId, @NonNull LocalDate atDay, @NonNull Duration durationOfOvertimeTaken) {
         Duration durationOfOvertimes = durationOfWorkDayEventInBillingPeriod(employeeId, WorkDayEventType.OVERTIME, atDay);
         return durationOfOvertimes.compareTo(durationOfOvertimeTaken) >= 0;
+    }
+
+    public boolean isOvertimeApplicable(@NonNull EmployeeId employeeId, @NonNull LocalDate atDay, @NonNull LocalTime from, LocalTime to) {
+        Schedule schedule = scheduleRepository.load(ScheduleId.from(employeeId, atDay));
+        return isEmployeeEntitledForOvertime(employeeId)
+                && (schedule instanceof DayOff || (schedule instanceof WorkDay workDay && !isEventInSchedule(from, to, workDay)));
+    }
+
+    private boolean isEmployeeEntitledForOvertime(@NonNull EmployeeId employeeId) {
+        //TODO explore domain
+        return true;
+    }
+
+    private boolean isEventInSchedule(LocalTime from, LocalTime to, WorkDay workDay) {
+        return !(from.isAfter(workDay.period().from())
+                && to.isBefore(workDay.period().to())); //todo
     }
 
     public Duration durationOfWorkDayEventInBillingPeriod(@NonNull EmployeeId employeeId, @NonNull WorkDayEventType eventType, @NonNull LocalDate atDay) {
@@ -61,7 +82,7 @@ public class ScheduleService {
     private Consumer<Schedule> overtimeTakenEventHandler(WorkingTimeRequestAcceptedEvent event) {
         return schedule -> {
 
-            if (isOvertimeTakenApplicable(event.employeeId(), event.atDay(), Duration.ofMinutes(event.period().minutes()))) {
+            if (!isOvertimeTakenApplicable(event.employeeId(), event.atDay(), Duration.ofMinutes(event.period().minutes()))) {
                 throw new DurationOfWorkOffEventExceedPrivateExitDurationException();
             }
 
@@ -71,9 +92,9 @@ public class ScheduleService {
 
     private Consumer<Schedule> overtimeEventHandler(WorkingTimeRequestAcceptedEvent event) {
         return schedule -> {
-
-
-
+            if (!isOvertimeApplicable(event.employeeId(), event.atDay(), event.from(), event.to())) {
+                throw new OvertimeEventNotApplicableException();
+            }
             schedule.assignOvertime(new WorkDayEventPeriod(event.from(), event.to()));
         };
     }
