@@ -5,6 +5,7 @@ import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 import com.durys.jakub.companymanagement.domain.workingtime.billingperiod.*;
 import com.durys.jakub.companymanagement.domain.workingtime.event.WorkingTimeRequestAcceptedEvent;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.DurationOfWorkOffEventExceedPrivateExitDurationException;
+import com.durys.jakub.companymanagement.domain.workingtime.exception.OvertimeEventNotApplicableException;
 import com.durys.jakub.companymanagement.domain.workingtime.exception.WorkDayEventNotApplicableInDayOffException;
 import com.durys.jakub.companymanagement.domain.workingtime.requests.vo.WorkingTimeRequestPeriod;
 import lombok.NonNull;
@@ -92,7 +93,7 @@ public class ScheduleService {
     private Consumer<Schedule> overtimeEventHandler(WorkingTimeRequestAcceptedEvent event) {
         return schedule -> {
             if (!isOvertimeApplicable(event.employeeId(), event.atDay(), event.from(), event.to())) {
-                throw new RuntimeException();
+                throw new OvertimeEventNotApplicableException();
             }
             schedule.assignOvertime(new WorkDayEventPeriod(event.from(), event.to()));
         };
