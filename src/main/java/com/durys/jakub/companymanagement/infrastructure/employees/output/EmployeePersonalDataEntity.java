@@ -5,8 +5,7 @@ import com.durys.jakub.companymanagement.infrastructure.shared.status.StatusDBCo
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Table(name = "CM_EMPLOYEE_PERSONAL_DATA")
 @Entity

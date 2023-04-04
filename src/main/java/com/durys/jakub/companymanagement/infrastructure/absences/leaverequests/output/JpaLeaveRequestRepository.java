@@ -4,11 +4,12 @@ import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequ
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.LeaveRequestId;
 import com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.LeaveRequestAggregateAssembler;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import javax.persistence.EntityNotFoundException;
+
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -20,7 +21,7 @@ public class JpaLeaveRequestRepository implements LeaveRequestRepository {
 
     @Override
     public LeaveRequest load(LeaveRequestId id) {
-        LeaveRequestEntity entity =  jdbcTemplate.queryForObject("SELECT lr.* FROM CM_LEAVE_REQUEST rl where rl.id = :id",
+        LeaveRequestEntity entity = jdbcTemplate.queryForObject("SELECT lr.* FROM CM_LEAVE_REQUEST rl where rl.id = :id",
                 new BeanPropertySqlParameterSource(LeaveRequestEntity.class), LeaveRequestEntity.class);
 
         if (Objects.isNull(entity)) {

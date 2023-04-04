@@ -3,12 +3,12 @@ package com.durys.jakub.companymanagement.infrastructure.absences.leaverequests.
 import com.durys.jakub.companymanagement.infrastructure.employees.output.EmployeeEntity;
 import com.durys.jakub.companymanagement.infrastructure.shared.status.Status;
 import com.durys.jakub.companymanagement.infrastructure.shared.status.StatusDBConverter;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;

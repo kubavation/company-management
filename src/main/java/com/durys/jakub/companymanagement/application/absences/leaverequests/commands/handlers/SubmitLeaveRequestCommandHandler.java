@@ -13,7 +13,7 @@ import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
 import com.durys.jakub.companymanagement.domain.employees.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 @CommandHandling
 @RequiredArgsConstructor

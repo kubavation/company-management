@@ -4,10 +4,9 @@ import com.durys.jakub.companymanagement.commons.events.DomainEventListener;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlements;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementsRepository;
 import com.durys.jakub.companymanagement.domain.contracts.event.EmploymentContractAssignedEvent;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import javax.transaction.Transactional;
 
 @Component
 @RequiredArgsConstructor

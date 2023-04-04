@@ -1,7 +1,8 @@
 package com.durys.jakub.companymanagement.infrastructure.shared.status;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 @Converter
 public class StatusDBConverter implements AttributeConverter<Status, String> {
