@@ -17,7 +17,7 @@ public class WorkingTimeRequestConfiguration {
 
     @Bean
     @Primary
-    @ConditionalOnProperty(prefix = "test-profile", name = "enabled", value = "true")
+    @ConditionalOnProperty(prefix = "test-profile", name = "enabled", havingValue = "true")
     public WorkingTimeRequestRepository hashMapWorkingTimeRequestRepository(WorkingTimeRequestAggregateAssembler assembler) {
         return new HashMapWorkingTimeRequestRepository(assembler);
     }
