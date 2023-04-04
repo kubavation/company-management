@@ -8,10 +8,10 @@
 
     <changeSet author="jdurys" id="1.0.0-employees-create-employee-personal-data-table">
         <createTable tableName="CM_EMPLOYEE_PERSONAL_DATA">
-            <column autoIncrement="true" name="id" type="INT">
+            <column autoIncrement="true" name="id" type="bigint">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="employee_id" type="INT">
+            <column name="employee_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
             <column name="first_name" type="VARCHAR(500)">

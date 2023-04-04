@@ -8,7 +8,7 @@
 
     <changeSet author="jdurys" id="1.0.0-leaverequest-create-leave-request-table">
         <createTable tableName="CM_LEAVE_REQUEST">
-            <column autoIncrement="true" name="id" type="INT">
+            <column autoIncrement="true" name="id" type="bigint">
                 <constraints primaryKey="true"/>
             </column>
             <column name="type" type="VARCHAR(1000)">
@@ -26,7 +26,7 @@
             <column name="hours" type="number">
                 <constraints nullable="false"/>
             </column>
-            <column name="employee_id" type="number">
+            <column name="employee_id" type="bigint">
                 <constraints nullable="false"/>
              </column>
             <column name="status" type="VARCHAR(5)">

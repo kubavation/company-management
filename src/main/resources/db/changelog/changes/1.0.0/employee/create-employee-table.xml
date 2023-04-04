@@ -8,7 +8,7 @@
 
     <changeSet author="jdurys" id="1.0.0-employees-create-employee-table">
         <createTable tableName="CM_EMPLOYEE">
-            <column autoIncrement="true" name="id" type="INT">
+            <column autoIncrement="true" name="id" type="bigint">
                 <constraints primaryKey="true"/>
             </column>
             <column name="domain_id" type="VARCHAR(1000)">
