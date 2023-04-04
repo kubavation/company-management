@@ -6,9 +6,8 @@ import com.durys.jakub.companymanagement.cqrs.commands.CommandHandling;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.*;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.vo.LeaveType;
 import com.durys.jakub.companymanagement.domain.employees.EmployeeId;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-
-import javax.transaction.Transactional;
 
 @CommandHandling
 @RequiredArgsConstructor

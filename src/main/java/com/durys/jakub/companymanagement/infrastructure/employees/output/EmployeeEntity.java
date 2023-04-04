@@ -2,11 +2,11 @@ package com.durys.jakub.companymanagement.infrastructure.employees.output;
 
 import com.durys.jakub.companymanagement.infrastructure.shared.status.Status;
 import com.durys.jakub.companymanagement.infrastructure.shared.status.StatusDBConverter;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.*;
 
 @Table(name = "CM_EMPLOYEE")
 @Entity
