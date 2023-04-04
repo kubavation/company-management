@@ -8,7 +8,7 @@ import com.durys.jakub.companymanagement.domain.workingtime.event.WorkingTimeReq
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 @Component
 @RequiredArgsConstructor

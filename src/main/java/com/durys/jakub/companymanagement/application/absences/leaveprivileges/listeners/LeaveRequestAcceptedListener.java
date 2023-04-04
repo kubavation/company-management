@@ -5,10 +5,9 @@ import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEn
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementsRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.vo.LeaveType;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.events.LeaveRequestAcceptedEvent;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import javax.transaction.Transactional;
 
 @Component
 @RequiredArgsConstructor

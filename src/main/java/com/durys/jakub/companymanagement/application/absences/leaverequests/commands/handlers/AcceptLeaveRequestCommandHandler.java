@@ -7,9 +7,9 @@ import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEn
 import com.durys.jakub.companymanagement.domain.absences.leaveprivileges.LeaveEntitlementsRepository;
 import com.durys.jakub.companymanagement.domain.absences.leaverequests.*;
 import com.durys.jakub.companymanagement.domain.employees.EmployeeRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-import javax.transaction.Transactional;
 
 @CommandHandling
 @RequiredArgsConstructor
