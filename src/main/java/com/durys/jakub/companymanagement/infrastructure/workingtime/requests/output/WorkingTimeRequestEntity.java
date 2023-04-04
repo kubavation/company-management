@@ -2,6 +2,7 @@ package com.durys.jakub.companymanagement.infrastructure.workingtime.requests.ou
 
 import com.durys.jakub.companymanagement.infrastructure.employees.output.EmployeeEntity;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class WorkingTimeRequestEntity {
 
     @Id

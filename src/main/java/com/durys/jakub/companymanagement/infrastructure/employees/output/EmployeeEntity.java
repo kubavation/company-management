@@ -3,6 +3,7 @@ package com.durys.jakub.companymanagement.infrastructure.employees.output;
 import com.durys.jakub.companymanagement.infrastructure.shared.status.Status;
 import com.durys.jakub.companymanagement.infrastructure.shared.status.StatusDBConverter;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class EmployeeEntity {
 
     @Id
