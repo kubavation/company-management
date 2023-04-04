@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class WorkingTimeRequestAggregateAssembler implements AggregateAssembler<WorkingTimeRequestEntity, RequestInWorkflow> {
 
-
     @Override
     public WorkingTimeRequestEntity toEntity(RequestInWorkflow aggregate) {
         return WorkingTimeRequestEntity.builder()
@@ -17,7 +16,7 @@ public class WorkingTimeRequestAggregateAssembler implements AggregateAssembler<
                 .day(aggregate.request().information().atDay())
                 .from(aggregate.request().information().from())
                 .to(aggregate.request().information().to())
-                .status(statusFrom(aggregate))
+                .status(toStatus(aggregate))
                 .build();
     }
 
@@ -27,7 +26,7 @@ public class WorkingTimeRequestAggregateAssembler implements AggregateAssembler<
     }
 
 
-    private static WorkingTimeRequestStatus statusFrom(RequestInWorkflow request) {
+    private static WorkingTimeRequestStatus toStatus(RequestInWorkflow request) {
         return switch (request) {
             case SubmittedWorkingTimeRequest ignored -> WorkingTimeRequestStatus.SUBMITTED;
             case AcceptedWorkingTimeRequest ignored -> WorkingTimeRequestStatus.ACCEPTED;
