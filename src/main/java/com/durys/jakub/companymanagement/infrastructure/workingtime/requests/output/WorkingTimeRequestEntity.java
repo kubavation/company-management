@@ -1,5 +1,6 @@
 package com.durys.jakub.companymanagement.infrastructure.workingtime.requests.output;
 
+import com.durys.jakub.companymanagement.domain.workingtime.requests.WorkingTimeRequestType;
 import com.durys.jakub.companymanagement.infrastructure.employees.output.EmployeeEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,8 +28,10 @@ public class WorkingTimeRequestEntity {
     @JoinColumn(name = "employee_id")
     private EmployeeEntity employee;
 
-    private LocalDate day;
+    @Enumerated(EnumType.STRING)
+    private WorkingTimeRequestType type;
 
+    private LocalDate day;
     private LocalTime from;
     private LocalTime to;
 

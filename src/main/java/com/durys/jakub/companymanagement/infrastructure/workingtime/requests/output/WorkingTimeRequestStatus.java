@@ -3,7 +3,6 @@ package com.durys.jakub.companymanagement.infrastructure.workingtime.requests.ou
 public enum WorkingTimeRequestStatus {
     SUBMITTED,
     CANCELLED,
-    DELETED,
     SENT_FOR_ACCEPTATION,
     ACCEPTED,
     REJECTED;
